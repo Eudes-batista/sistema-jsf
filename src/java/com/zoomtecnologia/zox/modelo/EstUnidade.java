@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "est_unidade")
 @Data
+@NamedQueries({@NamedQuery(name="EstUnidade.listarTodos",query = "select unidade from EstUnidade unidade")})
 public class EstUnidade implements Serializable {
 
     @Id
