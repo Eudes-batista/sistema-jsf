@@ -31,19 +31,31 @@ public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * CODIGO DO ESTADO
+     */
     @Id
     @Column(name = "UFCODIGO", length = 2, nullable = false)
     Integer codigo;
 
+    /**
+     * CODIGO DO PAIS
+     */
     @Id
     @ManyToOne
     @JoinColumn(name = "UFCDPAIS", nullable = false)
     @ForeignKey(name = "zoxcadestadoFKzoxcadpaises")
     Pais pais;
 
+    /**
+     * NOME DO ESTADO
+     */
     @Column(name = "UFNOMEUF", length = 50, nullable = false)
     String nome;
 
+    /**
+     * SIGLA DO ESTADO
+     */
     @Column(name = "UFSIGLAUF", length = 2, nullable = false)
     String sigla;
 

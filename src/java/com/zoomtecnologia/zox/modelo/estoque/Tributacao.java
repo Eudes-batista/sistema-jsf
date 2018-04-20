@@ -9,14 +9,15 @@ import com.zoomtecnologia.zox.modelo.cadastros.Estado;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -28,10 +29,8 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @NamedQueries({
     @NamedQuery(name = "Tributacao.listarTodos", query = "select u from Tributacao u")
-    ,
-    @NamedQuery(name = "Tributacao.buscarEstado", query = "select u from Tributacao u where u.estado like :estado")
-    ,
-    @NamedQuery(name = "Tributacao.buscarCst", query = "select u from Tributacao u where u.cst like :cst")
+    ,@NamedQuery(name = "Tributacao.buscarEstado", query = "select u from Tributacao u where u.estado like :estado")
+    ,@NamedQuery(name = "Tributacao.buscarCst", query = "select u from Tributacao u where u.cst like :cst")
 })
 public class Tributacao implements Serializable {
 
@@ -42,8 +41,7 @@ public class Tributacao implements Serializable {
      */
     @Id
     @ManyToOne
-    @JoinColumn(name = "CTCODCES", nullable = false)
-    @ForeignKey(name = "tributacaoFKcesta_tributacao")
+    @JoinColumn(name = "CTCODCES", nullable = false, foreignKey = @ForeignKey(name = "tributacaoFKcesta_tributacao"))
     CestaTributacao cestatributacao;
 
     /**
@@ -51,8 +49,11 @@ public class Tributacao implements Serializable {
      */
     @Id
     @ManyToOne
-    @JoinColumn(name = "CTESTADO", nullable = false)
-    @ForeignKey(name = "tributacaoFKzoxcadestado")
+    @JoinColumns({
+        @JoinColumn(name = "CTESTADO", referencedColumnName = "UFCODIGO", nullable = false)
+        ,@JoinColumn(name = "CTCDPAIS", referencedColumnName = "UFCDPAIS", nullable = false)
+    })
+    @org.hibernate.annotations.ForeignKey(name = "tributacaoFKzoxcadestado")
     Estado estado;
 
     /**

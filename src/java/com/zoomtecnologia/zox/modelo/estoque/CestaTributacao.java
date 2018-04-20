@@ -23,24 +23,27 @@ import org.hibernate.validator.constraints.Length;
 @Table(name = "cesta_tributacao")
 @Data
 @NamedQueries({
-    @NamedQuery(name = "CestaTributacao.listarTodos", query = "select u from CestaTributacao u"),
+    @NamedQuery(name = "CestaTributacao.listarTodos", query = "select u from CestaTributacao u")
+    ,
     @NamedQuery(name = "CestaTributacao.buscarDescricao", query = "select u from CestaTributacao u where u.descricao like :descricao")
 })
-public class CestaTributacao implements Serializable  {
-    
-  /**
+public class CestaTributacao implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
      * CÓDIGO DA CESTA DE TRIBUTACAO
      */
     @Id
     @Column(name = "CTCODIGO", length = 04, nullable = false)
     @Length(max = 04, message = "Código da Cesta de Tributação com até {max}.")
     String codigo;
-    
-  /**
+
+    /**
      * DESCRIÇÃO DA CESTA DE TRIBUTAÇÃO
      */
-    @Column(name = "CTCODIGO", length = 50, nullable = false)
+    @Column(name = "CTDESCRI", length = 50, nullable = false)
     @Length(max = 50, message = "Descrição da Cesta de Tributação com até {max}.")
     String descricao;
-    
+
 }
