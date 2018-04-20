@@ -52,7 +52,6 @@ public class SubGrupo implements Serializable {
      */
     @Column(name = "SGDESGRU", length = 50, nullable = false)
     @Length(max = 50, message = "Descrição do SubGrupo com até {max}.")
-
     private String descricao;
 
     /**

@@ -7,6 +7,7 @@ package com.zoomtecnologia.zox.modelo.estoque;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Estado;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -49,7 +50,7 @@ public class Tributacao implements Serializable {
      * CÓDIGO DO ESTADO
      */
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
         @JoinColumn(name = "CTESTADO", referencedColumnName = "UFCODIGO", nullable = false)
         ,@JoinColumn(name = "CTCDPAIS", referencedColumnName = "UFCDPAIS", nullable = false)

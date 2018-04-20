@@ -2,6 +2,7 @@ package com.zoomtecnologia.zox.modelo.estoque;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import lombok.Data;
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
-@Table(name = "est_cadproduto")
+@Table(name = "est_cadprodutos")
 @Data
 @NamedQueries({
     @NamedQuery(name = "Produto.buscarDescricao", query = "select p from Produto p where p.descricao like :descricao")
@@ -38,10 +39,10 @@ public class Produto implements Serializable {
     @Column(name = "PRCODCES", length = 7, nullable = true)
     Integer cest;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-        @JoinColumn(name = "PRCODSUB", referencedColumnName = "SGCODSUB", nullable = false)
-        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "SGCODGRU", nullable = false)
+        @JoinColumn(name = "PRCODSUB", referencedColumnName = "codigo", nullable = false)
+        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "grupo", nullable = false)
     })
     @ForeignKey(name = "est_cadprodutoFKzoxcadsubgrup")
     SubGrupo subGrupo;
