@@ -44,7 +44,8 @@ public class Produto implements Serializable {
 
     @ManyToOne
     @JoinColumns({
-        @JoinColumn(name = "SGCODSUB")
+        @JoinColumn(name = "SGCODSUB", referencedColumnName = "SGCODSUB", nullable = false)
+        ,@JoinColumn(name = "SGCODGRU", referencedColumnName = "SGCODGRU", nullable = false)
     })
     @ForeignKey(name = "est_cadprodutoFKzoxcadsubgrup")
     SubGrupo subGrupo;
