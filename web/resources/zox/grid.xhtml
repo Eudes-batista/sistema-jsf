@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="idBtNovo" shortDescription="Id do botão novo" required="true"/>
+        <cc:attribute name="usarFiltro" shortDescription="Define se a grid tem botão de filtro ou não." required="true"/>
+        <c:if test="#{cc.attrs.usarFiltro}">
+            <cc:attribute name="idBtFiltro" shortDescription="Id do botão Filtro" />
+        </c:if>
+        <cc:attribute name="usarPrint" shortDescription="Define se a grid tem botão de Impressão ou não." required="true"/>
+        <c:if test="#{cc.attrs.usarPrint}">
+            <cc:attribute name="idBtPrint" shortDescription="Id do botão Print"/>
+        </c:if>
+        <cc:attribute name="idTextPesquisa" shortDescription="Id do Campo de Pesquisa" required="true"/>
+
+        <cc:attribute name="idForm" shortDescription="Id do Formulario de Cadastro" required="true"/>
+        <cc:attribute name="idBtAtualizar" shortDescription="Id do Botão Atualizar" required="true"/>
+
+        <cc:attribute name="bean" shortDescription="informa o controlador da tela" required="true"/>
+        
+
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <h:head>
+
+    </h:head>
+    <cc:implementation>
+        <h:body>
+            <div class="fundoGrid">
+                <div class="ui-fluid">
+                    <p:panelGrid layout="grid" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" styleClass="ui-panelgrid-blank" >
+                        <p:panelGrid layout="grid" columns="2" styleClass="ui-panelgrid-blank" >
+                            <p:inputText id="#{cc.attrs.idTextPesquisa}" placeholder="Pesquisa" value="#{cc.attrs.bean.pesquisa}"/>
+                            <p:commandLink  class="btn glyphicon glyphicon-search btbusca" actionListener="#{cc.attrs.bean.pesquisar()}"
+                                            update="@form" style="margin-top: -5px;"/>
+                        </p:panelGrid>
+                        <p:panelGrid layout="grid" columns="6" styleClass="ui-panelgrid-blank">
+                            <p:commandLink id="#{cc.attrs.idBtNovo}" 
+                                            oncomplete="PF('#{cc.attrs.idForm}').show();" class="btn btn-block glyphicon glyphicon-plus btnovo" /> 
+                            <c:if test="#{cc.attrs.usarFiltro}">
+                                <p:commandLink id="#{cc.attrs.idBtFiltro}" class="btn btn-block glyphicon glyphicon-filter btfiltro" />
+                            </c:if>
+                            <c:if test="#{cc.attrs.usarPrint}">
+                                <p:commandLink id="#{cc.attrs.idBtPrint}"  class="btn btn-block glyphicon glyphicon-print btprint"/>
+                            </c:if>
+                            <p:commandLink id="#{cc.attrs.idBtAtualizar}"  class="btn btn-block glyphicon glyphicon-refresh btatualizar"
+                                           process="@form" update="@form" actionListener="#{cc.attrs.bean.inicializar()}"/>
+                        </p:panelGrid>
+                    </p:panelGrid>
+                </div>
+            </div>
+            <cc:insertChildren />
+            <p:tooltip for="#{cc.attrs.idBtNovo}" value="Novo" position="bottom"/>
+            <p:tooltip for="#{cc.attrs.idBtFiltro}" value="Filtro" position="bottom"/>
+            <p:tooltip for="#{cc.attrs.idBtPrint}" value="Imprimir" position="bottom"/>
+            <p:tooltip for="#{cc.attrs.idBtAtualizar}" value="Atualizar" position="bottom"/>
+        </h:body>
+    </cc:implementation>
+</html>
