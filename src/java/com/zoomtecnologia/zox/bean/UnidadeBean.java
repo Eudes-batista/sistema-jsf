@@ -1,6 +1,6 @@
 package com.zoomtecnologia.zox.bean;
 
-import com.zoomtecnologia.zox.modelo.estoque.Unidades;
+import com.zoomtecnologia.zox.modelo.estoque.Unidade;
 import com.zoomtecnologia.zox.servico.UnidadeServico;
 import java.io.Serializable;
 import java.util.List;
@@ -15,16 +15,18 @@ import org.springframework.stereotype.Service;
 @ManagedBean
 public class UnidadeBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Autowired
     UnidadeServico unidadeServico;
 
     @Getter
     @Setter
-    Unidades unidade;
+    Unidade unidade;
 
     @Getter
     @Setter
-    List<Unidades> unidades;
+    List<Unidade> unidades;
 
     @Getter
     @Setter
@@ -32,7 +34,7 @@ public class UnidadeBean implements Serializable {
 
     public void inicializar() {
         unidades = unidadeServico.listarTodos();
-        unidade = new Unidades();
+        unidade = new Unidade();
     }
 
     public void salvar() {
@@ -44,18 +46,18 @@ public class UnidadeBean implements Serializable {
         }
     }
 
-    public void alterar(Unidades unidades) {
+    public void alterar(Unidade unidades) {
         this.unidade = unidades;
     }
 
-    public void excluir(Unidades unidades) {
+    public void excluir(Unidade unidades) {
         try {
             unidadeServico.excluir(unidades);
             Messages.addGlobalInfo("excluido com sucesso!!");
         } catch (Exception ex) {
             Messages.addGlobalError("Erro ao excluir : " + ex.getMessage());
         }
-        this.unidades.remove(unidades);
+        this.unidades.remove(unidade);
     }
 
     public void pesquisarDescricao() {

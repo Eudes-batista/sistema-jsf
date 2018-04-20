@@ -19,10 +19,12 @@ import org.hibernate.validator.constraints.Length;
 @Table(name = "ncm")
 @Data
 @NamedQueries({
-         @NamedQuery(name="Ncm.listarTodos",query = "select u from Ncm u"),
-         @NamedQuery(name = "Ncm.buscarDescricao",query = "select u from Ncm u where u.descricao like :descricao")
- })
+    @NamedQuery(name = "Ncm.listarTodos", query = "select u from Ncm u")
+    ,@NamedQuery(name = "Ncm.buscarDescricao", query = "select u from Ncm u where u.descricao like :descricao")
+})
 public class Ncm implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "NCCODNCM", length = 8, nullable = false)
@@ -31,6 +33,5 @@ public class Ncm implements Serializable {
 
     @Column(name = "NCDESNCM", length = 150, nullable = false)
     @Length(max = 150, message = "Descrição do NCM com até {max}.")
-    String descricao;       
+    String descricao;
 }
-

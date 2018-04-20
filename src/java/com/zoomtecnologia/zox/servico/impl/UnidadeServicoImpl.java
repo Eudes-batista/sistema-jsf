@@ -1,6 +1,6 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.modelo.estoque.Unidades;
+import com.zoomtecnologia.zox.modelo.estoque.Unidade;
 import com.zoomtecnologia.zox.servico.UnidadeServico;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,7 +16,7 @@ public class UnidadeServicoImpl implements UnidadeServico {
     private EntityManager entityManager;
 
     @Override
-    public void salvar(Unidades unidade) {
+    public void salvar(Unidade unidade) {
 
         if (buscarId(unidade.getCodigo()) == null) {
             entityManager.persist(unidade);
@@ -27,29 +27,29 @@ public class UnidadeServicoImpl implements UnidadeServico {
     }
 
     @Override
-    public void alterar(Unidades unidade) {
+    public void alterar(Unidade unidade) {
         entityManager.merge(unidade);
     }
 
     @Override
-    public Unidades buscarId(String codigo) {
-        return entityManager.find(Unidades.class, codigo);
+    public Unidade buscarId(String codigo) {
+        return entityManager.find(Unidade.class, codigo);
     }
 
     @Override
-    public void excluir(Unidades unidade) {
+    public void excluir(Unidade unidade) {
         entityManager.remove(buscarId(unidade.getCodigo()));
     }
 
     @Override
-    public List<Unidades> listarTodos() {
-        return entityManager.createNamedQuery("Unidade.listarTodos", Unidades.class).getResultList();
+    public List<Unidade> listarTodos() {
+        return entityManager.createNamedQuery("Unidade.listarTodos", Unidade.class).getResultList();
     }
 
     @Override
-    public List<Unidades> bucarDescricao(String descricao) {
+    public List<Unidade> bucarDescricao(String descricao) {
         return entityManager.createNamedQuery("Unidade.buscarDescricao",
-                Unidades.class).setParameter("descricao", "%" + descricao + "%").getResultList();
+                Unidade.class).setParameter("descricao", "%" + descricao + "%").getResultList();
 
     }
 
