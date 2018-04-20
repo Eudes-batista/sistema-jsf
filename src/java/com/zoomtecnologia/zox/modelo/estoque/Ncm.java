@@ -6,11 +6,15 @@
 package com.zoomtecnologia.zox.modelo.estoque;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -34,4 +38,7 @@ public class Ncm implements Serializable {
     @Column(name = "NCDESNCM", length = 150, nullable = false)
     @Length(max = 150, message = "Descrição do NCM com até {max}.")
     String descricao;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ncm")
+    private List<Cest> cests = new ArrayList<>();
 }
