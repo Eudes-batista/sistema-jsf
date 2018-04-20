@@ -26,18 +26,30 @@ public class ItensInformacoesNutricionais implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * CODIGO DA INFORMACAO NUTRICIONAL
+     */
     @Id
     @OneToOne
     @JoinColumn(name = "ITCODIGO", nullable = false)
     @ForeignKey(name = "itens_informacoes_nutricionaisFKinformacoes_nutricionais")
     private InformacoesNutricionais informacoesNutricionais;
 
+    /**
+     * DESCRICAO DO ITEM
+     */
     @Column(name = "ITDESCRI", length = 20, nullable = false)
     private String descricao;
 
+    /**
+     * QUANDIDADE
+     */
     @Column(name = "ITQUANTI", length = 20, nullable = false)
     private String quantidade;
 
+    /**
+     * VALORES DIARIOS
+     */
     @Column(name = "ITPORCVD", length = 255, nullable = false)
     private String valoresDiarios;
 
