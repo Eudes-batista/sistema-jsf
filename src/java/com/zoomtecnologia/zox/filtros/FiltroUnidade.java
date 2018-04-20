@@ -12,9 +12,12 @@ import lombok.Setter;
  *
  * @author Administrador
  */
-@Getter @Setter
-public class FiltroUnidade extends FiltroGeneric{
+@Getter
+@Setter
+public class FiltroUnidade extends FiltroGeneric {
+
+    private static final long serialVersionUID = 1L;
 
     private String descricao;
-    
+
 }

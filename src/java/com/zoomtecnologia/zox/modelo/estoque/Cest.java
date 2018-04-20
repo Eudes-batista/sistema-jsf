@@ -10,6 +10,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
+import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "zoxcadcest")
@@ -41,5 +42,6 @@ public class Cest implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(name = "CECODNCM", nullable = false)
+    @ForeignKey(name = "cestFKncm")
     private Ncm ncm;
 }
