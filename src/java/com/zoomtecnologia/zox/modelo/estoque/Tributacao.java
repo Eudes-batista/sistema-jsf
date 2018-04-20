@@ -52,8 +52,8 @@ public class Tributacao implements Serializable {
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-        @JoinColumn(name = "CTESTADO", referencedColumnName = "UFCODIGO", nullable = false)
-        ,@JoinColumn(name = "CTCDPAIS", referencedColumnName = "UFCDPAIS", nullable = false)
+        @JoinColumn(name = "CTESTADO")
+       ,@JoinColumn(name = "CTCDPAIS")
     })
     @ForeignKey(name = "tributacaoFKzoxcadestado")
     Estado estado;

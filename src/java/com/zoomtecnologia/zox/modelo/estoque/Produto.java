@@ -28,11 +28,11 @@ public class Produto implements Serializable {
     @Column(name = "PRCODCES", length = 7, nullable = true)
     Integer cest;
 
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-        @JoinColumn(name = "PRCODSUB", referencedColumnName = "SGCODSUB", nullable = false)
-        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "SGCODGRU", nullable = false)
+        @JoinColumn(name = "PRCODSUB")
+        ,@JoinColumn(name = "PRCODGRU")
     })
+    @ManyToOne(cascade = CascadeType.ALL)
     @ForeignKey(name = "est_cadprodutoFKzoxcadsubgrup")
     SubGrupo subGrupo;
 
