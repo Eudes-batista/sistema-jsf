@@ -2,18 +2,7 @@ package com.zoomtecnologia.zox.modelo.estoque;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.ForeignKey;
 
@@ -41,8 +30,8 @@ public class Produto implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-        @JoinColumn(name = "PRCODSUB", referencedColumnName = "codigo", nullable = false)
-        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "grupo", nullable = false)
+        @JoinColumn(name = "PRCODSUB", referencedColumnName = "SGCODSUB", nullable = false)
+        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "SGCODGRU", nullable = false)
     })
     @ForeignKey(name = "est_cadprodutoFKzoxcadsubgrup")
     SubGrupo subGrupo;

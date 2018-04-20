@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
-		http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="teste" transaction-type ="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/zox"/>
-			<property name="javax.persistence.jdbc.user" value="root"/>
-			<property name="javax.persistence.jdbc.password" value="zoom12345"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
-			<property name="hibernate.show_sql" value="true"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-		</properties>
-	</persistence-unit>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="teste" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.Cfop</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.Cidade</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.Cnae</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.Empresa</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.Estado</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.Ibpt</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.Pais</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar</class>
+        <class>com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.Cest</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.CestaTributacao</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.Grupo</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.Ncm</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.Produto</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.SubGrupo</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.Tributacao</class>
+        <class>com.zoomtecnologia.zox.modelo.estoque.Unidade</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/zox"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="zoom12345"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        </properties>
+    </persistence-unit>
 </persistence>

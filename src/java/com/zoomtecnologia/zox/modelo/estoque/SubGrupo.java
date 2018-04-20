@@ -43,7 +43,7 @@ public class SubGrupo implements Serializable {
      */
     @Id
     @ManyToOne
-    @JoinColumn(name = "SGCODGRU", nullable = false)
+    @JoinColumn(name = "SGCODGRU", referencedColumnName = "GPCODGRU", nullable = false)
     @ForeignKey(name = "zoxcadsubgrupFKzoxcadgrup")
     private Grupo grupo;
 
