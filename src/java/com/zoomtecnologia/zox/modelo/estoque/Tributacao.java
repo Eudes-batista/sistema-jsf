@@ -5,20 +5,14 @@
  */
 package com.zoomtecnologia.zox.modelo.estoque;
 
-import com.zoomtecnologia.zox.modelo.cadastros.Estado;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -36,34 +30,11 @@ import org.hibernate.validator.constraints.Length;
 public class Tributacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     /**
-     * CÓDIGO DA CESTA DE TRIBUTAÇÃO
+     * CODIGO DA TRIBUTACAO
      */
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "CTCODCES", nullable = false)
-    @ForeignKey(name = "tributacaoFKcesta_tributacao")
-    CestaTributacao cestatributacao;
-
-    /**
-     * CÓDIGO DO ESTADO
-     */
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumns({
-        @JoinColumn(name = "CTESTADO", referencedColumnName = "UFCODIGO",nullable = false)
-       ,@JoinColumn(name = "CTCDPAIS", referencedColumnName = "UFCDPAIS",nullable = false)
-    })
-    @ForeignKey(name = "tributacaoFKzoxcadestado")
-    Estado estado;
-
-    /**
-     * CÓDIGO DO REGIME TRIBUTÁRIO
-     */
-    @Id
-    @Column(name = "CTREGTRI", length = 01, nullable = false, columnDefinition = "enum(1,2,3) default '3'")
-    String regimetributario;
+    @EmbeddedId
+    TributacaoPK tributacaoPK;
 
     /**
      * CST (CÓDIGO DA SITUAÇÃO TRIBUTÁRIA)
