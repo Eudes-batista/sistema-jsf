@@ -40,7 +40,7 @@
         <property name="scopes">
             <map>
                 <entry key="view">
-                    <bean class="com.zoomtecnologia.zox.servico.ViewScope"/>
+                    <bean class="com.zoomtecnologia.zox.escopo.ViewScope"/>
                 </entry>
             </map>
         </property>

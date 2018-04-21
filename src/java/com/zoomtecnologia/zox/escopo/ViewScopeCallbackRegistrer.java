@@ -1,4 +1,4 @@
-package com.zoomtecnologia.zox.servico;
+package com.zoomtecnologia.zox.escopo;
 
 import java.util.HashMap;
 import java.util.Map;
