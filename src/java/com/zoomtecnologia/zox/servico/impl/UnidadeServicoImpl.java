@@ -87,7 +87,6 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
         }
         expressao = Restrictions.or(nome, codigo);
         criteria.add(expressao);
-
         return criteria;
     }
 }
