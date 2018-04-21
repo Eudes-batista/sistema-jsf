@@ -7,15 +7,12 @@ package com.zoomtecnologia.zox.modelo.estoque;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -33,20 +30,9 @@ public class SubGrupo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name = "SGCODSUB", length = 20, nullable = false)
-    @Length(max = 20, message = "Código do SubGrupo com até {max}.")
-    private String codigo;
-
-    /**
-     * CÓDIGO DO GRUPO
-     */
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "SGCODGRU", referencedColumnName = "GPCODGRU", nullable = false)
-    @ForeignKey(name = "zoxcadsubgrupFKzoxcadgrup")
-    private Grupo grupo;
-
+    @EmbeddedId
+    SubGrupoPK subGrupoPK;
+    
     /**
      * DESCRIÇÃO DO SUBGRUPO
      */

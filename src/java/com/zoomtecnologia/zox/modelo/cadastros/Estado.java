@@ -7,15 +7,12 @@ package com.zoomtecnologia.zox.modelo.cadastros;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.ForeignKey;
 
 /**
  *
@@ -30,23 +27,10 @@ import org.hibernate.annotations.ForeignKey;
 public class Estado implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * CODIGO DO ESTADO
-     */
-    @Id
-    @Column(name = "UFCODIGO", length = 2, nullable = false)
-    Integer codigo;
-
-    /**
-     * CODIGO DO PAIS
-     */
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "UFCDPAIS", nullable = false)
-    @ForeignKey(name = "zoxcadestadoFKzoxcadpaises")
-    Pais pais;
-
+    
+    @EmbeddedId
+    EstadoPK estadoPK;
+    
     /**
      * NOME DO ESTADO
      */
