@@ -30,6 +30,9 @@ public class SubGrupo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * CODIGO DO SUBGRUPO
+     */
     @EmbeddedId
     SubGrupoPK subGrupoPK;
     
