@@ -53,19 +53,6 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
     }
 
     @Override
-    public List<Unidade> listarTodos() {
-
-        return entityManager.createNamedQuery("Unidade.listarTodos", Unidade.class).getResultList();
-    }
-
-    @Override
-    public List<Unidade> bucarDescricao(String descricao) {
-        return entityManager.createNamedQuery("Unidade.buscarDescricao",
-                Unidade.class).setParameter("descricao", "%" + descricao + "%").getResultList();
-
-    }
-
-    @Override
     public List<Unidade> filtrados(FiltroUnidade filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
 

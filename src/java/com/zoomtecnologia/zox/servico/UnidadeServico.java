@@ -13,11 +13,7 @@ public interface UnidadeServico{
 
     public void excluir(Unidade unidade);
     
-    public List<Unidade> listarTodos();
-    
     public Unidade buscarId(String codigo);
-    
-    public List<Unidade> bucarDescricao(String descricao);
     
     public List<Unidade> filtrados(FiltroUnidade filtro);
     
