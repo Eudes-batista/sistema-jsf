@@ -18,10 +18,24 @@ import lombok.Data;
 })
 public class Endereco implements Serializable {
 
+    /**
+     * CODIGO DO ENDERECO
+     */
     @EmbeddedId
     EnderecoPK enderecoPk;
+    /**
+     * DESCRICAO DO ENDERECO
+     */
     @Column(name = "ENENDERO", length = 50, nullable = false)
     String logradouro;
+    /**
+     * BAIRRO
+     */
     @Column(name = "ENBAIRRO", length = 50, nullable = false)
     String bairro;
+    /**
+     * COMPLEMENTO
+     */
+    @Column(name = "ENCOMPLE", length = 60, nullable = true)
+    String complento;
 }
