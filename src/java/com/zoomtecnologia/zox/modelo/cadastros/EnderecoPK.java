@@ -28,20 +28,21 @@ public class EnderecoPK implements Serializable {
     /**
      * CODIGO DA CIDADE
      */
-    @ManyToOne
     @JoinColumns({
         @JoinColumn(name = "ENCODCID", referencedColumnName = "MUCODIGO", nullable = false)
         ,@JoinColumn(name = "ENCODEST", referencedColumnName = "MUCODIUF", nullable = false)
+        ,@JoinColumn(name = "ENCODPAI", referencedColumnName = "MUCDPAIS", nullable = false)
     })
+    @ManyToOne
     @ForeignKey(name = "enderecoFKcidade")
     private Cidade cidade;
-    
-     /**
+
+    /**
      * CODIGO DA PESSOA
      */
     @ManyToOne
-    @JoinColumn(name="ENPESSOA",nullable=false)
-    @ForeignKey(name="enderecoFKpessoa")        
+    @JoinColumn(name = "ENPESSOA", nullable = false)
+    @ForeignKey(name = "enderecoFKpessoa")
     Pessoa pessoa;
 
 }
