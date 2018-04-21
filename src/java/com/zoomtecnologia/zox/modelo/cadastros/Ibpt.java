@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "ibpt")
@@ -39,12 +38,10 @@ public class Ibpt implements Serializable {
     
     @Id
     @Column(name = "IBCODIEX",length = 2,nullable = false)        
-    @NotBlank        
     private String codigoExtra;
     
     @Id
-    @Column(name = "IBNRTIPO",length = 2,nullable = false)        
-    @NotBlank        
+    @Column(name = "IBNRTIPO",length = 2,nullable = false)               
     private String tipo;
     
     @Column(name = "IBCODNCM",length = 8)        

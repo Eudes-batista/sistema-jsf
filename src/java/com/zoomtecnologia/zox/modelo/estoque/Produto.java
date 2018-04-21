@@ -30,8 +30,8 @@ public class Produto implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity = SubGrupo.class)
     @JoinColumns({
-        @JoinColumn(name = "PRCODSUB", referencedColumnName = "codigo", nullable = false)
-        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "grupo", nullable = false)
+        @JoinColumn(name = "PRCODSUB", referencedColumnName = "SGCODSUB", nullable = false)
+        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "SGCODGRU", nullable = false)
     })
     @ForeignKey(name = "est_cadprodutoFKzoxcadsubgrup")
     SubGrupo subGrupo;
