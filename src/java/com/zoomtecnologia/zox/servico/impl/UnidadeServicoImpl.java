@@ -79,20 +79,18 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
         Criteria criteria = session.createCriteria(Unidade.class);
         Criterion nome = null, codigo = null;
         LogicalExpression expressao;
-        if (StringUtils.isNotEmpty(filtro.getDescricao())) {
+        if (StringUtils.isNotEmpty(filtro.getDescricao()) && StringUtils.isNotEmpty(filtro.getCodigo())) {
             nome = Restrictions.ilike("descricao",
                     filtro.getDescricao(), MatchMode.ANYWHERE);
-        } else if (StringUtils.isNotEmpty(filtro.getCodigo())) {
             codigo = Restrictions.eq("codigo", filtro.getCodigo());
-        }
-        if (nome != null && codigo != null) {
             expressao = Restrictions.or(nome, codigo);
             criteria.add(expressao);
             return criteria;
-        } else if (codigo != null) {
+        } else if (StringUtils.isNotEmpty(filtro.getCodigo())) {
+            codigo = Restrictions.eq("codigo", filtro.getCodigo());
             criteria.add(codigo);
             return criteria;
-        } else if (nome != null) {
+        } else if (StringUtils.isNotEmpty(filtro.getDescricao())) {
             criteria.add(nome);
             return criteria;
         }
