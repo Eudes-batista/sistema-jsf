@@ -23,6 +23,7 @@ public class Endereco implements Serializable {
      */
     @EmbeddedId
     EnderecoPK enderecoPk;
+    
     /**
      * DESCRICAO DO ENDERECO
      */
