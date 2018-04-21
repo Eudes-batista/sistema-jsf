@@ -181,7 +181,7 @@ public class Pessoa implements Serializable {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Contato> contatos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "documentoPK.pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Documento> documentos = new ArrayList<>();
 
 }
