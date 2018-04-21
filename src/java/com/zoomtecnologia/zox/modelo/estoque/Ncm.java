@@ -39,6 +39,6 @@ public class Ncm implements Serializable {
     @Length(max = 150, message = "Descrição do NCM com até {max}.")
     String descricao;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ncm")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cestPK.ncm")
     private List<Cest> cests = new ArrayList<>();
 }

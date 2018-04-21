@@ -2,15 +2,12 @@ package com.zoomtecnologia.zox.modelo.estoque;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
-import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "zoxcadcest")
@@ -26,22 +23,13 @@ public class Cest implements Serializable {
     /**
      * CODIGO DO CEST
      */
-    @Id
-    @Column(name = "CECODIGO", length = 7, nullable = false)
-    private String codigo;
-
+    @EmbeddedId
+    CestPK cestPK;
+    
     /**
      * DESCRICAO DO CEST
      */
     @Column(name = "CEDESCEST", length = 1024, nullable = true)
     private String descricao;
 
-    /**
-     * CODIGO DO NCM
-     */
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "CECODNCM", nullable = false)
-    @ForeignKey(name = "cestFKncm")
-    private Ncm ncm;
 }

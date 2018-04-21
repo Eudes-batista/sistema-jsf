@@ -20,15 +20,27 @@ public class TipoDeMovimento implements Serializable{
     @Column(name="ETCODIGO",length = 4,nullable = false)
     private Integer codigo;
     
+    /**
+     * SIGLA DO TIPO DE MOVIMENTO
+     */
     @Column(name="ETSIGMOV",length = 4,nullable = false)
     private String siglaMovimento;
     
+    /**
+     * DESCRICAO DO TIPO DE MOVIMENTO
+     */
     @Column(name="ETDESCRI",length = 50,nullable = false)
     private String descricao;
     
+    /**
+     * SELECAO DO TIPO DE MOVIMENTO
+     */
     @Column(name="ETTIPMOV",length = 1,nullable = false,columnDefinition = "enum(E,S) default 'E'")
     private String tipoMovimento;
     
+    /**
+     * JUSTAR O CUSTO SIM OU NAO NO TIPO DE MOVIMENTO
+     */
     @Column(name="ETACUSTO",length = 1,nullable = false,columnDefinition = "enum(A,N,Q,V) default 'N'")
     private String ajustarCusto;
     
