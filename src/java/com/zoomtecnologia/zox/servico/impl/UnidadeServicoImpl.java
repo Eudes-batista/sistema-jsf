@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -28,13 +30,11 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
 
     @Override
     public void salvar(Unidade unidade) {
-
         if (buscarId(unidade.getCodigo()) == null) {
             entityManager.persist(unidade);
         } else {
             alterar(unidade);
         }
-
     }
 
     @Override
@@ -55,10 +55,8 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
     @Override
     public List<Unidade> filtrados(FiltroUnidade filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
-
         criteria.setFirstResult(filtro.getPrimeiroRegistro());
         criteria.setMaxResults(filtro.getQuantidadeRegistros());
-
         if (filtro.isAscendente() && filtro.getPropriedadeOrdenacao() != null) {
             criteria.addOrder(Order.asc(filtro.getPropriedadeOrdenacao()));
         } else if (filtro.getPropriedadeOrdenacao() != null) {
@@ -79,10 +77,17 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
     public Criteria criarCriteriaParaFiltro(FiltroUnidade filtro) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Unidade.class);
-
+        Criterion nome = null, codigo = null;
+        LogicalExpression expressao;
         if (StringUtils.isNotEmpty(filtro.getDescricao())) {
-            criteria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
+            nome = Restrictions.ilike("descricao",
+                    filtro.getDescricao(), MatchMode.ANYWHERE);
+        } else if (StringUtils.isNotEmpty(filtro.getCodigo())) {
+            codigo = Restrictions.eq("codigo", filtro.getCodigo());
         }
+        expressao = Restrictions.or(nome, codigo);
+        criteria.add(expressao);
+
         return criteria;
     }
 }
