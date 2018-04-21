@@ -171,7 +171,7 @@ public class Pessoa implements Serializable {
     byte[] imagem;
 
     @ManyToOne
-    @JoinColumn(name = "CUFUNCAO", nullable = true, referencedColumnName = "FUCODIGO")
+    @JoinColumn(name = "CUFUNCAO", nullable = true, referencedColumnName = "FUCODFUN")
     @ForeignKey(name = "pessoaFKfunfuncao")
     FuncaoFuncionario funcaoFuncionario;
 
