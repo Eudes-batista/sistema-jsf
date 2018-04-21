@@ -13,10 +13,18 @@ import org.hibernate.annotations.ForeignKey;
 @Data
 public class EnderecoPK implements Serializable {
 
+    /**
+     * CODIGO DO CEP APENAS NUMEROS
+     */
     @Column(name = "ENCODCEP", length = 8, nullable = false)
-    private String cep;
-    @Column(name = "ENNUMERO", length = 8, nullable = false)
+    private Integer cep;
+
+    /**
+     * NUMERO DO ENDERECO
+     */
+    @Column(name = "ENNUMERO", length = 10, nullable = false)
     private String numero;
+
     @ManyToOne
     @JoinColumns({
         @JoinColumn(name = "ENCODCID", referencedColumnName = "MUCODIGO", nullable = false)
