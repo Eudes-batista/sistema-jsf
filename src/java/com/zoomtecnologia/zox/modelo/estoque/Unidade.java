@@ -14,8 +14,8 @@ import org.hibernate.validator.constraints.Length;
 @Table(name = "unidade")
 @Data
 @NamedQueries({
-         @NamedQuery(name="Unidade.listarTodos",query = "select u from Unidades u"),
-         @NamedQuery(name = "Unidade.buscarDescricao",query = "select u from Unidades u where u.descricao like :descricao")
+         @NamedQuery(name="Unidade.listarTodos",query = "select u from Unidade u"),
+         @NamedQuery(name = "Unidade.buscarDescricao",query = "select u from Unidade u where u.descricao like :descricao")
  })
 public class Unidade implements Serializable {
 
