@@ -88,6 +88,10 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
         if (nome != null && codigo != null) {
             expressao = Restrictions.or(nome, codigo);
             criteria.add(expressao);
+        }else if(codigo !=null){
+            criteria.add(codigo);
+        }else{
+            criteria.add(nome);
         }
         return criteria;
     }
