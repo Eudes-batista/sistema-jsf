@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Sistema</display-name>
-    <listener> 
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
-    </listener>  
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-    </listener>	
+    </listener>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -15,13 +15,12 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
-    </servlet-mapping>	
+    </servlet-mapping>
     <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>omega</param-value>
-    </context-param>  
-  
+    </context-param>
     <welcome-file-list>
-        <welcome-file>Teste.jsf</welcome-file>
+        <welcome-file>estoque/unidades.jsf</welcome-file>
     </welcome-file-list>
 </web-app>
