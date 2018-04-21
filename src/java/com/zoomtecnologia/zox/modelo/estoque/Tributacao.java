@@ -24,7 +24,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @NamedQueries({
     @NamedQuery(name = "Tributacao.listarTodos", query = "select u from Tributacao u")
-    ,@NamedQuery(name = "Tributacao.buscarEstado", query = "select u from Tributacao u where u.estado like :estado")
+    ,@NamedQuery(name = "Tributacao.buscarEstado", query = "select u from Tributacao u where u.tributacaoPK.estado.nome like :estado")
     ,@NamedQuery(name = "Tributacao.buscarCst", query = "select u from Tributacao u where u.cst like :cst")
 })
 public class Tributacao implements Serializable {
