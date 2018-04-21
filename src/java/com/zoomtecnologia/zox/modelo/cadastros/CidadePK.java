@@ -19,6 +19,9 @@ public class CidadePK implements Serializable {
     @Column(name = "MUCODIGO", length = 7, nullable = false)
     private Integer codigo;
 
+    /**
+     * CODIGO DO ESTADO
+     */
     @ManyToOne
     @JoinColumns({
         @JoinColumn(name="MUCODIUF",referencedColumnName = "UFCODIGO",nullable = false)
