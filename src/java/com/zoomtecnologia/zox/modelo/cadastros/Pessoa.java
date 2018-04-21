@@ -175,7 +175,7 @@ public class Pessoa implements Serializable {
     @ForeignKey(name = "pessoaFKfunfuncao")
     FuncaoFuncionario funcaoFuncionario;
 
-    @OneToMany(mappedBy = "enderecoPK.pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "enderecoPk.pessoa", orphanRemoval = true)
     List<Endereco> enderecos = new ArrayList<>();
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
