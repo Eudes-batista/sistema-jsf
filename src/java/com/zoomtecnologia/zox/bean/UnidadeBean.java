@@ -77,6 +77,7 @@ public class UnidadeBean implements Serializable {
 
     public void pesquisar() {
         filtroUnidade.setDescricao(pesquisa);
+        filtroUnidade.setCodigo(pesquisa);
         model = new ModelUnidade(filtroUnidade, unidadeServico);
     }
 }

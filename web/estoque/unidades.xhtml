@@ -12,37 +12,38 @@
         <link rel="stylesheet" href="../resource/css/bootstrap.css"/>
     </h:head>
     <h:body>
-            <h:form>
-                <h1><h:outputText value="Unidades"/></h1>
-                <p:inputText id="pesquisarId" value="#{unidadeBean.pesquisa}">
-                    <p:ajax  event="keyup" listener="#{unidadeBean.pesquisar()}" process="pesquisarId" update="tabela"/>
-                </p:inputText>
-                <p:dataTable id="tabela" value="#{unidadeBean.model}" var="item"
-                             emptyMessage="Nehnum Registro." lazy="true">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Codigo"/>
-                        </f:facet>
-                        <h:outputText value="#{item.codigo}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Descricao"/>
-                        </f:facet>
-                        <h:outputText value="#{item.descricao}"/>
-                    </p:column>
-                    <p:column headerText="Operações">
-                        <p:commandButton value="Excluir" actionListener="#{unidadeBean.excluir(item)}"
-                                         update="@form" >
-                            <p:confirm header="Confirmação" message="Voce quer mesmo fazer essa merda?" icon="ui-icon-alert" />
-                        </p:commandButton>
-                    </p:column>
-                </p:dataTable>
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                    <p:commandButton value="Não, vou pensar mais um pouco no assunto." type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                </p:confirmDialog>
-            </h:form>
+        <h:form>
+            <h1><h:outputText value="Unidades"/></h1>
+            <p:inputText id="pesquisarId" value="#{unidadeBean.pesquisa}">
+                <p:ajax  event="keyup" listener="#{unidadeBean.pesquisar()}" process="@this" update="tabela"/>
+            </p:inputText>
+            <p:dataTable id="tabela" value="#{unidadeBean.model}" var="item"
+                         emptyMessage="Nehnum Registro." lazy="true"
+                         paginator="true" rows="4" >
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Codigo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codigo}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descricao"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descricao}"/>
+                </p:column>
+                <p:column headerText="Operações">
+                    <p:commandButton value="Excluir" actionListener="#{unidadeBean.excluir(item)}"
+                                     update="@form" >
+                        <p:confirm header="Confirmação" message="Voce quer mesmo fazer essa merda?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="Não, vou pensar mais um pouco no assunto." type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </h:form>
     </h:body>
 </html>
 

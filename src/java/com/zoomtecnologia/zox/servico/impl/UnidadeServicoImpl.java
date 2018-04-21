@@ -85,8 +85,10 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
         } else if (StringUtils.isNotEmpty(filtro.getCodigo())) {
             codigo = Restrictions.eq("codigo", filtro.getCodigo());
         }
-        expressao = Restrictions.or(nome, codigo);
-        criteria.add(expressao);
+        if (nome != null && codigo != null) {
+            expressao = Restrictions.or(nome, codigo);
+            criteria.add(expressao);
+        }
         return criteria;
     }
 }
