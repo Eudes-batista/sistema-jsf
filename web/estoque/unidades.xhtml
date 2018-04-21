@@ -15,10 +15,10 @@
             <h:form>
                 <h1><h:outputText value="Unidades"/></h1>
                 <p:inputText id="pesquisarId" value="#{unidadeBean.pesquisa}">
-                    <p:ajax  event="keyup" listener="#{unidadeBean.pesquisarDescricao()}" process="pesquisarId" update="tabela"/>
+                    <p:ajax  event="keyup" listener="#{unidadeBean.pesquisar()}" process="pesquisarId" update="tabela"/>
                 </p:inputText>
-                <p:dataTable id="tabela" value="#{unidadeBean.unidades}" var="item"
-                             emptyMessage="Nehnum Registro.">
+                <p:dataTable id="tabela" value="#{unidadeBean.model}" var="item"
+                             emptyMessage="Nehnum Registro." lazy="true">
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Codigo"/>

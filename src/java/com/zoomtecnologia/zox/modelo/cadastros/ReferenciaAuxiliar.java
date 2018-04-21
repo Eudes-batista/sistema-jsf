@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="est_ref_auxiliar")
+@Table(name="referencia_auxiliar")
 @Data
 public class ReferenciaAuxiliar implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class ReferenciaAuxiliar implements Serializable{
     private Produto produto;
     
     @Id
-    @Column(name="RECODPRO",length = 20,nullable = false)
+    @Column(name="RECODREF",length = 20,nullable = false)
     private String codigoReferencia;
     
 }
