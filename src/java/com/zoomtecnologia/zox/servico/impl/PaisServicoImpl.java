@@ -1,9 +1,8 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.filtros.FiltroUnidade;
-import com.zoomtecnologia.zox.modelo.estoque.Unidade;
-import com.zoomtecnologia.zox.servico.UnidadeServico;
-import java.io.Serializable;
+import com.zoomtecnologia.zox.filtros.FiltroPais;
+import com.zoomtecnologia.zox.modelo.cadastros.Pais;
+import com.zoomtecnologia.zox.servico.PaisService;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,72 +16,65 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("unidadeServico")
+@Service("paisService")
 @Transactional
-public class UnidadeServicoImpl implements UnidadeServico, Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class PaisServicoImpl implements PaisService {
+    
     @PersistenceContext
     private EntityManager entityManager;
-
+    
     @Override
-    public void salvar(Unidade unidade) {
-
-        if (buscarId(unidade.getCodigo()) == null) {
-            entityManager.persist(unidade);
+    public Pais bucarPorId(Integer codigo) {
+        return entityManager.find(Pais.class, codigo);
+    }
+    
+    @Override
+    public void salvar(Pais entidade) {
+        if (bucarPorId(entidade.getCodigo()) == null) {
+            entityManager.persist(entidade);
         } else {
-            alterar(unidade);
+            alterar(entidade);
         }
-
     }
-
+    
     @Override
-    public void alterar(Unidade unidade) {
-        entityManager.merge(unidade);
+    public void alterar(Pais entidade) {
+        entityManager.merge(entidade);
     }
-
+    
     @Override
-    public Unidade buscarId(String codigo) {
-        return entityManager.find(Unidade.class, codigo);
+    public void excluir(Pais entidade) {
+        entityManager.remove(bucarPorId(entidade.getCodigo()));
     }
-
+    
     @Override
-    public void excluir(Unidade unidade) {
-        entityManager.remove(buscarId(unidade.getCodigo()));
-    }
-
-    @Override
-    public List<Unidade> filtrados(FiltroUnidade filtro) {
+    public List<Pais> filtrados(FiltroPais filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
-
         criteria.setFirstResult(filtro.getPrimeiroRegistro());
         criteria.setMaxResults(filtro.getQuantidadeRegistros());
-
         if (filtro.isAscendente() && filtro.getPropriedadeOrdenacao() != null) {
             criteria.addOrder(Order.asc(filtro.getPropriedadeOrdenacao()));
         } else if (filtro.getPropriedadeOrdenacao() != null) {
             criteria.addOrder(Order.desc(filtro.getPropriedadeOrdenacao()));
         }
-
         return criteria.list();
     }
-
+    
     @Override
-    public int quantidadeFiltrados(FiltroUnidade filtro) {
+    public int quantidadeFiltrados(FiltroPais filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setProjection(Projections.rowCount());
         return ((Number) criteria.uniqueResult()).intValue();
     }
-
+    
     @Override
-    public Criteria criarCriteriaParaFiltro(FiltroUnidade filtro) {
+    public Criteria criarCriteriaParaFiltro(FiltroPais filtro) {
         Session session = entityManager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Unidade.class);
-
+        Criteria criteria = session.createCriteria(Pais.class);
         if (StringUtils.isNotEmpty(filtro.getDescricao())) {
             criteria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
         }
         return criteria;
     }
+    
 }
