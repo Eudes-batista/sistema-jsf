@@ -1,4 +1,3 @@
-
 package com.zoomtecnologia.zox.modelo;
 
 import com.zoomtecnologia.zox.filtros.FiltroGeneric;
@@ -8,16 +7,15 @@ import java.util.Map;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-public abstract class ModelGeneric<E,D extends GenericService,F extends FiltroGeneric> extends LazyDataModel<E> {
+public abstract class ModelGeneric<E extends FiltroGeneric, D extends GenericService> extends LazyDataModel<E> {
 
     private static final long serialVersionUID = 1L;
-
     private FiltroGeneric filtro;
     private GenericService genericServico;
 
     public ModelGeneric() {
-        this.genericServico=getGenericService();
-        this.filtro=getGenericFiltro();
+        this.genericServico = getGenericService();
+        this.filtro = getGenericFiltro();
     }
 
     /**
@@ -45,7 +43,8 @@ public abstract class ModelGeneric<E,D extends GenericService,F extends FiltroGe
 
         return genericServico.filtrados(filtro);
     }
-    
+
     public abstract D getGenericService();
-    public abstract F getGenericFiltro();
+
+    public abstract E getGenericFiltro();
 }

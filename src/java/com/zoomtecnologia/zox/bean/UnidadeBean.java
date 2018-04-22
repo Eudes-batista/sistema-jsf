@@ -1,12 +1,10 @@
 package com.zoomtecnologia.zox.bean;
 
-import com.zoomtecnologia.zox.modelo.ModelUnidade;
 import com.zoomtecnologia.zox.modelo.estoque.Unidade;
 import com.zoomtecnologia.zox.servico.UnidadeServico;
 import javax.faces.bean.ManagedBean;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.model.LazyDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -36,10 +34,5 @@ public class UnidadeBean extends GenericBean<Unidade, UnidadeServico> {
     @Override
     public Unidade createEntidade() {
         return new Unidade();
-    }
-
-    @Override
-    public LazyDataModel<Unidade> createModel() {
-        return new ModelUnidade();
     }
 }

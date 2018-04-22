@@ -1,6 +1,5 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.filtros.FiltroUnidade;
 import com.zoomtecnologia.zox.modelo.estoque.Unidade;
 import com.zoomtecnologia.zox.servico.UnidadeServico;
 import java.util.List;
@@ -52,7 +51,7 @@ public class UnidadeServicoImpl implements UnidadeServico {
     }
 
     @Override
-    public List<Unidade> filtrados(FiltroUnidade filtro) {
+    public List<Unidade> filtrados(Unidade filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setFirstResult(filtro.getPrimeiroRegistro());
         criteria.setMaxResults(filtro.getQuantidadeRegistros());
@@ -65,14 +64,14 @@ public class UnidadeServicoImpl implements UnidadeServico {
     }
 
     @Override
-    public int quantidadeFiltrados(FiltroUnidade filtro) {
+    public int quantidadeFiltrados(Unidade filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setProjection(Projections.rowCount());
         return ((Number) criteria.uniqueResult()).intValue();
     }
 
     @Override
-    public Criteria criarCriteriaParaFiltro(FiltroUnidade filtro) {
+    public Criteria criarCriteriaParaFiltro(Unidade filtro) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Unidade.class);
         Criterion nome = null, codigo = null;

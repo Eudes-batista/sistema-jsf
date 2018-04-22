@@ -1,6 +1,5 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.filtros.FiltroPais;
 import com.zoomtecnologia.zox.modelo.cadastros.Pais;
 import com.zoomtecnologia.zox.servico.PaisService;
 import java.util.List;
@@ -48,7 +47,7 @@ public class PaisServicoImpl implements PaisService {
     }
 
     @Override
-    public List<Pais> filtrados(FiltroPais filtro) {
+    public List<Pais> filtrados(Pais filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setFirstResult(filtro.getPrimeiroRegistro());
         criteria.setMaxResults(filtro.getQuantidadeRegistros());
@@ -61,14 +60,14 @@ public class PaisServicoImpl implements PaisService {
     }
 
     @Override
-    public int quantidadeFiltrados(FiltroPais filtro) {
+    public int quantidadeFiltrados(Pais filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setProjection(Projections.rowCount());
         return ((Number) criteria.uniqueResult()).intValue();
     }
 
     @Override
-    public Criteria criarCriteriaParaFiltro(FiltroPais filtro) {
+    public Criteria criarCriteriaParaFiltro(Pais filtro) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Pais.class);
         if (StringUtils.isNotEmpty(filtro.getDescricao())) {

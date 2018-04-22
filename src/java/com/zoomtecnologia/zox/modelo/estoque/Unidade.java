@@ -1,5 +1,6 @@
 package com.zoomtecnologia.zox.modelo.estoque;
 
+import com.zoomtecnologia.zox.filtros.FiltroGeneric;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ import org.hibernate.validator.constraints.Length;
          @NamedQuery(name="Unidade.listarTodos",query = "select u from Unidade u"),
          @NamedQuery(name = "Unidade.buscarDescricao",query = "select u from Unidade u where u.descricao like :descricao")
  })
-public class Unidade implements Serializable {
+public class Unidade extends FiltroGeneric implements Serializable {
 
     /**
      * Codigo da unidade

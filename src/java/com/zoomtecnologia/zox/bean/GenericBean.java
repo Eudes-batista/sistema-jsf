@@ -1,5 +1,7 @@
 package com.zoomtecnologia.zox.bean;
 
+import com.zoomtecnologia.zox.filtros.FiltroGeneric;
+import com.zoomtecnologia.zox.modelo.ModelGeneric;
 import com.zoomtecnologia.zox.servico.GenericService;
 import java.io.Serializable;
 import lombok.Getter;
@@ -8,7 +10,7 @@ import org.primefaces.model.LazyDataModel;
 
 @Getter
 @Setter
-public abstract class GenericBean<E, D extends GenericService> implements Serializable {
+public abstract class GenericBean<E extends FiltroGeneric, D extends GenericService> implements Serializable {
 
     private E entidade;
     private LazyDataModel<E> model;
@@ -22,14 +24,25 @@ public abstract class GenericBean<E, D extends GenericService> implements Serial
     }
 
     public void inicializar() {
-        this.model=createModel();
         this.entidade = createEntidade();
+        this.model = new ModelGeneric<E, D>() {
+            @Override
+            public D getGenericService() {
+                return getGenericService();
+            }
+
+            @Override
+            public E getGenericFiltro() {
+                return entidade;
+            }
+
+        };
     }
 
     public void salvar() {
         getGenericService().salvar(entidade);
     }
-    
+
     public void alterar(E e) {
         this.entidade = e;
     }
@@ -39,7 +52,7 @@ public abstract class GenericBean<E, D extends GenericService> implements Serial
     }
 
     public abstract D getGenericService();
+
     public abstract E createEntidade();
-    public abstract LazyDataModel<E> createModel();
 
 }

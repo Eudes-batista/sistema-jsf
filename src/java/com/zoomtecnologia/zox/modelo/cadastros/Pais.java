@@ -1,5 +1,6 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
+import com.zoomtecnologia.zox.filtros.FiltroGeneric;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import lombok.Data;
 @Table(name="pais")
 @Data
 @NamedQueries(@NamedQuery(name="Pais.buscarPorDescricao",query = "select p from Pais p where p.descricao like :descricao order by p.descricao"))
-public class Pais implements Serializable{
+public class Pais extends FiltroGeneric implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
