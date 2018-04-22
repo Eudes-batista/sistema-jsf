@@ -5,6 +5,7 @@
  */
 package com.zoomtecnologia.zox.modelo.cadastros;
 
+import com.zoomtecnologia.zox.filtros.FiltroGeneric;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -24,7 +25,7 @@ import lombok.Data;
 @NamedQueries({
     @NamedQuery(name = "Estado.buscarNome", query = "select e from Estado e where e.nome like :nome or e.sigla = :sigla")
 })
-public class Estado implements Serializable {
+public class Estado extends FiltroGeneric implements Serializable {
 
     private static final long serialVersionUID = 1L;
     

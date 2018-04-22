@@ -14,7 +14,7 @@ public abstract class ModelGeneric<E extends FiltroGeneric, D extends GenericSer
     private GenericService genericServico;
 
     public ModelGeneric() {
-        this.genericServico = getGenericService();
+        this.genericServico = getGenericServiceModel();
         this.filtro = getGenericFiltro();
     }
 
@@ -44,7 +44,7 @@ public abstract class ModelGeneric<E extends FiltroGeneric, D extends GenericSer
         return genericServico.filtrados(filtro);
     }
 
-    public abstract D getGenericService();
+    public abstract D getGenericServiceModel();
 
     public abstract E getGenericFiltro();
 }
