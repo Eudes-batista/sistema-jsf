@@ -13,7 +13,10 @@ import lombok.Data;
 @Entity
 @Table(name="pais")
 @Data
-@NamedQueries(@NamedQuery(name="Pais.buscarPorDescricao",query = "select p from Pais p where p.descricao like :descricao order by p.descricao"))
+@NamedQueries({
+    @NamedQuery(name="Pais.listarTodos",query = "select p from Pais p order by p.descricao")
+   ,@NamedQuery(name="Pais.buscarPorDescricao",query = "select p from Pais p where p.descricao like :descricao order by p.descricao")
+})
 public class Pais extends FiltroGeneric implements Serializable{
     
     private static final long serialVersionUID = 1L;

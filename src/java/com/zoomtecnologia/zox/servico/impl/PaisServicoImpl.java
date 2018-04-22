@@ -75,4 +75,9 @@ public class PaisServicoImpl implements PaisService {
         }
         return criteria;
     }
+
+    @Override
+    public List<Pais> listarTodos() {
+        return entityManager.createNamedQuery("Pais.listarTodos",Pais.class).getResultList();
+    }
 }

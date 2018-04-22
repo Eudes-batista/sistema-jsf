@@ -11,6 +11,8 @@ public interface GenericService<E> extends Serializable {
     public void alterar(E entidade);
 
     public void excluir(E entidade);
+    
+    public List<E> listarTodos();
 
     public List<E> filtrados(E filtro);
 

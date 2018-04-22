@@ -77,4 +77,9 @@ public class EstadoServiceImpl implements EstadoService {
         return criateria;
     }
 
+    @Override
+    public List<Estado> listarTodos() {
+        return entityManager.createNamedQuery("Estado.listarTodos",Estado.class).getResultList();
+    }
+    
 }

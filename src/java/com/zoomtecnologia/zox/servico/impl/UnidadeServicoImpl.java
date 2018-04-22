@@ -95,4 +95,9 @@ public class UnidadeServicoImpl implements UnidadeServico {
         }
         return criteria;
     }
+
+    @Override
+    public List<Unidade> listarTodos() {
+        return entityManager.createNamedQuery("Unidade.listarTodos", Unidade.class).getResultList();
+    }
 }

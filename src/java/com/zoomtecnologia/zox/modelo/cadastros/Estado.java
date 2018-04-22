@@ -23,7 +23,8 @@ import lombok.Data;
 @Table(name = "estado")
 @Data
 @NamedQueries({
-    @NamedQuery(name = "Estado.buscarNome", query = "select e from Estado e where e.nome like :nome or e.sigla = :sigla")
+    @NamedQuery(name = "Estado.listarTodos", query = "select e from Estado e order by e.nome")
+   ,@NamedQuery(name = "Estado.buscarNome", query = "select e from Estado e where e.nome like :nome or e.sigla = :sigla")
 })
 public class Estado extends FiltroGeneric implements Serializable {
 
