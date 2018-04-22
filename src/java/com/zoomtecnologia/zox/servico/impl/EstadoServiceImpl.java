@@ -13,6 +13,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,6 +72,7 @@ public class EstadoServiceImpl implements EstadoService {
     public Criteria criarCriteriaParaFiltro(Estado filtro) {
         Session session = (Session) entityManager.unwrap(Session.class);
         Criteria criateria = session.createCriteria(Estado.class);
+        criateria.createAlias("estadoPK.pais", "p", JoinType.LEFT_OUTER_JOIN);
         if (StringUtils.isNotEmpty(filtro.getNome())) {
             criateria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
         }
@@ -79,7 +81,7 @@ public class EstadoServiceImpl implements EstadoService {
 
     @Override
     public List<Estado> listarTodos() {
-        return entityManager.createNamedQuery("Estado.listarTodos",Estado.class).getResultList();
+        return entityManager.createNamedQuery("Estado.listarTodos", Estado.class).getResultList();
     }
-    
+
 }

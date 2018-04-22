@@ -33,7 +33,7 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
 
             @Override
             public E getGenericFiltro() {
-                return entidade;
+                return createEntidade();
             }
 
         };

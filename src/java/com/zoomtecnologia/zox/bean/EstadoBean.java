@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Estado;
+import com.zoomtecnologia.zox.modelo.cadastros.EstadoPK;
 import com.zoomtecnologia.zox.modelo.cadastros.Pais;
 import com.zoomtecnologia.zox.servico.EstadoService;
 import com.zoomtecnologia.zox.servico.PaisService;
@@ -24,11 +25,11 @@ public class EstadoBean extends GenericBean<Estado, EstadoService> {
     @Getter
     @Setter
     private List<Pais> paises;
-
+    
     @Override
     public void inicializar() {
-        super.inicializar();
         this.paises = this.paisService.listarTodos();
+        super.inicializar();
     }
 
     @Override
@@ -38,7 +39,9 @@ public class EstadoBean extends GenericBean<Estado, EstadoService> {
 
     @Override
     public Estado createEntidade() {
-        return new Estado();
+        Estado e = new Estado();
+        e.setEstadoPK(new EstadoPK());
+        return e;
     }
 
 }

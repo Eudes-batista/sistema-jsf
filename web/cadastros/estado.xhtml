@@ -17,7 +17,7 @@
                     <p:commandButton value="Novo" oncomplete="PF('dlCad').show();" />
                 </p:toolbarGroup>
             </p:toolbar>
-            <p:dataTable lazy="true" paginator="true"
+            <p:dataTable id="tabela" lazy="true" paginator="true"
                          rows="5"
                          value="#{estadoBean.model}"
                          var="e">               
@@ -44,7 +44,7 @@
                 <p:panelGrid columns="1">
                     <p:commandButton value="Salvar" icon="ui-icon-check" 
                                      actionListener="#{estadoBean.salvar()}"
-                                     update="panelCadastro"/>
+                                     update="@form"/>
                 </p:panelGrid>
             </p:dialog>
         </h:form>
