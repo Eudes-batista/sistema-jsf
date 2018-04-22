@@ -16,9 +16,6 @@ public class PaisBean extends GenericBean<Pais, PaisService> {
 
     @Autowired
     private PaisService paisService;
-    @Autowired
-    private ModelPais modelPais;
-
     @Override
     public PaisService getGenericService() {
         return paisService;
@@ -31,7 +28,7 @@ public class PaisBean extends GenericBean<Pais, PaisService> {
 
     @Override
     public LazyDataModel<Pais> createModel() {
-        return modelPais;
+        return new ModelPais();
     }
 
 }

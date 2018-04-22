@@ -20,8 +20,6 @@ public class UnidadeBean extends GenericBean<Unidade, UnidadeServico> {
 
     @Autowired
     private UnidadeServico unidadeServico;
-    @Autowired
-    private ModelUnidade modelUnidade;
     @Getter
     @Setter
     String pesquisa;
@@ -42,6 +40,6 @@ public class UnidadeBean extends GenericBean<Unidade, UnidadeServico> {
 
     @Override
     public LazyDataModel<Unidade> createModel() {
-        return modelUnidade;
+        return new ModelUnidade();
     }
 }
