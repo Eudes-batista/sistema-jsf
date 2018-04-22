@@ -12,8 +12,7 @@ import com.zoomtecnologia.zox.modelo.cadastros.Pais;
  *
  * @author Administrador
  */
-public interface PaisService extends GenericService<Pais, FiltroPais>{
-    
+public interface PaisService extends GenericService<Pais, FiltroPais> {
+
     public Pais bucarPorId(Integer codigo);
-    
 }

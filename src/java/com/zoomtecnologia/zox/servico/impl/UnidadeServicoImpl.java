@@ -3,7 +3,6 @@ package com.zoomtecnologia.zox.servico.impl;
 import com.zoomtecnologia.zox.filtros.FiltroUnidade;
 import com.zoomtecnologia.zox.modelo.estoque.Unidade;
 import com.zoomtecnologia.zox.servico.UnidadeServico;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("unidadeServico")
 @Transactional
-public class UnidadeServicoImpl implements UnidadeServico, Serializable {
+public class UnidadeServicoImpl implements UnidadeServico {
 
     private static final long serialVersionUID = 1L;
 
@@ -62,7 +61,6 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
         } else if (filtro.getPropriedadeOrdenacao() != null) {
             criteria.addOrder(Order.desc(filtro.getPropriedadeOrdenacao()));
         }
-
         return criteria.list();
     }
 
@@ -86,7 +84,7 @@ public class UnidadeServicoImpl implements UnidadeServico, Serializable {
             expressao = Restrictions.or(nome, codigo);
             criteria.add(expressao);
             return criteria;
-        } 
+        }
         if (StringUtils.isNotEmpty(filtro.getCodigo())) {
             codigo = Restrictions.eq("codigo", filtro.getCodigo());
             criteria.add(codigo);

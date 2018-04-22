@@ -14,19 +14,16 @@
     <h:body>
         <h:form>
             <h1><h:outputText value="Unidades"/></h1>
-            <p:inputText id="pesquisarId" value="#{unidadeBean.pesquisa}">
-                <p:ajax  event="keyup" listener="#{unidadeBean.pesquisar()}" process="@this" update="tabela"/>
-            </p:inputText>
             <p:dataTable id="tabela" value="#{unidadeBean.model}" var="item"
                          emptyMessage="Nehnum Registro." lazy="true"
                          paginator="true" rows="4" >
-                <p:column>
+                <p:column sortBy="#{item.codigo}">
                     <f:facet name="header">
                         <h:outputText value="Codigo"/>
                     </f:facet>
                     <h:outputText value="#{item.codigo}"/>
                 </p:column>
-                <p:column>
+                <p:column sortBy="#{item.descricao}">
                     <f:facet name="header">
                         <h:outputText value="Descricao"/>
                     </f:facet>

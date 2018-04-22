@@ -10,23 +10,22 @@
         <h:outputStylesheet library="css" name="grid.css"/>
         <h:outputStylesheet library="css" name="form.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        
+
         <style>
-            
+
         </style>
-        
+
     </h:head>
     <h:body>
-       
-<!--        <zox:grid idBtNovo="novaUnidade" idBtPesquisa="btPesquisaUnidade" 
-                  usarFiltro="false" idTextPesquisa="pesquisaUnidade" 
-                  usarPrint="false" idForm="unidade"/>
-        <zox:formzox idForm="unidade" bean="#{unidadeBean}" titulo="Cadastro de Unidade" idBtSalvar="btSalvar">
+
+        <zox:grid bean="#" idBtAtualizar="" idBtNovo="" idForm="" idTextPesquisa="" usarFiltro="" usarPrint=""/>
+        <zox:formzox idForm="unidade" bean="#{unidadeBean}" titulo="Cadastro de Unidade" idBtSalvar="btSalvar"
+                     componenteUpdate="@form">
             <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank">
                 <p:inputText class="form-control" placeholder="Código"  />
                 <p:inputText class="form-control" placeholder="Descrição"/>
             </p:panelGrid>
-        </zox:formzox>-->
+        </zox:formzox>
     </h:body>
 </html>
 

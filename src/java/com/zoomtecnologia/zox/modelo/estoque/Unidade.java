@@ -1,6 +1,5 @@
 package com.zoomtecnologia.zox.modelo.estoque;
 
-import com.zoomtecnologia.zox.modelo.EntityBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +17,7 @@ import org.hibernate.validator.constraints.Length;
          @NamedQuery(name="Unidade.listarTodos",query = "select u from Unidade u"),
          @NamedQuery(name = "Unidade.buscarDescricao",query = "select u from Unidade u where u.descricao like :descricao")
  })
-public class Unidade implements EntityBase {
+public class Unidade implements Serializable {
 
     /**
      * Codigo da unidade
@@ -34,10 +33,4 @@ public class Unidade implements EntityBase {
     @Column(name = "UNDESCRI", length = 20, nullable = false)
     @Length(max = 20, message = "Descrição da Unidade com até {max}.")
     String descricao;
-
-    @Override
-    public Serializable getId() {
-        return this.codigo;
-    }
-    
 }
