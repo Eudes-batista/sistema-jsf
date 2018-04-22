@@ -27,7 +27,7 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
         this.entidade = createEntidade();
         this.model = new ModelGeneric<E, D>() {
             @Override
-            public D getGenericService() {
+            public D getGenericServiceModel() {
                 return getGenericService();
             }
 
