@@ -19,15 +19,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("paisService")
 @Transactional
 public class PaisServicoImpl implements PaisService {
-    
+
     @PersistenceContext
     private EntityManager entityManager;
-    
+
     @Override
     public Pais bucarPorId(Integer codigo) {
         return entityManager.find(Pais.class, codigo);
     }
-    
+
     @Override
     public void salvar(Pais entidade) {
         if (bucarPorId(entidade.getCodigo()) == null) {
@@ -36,17 +36,17 @@ public class PaisServicoImpl implements PaisService {
             alterar(entidade);
         }
     }
-    
+
     @Override
     public void alterar(Pais entidade) {
         entityManager.merge(entidade);
     }
-    
+
     @Override
     public void excluir(Pais entidade) {
         entityManager.remove(bucarPorId(entidade.getCodigo()));
     }
-    
+
     @Override
     public List<Pais> filtrados(FiltroPais filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
@@ -59,14 +59,14 @@ public class PaisServicoImpl implements PaisService {
         }
         return criteria.list();
     }
-    
+
     @Override
     public int quantidadeFiltrados(FiltroPais filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setProjection(Projections.rowCount());
         return ((Number) criteria.uniqueResult()).intValue();
     }
-    
+
     @Override
     public Criteria criarCriteriaParaFiltro(FiltroPais filtro) {
         Session session = entityManager.unwrap(Session.class);
@@ -76,5 +76,4 @@ public class PaisServicoImpl implements PaisService {
         }
         return criteria;
     }
-    
 }
