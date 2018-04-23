@@ -6,10 +6,12 @@ import lombok.Setter;
 
 /**
  *
- * @author Administrador
+ * @author eudes
  */
-@Getter @Setter
+@Getter
+@Setter
 public abstract class FiltroGeneric implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private int primeiroRegistro;
     private int quantidadeRegistros;
