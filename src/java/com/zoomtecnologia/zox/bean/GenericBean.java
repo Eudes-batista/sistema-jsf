@@ -45,7 +45,7 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
     @SuppressWarnings("unchecked")
     public void salvar() {
         try {
-            getGenericService().salvar(entidade);
+            getGenericService().salvar(entidade.getClass(), entidade);
             Messages.addGlobalInfo("salvo com sucesso!!");
         } catch (Exception ex) {
             Messages.addGlobalError("Erro ao salvar o " + entidade.getClass().getSimpleName());
@@ -58,7 +58,7 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
 
     public void excluir(E e) {
         try {
-            getGenericService().excluir(e);
+            getGenericService().excluir(entidade.getClass(), e);
         } catch (Exception ex) {
             String erro = "Erro ao excluir o " + e.getClass().getSimpleName() + "\n";
             String[] search = {"ForeignKey".toLowerCase(), "Foreign Key".toLowerCase()};

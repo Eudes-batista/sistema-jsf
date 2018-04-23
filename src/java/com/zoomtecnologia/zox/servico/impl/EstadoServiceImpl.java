@@ -1,7 +1,6 @@
 package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Estado;
-import com.zoomtecnologia.zox.modelo.cadastros.EstadoPK;
 import com.zoomtecnologia.zox.servico.EstadoService;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -19,34 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("estadoService")
 @Transactional
-public class EstadoServiceImpl implements EstadoService {
+public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements EstadoService {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    @Override
-    public Estado buscarPorId(EstadoPK estadoPK) {
-        return entityManager.find(Estado.class, estadoPK);
-    }
-
-    @Override
-    public void salvar(Estado estado) {
-        if (buscarPorId(estado.getEstadoPK()) == null) {
-            entityManager.persist(estado);
-        } else {
-            alterar(estado);
-        }
-    }
-
-    @Override
-    public void alterar(Estado estado) {
-        entityManager.merge(estado);
-    }
-
-    @Override
-    public void excluir(Estado estado) {
-        entityManager.remove(buscarPorId(estado.getEstadoPK()));
-    }
 
     @Override
     public List<Estado> filtrados(Estado filtro) {
@@ -77,11 +52,6 @@ public class EstadoServiceImpl implements EstadoService {
             criateria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
         }
         return criateria;
-    }
-
-    @Override
-    public List<Estado> listarTodos() {
-        return entityManager.createNamedQuery("Estado.listarTodos", Estado.class).getResultList();
     }
 
 }

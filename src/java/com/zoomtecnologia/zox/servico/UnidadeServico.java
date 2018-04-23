@@ -1,8 +1,9 @@
 package com.zoomtecnologia.zox.servico;
 
 import com.zoomtecnologia.zox.modelo.estoque.Unidade;
+import org.springframework.stereotype.Repository;
 
-public interface UnidadeServico extends GenericService<Unidade>{
-    
-    public Unidade buscarId(String codigo);
+@Repository
+public interface UnidadeServico extends GenericService<Unidade> {
+
 }

@@ -1,13 +1,13 @@
 package com.zoomtecnologia.zox.servico;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Estado;
-import com.zoomtecnologia.zox.modelo.cadastros.EstadoPK;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author eudes
  */
-public interface EstadoService extends GenericService<Estado>{
-    
-    public Estado buscarPorId(EstadoPK estadoPK);
+@Repository
+public interface EstadoService extends GenericService<Estado> {
+
 }

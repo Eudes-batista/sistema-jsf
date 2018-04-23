@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service("estadoBean")
 @ManagedBean
 @Scope("view")
-public class EstadoBean extends GenericBean<Estado, EstadoService> implements Serializable{
+public class EstadoBean extends GenericBean<Estado, EstadoService> implements Serializable {
 
     @Autowired
     EstadoService estadoService;
@@ -26,11 +26,15 @@ public class EstadoBean extends GenericBean<Estado, EstadoService> implements Se
     @Getter
     @Setter
     private List<Pais> paises;
-    
+
     @Override
     public void inicializar() {
         this.paises = this.paisService.listarTodos();
         super.inicializar();
+    }
+
+    public void testeValidacao() {
+
     }
 
     @Override

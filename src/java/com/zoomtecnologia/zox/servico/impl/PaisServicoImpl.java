@@ -17,34 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("paisService")
 @Transactional
-public class PaisServicoImpl implements PaisService {
+public class PaisServicoImpl extends GenericServiceImpl<Pais> implements PaisService {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    @Override
-    public Pais bucarPorId(Integer codigo) {
-        return entityManager.find(Pais.class, codigo);
-    }
-
-    @Override
-    public void salvar(Pais entidade) {
-        if (bucarPorId(entidade.getCodigo()) == null) {
-            entityManager.persist(entidade);
-        } else {
-            alterar(entidade);
-        }
-    }
-
-    @Override
-    public void alterar(Pais entidade) {
-        entityManager.merge(entidade);
-    }
-
-    @Override
-    public void excluir(Pais entidade) {
-        entityManager.remove(bucarPorId(entidade.getCodigo()));
-    }
 
     @Override
     public List<Pais> filtrados(Pais filtro) {
@@ -76,8 +52,8 @@ public class PaisServicoImpl implements PaisService {
         return criteria;
     }
 
-    @Override
     public List<Pais> listarTodos() {
-        return entityManager.createNamedQuery("Pais.listarTodos",Pais.class).getResultList();
+        return entityManager.createNamedQuery("Pais.listarTodos", Pais.class).getResultList();
     }
+
 }

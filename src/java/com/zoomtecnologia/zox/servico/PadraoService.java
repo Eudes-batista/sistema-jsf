@@ -5,9 +5,7 @@
  */
 package com.zoomtecnologia.zox.servico;
 
-import com.zoomtecnologia.zox.modelo.EntityBase;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
@@ -22,7 +20,5 @@ public interface PadraoService<E> extends Serializable {
     public void alterar(E entidade);
 
     public void excluir(Class<E> classe, E entidade);
-
-    public List<? extends EntityBase> listarTodos(E e);
 
 }

@@ -2,11 +2,8 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.EntityBase;
 import com.zoomtecnologia.zox.servico.PadraoService;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -42,14 +39,6 @@ public class GenericServiceImpl<E extends EntityBase> implements PadraoService<E
     @Override
     public void excluir(Class<E> classe, E entidade) {
         entityManager.remove(buscarPorId(classe, entidade));
-    }
-
-    @Override
-    public List<? extends EntityBase> listarTodos(E e) {
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<? extends EntityBase> createQuery = builder.createQuery(e.getClass());
-        createQuery.from(e.getClass());
-        return entityManager.createQuery(createQuery).getResultList();
     }
 
 }

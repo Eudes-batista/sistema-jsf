@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
 import com.zoomtecnologia.zox.filtros.FiltroGeneric;
+import com.zoomtecnologia.zox.modelo.EntityBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import lombok.EqualsAndHashCode;
     @NamedQuery(name = "Pais.listarTodos", query = "select p from Pais p order by p.descricao")
     ,@NamedQuery(name = "Pais.buscarPorDescricao", query = "select p from Pais p where p.descricao like :descricao order by p.descricao")
 })
-public class Pais extends FiltroGeneric implements Serializable {
+public class Pais extends FiltroGeneric implements EntityBase<Integer>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,5 +30,10 @@ public class Pais extends FiltroGeneric implements Serializable {
 
     @Column(name = "NADESCRI", length = 50, nullable = false)
     String descricao;
+
+    @Override
+    public Integer getId() {
+        return this.codigo;
+    }
 
 }

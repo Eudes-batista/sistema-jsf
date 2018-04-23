@@ -14,7 +14,7 @@
         <h:form>
             <p:toolbar>
                 <p:toolbarGroup>
-                    <p:commandButton value="Novo" oncomplete="PF('dlCad').show();" />
+                    <p:commandButton value="Novo" oncomplete="PF('dlCad').show();" process="@this"/>
                     <p:inputText placeholder="Pesquisar" value="#{estadoBean.entidade.nome}"
                                  onkeypress="if (event.keyCode == 13) {
                                              event.target.blur();
@@ -32,7 +32,7 @@
             <p:dataTable id="tabela" lazy="true" paginator="true"
                          rows="5"
                          value="#{estadoBean.model}"
-                         var="e" reflow="true">               
+                         var="e" reflow="true">
                 <p:column headerText="Codigo" style="text-align: center;">
                     #{e.estadoPK.codigo}
                 </p:column>
@@ -42,9 +42,9 @@
                 <p:column headerText="Operações" style="text-align: center;">
                     <p:commandButton value="Alterar" icon="ui-icon-pencil"
                                      update="@form:panelCadastro" actionListener="#{estadoBean.alterar(e)}"
-                                     oncomplete="PF('dlCad').show();"/>
-                    <p:commandButton value="Excluir" icon="ui-icon-trash" 
-                                     actionListener="#{estadoBean.excluir(e)}" update="tabela msg">
+                                     oncomplete="PF('dlCad').show();" process="@this"/>
+                    <p:commandButton value="Excluir" icon="ui-icon-trash"
+                                     actionListener="#{estadoBean.excluir(e)}" update="tabela @form:msg">
                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                     </p:commandButton>
                 </p:column>
@@ -63,7 +63,7 @@
                                          converter="omnifaces.SelectItemsConverter"
                                          required="true" requiredMessage="Campo Pais é Obrigatorio!">
                             <f:selectItem itemLabel="Selecione um pais" noSelectionOption="true" />
-                            <f:selectItems value="#{estadoBean.paises}" var="p" 
+                            <f:selectItems value="#{estadoBean.paises}" var="p"
                                            itemValue="#{p}" itemLabel="#{p.descricao}"/>
                         </p:selectOneMenu>
                         <p:inputText placeholder="Codigo" value="#{estadoBean.entidade.estadoPK.codigo}"
@@ -74,11 +74,11 @@
                                      required="true" requiredMessage="Sigla do Estado é Obrigatorio!"/>
                     </p:panelGrid>
                     <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                        <p:commandButton value="Salvar" icon="ui-icon-check" 
+                        <p:commandButton value="Salvar" icon="ui-icon-check"
                                          actionListener="#{estadoBean.salvar()}"
                                          update="panelCadastro tabela"/>
                     </p:panelGrid>
-                </div>    
+                </div>
             </p:dialog>
         </h:form>
     </h:body>
