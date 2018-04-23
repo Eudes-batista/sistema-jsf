@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewAction action="#{paisBean.inicializar()}"/>
+        <f:viewAction action="#{grupoBean.inicializar()}"/>
     </f:metadata>
     <h:head>
         <title>Facelet Title</title>
@@ -15,8 +15,8 @@
             <p:toolbar>
                 <p:toolbarGroup>
                     <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
-                                     process="@this" styleClass="btn btn-primary"/>
-                    <p:inputText placeholder="Pesquisar" value="#{paisBean.entidade.descricao}"
+                                     process="@this"/>
+                    <p:inputText placeholder="Pesquisar" value="#{grupoBean.entidade.descricao}"
                                  onkeypress="if (event.keyCode == 13) {
                                              event.target.blur();
                                              event.stopPropagation();
@@ -25,14 +25,14 @@
                                              return true;
                                          }
                                          ;">
-                        <p:ajax event="change" listener="#{paisBean.pesquisar()}" process="@this" update="tabela" />
+                        <p:ajax event="change" listener="#{grupoBean.pesquisar()}" process="@this" update="tabela" />
                     </p:inputText>
                 </p:toolbarGroup>
             </p:toolbar>
             <p:messages id="msg" closable="true" showIcon="false"/>
             <p:dataTable id="tabela" lazy="true" paginator="true"
                          rows="5"
-                         value="#{paisBean.model}"
+                         value="#{grupoBean.model}"
                          var="e" reflow="true">
                 <p:column headerText="Codigo" style="text-align: center;">
                     #{e.codigo}
@@ -41,11 +41,11 @@
                     #{e.descricao}
                 </p:column>
                 <p:column headerText="Operações" style="text-align: center;">
-                    <p:commandButton value="Alterar" styleClass="btn btn-primary"
-                                     update="@form:panelCadastro" actionListener="#{paisBean.alterar(e)}"
+                    <p:commandButton value="Alterar" icon="ui-icon-pencil"
+                                     update="@form:panelCadastro" actionListener="#{grupoBean.alterar(e)}"
                                      oncomplete="PF('dlCad').show();" process="@this"/>
-                    <p:commandButton value="Excluir" styleClass="btn btn-danger"
-                                     actionListener="#{paisBean.excluir(e)}" process="@this" update="tabela @form:msg">
+                    <p:commandButton value="Excluir" icon="ui-icon-trash"
+                                     actionListener="#{grupoBean.excluir(e)}" process="@this" update="tabela @form:msg">
                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                     </p:commandButton>
                 </p:column>
@@ -54,21 +54,21 @@
                 <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
                 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
             </p:confirmDialog>
-            <p:dialog id="dl" header="Cadastro de Pais" widgetVar="dlCad"
+            <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad"
                       closable="true">
-                <p:ajax event="close" listener="#{paisBean.novo()}" update="dl"/>
+                <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl"/>
                 <div class="ui-fluid">
                     <p:messages id="msgCad" closable="true" showIcon="false"/>
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                        <p:inputText placeholder="Codigo" value="#{paisBean.entidade.codigo}"
-                                     required="true" requiredMessage="Codigo do Pais é Obrigatorio!" />
-                        <p:inputText placeholder="Nome" value="#{paisBean.entidade.descricao}"
-                                     required="true" requiredMessage="Nome do Pais é Obrigatorio!"/>
+                        <p:inputText placeholder="Codigo" value="#{grupoBean.entidade.codigo}"
+                                     required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" />
+                        <p:inputText placeholder="Nome" value="#{grupoBean.entidade.descricao}"
+                                     required="true" requiredMessage="Nome do Grupo é Obrigatorio!"/>
                     </p:panelGrid>
                     <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                        <p:commandButton value="Salvar"
-                                         actionListener="#{paisBean.salvar()}"
-                                         update="panelCadastro tabela msgCad" styleClass="btn btn-success"/>
+                        <p:commandButton value="Salvar" icon="ui-icon-check"
+                                         actionListener="#{grupoBean.salvar()}"
+                                         update="panelCadastro tabela msgCad"/>
                     </p:panelGrid>
                 </div>
             </p:dialog>

@@ -1,16 +1,22 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
+import com.zoomtecnologia.zox.filtros.FiltroGeneric;
+import com.zoomtecnologia.zox.modelo.EntityBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "zoxcadcfop")
 @Data
-public class Cfop implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class Cfop extends FiltroGeneric implements EntityBase<Integer>, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * CODIGO DE OPERACAO FISCAL
@@ -42,5 +48,10 @@ public class Cfop implements Serializable {
      */
     @Column(name = "OPDESCRI", length = 30, nullable = false)
     private String descCompNatOp;
+
+    @Override
+    public Integer getId() {
+        return this.codigo;
+    }
 
 }
