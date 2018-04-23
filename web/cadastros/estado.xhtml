@@ -15,37 +15,70 @@
             <p:toolbar>
                 <p:toolbarGroup>
                     <p:commandButton value="Novo" oncomplete="PF('dlCad').show();" />
+                    <p:inputText placeholder="Pesquisar" value="#{estadoBean.entidade.nome}"
+                                 onkeypress="if (event.keyCode == 13) {
+                                             event.target.blur();
+                                             event.stopPropagation();
+                                             return false;
+                                         } else {
+                                             return true;
+                                         }
+                                         ;">
+                        <p:ajax event="change" listener="#{estadoBean.pesquisar()}" process="@this" update="tabela" />
+                    </p:inputText>
                 </p:toolbarGroup>
             </p:toolbar>
+            <p:messages id="msg" closable="true" showIcon="false"/>
             <p:dataTable id="tabela" lazy="true" paginator="true"
                          rows="5"
                          value="#{estadoBean.model}"
-                         var="e">               
-                <p:column headerText="Codigo">
+                         var="e" reflow="true">               
+                <p:column headerText="Codigo" style="text-align: center;">
                     #{e.estadoPK.codigo}
                 </p:column>
                 <p:column headerText="Codigo">
                     #{e.nome}
                 </p:column>
+                <p:column headerText="Operações" style="text-align: center;">
+                    <p:commandButton value="Alterar" icon="ui-icon-pencil"
+                                     update="@form:panelCadastro" actionListener="#{estadoBean.alterar(e)}"
+                                     oncomplete="PF('dlCad').show();"/>
+                    <p:commandButton value="Excluir" icon="ui-icon-trash" 
+                                     actionListener="#{estadoBean.excluir(e)}" update="tabela msg">
+                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                    </p:commandButton>
+                </p:column>
             </p:dataTable>
+            <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+            </p:confirmDialog>
             <p:dialog id="dl" header="Cadastro de Estado" widgetVar="dlCad"
                       closable="true">
                 <p:ajax event="close" listener="#{estadoBean.novo()}" update="dl"/>
-                <p:panelGrid id="panelCadastro" columns="1">
-                    <p:selectOneMenu value="#{estadoBean.entidade.estadoPK.pais}"
-                                     converter="omnifaces.SelectItemsConverter">
-                        <f:selectItems value="#{estadoBean.paises}" var="p" 
-                                       itemValue="#{p}" itemLabel="#{p.descricao}"/>
-                    </p:selectOneMenu>
-                    <p:inputText placeholder="Codigo" value="#{estadoBean.entidade.estadoPK.codigo}"/>
-                    <p:inputText placeholder="Nome" value="#{estadoBean.entidade.nome}"/>
-                    <p:inputText placeholder="Sigla" value="#{estadoBean.entidade.sigla}"/>
-                </p:panelGrid>
-                <p:panelGrid columns="1">
-                    <p:commandButton value="Salvar" icon="ui-icon-check" 
-                                     actionListener="#{estadoBean.salvar()}"
-                                     update="@form"/>
-                </p:panelGrid>
+                <div class="ui-fluid">
+                    <p:messages autoUpdate="true" closable="true" showIcon="false"/>
+                    <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                        <p:selectOneMenu value="#{estadoBean.entidade.estadoPK.pais}"
+                                         converter="omnifaces.SelectItemsConverter"
+                                         required="true" requiredMessage="Campo Pais é Obrigatorio!">
+                            <f:selectItem itemLabel="Selecione um pais" noSelectionOption="true" />
+                            <f:selectItems value="#{estadoBean.paises}" var="p" 
+                                           itemValue="#{p}" itemLabel="#{p.descricao}"/>
+                        </p:selectOneMenu>
+                        <p:inputText placeholder="Codigo" value="#{estadoBean.entidade.estadoPK.codigo}"
+                                     required="true" requiredMessage="Codigo do Estado é Obrigatorio!" />
+                        <p:inputText placeholder="Nome" value="#{estadoBean.entidade.nome}"
+                                     required="true" requiredMessage="Nome do Estado é Obrigatorio!"/>
+                        <p:inputText placeholder="Sigla" value="#{estadoBean.entidade.sigla}"
+                                     required="true" requiredMessage="Sigla do Estado é Obrigatorio!"/>
+                    </p:panelGrid>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                        <p:commandButton value="Salvar" icon="ui-icon-check" 
+                                         actionListener="#{estadoBean.salvar()}"
+                                         update="panelCadastro tabela"/>
+                    </p:panelGrid>
+                </div>    
             </p:dialog>
         </h:form>
     </h:body>

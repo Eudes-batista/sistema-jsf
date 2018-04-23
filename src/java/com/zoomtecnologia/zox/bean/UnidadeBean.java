@@ -3,8 +3,6 @@ package com.zoomtecnologia.zox.bean;
 import com.zoomtecnologia.zox.modelo.estoque.Unidade;
 import com.zoomtecnologia.zox.servico.UnidadeServico;
 import javax.faces.bean.ManagedBean;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -18,14 +16,7 @@ public class UnidadeBean extends GenericBean<Unidade, UnidadeServico> {
 
     @Autowired
     private UnidadeServico unidadeServico;
-    @Getter
-    @Setter
-    String pesquisa;
-
-    public void pesquisar() {
-
-    }
-
+    
     @Override
     public UnidadeServico getGenericService() {
         return unidadeServico;

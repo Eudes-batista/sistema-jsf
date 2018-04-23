@@ -2,44 +2,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
         <f:viewAction action="#{unidadeBean.inicializar()}"/>
     </f:metadata>
     <h:head>
-        <title>Unidades</title>
-        <link rel="stylesheet" href="../resource/css/bootstrap.css"/>
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
         <h:form>
-            <h1><h:outputText value="Unidades"/></h1>
-            <p:dataTable id="tabela" value="#{unidadeBean.model}" var="item"
-                         emptyMessage="Nehnum Registro." lazy="true"
-                         paginator="true" rows="4" >
-                <p:column sortBy="#{item.codigo}">
-                    <f:facet name="header">
-                        <h:outputText value="Codigo"/>
-                    </f:facet>
-                    <h:outputText value="#{item.codigo}"/>
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
+                                     process="@this"/>
+                    <p:inputText placeholder="Pesquisar" value="#{unidadeBean.entidade.descricao}"
+                                 onkeypress="if (event.keyCode == 13) {
+                                             event.target.blur();
+                                             event.stopPropagation();
+                                             return false;
+                                         } else {
+                                             return true;
+                                         }
+                                         ;">
+                        <p:ajax event="change" listener="#{unidadeBean.pesquisar()}" process="@this" update="tabela" />
+                    </p:inputText>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:messages id="msg" closable="true" showIcon="false"/>
+            <p:dataTable id="tabela" lazy="true" paginator="true"
+                         rows="5"
+                         value="#{unidadeBean.model}"
+                         var="e" reflow="true">               
+                <p:column headerText="Codigo" style="text-align: center;">
+                    #{e.codigo}
                 </p:column>
-                <p:column sortBy="#{item.descricao}">
-                    <f:facet name="header">
-                        <h:outputText value="Descricao"/>
-                    </f:facet>
-                    <h:outputText value="#{item.descricao}"/>
+                <p:column headerText="Codigo">
+                    #{e.descricao}
                 </p:column>
-                <p:column headerText="Operações">
-                    <p:commandButton value="Excluir" actionListener="#{unidadeBean.excluir(item)}"
-                                     update="@form" >
-                        <p:confirm header="Confirmação" message="Voce quer mesmo fazer essa merda?" icon="ui-icon-alert" />
+                <p:column headerText="Operações" style="text-align: center;">
+                    <p:commandButton value="Alterar" icon="ui-icon-pencil"
+                                     update="@form:panelCadastro" actionListener="#{unidadeBean.alterar(e)}"
+                                     oncomplete="PF('dlCad').show();" process="@this"/>
+                    <p:commandButton value="Excluir" icon="ui-icon-trash" 
+                                     actionListener="#{unidadeBean.excluir(e)}" process="@this" update="tabela @form:msg">
+                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                     </p:commandButton>
                 </p:column>
             </p:dataTable>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                <p:commandButton value="Não, vou pensar mais um pouco no assunto." type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
             </p:confirmDialog>
+            <p:dialog id="dl" header="Cadastro de Unidade" widgetVar="dlCad"
+                      closable="true">
+                <p:ajax event="close" listener="#{unidadeBean.novo()}" update="dl"/>
+                <div class="ui-fluid">
+                    <p:messages id="msgCad" closable="true" showIcon="false"/>
+                    <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                        <p:inputText placeholder="Codigo" value="#{unidadeBean.entidade.codigo}"
+                                     required="true" requiredMessage="Codigo do Unidade é Obrigatorio!" />
+                        <p:inputText placeholder="Nome" value="#{unidadeBean.entidade.descricao}"
+                                     required="true" requiredMessage="Nome do Unidade é Obrigatorio!"/>
+                    </p:panelGrid>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                        <p:commandButton value="Salvar" icon="ui-icon-check" 
+                                         actionListener="#{unidadeBean.salvar()}"
+                                         update="panelCadastro tabela msgCad"/>
+                    </p:panelGrid>
+                </div>    
+            </p:dialog>
         </h:form>
     </h:body>
 </html>

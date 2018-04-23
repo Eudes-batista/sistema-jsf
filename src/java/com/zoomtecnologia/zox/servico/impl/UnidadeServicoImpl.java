@@ -76,7 +76,7 @@ public class UnidadeServicoImpl implements UnidadeServico {
         Criteria criteria = session.createCriteria(Unidade.class);
         Criterion nome = null, codigo = null;
         LogicalExpression expressao;
-        if (StringUtils.isNotEmpty(filtro.getDescricao()) && StringUtils.isNotEmpty(filtro.getCodigo())) {
+        if (StringUtils.isNotEmpty(filtro.getDescricao()) || StringUtils.isNotEmpty(filtro.getCodigo())) {
             nome = Restrictions.ilike("descricao",
                     filtro.getDescricao(), MatchMode.ANYWHERE);
             codigo = Restrictions.eq("codigo", filtro.getCodigo());

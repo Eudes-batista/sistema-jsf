@@ -2,8 +2,8 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
 import java.io.Serializable;
-import javax.persistence.Embeddable;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Data;
@@ -24,7 +24,7 @@ public class EstadoPK implements Serializable{
      */
     @ManyToOne
     @JoinColumn(name = "UFCDPAIS", nullable = false)
-    @ForeignKey(name = "zoxcadestadoFKzoxcadpaises")
+    @ForeignKey(name = "estadoFKpais")
     Pais pais;
     
 }

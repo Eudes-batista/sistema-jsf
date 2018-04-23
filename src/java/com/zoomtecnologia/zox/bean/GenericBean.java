@@ -6,6 +6,7 @@ import com.zoomtecnologia.zox.servico.GenericService;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
+import org.omnifaces.util.Messages;
 import org.primefaces.model.LazyDataModel;
 
 @Getter
@@ -40,7 +41,12 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
     }
 
     public void salvar() {
-        getGenericService().salvar(entidade);
+        try{
+            getGenericService().salvar(entidade);
+            Messages.addGlobalInfo("salvo com sucesso!!");
+        }catch(Exception ex){
+            Messages.addGlobalError("Erro ao salvar o "+entidade.getClass().getSimpleName());
+        }
     }
 
     public void alterar(E e) {
@@ -48,7 +54,31 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
     }
 
     public void excluir(E e) {
-        getGenericService().excluir(e);
+        try{
+            getGenericService().excluir(e);
+        }catch(Exception ex){
+            String erro="Erro ao excluir o "+e.getClass().getSimpleName()+"\n";
+            String[] search={"ForeignKey".toLowerCase(),"Foreign Key".toLowerCase()};
+            if(ex.getMessage().toLowerCase().contains(search[0]) ||
+                    ex.getMessage().toLowerCase().contains(search[1])){
+                    erro="esse registro não pode ser excluido, já existe movimentação";
+            }
+            Messages.addGlobalError(erro);
+        }
+    }
+    
+    public void pesquisar(){
+        model = new ModelGeneric<E, D>() {
+            @Override
+            public D getGenericServiceModel() {
+                return getGenericService();
+            }
+
+            @Override
+            public E getGenericFiltro() {
+                return entidade;
+            }
+        };
     }
 
     public abstract D getGenericService();

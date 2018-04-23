@@ -5,6 +5,7 @@ import com.zoomtecnologia.zox.modelo.cadastros.EstadoPK;
 import com.zoomtecnologia.zox.modelo.cadastros.Pais;
 import com.zoomtecnologia.zox.servico.EstadoService;
 import com.zoomtecnologia.zox.servico.PaisService;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service("estadoBean")
 @ManagedBean
 @Scope("view")
-public class EstadoBean extends GenericBean<Estado, EstadoService> {
+public class EstadoBean extends GenericBean<Estado, EstadoService> implements Serializable{
 
     @Autowired
     EstadoService estadoService;

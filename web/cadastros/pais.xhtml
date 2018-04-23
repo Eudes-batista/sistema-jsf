@@ -12,17 +12,66 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:dataTable lazy="true" paginator="true"
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
+                                     process="@this"/>
+                    <p:inputText placeholder="Pesquisar" value="#{paisBean.entidade.descricao}"
+                                 onkeypress="if (event.keyCode == 13) {
+                                             event.target.blur();
+                                             event.stopPropagation();
+                                             return false;
+                                         } else {
+                                             return true;
+                                         }
+                                         ;">
+                        <p:ajax event="change" listener="#{paisBean.pesquisar()}" process="@this" update="tabela" />
+                    </p:inputText>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:messages id="msg" closable="true" showIcon="false"/>
+            <p:dataTable id="tabela" lazy="true" paginator="true"
                          rows="5"
                          value="#{paisBean.model}"
-                         var="p">
-                <p:column headerText="Codigo">
-                    #{p.codigo}
+                         var="e" reflow="true">               
+                <p:column headerText="Codigo" style="text-align: center;">
+                    #{e.codigo}
                 </p:column>
                 <p:column headerText="Codigo">
-                    #{p.descricao}
+                    #{e.descricao}
+                </p:column>
+                <p:column headerText="Operações" style="text-align: center;">
+                    <p:commandButton value="Alterar" icon="ui-icon-pencil"
+                                     update="@form:panelCadastro" actionListener="#{paisBean.alterar(e)}"
+                                     oncomplete="PF('dlCad').show();" process="@this"/>
+                    <p:commandButton value="Excluir" icon="ui-icon-trash" 
+                                     actionListener="#{paisBean.excluir(e)}" process="@this" update="tabela @form:msg">
+                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
+            <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+            </p:confirmDialog>
+            <p:dialog id="dl" header="Cadastro de Pais" widgetVar="dlCad"
+                      closable="true">
+                <p:ajax event="close" listener="#{paisBean.novo()}" update="dl"/>
+                <div class="ui-fluid">
+                    <p:messages id="msgCad" closable="true" showIcon="false"/>
+                    <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                        <p:inputText placeholder="Codigo" value="#{paisBean.entidade.codigo}"
+                                     required="true" requiredMessage="Codigo do Pais é Obrigatorio!" />
+                        <p:inputText placeholder="Nome" value="#{paisBean.entidade.descricao}"
+                                     required="true" requiredMessage="Nome do Pais é Obrigatorio!"/>
+                    </p:panelGrid>
+                    <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                        <p:commandButton value="Salvar" icon="ui-icon-check" 
+                                         actionListener="#{paisBean.salvar()}"
+                                         update="panelCadastro tabela msgCad"/>
+                    </p:panelGrid>
+                </div>    
+            </p:dialog>
         </h:form>
     </h:body>
 </html>
