@@ -5,6 +5,7 @@
  */
 package com.zoomtecnologia.zox.modelo.estoque;
 
+import com.zoomtecnologia.zox.modelo.EntityBase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import org.hibernate.validator.constraints.Length;
     @NamedQuery(name = "Ncm.listarTodos", query = "select u from Ncm u")
     ,@NamedQuery(name = "Ncm.buscarDescricao", query = "select u from Ncm u where u.descricao like :descricao")
 })
-public class Ncm implements Serializable {
+public class Ncm implements EntityBase<String>,Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,4 +42,11 @@ public class Ncm implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cestPK.ncm")
     private List<Cest> cests = new ArrayList<>();
+
+    @Override
+    public String getId() {
+        return this.codigo;
+    }
+    
+    
 }
