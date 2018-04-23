@@ -18,10 +18,12 @@ public class GenericServiceImpl<E extends EntityBase> implements PadraoService<E
     private EntityManager entityManager;
 
     @SuppressWarnings("unchecked")
+    @Override
     public E buscarPorId(Class<E> classe, E e) {
         return entityManager.find(classe, e.getId());
     }
 
+    @Override
     public void salvar(Class<E> classe, E entidade) {
         E e = buscarPorId(classe, entidade);
         if (e == null) {
@@ -37,10 +39,12 @@ public class GenericServiceImpl<E extends EntityBase> implements PadraoService<E
         entityManager.merge(entidade);
     }
 
+    @Override
     public void excluir(Class<E> classe, E entidade) {
         entityManager.remove(buscarPorId(classe, entidade));
     }
 
+    @Override
     public List<? extends EntityBase> listarTodos(E e) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<? extends EntityBase> createQuery = builder.createQuery(e.getClass());
