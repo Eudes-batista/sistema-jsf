@@ -13,6 +13,8 @@ import org.primefaces.model.LazyDataModel;
 @Setter
 public abstract class GenericBean<E extends FiltroGeneric, D extends GenericService> implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private E entidade;
     private LazyDataModel<E> model;
 
@@ -40,12 +42,13 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
         };
     }
 
+    @SuppressWarnings("unchecked")
     public void salvar() {
-        try{
+        try {
             getGenericService().salvar(entidade);
             Messages.addGlobalInfo("salvo com sucesso!!");
-        }catch(Exception ex){
-            Messages.addGlobalError("Erro ao salvar o "+entidade.getClass().getSimpleName());
+        } catch (Exception ex) {
+            Messages.addGlobalError("Erro ao salvar o " + entidade.getClass().getSimpleName());
         }
     }
 
@@ -54,20 +57,20 @@ public abstract class GenericBean<E extends FiltroGeneric, D extends GenericServ
     }
 
     public void excluir(E e) {
-        try{
+        try {
             getGenericService().excluir(e);
-        }catch(Exception ex){
-            String erro="Erro ao excluir o "+e.getClass().getSimpleName()+"\n";
-            String[] search={"ForeignKey".toLowerCase(),"Foreign Key".toLowerCase()};
-            if(ex.getMessage().toLowerCase().contains(search[0]) ||
-                    ex.getMessage().toLowerCase().contains(search[1])){
-                    erro="esse registro não pode ser excluido, já existe movimentação";
+        } catch (Exception ex) {
+            String erro = "Erro ao excluir o " + e.getClass().getSimpleName() + "\n";
+            String[] search = {"ForeignKey".toLowerCase(), "Foreign Key".toLowerCase()};
+            if (ex.getMessage().toLowerCase().contains(search[0])
+                    || ex.getMessage().toLowerCase().contains(search[1])) {
+                erro = "esse registro não pode ser excluido, já existe movimentação";
             }
             Messages.addGlobalError(erro);
         }
     }
-    
-    public void pesquisar(){
+
+    public void pesquisar() {
         model = new ModelGeneric<E, D>() {
             @Override
             public D getGenericServiceModel() {
