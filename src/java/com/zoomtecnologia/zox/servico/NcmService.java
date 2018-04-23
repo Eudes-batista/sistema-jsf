@@ -6,11 +6,13 @@
 package com.zoomtecnologia.zox.servico;
 
 import com.zoomtecnologia.zox.modelo.estoque.Ncm;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Administrador
  */
-public interface NcmService extends GenericService<Ncm>{
-    
+@Repository
+public interface NcmService extends PadraoService<Ncm> {
+
 }

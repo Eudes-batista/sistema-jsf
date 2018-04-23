@@ -1,4 +1,3 @@
-
 package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.estoque.Ncm;
@@ -11,21 +10,25 @@ import org.springframework.stereotype.Service;
 
 @Service("ncmBean")
 @ManagedBean
-public class NcmBean implements Serializable{
+public class NcmBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Autowired
     NcmService ncmService;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         Ncm ncm = new Ncm();
-        ncm.setCodigo("12345678");
+        ncm.setCodigo("02102000");
         ncm.setDescricao("TESTE DE NCM");
-        try{
-            ncmService.salvar(ncm);
-        }catch(Exception ex){
+        try {
+            ncmService.salvar(Ncm.class, ncm);
+            Ncm n = ncmService.buscarPorId(Ncm.class, ncm);
+            System.out.println("ncm = " + n);
+        } catch (Exception ex) {
             System.out.println("ex = " + ex.getMessage());
         }
     }
-    
+
 }

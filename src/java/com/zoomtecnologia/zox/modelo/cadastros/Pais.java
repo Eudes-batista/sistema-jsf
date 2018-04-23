@@ -9,23 +9,25 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name="pais")
+@Table(name = "pais")
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NamedQueries({
-    @NamedQuery(name="Pais.listarTodos",query = "select p from Pais p order by p.descricao")
-   ,@NamedQuery(name="Pais.buscarPorDescricao",query = "select p from Pais p where p.descricao like :descricao order by p.descricao")
+    @NamedQuery(name = "Pais.listarTodos", query = "select p from Pais p order by p.descricao")
+    ,@NamedQuery(name = "Pais.buscarPorDescricao", query = "select p from Pais p where p.descricao like :descricao order by p.descricao")
 })
-public class Pais extends FiltroGeneric implements Serializable{
-    
+public class Pais extends FiltroGeneric implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
-    @Column(name="NACODIGO",length = 4,nullable = false)
+    @Column(name = "NACODIGO", length = 4, nullable = false)
     Integer codigo;
 
-    @Column(name="NADESCRI",length =50,nullable = false)
+    @Column(name = "NADESCRI", length = 50, nullable = false)
     String descricao;
-    
+
 }

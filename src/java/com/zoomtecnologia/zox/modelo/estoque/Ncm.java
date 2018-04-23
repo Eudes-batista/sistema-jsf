@@ -18,16 +18,20 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "ncm")
 @Data
+@ToString(of = {"codigo"})
+@EqualsAndHashCode(callSuper = false)
 @NamedQueries({
     @NamedQuery(name = "Ncm.listarTodos", query = "select u from Ncm u")
     ,@NamedQuery(name = "Ncm.buscarDescricao", query = "select u from Ncm u where u.descricao like :descricao")
 })
-public class Ncm implements EntityBase<String>,Serializable {
+public class Ncm implements EntityBase<String>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,6 +51,5 @@ public class Ncm implements EntityBase<String>,Serializable {
     public String getId() {
         return this.codigo;
     }
-    
-    
+
 }

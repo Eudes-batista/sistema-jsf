@@ -9,16 +9,21 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "unidade")
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NamedQueries({
-         @NamedQuery(name="Unidade.listarTodos",query = "select u from Unidade u"),
-         @NamedQuery(name = "Unidade.buscarDescricao",query = "select u from Unidade u where u.descricao like :descricao")
- })
+    @NamedQuery(name = "Unidade.listarTodos", query = "select u from Unidade u")
+    ,
+         @NamedQuery(name = "Unidade.buscarDescricao", query = "select u from Unidade u where u.descricao like :descricao")
+})
 public class Unidade extends FiltroGeneric implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * Codigo da unidade

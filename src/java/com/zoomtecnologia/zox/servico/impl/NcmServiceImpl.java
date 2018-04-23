@@ -9,4 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class NcmServiceImpl extends GenericServiceImpl<Ncm> implements NcmService {
 
+    private static final long serialVersionUID = 1L;
+
 }
