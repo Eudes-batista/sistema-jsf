@@ -1,0 +1,740 @@
+@startuml
+abstract class com.zoomtecnologia.zox.bean.GenericoBean
+abstract class com.zoomtecnologia.zox.filtros.Filtro
+abstract class com.zoomtecnologia.zox.modelo.ModeloGenerico
+annotation com.zoomtecnologia.zox.modelo.cadastros.Column
+annotation com.zoomtecnologia.zox.modelo.cadastros.EmbeddedId
+annotation com.zoomtecnologia.zox.modelo.cadastros.Entity
+annotation com.zoomtecnologia.zox.modelo.cadastros.Length
+annotation com.zoomtecnologia.zox.modelo.cadastros.Table
+annotation com.zoomtecnologia.zox.modelo.estoque.Column
+annotation com.zoomtecnologia.zox.modelo.estoque.Entity
+annotation com.zoomtecnologia.zox.modelo.estoque.Id
+annotation com.zoomtecnologia.zox.modelo.estoque.JoinColumn
+annotation com.zoomtecnologia.zox.modelo.estoque.JoinColumns
+annotation com.zoomtecnologia.zox.modelo.estoque.ManyToOne
+annotation com.zoomtecnologia.zox.modelo.estoque.NamedQueries
+annotation com.zoomtecnologia.zox.modelo.estoque.NamedQuery
+annotation com.zoomtecnologia.zox.modelo.estoque.Table
+annotation com.zoomtecnologia.zox.modelo.estoque.Temporal
+annotation java.lang.Override
+annotation java.lang.SuppressWarnings
+annotation javax.faces.bean.ManagedBean
+annotation javax.persistence.Column
+annotation javax.persistence.Embeddable
+annotation javax.persistence.EmbeddedId
+annotation javax.persistence.Entity
+annotation javax.persistence.Id
+annotation javax.persistence.JoinColumn
+annotation javax.persistence.JoinColumns
+annotation javax.persistence.Lob
+annotation javax.persistence.ManyToOne
+annotation javax.persistence.NamedQueries
+annotation javax.persistence.NamedQuery
+annotation javax.persistence.OneToMany
+annotation javax.persistence.OneToOne
+annotation javax.persistence.PersistenceContext
+annotation javax.persistence.Table
+annotation javax.persistence.Temporal
+annotation javax.validation.constraints.Min
+annotation javax.validation.constraints.NotNull
+annotation lombok.Data
+annotation lombok.EqualsAndHashCode
+annotation lombok.Getter
+annotation lombok.Setter
+annotation lombok.ToString
+annotation org.hibernate.annotations.ForeignKey
+annotation org.hibernate.validator.constraints.Length
+annotation org.springframework.beans.factory.annotation.Autowired
+annotation org.springframework.context.annotation.Scope
+annotation org.springframework.stereotype.Repository
+annotation org.springframework.stereotype.Service
+annotation org.springframework.transaction.annotation.Transactional
+class com.zoomtecnologia.zox.bean.ContatoBean
+class com.zoomtecnologia.zox.bean.EstadoBean
+class com.zoomtecnologia.zox.bean.GrupoBean
+class com.zoomtecnologia.zox.bean.NcmBean
+class com.zoomtecnologia.zox.bean.PaisBean
+class com.zoomtecnologia.zox.bean.PessoaBean
+class com.zoomtecnologia.zox.bean.UnidadeBean
+class com.zoomtecnologia.zox.escopo.ViewScope
+class com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer
+class com.zoomtecnologia.zox.modelo.cadastros.Cfop
+class com.zoomtecnologia.zox.modelo.cadastros.Cidade
+class com.zoomtecnologia.zox.modelo.cadastros.CidadePK
+class com.zoomtecnologia.zox.modelo.cadastros.Cnae
+class com.zoomtecnologia.zox.modelo.cadastros.Contato
+class com.zoomtecnologia.zox.modelo.cadastros.ContatoPK
+class com.zoomtecnologia.zox.modelo.cadastros.Documento
+class com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK
+class com.zoomtecnologia.zox.modelo.cadastros.Empresa
+class com.zoomtecnologia.zox.modelo.cadastros.Endereco
+class com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK
+class com.zoomtecnologia.zox.modelo.cadastros.Estado
+class com.zoomtecnologia.zox.modelo.cadastros.EstadoPK
+class com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario
+class com.zoomtecnologia.zox.modelo.cadastros.Ibpt
+class com.zoomtecnologia.zox.modelo.cadastros.Pais
+class com.zoomtecnologia.zox.modelo.cadastros.Pessoa
+class com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar
+class com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento
+class com.zoomtecnologia.zox.modelo.estoque.Cest
+class com.zoomtecnologia.zox.modelo.estoque.CestPK
+class com.zoomtecnologia.zox.modelo.estoque.CestaTributacao
+class com.zoomtecnologia.zox.modelo.estoque.Grupo
+class com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais
+class com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais
+class com.zoomtecnologia.zox.modelo.estoque.LocaEstoque
+class com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK
+class com.zoomtecnologia.zox.modelo.estoque.Ncm
+class com.zoomtecnologia.zox.modelo.estoque.Produto
+class com.zoomtecnologia.zox.modelo.estoque.SubGrupo
+class com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK
+class com.zoomtecnologia.zox.modelo.estoque.Tributacao
+class com.zoomtecnologia.zox.modelo.estoque.TributacaoPK
+class com.zoomtecnologia.zox.modelo.estoque.Unidade
+class com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl
+class com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl
+class com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+class com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl
+class com.zoomtecnologia.zox.servico.impl.NcmServiceImpl
+class com.zoomtecnologia.zox.servico.impl.PaisServicoImpl
+class com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl
+class com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl
+class java.util.ArrayList
+class java.util.Arrays
+class java.util.Date
+class java.util.HashMap
+class java.util.List
+class java.util.Map
+class javax.faces.component.UIViewRoot
+class javax.faces.context.FacesContext
+class javax.faces.event.AbortProcessingException
+class javax.faces.event.PostConstructViewMapEvent
+class javax.faces.event.PreDestroyViewMapEvent
+class javax.faces.event.SystemEvent
+class javax.persistence.CascadeType
+class javax.persistence.EntityManager
+class javax.persistence.TemporalType
+class org.apache.commons.lang3.StringUtils
+class org.hibernate.Criteria
+class org.hibernate.Session
+class org.hibernate.criterion.Criterion
+class org.hibernate.criterion.Disjunction
+class org.hibernate.criterion.LogicalExpression
+class org.hibernate.criterion.MatchMode
+class org.hibernate.criterion.Order
+class org.hibernate.criterion.Projections
+class org.hibernate.criterion.Restrictions
+class org.hibernate.sql.JoinType
+class org.omnifaces.util.Messages
+class org.primefaces.model.LazyDataModel
+class org.primefaces.model.SortOrder
+class org.springframework.beans.factory.ObjectFactory
+class org.springframework.web.context.request.FacesRequestAttributes
+enum com.zoomtecnologia.zox.modelo.cadastros.TipoContato
+interface com.zoomtecnologia.zox.modelo.EntidadeBase
+interface com.zoomtecnologia.zox.servico.ContatoService
+interface com.zoomtecnologia.zox.servico.EntidadeService
+interface com.zoomtecnologia.zox.servico.EstadoService
+interface com.zoomtecnologia.zox.servico.GrupoService
+interface com.zoomtecnologia.zox.servico.NcmService
+interface com.zoomtecnologia.zox.servico.PadraoService
+interface com.zoomtecnologia.zox.servico.PaisService
+interface com.zoomtecnologia.zox.servico.PessoaService
+interface com.zoomtecnologia.zox.servico.UnidadeServico
+interface java.io.Serializable
+interface javax.faces.event.ViewMapListener
+interface org.springframework.beans.factory.config.Scope
+com.zoomtecnologia.zox.bean.GenericoBean ..> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.bean.GenericoBean ..> com.zoomtecnologia.zox.modelo.ModeloGenerico
+com.zoomtecnologia.zox.bean.GenericoBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.GenericoBean ..> lombok.Getter
+com.zoomtecnologia.zox.bean.GenericoBean ..> lombok.Setter
+com.zoomtecnologia.zox.bean.GenericoBean ..> org.omnifaces.util.Messages
+com.zoomtecnologia.zox.bean.GenericoBean ..> org.primefaces.model.LazyDataModel
+com.zoomtecnologia.zox.bean.GenericoBean ..> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.bean.GenericoBean --|> java.io.Serializable
+com.zoomtecnologia.zox.filtros.Filtro ..> lombok.Getter
+com.zoomtecnologia.zox.filtros.Filtro ..> lombok.Setter
+com.zoomtecnologia.zox.filtros.Filtro --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.ModeloGenerico ..> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.ModeloGenerico ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.ModeloGenerico ..> java.util.List
+com.zoomtecnologia.zox.modelo.ModeloGenerico ..> java.util.Map
+com.zoomtecnologia.zox.modelo.ModeloGenerico --|> org.primefaces.model.LazyDataModel
+com.zoomtecnologia.zox.modelo.ModeloGenerico ..> org.primefaces.model.SortOrder
+com.zoomtecnologia.zox.modelo.ModeloGenerico ..> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.bean.ContatoBean --|> com.zoomtecnologia.zox.bean.GenericoBean
+com.zoomtecnologia.zox.bean.ContatoBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.ContatoBean ..> javax.faces.bean.ManagedBean
+com.zoomtecnologia.zox.bean.ContatoBean ..> lombok.Getter
+com.zoomtecnologia.zox.bean.ContatoBean ..> lombok.Setter
+com.zoomtecnologia.zox.bean.ContatoBean ..> org.springframework.beans.factory.annotation.Autowired
+com.zoomtecnologia.zox.bean.ContatoBean ..> org.springframework.context.annotation.Scope
+com.zoomtecnologia.zox.bean.ContatoBean ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.bean.ContatoBean ..> com.zoomtecnologia.zox.modelo.cadastros.Contato
+com.zoomtecnologia.zox.bean.ContatoBean ..> com.zoomtecnologia.zox.modelo.cadastros.ContatoPK
+com.zoomtecnologia.zox.bean.ContatoBean ..> java.util.Arrays
+com.zoomtecnologia.zox.bean.ContatoBean ..> java.util.List
+com.zoomtecnologia.zox.bean.ContatoBean ..> com.zoomtecnologia.zox.modelo.cadastros.TipoContato
+com.zoomtecnologia.zox.bean.ContatoBean ..> com.zoomtecnologia.zox.servico.ContatoService
+com.zoomtecnologia.zox.bean.EstadoBean --|> com.zoomtecnologia.zox.bean.GenericoBean
+com.zoomtecnologia.zox.bean.EstadoBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.EstadoBean ..> javax.faces.bean.ManagedBean
+com.zoomtecnologia.zox.bean.EstadoBean ..> lombok.Getter
+com.zoomtecnologia.zox.bean.EstadoBean ..> lombok.Setter
+com.zoomtecnologia.zox.bean.EstadoBean ..> org.springframework.beans.factory.annotation.Autowired
+com.zoomtecnologia.zox.bean.EstadoBean ..> org.springframework.context.annotation.Scope
+com.zoomtecnologia.zox.bean.EstadoBean ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.bean.EstadoBean ..> com.zoomtecnologia.zox.modelo.cadastros.Estado
+com.zoomtecnologia.zox.bean.EstadoBean ..> com.zoomtecnologia.zox.modelo.cadastros.EstadoPK
+com.zoomtecnologia.zox.bean.EstadoBean ..> com.zoomtecnologia.zox.modelo.cadastros.Pais
+com.zoomtecnologia.zox.bean.EstadoBean ..> java.util.List
+com.zoomtecnologia.zox.bean.EstadoBean ..> com.zoomtecnologia.zox.servico.EstadoService
+com.zoomtecnologia.zox.bean.EstadoBean ..> com.zoomtecnologia.zox.servico.PaisService
+com.zoomtecnologia.zox.bean.EstadoBean --|> java.io.Serializable
+com.zoomtecnologia.zox.bean.GrupoBean --|> com.zoomtecnologia.zox.bean.GenericoBean
+com.zoomtecnologia.zox.bean.GrupoBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.GrupoBean ..> javax.faces.bean.ManagedBean
+com.zoomtecnologia.zox.bean.GrupoBean ..> org.springframework.beans.factory.annotation.Autowired
+com.zoomtecnologia.zox.bean.GrupoBean ..> org.springframework.context.annotation.Scope
+com.zoomtecnologia.zox.bean.GrupoBean ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.bean.GrupoBean ..> com.zoomtecnologia.zox.modelo.estoque.Grupo
+com.zoomtecnologia.zox.bean.GrupoBean ..> com.zoomtecnologia.zox.servico.GrupoService
+com.zoomtecnologia.zox.bean.NcmBean --|> com.zoomtecnologia.zox.bean.GenericoBean
+com.zoomtecnologia.zox.bean.NcmBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.NcmBean ..> javax.faces.bean.ManagedBean
+com.zoomtecnologia.zox.bean.NcmBean ..> org.springframework.beans.factory.annotation.Autowired
+com.zoomtecnologia.zox.bean.NcmBean ..> org.springframework.context.annotation.Scope
+com.zoomtecnologia.zox.bean.NcmBean ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.bean.NcmBean ..> com.zoomtecnologia.zox.modelo.estoque.Ncm
+com.zoomtecnologia.zox.bean.NcmBean ..> com.zoomtecnologia.zox.servico.NcmService
+com.zoomtecnologia.zox.bean.NcmBean --|> java.io.Serializable
+com.zoomtecnologia.zox.bean.PaisBean --|> com.zoomtecnologia.zox.bean.GenericoBean
+com.zoomtecnologia.zox.bean.PaisBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.PaisBean ..> javax.faces.bean.ManagedBean
+com.zoomtecnologia.zox.bean.PaisBean ..> org.springframework.beans.factory.annotation.Autowired
+com.zoomtecnologia.zox.bean.PaisBean ..> org.springframework.context.annotation.Scope
+com.zoomtecnologia.zox.bean.PaisBean ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.bean.PaisBean ..> com.zoomtecnologia.zox.modelo.cadastros.Pais
+com.zoomtecnologia.zox.bean.PaisBean ..> com.zoomtecnologia.zox.servico.PaisService
+com.zoomtecnologia.zox.bean.PessoaBean --|> com.zoomtecnologia.zox.bean.GenericoBean
+com.zoomtecnologia.zox.bean.PessoaBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.PessoaBean ..> javax.faces.bean.ManagedBean
+com.zoomtecnologia.zox.bean.PessoaBean ..> org.springframework.beans.factory.annotation.Autowired
+com.zoomtecnologia.zox.bean.PessoaBean ..> org.springframework.context.annotation.Scope
+com.zoomtecnologia.zox.bean.PessoaBean ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.bean.PessoaBean ..> com.zoomtecnologia.zox.modelo.cadastros.Pessoa
+com.zoomtecnologia.zox.bean.PessoaBean ..> com.zoomtecnologia.zox.servico.PessoaService
+com.zoomtecnologia.zox.bean.UnidadeBean --|> com.zoomtecnologia.zox.bean.GenericoBean
+com.zoomtecnologia.zox.bean.UnidadeBean ..> java.lang.Override
+com.zoomtecnologia.zox.bean.UnidadeBean ..> javax.faces.bean.ManagedBean
+com.zoomtecnologia.zox.bean.UnidadeBean ..> org.springframework.beans.factory.annotation.Autowired
+com.zoomtecnologia.zox.bean.UnidadeBean ..> org.springframework.context.annotation.Scope
+com.zoomtecnologia.zox.bean.UnidadeBean ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.bean.UnidadeBean ..> com.zoomtecnologia.zox.modelo.estoque.Unidade
+com.zoomtecnologia.zox.bean.UnidadeBean ..> com.zoomtecnologia.zox.servico.UnidadeServico
+com.zoomtecnologia.zox.escopo.ViewScope ..> java.util.Map
+com.zoomtecnologia.zox.escopo.ViewScope ..> javax.faces.context.FacesContext
+com.zoomtecnologia.zox.escopo.ViewScope ..> org.springframework.beans.factory.ObjectFactory
+com.zoomtecnologia.zox.escopo.ViewScope ..> org.springframework.web.context.request.FacesRequestAttributes
+com.zoomtecnologia.zox.escopo.ViewScope --|> org.springframework.beans.factory.config.Scope
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer ..> java.util.HashMap
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer ..> java.util.Map
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer ..> javax.faces.component.UIViewRoot
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer ..> javax.faces.event.AbortProcessingException
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer ..> javax.faces.event.PostConstructViewMapEvent
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer ..> javax.faces.event.PreDestroyViewMapEvent
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer ..> javax.faces.event.SystemEvent
+com.zoomtecnologia.zox.escopo.ViewScopeCallbackRegistrer --|> javax.faces.event.ViewMapListener
+com.zoomtecnologia.zox.modelo.cadastros.Cfop --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.cadastros.Cfop ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.cadastros.Cfop ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Cfop ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Cfop ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.Cfop ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Cfop ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Cfop ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.cadastros.Cfop --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.cadastros.Cfop --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Cidade --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Cidade ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.cadastros.Cidade --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.cadastros.Cidade --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK ..> javax.persistence.JoinColumns
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.cadastros.CidadePK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Cnae --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Cnae ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.cadastros.Cnae --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.cadastros.Cnae --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Contato --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.cadastros.Contato ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.cadastros.Contato --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.cadastros.Contato --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.ContatoPK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.ContatoPK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.cadastros.ContatoPK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.cadastros.ContatoPK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.cadastros.ContatoPK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.ContatoPK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.cadastros.ContatoPK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Documento ..> com.zoomtecnologia.zox.modelo.cadastros.Column
+com.zoomtecnologia.zox.modelo.cadastros.Documento ..> com.zoomtecnologia.zox.modelo.cadastros.EmbeddedId
+com.zoomtecnologia.zox.modelo.cadastros.Documento ..> com.zoomtecnologia.zox.modelo.cadastros.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Documento ..> com.zoomtecnologia.zox.modelo.cadastros.Length
+com.zoomtecnologia.zox.modelo.cadastros.Documento ..> com.zoomtecnologia.zox.modelo.cadastros.Table
+com.zoomtecnologia.zox.modelo.cadastros.Documento ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Documento --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.cadastros.DocumentoPK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Empresa ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Empresa ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Empresa ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.Empresa ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.Empresa ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.Empresa ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Empresa ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Empresa --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Endereco ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Endereco ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.cadastros.Endereco ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Endereco ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.Endereco ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.Endereco ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Endereco ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Endereco --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK ..> javax.persistence.JoinColumns
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.cadastros.EnderecoPK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Estado --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Estado ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.cadastros.Estado --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.cadastros.Estado --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.EstadoPK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.EstadoPK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.cadastros.EstadoPK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.cadastros.EstadoPK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.cadastros.EstadoPK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.EstadoPK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.cadastros.EstadoPK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.Temporal
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> java.util.Date
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt ..> javax.persistence.TemporalType
+com.zoomtecnologia.zox.modelo.cadastros.Ibpt --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Pais --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Pais ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.cadastros.Pais --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.cadastros.Pais --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.Lob
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.OneToMany
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.Temporal
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.validation.constraints.Min
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.validation.constraints.NotNull
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> java.util.ArrayList
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> java.util.Date
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> java.util.List
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.CascadeType
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa ..> javax.persistence.TemporalType
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.cadastros.Pessoa --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar ..> com.zoomtecnologia.zox.modelo.estoque.Produto
+com.zoomtecnologia.zox.modelo.cadastros.ReferenciaAuxiliar --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento ..> lombok.Data
+com.zoomtecnologia.zox.modelo.cadastros.TipoDeMovimento --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.Cest ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.Cest ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.estoque.Cest ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.Cest ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.Cest ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.Cest ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.Cest ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.Cest --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.CestPK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.CestPK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.estoque.CestPK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.estoque.CestPK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.estoque.CestPK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.CestPK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.estoque.CestPK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.estoque.CestaTributacao --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.Grupo --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.estoque.Grupo ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.estoque.Grupo --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.estoque.Grupo --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> javax.persistence.OneToOne
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.estoque.InformacoesNutricionais --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> javax.persistence.OneToOne
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.estoque.ItensInformacoesNutricionais --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.LocaEstoque ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.LocaEstoque ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.estoque.LocaEstoque ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.LocaEstoque ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.LocaEstoque ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.LocaEstoque --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK ..> lombok.Getter
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK ..> lombok.Setter
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.estoque.LocalEstoquePK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.Ncm --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.OneToMany
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> lombok.ToString
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> java.util.ArrayList
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> java.util.List
+com.zoomtecnologia.zox.modelo.estoque.Ncm ..> javax.persistence.CascadeType
+com.zoomtecnologia.zox.modelo.estoque.Ncm --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.estoque.Ncm --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.Column
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.Entity
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.Id
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.JoinColumn
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.JoinColumns
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.ManyToOne
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.Table
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> com.zoomtecnologia.zox.modelo.estoque.Temporal
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.estoque.Produto ..> java.util.Date
+com.zoomtecnologia.zox.modelo.estoque.Produto --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.estoque.SubGrupo --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> javax.persistence.EmbeddedId
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.Tributacao ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.estoque.Tributacao --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> javax.persistence.Embeddable
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> javax.persistence.JoinColumn
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> javax.persistence.JoinColumns
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> javax.persistence.ManyToOne
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> org.hibernate.annotations.ForeignKey
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> com.zoomtecnologia.zox.modelo.cadastros.Estado
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK ..> javax.persistence.CascadeType
+com.zoomtecnologia.zox.modelo.estoque.TributacaoPK --|> java.io.Serializable
+com.zoomtecnologia.zox.modelo.estoque.Unidade --|> com.zoomtecnologia.zox.filtros.Filtro
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> java.lang.Override
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> javax.persistence.Column
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> javax.persistence.Entity
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> javax.persistence.Id
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> javax.persistence.NamedQueries
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> javax.persistence.NamedQuery
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> javax.persistence.Table
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> lombok.Data
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> lombok.EqualsAndHashCode
+com.zoomtecnologia.zox.modelo.estoque.Unidade ..> org.hibernate.validator.constraints.Length
+com.zoomtecnologia.zox.modelo.estoque.Unidade --|> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.modelo.estoque.Unidade --|> java.io.Serializable
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> com.zoomtecnologia.zox.modelo.cadastros.Contato
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl --|> com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> java.util.List
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.apache.commons.lang3.StringUtils
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.hibernate.Session
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.hibernate.criterion.MatchMode
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.hibernate.criterion.Order
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.hibernate.criterion.Projections
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl ..> org.hibernate.criterion.Restrictions
+com.zoomtecnologia.zox.servico.impl.ContatoServiceImpl --|> com.zoomtecnologia.zox.servico.ContatoService
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> com.zoomtecnologia.zox.modelo.cadastros.Estado
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl --|> com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> java.util.List
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.apache.commons.lang3.StringUtils
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.hibernate.Session
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.hibernate.criterion.MatchMode
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.hibernate.criterion.Order
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.hibernate.criterion.Projections
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.hibernate.criterion.Restrictions
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl ..> org.hibernate.sql.JoinType
+com.zoomtecnologia.zox.servico.impl.EstadoServiceImpl --|> com.zoomtecnologia.zox.servico.EstadoService
+com.zoomtecnologia.zox.servico.impl.GenericServiceImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.GenericServiceImpl ..> java.lang.SuppressWarnings
+com.zoomtecnologia.zox.servico.impl.GenericServiceImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.GenericServiceImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.GenericServiceImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.GenericServiceImpl ..> com.zoomtecnologia.zox.modelo.EntidadeBase
+com.zoomtecnologia.zox.servico.impl.GenericServiceImpl --|> com.zoomtecnologia.zox.servico.PadraoService
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> com.zoomtecnologia.zox.modelo.estoque.Grupo
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl --|> com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> java.util.List
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.apache.commons.lang3.StringUtils
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.hibernate.Session
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.hibernate.criterion.MatchMode
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.hibernate.criterion.Order
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.hibernate.criterion.Projections
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl ..> org.hibernate.criterion.Restrictions
+com.zoomtecnologia.zox.servico.impl.GrupoServiceImpl --|> com.zoomtecnologia.zox.servico.GrupoService
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> com.zoomtecnologia.zox.modelo.estoque.Ncm
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl --|> com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> java.util.List
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.apache.commons.lang3.StringUtils
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.hibernate.Session
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.hibernate.criterion.MatchMode
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.hibernate.criterion.Order
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.hibernate.criterion.Projections
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl ..> org.hibernate.criterion.Restrictions
+com.zoomtecnologia.zox.servico.impl.NcmServiceImpl --|> com.zoomtecnologia.zox.servico.NcmService
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> com.zoomtecnologia.zox.modelo.cadastros.Pais
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl --|> com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> java.util.List
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.apache.commons.lang3.StringUtils
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.hibernate.Session
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.hibernate.criterion.MatchMode
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.hibernate.criterion.Order
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.hibernate.criterion.Projections
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl ..> org.hibernate.criterion.Restrictions
+com.zoomtecnologia.zox.servico.impl.PaisServicoImpl --|> com.zoomtecnologia.zox.servico.PaisService
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> com.zoomtecnologia.zox.modelo.cadastros.Pessoa
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl --|> com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> java.util.List
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.apache.commons.lang3.StringUtils
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.Session
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.criterion.Criterion
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.criterion.Disjunction
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.criterion.MatchMode
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.criterion.Order
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.criterion.Projections
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl ..> org.hibernate.criterion.Restrictions
+com.zoomtecnologia.zox.servico.impl.PessoaServicoImpl --|> com.zoomtecnologia.zox.servico.PessoaService
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> java.lang.Override
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> javax.persistence.PersistenceContext
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.springframework.stereotype.Service
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.springframework.transaction.annotation.Transactional
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> com.zoomtecnologia.zox.modelo.estoque.Unidade
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl --|> com.zoomtecnologia.zox.servico.impl.GenericServiceImpl
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> java.util.List
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> javax.persistence.EntityManager
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.apache.commons.lang3.StringUtils
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.Session
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.criterion.Criterion
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.criterion.LogicalExpression
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.criterion.MatchMode
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.criterion.Order
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.criterion.Projections
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl ..> org.hibernate.criterion.Restrictions
+com.zoomtecnologia.zox.servico.impl.UnidadeServicoImpl --|> com.zoomtecnologia.zox.servico.UnidadeServico
+com.zoomtecnologia.zox.modelo.EntidadeBase --|> java.io.Serializable
+com.zoomtecnologia.zox.servico.ContatoService ..> org.springframework.stereotype.Repository
+com.zoomtecnologia.zox.servico.ContatoService ..> com.zoomtecnologia.zox.modelo.cadastros.Contato
+com.zoomtecnologia.zox.servico.ContatoService --|> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.servico.EntidadeService ..> java.util.List
+com.zoomtecnologia.zox.servico.EntidadeService ..> org.hibernate.Criteria
+com.zoomtecnologia.zox.servico.EntidadeService --|> com.zoomtecnologia.zox.servico.PadraoService
+com.zoomtecnologia.zox.servico.EstadoService ..> org.springframework.stereotype.Repository
+com.zoomtecnologia.zox.servico.EstadoService ..> com.zoomtecnologia.zox.modelo.cadastros.Estado
+com.zoomtecnologia.zox.servico.EstadoService --|> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.servico.GrupoService ..> org.springframework.stereotype.Repository
+com.zoomtecnologia.zox.servico.GrupoService ..> com.zoomtecnologia.zox.modelo.estoque.Grupo
+com.zoomtecnologia.zox.servico.GrupoService --|> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.servico.NcmService ..> org.springframework.stereotype.Repository
+com.zoomtecnologia.zox.servico.NcmService ..> com.zoomtecnologia.zox.modelo.estoque.Ncm
+com.zoomtecnologia.zox.servico.NcmService --|> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.servico.PadraoService --|> java.io.Serializable
+com.zoomtecnologia.zox.servico.PaisService ..> org.springframework.stereotype.Repository
+com.zoomtecnologia.zox.servico.PaisService ..> com.zoomtecnologia.zox.modelo.cadastros.Pais
+com.zoomtecnologia.zox.servico.PaisService ..> java.util.List
+com.zoomtecnologia.zox.servico.PaisService --|> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.servico.PessoaService ..> org.springframework.stereotype.Repository
+com.zoomtecnologia.zox.servico.PessoaService ..> com.zoomtecnologia.zox.modelo.cadastros.Pessoa
+com.zoomtecnologia.zox.servico.PessoaService --|> com.zoomtecnologia.zox.servico.EntidadeService
+com.zoomtecnologia.zox.servico.UnidadeServico ..> org.springframework.stereotype.Repository
+com.zoomtecnologia.zox.servico.UnidadeServico ..> com.zoomtecnologia.zox.modelo.estoque.Unidade
+com.zoomtecnologia.zox.servico.UnidadeServico --|> com.zoomtecnologia.zox.servico.EntidadeService
+@enduml

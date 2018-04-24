@@ -51,11 +51,12 @@ public class PessoaServicoImpl extends GenericServiceImpl<Pessoa> implements Pes
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Pessoa.class);
         if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-            Criterion razaoSocial, nomeFantasia, documentoIndentificacao;
+            Criterion razaoSocial, nomeFantasia, documentoIndentificacao, inscricaoEstadual;
             razaoSocial = Restrictions.ilike("razaoSocial", filtro.getPesquisa(), MatchMode.ANYWHERE);
             nomeFantasia = Restrictions.eq("nomeFantasia", filtro.getPesquisa());
             documentoIndentificacao = Restrictions.eq("documentoIdentificacao", filtro.getPesquisa());
-            Disjunction expressao = Restrictions.or(razaoSocial, nomeFantasia, documentoIndentificacao);
+            inscricaoEstadual = Restrictions.eq("inscricaoEstadual", filtro.getPesquisa());
+            Disjunction expressao = Restrictions.or(razaoSocial, nomeFantasia, documentoIndentificacao, inscricaoEstadual);
             criteria.add(expressao);
             return criteria;
         }
