@@ -1,5 +1,7 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
+import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,13 +20,15 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "pessoa")
 @Data
-public class Pessoa implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class Pessoa extends Filtro implements EntidadeBase<String>, Serializable {
 
     @Id
     @Column(length = 20, name = "CUDOCIDE", nullable = false)
@@ -183,5 +187,10 @@ public class Pessoa implements Serializable {
 
     @OneToMany(mappedBy = "documentoPK.pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Documento> documentos = new ArrayList<>();
+
+    @Override
+    public String getId() {
+        return this.documentoIdentificacao;
+    }
 
 }
