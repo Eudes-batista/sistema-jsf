@@ -48,8 +48,8 @@ public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements Est
         Session session = (Session) entityManager.unwrap(Session.class);
         Criteria criateria = session.createCriteria(Estado.class);
         criateria.createAlias("estadoPK.pais", "p", JoinType.LEFT_OUTER_JOIN);
-        if (StringUtils.isNotEmpty(filtro.getNome())) {
-            criateria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
+        if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
+            criateria.add(Restrictions.ilike("nome", filtro.getPesquisa(), MatchMode.ANYWHERE));
         }
         return criateria;
     }

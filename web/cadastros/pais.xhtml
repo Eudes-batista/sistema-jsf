@@ -16,7 +16,7 @@
                 <p:toolbarGroup>
                     <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
                                      process="@this" styleClass="btn btn-primary"/>
-                    <p:inputText placeholder="Pesquisar" value="#{paisBean.entidade.descricao}"
+                    <p:inputText placeholder="Pesquisar" value="#{paisBean.entidade.pesquisa}"
                                  onkeypress="if (event.keyCode == 13) {
                                              event.target.blur();
                                              event.stopPropagation();

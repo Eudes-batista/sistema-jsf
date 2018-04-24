@@ -55,8 +55,8 @@ public class ContatoServiceImpl extends GenericServiceImpl<Contato> implements C
     public Criteria criarCriteriaParaFiltro(Contato filtro) {
         Session session = (Session) entityManager.unwrap(Session.class);
         Criteria criateria = session.createCriteria(Contato.class);
-        if (StringUtils.isNotEmpty(filtro.getDescricao())) {
-            criateria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
+        if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
+            criateria.add(Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE));
         }
         return criateria;
     }
