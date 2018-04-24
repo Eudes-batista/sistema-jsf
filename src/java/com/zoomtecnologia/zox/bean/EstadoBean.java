@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service("estadoBean")
 @ManagedBean
 @Scope("view")
-public class EstadoBean extends GenericBean<Estado, EstadoService> implements Serializable {
+public class EstadoBean extends GenericoBean<Estado, EstadoService> implements Serializable {
 
     @Autowired
     EstadoService estadoService;

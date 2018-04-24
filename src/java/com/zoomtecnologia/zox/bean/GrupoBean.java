@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service("grupoBean")
 @ManagedBean
 @Scope("view")
-public class GrupoBean extends GenericBean<Grupo, GrupoService> {
+public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
 
     @Autowired
     GrupoService GrupoService;

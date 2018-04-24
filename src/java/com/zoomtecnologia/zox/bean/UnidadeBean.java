@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service("unidadeBean")
 @ManagedBean
 @Scope("view")
-public class UnidadeBean extends GenericBean<Unidade, UnidadeServico> {
+public class UnidadeBean extends GenericoBean<Unidade, UnidadeServico> {
 
     private static final long serialVersionUID = 1L;
 

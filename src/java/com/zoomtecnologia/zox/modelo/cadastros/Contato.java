@@ -1,7 +1,6 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.modelo.EntityBase;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -10,12 +9,13 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
 @Table(name = "contado")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Contato extends FiltroGeneric implements EntityBase<ContatoPK>, Serializable {
+public class Contato extends Filtro implements EntidadeBase<ContatoPK>, Serializable {
 
     @EmbeddedId
     ContatoPK contatoPK;

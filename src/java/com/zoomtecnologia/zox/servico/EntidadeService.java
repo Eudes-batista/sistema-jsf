@@ -3,7 +3,7 @@ package com.zoomtecnologia.zox.servico;
 import java.util.List;
 import org.hibernate.Criteria;
 
-public interface GenericService<E> extends PadraoService<E> {
+public interface EntidadeService<E> extends PadraoService<E> {
 
     public List<E> filtrados(E filtro);
 

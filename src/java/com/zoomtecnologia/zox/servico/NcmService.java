@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author Administrador
  */
 @Repository
-public interface NcmService extends GenericService<Ncm> {
+public interface NcmService extends EntidadeService<Ncm> {
 
 }

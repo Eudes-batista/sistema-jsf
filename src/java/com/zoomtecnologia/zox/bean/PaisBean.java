@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service("paisBean")
 @ManagedBean
 @Scope("view")
-public class PaisBean extends GenericBean<Pais, PaisService> {
+public class PaisBean extends GenericoBean<Pais, PaisService> {
 
     @Autowired
     private PaisService paisService;

@@ -5,8 +5,7 @@
  */
 package com.zoomtecnologia.zox.modelo.cadastros;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.modelo.EntityBase;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -16,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 /**
  *
@@ -29,7 +29,7 @@ import lombok.EqualsAndHashCode;
     @NamedQuery(name = "Estado.listarTodos", query = "select e from Estado e order by e.nome")
     ,@NamedQuery(name = "Estado.buscarNome", query = "select e from Estado e where e.nome like :nome or e.sigla = :sigla")
 })
-public class Estado extends FiltroGeneric implements EntityBase<EstadoPK>, Serializable {
+public class Estado extends Filtro implements EntidadeBase<EstadoPK>, Serializable {
 
     private static final long serialVersionUID = 1L;
 

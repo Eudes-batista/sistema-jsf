@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service("ncmBean")
 @ManagedBean
 @Scope("view")
-public class NcmBean extends GenericBean<Ncm, NcmService> implements Serializable {
+public class NcmBean extends GenericoBean<Ncm, NcmService> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

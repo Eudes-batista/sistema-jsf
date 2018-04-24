@@ -5,8 +5,7 @@
  */
 package com.zoomtecnologia.zox.modelo.cadastros;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.modelo.EntityBase;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 /**
  *
@@ -27,7 +27,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @NamedQueries(
         @NamedQuery(name = "Cnae.listarTodos", query = "select c from Cnae c order by c.codigoAtividade"))
-public class Cnae extends FiltroGeneric implements EntityBase<Integer>, Serializable {
+public class Cnae extends Filtro implements EntidadeBase<Integer>, Serializable {
 
     private static final long serialVersionUID = 1L;
 

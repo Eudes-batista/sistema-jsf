@@ -1,19 +1,19 @@
 package com.zoomtecnologia.zox.modelo;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.servico.GenericService;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.util.List;
 import java.util.Map;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
+import com.zoomtecnologia.zox.servico.EntidadeService;
 
-public abstract class ModelGeneric<E extends FiltroGeneric, D extends GenericService> extends LazyDataModel<E> {
+public abstract class ModeloGenerico<E extends Filtro, D extends EntidadeService> extends LazyDataModel<E> {
 
     private static final long serialVersionUID = 1L;
-    private FiltroGeneric filtro;
-    private GenericService genericServico;
+    private Filtro filtro;
+    private EntidadeService genericServico;
 
-    public ModelGeneric() {
+    public ModeloGenerico() {
         this.genericServico = getGenericServiceModel();
         this.filtro = getGenericFiltro();
     }

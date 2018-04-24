@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 @Service("contatoBean")
 @ManagedBean
 @Scope("view")
-public class ContatoBean extends GenericBean<Contato, ContatoService> {
+public class ContatoBean extends GenericoBean<Contato, ContatoService> {
 
     @Autowired
     ContatoService contatoService;

@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author Administrador
  */
 @Repository
-public interface ContatoService extends GenericService<Contato> {
+public interface ContatoService extends EntidadeService<Contato> {
 
 }

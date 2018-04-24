@@ -52,10 +52,9 @@ public class UnidadeServicoImpl extends GenericServiceImpl<Unidade> implements U
         Criteria criteria = session.createCriteria(Unidade.class);
         Criterion nome = null, codigo = null;
         LogicalExpression expressao;
-        if (StringUtils.isNotEmpty(filtro.getDescricao()) || StringUtils.isNotEmpty(filtro.getCodigo())) {
-            nome = Restrictions.ilike("descricao",
-                    filtro.getDescricao(), MatchMode.ANYWHERE);
-            codigo = Restrictions.eq("codigo", filtro.getCodigo());
+        if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
+            nome = Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE);
+            codigo = Restrictions.eq("codigo", filtro.getPesquisa());
             expressao = Restrictions.or(nome, codigo);
             criteria.add(expressao);
             return criteria;

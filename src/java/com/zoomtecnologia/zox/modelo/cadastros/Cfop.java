@@ -1,7 +1,6 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.modelo.EntityBase;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
 @Table(name = "zoxcadcfop")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Cfop extends FiltroGeneric implements EntityBase<Integer>, Serializable {
+public class Cfop extends Filtro implements EntidadeBase<Integer>, Serializable {
 
     private static final long serialVersionUID = 1L;
 

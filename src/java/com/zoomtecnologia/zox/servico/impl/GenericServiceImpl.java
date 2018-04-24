@@ -1,13 +1,13 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.modelo.EntityBase;
 import com.zoomtecnologia.zox.servico.PadraoService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Transactional
-public class GenericServiceImpl<E extends EntityBase> implements PadraoService<E> {
+public class GenericServiceImpl<E extends EntidadeBase> implements PadraoService<E> {
 
     private static final long serialVersionUID = 1L;
 

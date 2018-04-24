@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @author Administrador
  */
 @Repository
-public interface PaisService extends GenericService<Pais> {
+public interface PaisService extends EntidadeService<Pais> {
 
     public List<Pais> listarTodos();
 }

@@ -9,31 +9,46 @@
     </f:metadata>
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+        <script>
+            $(document).ready(function () {
+                $("input").keyup(function () {
+                    $(this).val($(this).val().toUpperCase());
+                });
+            });
+        </script>
     </h:head>
     <h:body>
         <h:form>
-            <p:toolbar>
-                <p:toolbarGroup>
-                    <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
-                                     process="@this"/>
-                    <p:inputText placeholder="Pesquisar" value="#{unidadeBean.entidade.descricao}"
-                                 onkeypress="if (event.keyCode == 13) {
-                                             event.target.blur();
-                                             event.stopPropagation();
-                                             return false;
-                                         } else {
-                                             return true;
-                                         }
-                                         ;">
-                        <p:ajax event="change" listener="#{unidadeBean.pesquisar()}" process="@this" update="tabela" />
-                    </p:inputText>
-                </p:toolbarGroup>
-            </p:toolbar>
+            <div class="ui-fluid">
+                <p:toolbar >
+                    <p:toolbarGroup align="right" >
+                        <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
+                                         process="@this" styleClass="btn btn-primary btn-block" icon="fa fa-plus"/>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup >
+                        <p:inputText placeholder="Pesquisar por Descrição" value="#{unidadeBean.entidade.descricao}"
+                                     onkeypress="if (event.keyCode == 13) {
+                                                 event.target.blur();
+                                                 event.stopPropagation();
+                                                 return false;
+                                             } else {
+                                                 return true;
+                                             }
+                                             ;" size="50">
+                            <p:ajax event="change" listener="#{unidadeBean.pesquisar()}" process="@this" update="tabela" />
+                        </p:inputText>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </div>
             <p:messages id="msg" closable="true" showIcon="false"/>
             <p:dataTable id="tabela" lazy="true" paginator="true"
-                         rows="5"
+                         rows="5" tableStyleClass="table table-hover"
                          value="#{unidadeBean.model}"
-                         var="e" reflow="true">               
+                         var="e" reflow="true" paginatorPosition="bottom">
+                <f:facet name="header">
+                    <h3>Lista de Unidade</h3>
+                </f:facet>
                 <p:column headerText="Codigo" style="text-align: center;">
                     #{e.codigo}
                 </p:column>
@@ -41,11 +56,12 @@
                     #{e.descricao}
                 </p:column>
                 <p:column headerText="Operações" style="text-align: center;">
-                    <p:commandButton value="Alterar" icon="ui-icon-pencil"
-                                     update="@form:panelCadastro" actionListener="#{unidadeBean.alterar(e)}"
-                                     oncomplete="PF('dlCad').show();" process="@this"/>
-                    <p:commandButton value="Excluir" icon="ui-icon-trash" 
-                                     actionListener="#{unidadeBean.excluir(e)}" process="@this" update="tabela @form:msg">
+                    <p:commandButton  icon="fa fa-pencil"
+                                      update="@form:panelCadastro" actionListener="#{unidadeBean.alterar(e)}"
+                                      oncomplete="PF('dlCad').show();" process="@this"
+                                      styleClass="btn btn-primary "/>
+                    <p:commandButton  icon="fa fa-trash" styleClass="btn btn-danger "
+                                      actionListener="#{unidadeBean.excluir(e)}" process="@this" update="tabela @form:msg">
                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                     </p:commandButton>
                 </p:column>
@@ -66,11 +82,11 @@
                                      required="true" requiredMessage="Nome do Unidade é Obrigatorio!"/>
                     </p:panelGrid>
                     <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                        <p:commandButton value="Salvar" icon="ui-icon-check" 
+                        <p:commandButton value="Salvar" icon="fa fa-check"
                                          actionListener="#{unidadeBean.salvar()}"
-                                         update="panelCadastro tabela msgCad"/>
+                                         update="panelCadastro tabela msgCad" styleClass="btn btn-success "/>
                     </p:panelGrid>
-                </div>    
+                </div>
             </p:dialog>
         </h:form>
     </h:body>

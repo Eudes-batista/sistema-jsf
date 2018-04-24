@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  * @author eudes
  */
 @Repository
-public interface EstadoService extends GenericService<Estado> {
+public interface EstadoService extends EntidadeService<Estado> {
 
 }

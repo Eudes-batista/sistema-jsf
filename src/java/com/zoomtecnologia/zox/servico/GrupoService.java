@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author Administrador
  */
 @Repository
-public interface GrupoService extends GenericService<Grupo> {
+public interface GrupoService extends EntidadeService<Grupo> {
 
 }

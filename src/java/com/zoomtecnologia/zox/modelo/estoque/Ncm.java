@@ -5,8 +5,7 @@
  */
 package com.zoomtecnologia.zox.modelo.estoque;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.modelo.EntityBase;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +21,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
 @Table(name = "ncm")
@@ -32,7 +32,7 @@ import org.hibernate.validator.constraints.Length;
     @NamedQuery(name = "Ncm.listarTodos", query = "select u from Ncm u")
     ,@NamedQuery(name = "Ncm.buscarDescricao", query = "select u from Ncm u where u.descricao like :descricao")
 })
-public class Ncm extends FiltroGeneric implements EntityBase<String>, Serializable {
+public class Ncm extends Filtro implements EntidadeBase<String>, Serializable {
 
     private static final long serialVersionUID = 1L;
 

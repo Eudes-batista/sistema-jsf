@@ -1,7 +1,6 @@
 package com.zoomtecnologia.zox.modelo.estoque;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.modelo.EntityBase;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +11,7 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
 @Table(name = "unidade")
@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.Length;
     ,
          @NamedQuery(name = "Unidade.buscarDescricao", query = "select u from Unidade u where u.descricao like :descricao")
 })
-public class Unidade extends FiltroGeneric implements EntityBase<String>, Serializable {
+public class Unidade extends Filtro implements EntidadeBase<String>, Serializable {
 
     private static final long serialVersionUID = 1L;
 

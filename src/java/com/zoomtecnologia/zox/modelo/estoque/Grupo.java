@@ -5,8 +5,7 @@
  */
 package com.zoomtecnologia.zox.modelo.estoque;
 
-import com.zoomtecnologia.zox.filtros.FiltroGeneric;
-import com.zoomtecnologia.zox.modelo.EntityBase;
+import com.zoomtecnologia.zox.filtros.Filtro;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +16,7 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 /**
  *
@@ -31,7 +31,7 @@ import org.hibernate.validator.constraints.Length;
     ,@NamedQuery(name = "Grupo.buscarDescricao", query = "select u from Grupo u where u.descricao like :descricao")
 })
 
-public class Grupo extends FiltroGeneric implements EntityBase<String>, Serializable {
+public class Grupo extends Filtro implements EntidadeBase<String>, Serializable {
 
     @Id
     @Column(name = "GPCODGRU", length = 20, nullable = false)
