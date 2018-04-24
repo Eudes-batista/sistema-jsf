@@ -2,12 +2,12 @@ package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
 import com.zoomtecnologia.zox.modelo.ModeloGenerico;
+import com.zoomtecnologia.zox.servico.EntidadeService;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 import org.omnifaces.util.Messages;
 import org.primefaces.model.LazyDataModel;
-import com.zoomtecnologia.zox.servico.EntidadeService;
 
 @Getter
 @Setter
@@ -29,6 +29,8 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
     public void inicializar() {
         this.entidade = createEntidade();
         this.model = new ModeloGenerico<E, D>() {
+            private static final long serialVersionUID = 1L;
+
             @Override
             public D getGenericServiceModel() {
                 return getGenericService();
@@ -42,7 +44,6 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
         };
     }
 
-    @SuppressWarnings("unchecked")
     public void salvar() {
         try {
             getGenericService().salvar(entidade.getClass(), entidade);
@@ -72,6 +73,8 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
 
     public void pesquisar() {
         model = new ModeloGenerico<E, D>() {
+            private static final long serialVersionUID = 1L;
+
             @Override
             public D getGenericServiceModel() {
                 return getGenericService();
