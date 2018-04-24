@@ -60,15 +60,7 @@ public class UnidadeServicoImpl extends GenericServiceImpl<Unidade> implements U
             criteria.add(expressao);
             return criteria;
         }
-        if (StringUtils.isNotEmpty(filtro.getCodigo())) {
-            codigo = Restrictions.eq("codigo", filtro.getCodigo());
-            criteria.add(codigo);
-            return criteria;
-        }
-        if (StringUtils.isNotEmpty(filtro.getDescricao())) {
-            criteria.add(nome);
-            return criteria;
-        }
+
         return criteria;
     }
 
