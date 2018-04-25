@@ -31,7 +31,7 @@ public class Empresa implements Serializable {
     String codigo;
 
     /**
-     * DOCUMENTO DE INDENTIFICACAO EX: (<h4><b>CNPJ,OUTROS</b></h4>)
+     * DOCUMENTO DE INDENTIFICACAO EX: (<b>CNPJ,OUTROS</b>)
      */
     @Column(name = "EPDOCEMI", length = 14, nullable = false)
     String documentoIndentificacao;

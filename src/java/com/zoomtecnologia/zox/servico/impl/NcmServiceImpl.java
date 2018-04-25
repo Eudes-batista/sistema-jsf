@@ -53,5 +53,4 @@ public class NcmServiceImpl extends GenericServiceImpl<Ncm> implements NcmServic
         }
         return criateria;
     }
-
 }

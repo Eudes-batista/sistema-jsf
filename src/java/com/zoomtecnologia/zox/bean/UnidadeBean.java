@@ -16,7 +16,7 @@ public class UnidadeBean extends GenericoBean<Unidade, UnidadeServico> {
 
     @Autowired
     private UnidadeServico unidadeServico;
-    
+
     @Override
     public UnidadeServico getGenericService() {
         return unidadeServico;
@@ -26,4 +26,5 @@ public class UnidadeBean extends GenericoBean<Unidade, UnidadeServico> {
     public Unidade createEntidade() {
         return new Unidade();
     }
+
 }

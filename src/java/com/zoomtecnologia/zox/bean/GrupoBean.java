@@ -21,12 +21,14 @@ import org.springframework.stereotype.Service;
 @Scope("view")
 public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
 
+    private static final long serialVersionUID = 1L;
+
     @Autowired
-    GrupoService GrupoService;
+    GrupoService grupoService;
 
     @Override
     public GrupoService getGenericService() {
-        return GrupoService;
+        return grupoService;
     }
 
     @Override

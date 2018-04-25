@@ -1,10 +1,10 @@
 package com.zoomtecnologia.zox.servico.impl;
 
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import com.zoomtecnologia.zox.servico.PadraoService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
-import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Transactional
 public class GenericServiceImpl<E extends EntidadeBase> implements PadraoService<E> {
@@ -40,5 +40,4 @@ public class GenericServiceImpl<E extends EntidadeBase> implements PadraoService
     public void excluir(Class<E> classe, E entidade) {
         entityManager.remove(buscarPorId(classe, entidade));
     }
-
 }
