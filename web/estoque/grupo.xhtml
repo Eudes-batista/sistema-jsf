@@ -9,9 +9,9 @@
     </f:metadata>
     <h:head id="head">
         <title>Grupo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <link rel="stylesheet" href="../resources/css/bootstrap.css" />
         <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-        <!--<h:outputStylesheet library="css" name="form.css" />-->
         <h:outputStylesheet library="css" name="grid.css" />
     </h:head>
     <h:body>
@@ -45,20 +45,25 @@
                          rows="5"
                          value="#{grupoBean.model}"
                          var="e" reflow="true" tableStyleClass="table table-hover">
-                <p:column headerText="Codigo" style="text-align: center;">
+                <p:column headerText="Codigo"  sortBy="#{e.codigo}">
                     #{e.codigo}
                 </p:column>
-                <p:column headerText="Codigo">
+                <p:column headerText="Descrição" sortBy="#{e.descricao}" >
                     #{e.descricao}
                 </p:column>
-                <p:column headerText="Operações" style="text-align: center;">
-                    <p:commandLink id="alterar"  styleClass="btn btn-primary glyphicon glyphicon-pencil"
-                                   update="formulario:panelCadastro" actionListener="#{grupoBean.alterar(e)}"
-                                   oncomplete="PF('dlCad').show();" process="@this"/>
-                    <p:commandLink  id="excluir" styleClass="btn btn-danger glyphicon glyphicon-trash"
-                                    actionListener="#{grupoBean.excluir(e)}" process="@this" update="tabela @form:msg">
-                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
-                    </p:commandLink>
+                <p:column>
+                    <div align="right">
+                        <p:commandLink id="alterar"
+                                       update="formulario:panelCadastro" actionListener="#{grupoBean.alterar(e)}"
+                                       oncomplete="PF('dlCad').show();" process="@this">
+                            <span class="glyphicon glyphicon-pencil bteditar"></span>
+                        </p:commandLink>
+                        <p:commandLink  id="excluir"
+                                        actionListener="#{grupoBean.excluir(e)}" process="@this" update="tabela @form:msg">
+                            <span class="glyphicon glyphicon-trash btexcluir"></span>
+                            <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                        </p:commandLink>
+                    </div>
                     <p:tooltip for="alterar" value="Alterar" position="bottom"/>
                     <p:tooltip for="excluir" value="Excluir" position="bottom"/>
                 </p:column>
@@ -71,7 +76,8 @@
         </h:form>
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad"
-                      closable="true" responsive="true" fitViewport="true">
+                      closable="true" responsive="true" fitViewport="true" maximizable="true"
+                      minimizable="true" resizable="false">
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl"/>
                 <div class="ui-fluid">
                     <p:messages id="msgCad" closable="true" showIcon="false"/>

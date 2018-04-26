@@ -59,7 +59,6 @@ public class UnidadeServicoImpl extends GenericServiceImpl<Unidade> implements U
             criteria.add(expressao);
             return criteria;
         }
-
         return criteria;
     }
 
