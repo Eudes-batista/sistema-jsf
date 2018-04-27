@@ -24,10 +24,10 @@
                 <p:toolbar >
                     <p:toolbarGroup align="right" >
                         <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
-                                         process="@this" styleClass="btn btn-primary btn-block" icon="fa fa-plus"/>
-
-                        <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
-                                         process="@this" styleClass="btn btn-primary btn-block" icon="fa fa-plus"/>
+                                         process="@this" styleClass="btn btn-primary btn-block" icon="fa fa-plus"
+                                         update="@form:panelCadastro">
+                            <p:resetInput target="@form:panelCadastro" />
+                        </p:commandButton>
                     </p:toolbarGroup>
                     <p:toolbarGroup >
                         <p:inputText placeholder="Pesquisar por Descrição" value="#{unidadeBean.entidade.pesquisa}"
