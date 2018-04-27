@@ -72,6 +72,16 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
     }
 
     public void pesquisar() {
+        entidade.setFiltrar(false);
+        realizarPesquisa();
+    }
+
+    public void filtrar() {
+        entidade.setFiltrar(true);
+        realizarPesquisa();
+    }
+
+    private void realizarPesquisa() {
         model = new ModeloGenerico<E, D>() {
             private static final long serialVersionUID = 1L;
 

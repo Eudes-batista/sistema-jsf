@@ -18,4 +18,5 @@ public abstract class Filtro implements Serializable {
     private String propriedadeOrdenacao;
     private boolean ascendente;
     private String pesquisa;
+    private boolean isFiltrar;
 }

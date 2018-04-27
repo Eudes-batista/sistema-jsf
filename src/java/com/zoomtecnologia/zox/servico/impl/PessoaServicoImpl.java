@@ -64,4 +64,9 @@ public class PessoaServicoImpl extends GenericServiceImpl<Pessoa> implements Pes
         return criteria;
     }
 
+    @Override
+    public Criteria criarFiltro(Pessoa filtro, Criteria criteria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

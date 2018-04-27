@@ -56,4 +56,9 @@ public class PaisServicoImpl extends GenericServiceImpl<Pais> implements PaisSer
         return entityManager.createNamedQuery("Pais.listarTodos", Pais.class).getResultList();
     }
 
+    @Override
+    public Criteria criarFiltro(Pais filtro, Criteria criteria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

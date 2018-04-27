@@ -11,4 +11,6 @@ public interface EntidadeService<E> extends PadraoService<E> {
 
     public Criteria criarCriteriaParaFiltro(E filtro);
 
+    public Criteria criarFiltro(E filtro, Criteria criterio);
+
 }

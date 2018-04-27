@@ -61,4 +61,9 @@ public class ContatoServiceImpl extends GenericServiceImpl<Contato> implements C
         return criateria;
     }
 
+    @Override
+    public Criteria criarFiltro(Contato filtro, Criteria criteria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

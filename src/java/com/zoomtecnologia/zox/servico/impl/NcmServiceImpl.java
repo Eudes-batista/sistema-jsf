@@ -53,4 +53,10 @@ public class NcmServiceImpl extends GenericServiceImpl<Ncm> implements NcmServic
         }
         return criateria;
     }
+
+    @Override
+    public Criteria criarFiltro(Ncm filtro, Criteria criteria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

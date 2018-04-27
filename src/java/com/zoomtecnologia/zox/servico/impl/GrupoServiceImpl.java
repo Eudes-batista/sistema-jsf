@@ -63,4 +63,9 @@ public class GrupoServiceImpl extends GenericServiceImpl<Grupo> implements Grupo
         return criateria;
     }
 
+    @Override
+    public Criteria criarFiltro(Grupo filtro, Criteria criteria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

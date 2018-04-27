@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -50,16 +49,23 @@ public class UnidadeServicoImpl extends GenericServiceImpl<Unidade> implements U
     public Criteria criarCriteriaParaFiltro(Unidade filtro) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Unidade.class);
-        Criterion nome = null, codigo = null;
-        LogicalExpression expressao;
-        if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-            nome = Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE);
-            codigo = Restrictions.eq("codigo", filtro.getPesquisa());
-            expressao = Restrictions.or(nome, codigo);
-            criteria.add(expressao);
-            return criteria;
+        if (!filtro.isFiltrar()) {
+            if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
+                Criterion nome = Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
+                criteria.add(Restrictions.or(nome, codigo));
+            }
+        } else {
+            return criarFiltro(filtro, criteria);
         }
         return criteria;
+    }
+
+    @Override
+    public Criteria criarFiltro(Unidade filtro, Criteria criteria) {
+        Criteria c = criteria;
+        Criterion nome = Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE);
+        return c.add(nome);
     }
 
 }
