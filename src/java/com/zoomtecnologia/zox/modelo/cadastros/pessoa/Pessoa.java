@@ -1,7 +1,11 @@
-package com.zoomtecnologia.zox.modelo.cadastros;
+package com.zoomtecnologia.zox.modelo.cadastros.pessoa;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
 import com.zoomtecnologia.zox.modelo.EntidadeBase;
+import com.zoomtecnologia.zox.modelo.cadastros.Contato;
+import com.zoomtecnologia.zox.modelo.cadastros.Documento;
+import com.zoomtecnologia.zox.modelo.cadastros.Endereco;
+import com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;

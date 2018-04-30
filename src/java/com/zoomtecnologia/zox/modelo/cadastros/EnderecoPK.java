@@ -1,5 +1,6 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
+import com.zoomtecnologia.zox.modelo.cadastros.pessoa.Pessoa;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

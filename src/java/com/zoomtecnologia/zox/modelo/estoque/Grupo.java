@@ -6,6 +6,7 @@
 package com.zoomtecnologia.zox.modelo.estoque;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,6 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
-import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 /**
  *
@@ -32,6 +32,8 @@ import com.zoomtecnologia.zox.modelo.EntidadeBase;
 })
 
 public class Grupo extends Filtro implements EntidadeBase<String>, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "GPCODGRU", length = 20, nullable = false)

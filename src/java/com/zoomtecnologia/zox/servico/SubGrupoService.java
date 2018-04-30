@@ -5,14 +5,16 @@
  */
 package com.zoomtecnologia.zox.servico;
 
-import com.zoomtecnologia.zox.modelo.cadastros.pessoa.Pessoa;
+import com.zoomtecnologia.zox.modelo.estoque.Grupo;
+import com.zoomtecnologia.zox.modelo.estoque.SubGrupo;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author eudes
+ * @author Wagner
  */
 @Repository
-public interface PessoaService extends EntidadeService<Pessoa> {
-
+public interface SubGrupoService extends EntidadeService<SubGrupo>{
+    public List<SubGrupo> listarPorGrupo(Grupo grupo);
 }

@@ -5,6 +5,8 @@
  */
 package com.zoomtecnologia.zox.modelo.estoque;
 
+import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -13,6 +15,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -22,11 +25,13 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "zoxcadsubgrup")
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NamedQueries({
     @NamedQuery(name = "SubGrupo.listarTodos", query = "select u from SubGrupo u")
     ,@NamedQuery(name = "SubGrupo.buscarDescricao", query = "select u from SubGrupo u where u.descricao like :descricao")
+    ,@NamedQuery(name = "SubGrupo.buscarPorGrupo", query = "select u from SubGrupo u where u.subGrupoPK.grupo=:grupo")
 })
-public class SubGrupo implements Serializable {
+public class SubGrupo extends Filtro implements EntidadeBase<SubGrupoPK>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,7 +40,7 @@ public class SubGrupo implements Serializable {
      */
     @EmbeddedId
     SubGrupoPK subGrupoPK;
-    
+
     /**
      * DESCRIÇÃO DO SUBGRUPO
      */
@@ -68,4 +73,9 @@ public class SubGrupo implements Serializable {
      */
     @Column(name = "SGIPPTPR", length = 1, nullable = true, columnDefinition = "enum(T,P) default 'T'")
     String ippt;
+
+    @Override
+    public SubGrupoPK getId() {
+        return this.subGrupoPK;
+    }
 }

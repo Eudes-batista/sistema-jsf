@@ -1,6 +1,6 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.modelo.cadastros.Pessoa;
+import com.zoomtecnologia.zox.modelo.cadastros.pessoa.Pessoa;
 import com.zoomtecnologia.zox.servico.PessoaService;
 import java.util.List;
 import javax.persistence.EntityManager;
