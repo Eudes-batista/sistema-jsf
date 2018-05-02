@@ -99,6 +99,9 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
         modoAtualizacao = true;
         sub = new SubGrupo();
         sub.setSubGrupoPK(new SubGrupoPK());
+        if (sub.getSubGrupoPK().getGrupo() == null) {
+            subgrupos.clear();
+        }
     }
 
     @Override
