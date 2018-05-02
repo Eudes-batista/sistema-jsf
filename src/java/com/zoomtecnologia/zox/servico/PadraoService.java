@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zoomtecnologia.zox.servico;
 
 import java.io.Serializable;
+import java.util.List;
 
-/**
- *
- * @author Administrador
- */
 public interface PadraoService<E> extends Serializable {
 
     public E buscarPorId(Class<E> classe, E e);
@@ -20,5 +12,7 @@ public interface PadraoService<E> extends Serializable {
     public void alterar(E entidade);
 
     public void excluir(Class<E> classe, E entidade);
+
+    public List<E> listaTodos(Class<E> classe);
 
 }

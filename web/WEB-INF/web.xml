@@ -25,7 +25,7 @@
         <param-value>true</param-value>
     </context-param>
     <welcome-file-list>
-        <welcome-file>estoque/unidades.jsf</welcome-file>
+        <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
-    
+
 </web-app>

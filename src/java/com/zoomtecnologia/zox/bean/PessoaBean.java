@@ -1,6 +1,6 @@
 package com.zoomtecnologia.zox.bean;
 
-import com.zoomtecnologia.zox.modelo.cadastros.Pessoa;
+import com.zoomtecnologia.zox.modelo.cadastros.pessoa.Pessoa;
 import com.zoomtecnologia.zox.servico.PessoaService;
 import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;

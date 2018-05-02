@@ -5,7 +5,7 @@
  */
 package com.zoomtecnologia.zox.servico;
 
-import com.zoomtecnologia.zox.modelo.cadastros.Pessoa;
+import com.zoomtecnologia.zox.modelo.cadastros.pessoa.Pessoa;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -40,7 +40,7 @@ public class SubGrupo extends Filtro implements EntidadeBase<SubGrupoPK>, Serial
      */
     @EmbeddedId
     SubGrupoPK subGrupoPK;
-    
+
     /**
      * DESCRIÇÃO DO SUBGRUPO
      */
@@ -52,15 +52,13 @@ public class SubGrupo extends Filtro implements EntidadeBase<SubGrupoPK>, Serial
      * CÓDIGO DO NCM PADRÃO DO SUBGRUPO
      */
     @Column(name = "SGCODNCM", length = 8, nullable = false)
-    @Length(max = 8, message = "Descrição do NCM com até {max}.")
-    private String ncm;
+    private Integer ncm;
 
     /**
      * CÓDIGO DO CEST PADRÃO DO SUBGRUPO
      */
     @Column(name = "SGCDCEST", length = 7, nullable = true)
-    @Length(max = 7, message = "Descrição do CEST com até {max}.")
-    private String cest;
+    private Integer cest;
 
     /**
      * IAT (ARREDONDAMENTO OU TRUNCAMENTO) PADRÃO DO SUBGRUPO
