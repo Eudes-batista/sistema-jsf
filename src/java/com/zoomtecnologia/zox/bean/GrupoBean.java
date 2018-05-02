@@ -7,18 +7,12 @@ package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.estoque.Grupo;
 import com.zoomtecnologia.zox.modelo.estoque.SubGrupo;
-
-
 import com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK;
-
 import com.zoomtecnologia.zox.servico.GrupoService;
 import com.zoomtecnologia.zox.servico.SubGrupoService;
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,9 +40,6 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     @Autowired
     SubGrupoService subGrupoService;
 
-    
-
-    
     @Autowired
     private SubgrupoBean subgrupoBean;
 
