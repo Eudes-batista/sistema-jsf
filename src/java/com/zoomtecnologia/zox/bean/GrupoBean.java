@@ -7,6 +7,7 @@ package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.estoque.Grupo;
 import com.zoomtecnologia.zox.modelo.estoque.SubGrupo;
+import com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK;
 import com.zoomtecnologia.zox.servico.GrupoService;
 import com.zoomtecnologia.zox.servico.SubGrupoService;
 import java.util.HashMap;
@@ -38,11 +39,16 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     @Autowired
     private SubGrupoService subGrupoService;
 
+    @Autowired
+    private SubgrupoBean subgrupoBean;
+
     private Map<Grupo, List<SubGrupo>> subgrupoPorGrupo = new HashMap<>();
 
     private boolean modoAtualizacao = false;
 
     private List<SubGrupo> subgrupos;
+
+    private SubGrupo sub;
 
     @Override
     public void novo() {
@@ -50,6 +56,12 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
         modoAtualizacao = false;
     }
 
+    /**
+     * PREENCHE A SUBCONSULTA
+     *
+     * @param grupo
+     * @return List UMA LISTA DE SubGrupo
+     */
     public List<SubGrupo> getSubgrupos(Grupo grupo) {
         List<SubGrupo> subgrupos = subGrupoService.listarPorGrupo(grupo);
         subgrupoPorGrupo.put(grupo, subgrupos);
@@ -57,20 +69,36 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     }
 
     public void excluirSubgrupo(SubGrupo subGrupo) {
-        subGrupoService.excluir(SubGrupo.class, subGrupo);
-
+        subgrupoBean.excluir(sub);
     }
 
+    public void salvarSubgrupo() {
+        sub.getSubGrupoPK().setGrupo(super.getEntidade());
+        subGrupoService.salvar(SubGrupo.class, sub);
+        subgrupos = subGrupoService.listarPorGrupo(sub.getSubGrupoPK().getGrupo());
+    }
+
+    /**
+     * Essa metodo e chamdo quando aperta o botão alterar da grid e lista os
+     * subgrupos referente aquele grupo selecionado
+     *
+     * @param grupo
+     */
     @Override
-    public void alterar(Grupo e) {
-        super.alterar(e);
-        subgrupos = subGrupoService.listarPorGrupo(e);
+    public void alterar(Grupo grupo) {
+        modoAtualizacao = true;
+        super.alterar(grupo);
+        subgrupos = subGrupoService.listarPorGrupo(grupo);
+        sub = new SubGrupo();
+        sub.setSubGrupoPK(new SubGrupoPK());
     }
 
     @Override
     public void salvar() {
         super.salvar();
         modoAtualizacao = true;
+        sub = new SubGrupo();
+        sub.setSubGrupoPK(new SubGrupoPK());
     }
 
     @Override

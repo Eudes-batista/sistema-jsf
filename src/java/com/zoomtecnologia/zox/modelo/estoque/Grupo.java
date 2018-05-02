@@ -30,7 +30,6 @@ import org.hibernate.validator.constraints.Length;
     @NamedQuery(name = "Grupo.listarTodos", query = "select u from Grupo u")
     ,@NamedQuery(name = "Grupo.buscarDescricao", query = "select u from Grupo u where u.descricao like :descricao")
 })
-
 public class Grupo extends Filtro implements EntidadeBase<String>, Serializable {
 
     private static final long serialVersionUID = 1L;
