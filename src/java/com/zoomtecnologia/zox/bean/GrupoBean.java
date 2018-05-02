@@ -7,19 +7,18 @@ package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.estoque.Grupo;
 import com.zoomtecnologia.zox.modelo.estoque.SubGrupo;
-<<<<<<< HEAD
-=======
+
+
 import com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK;
->>>>>>> origin/master
+
 import com.zoomtecnologia.zox.servico.GrupoService;
 import com.zoomtecnologia.zox.servico.SubGrupoService;
-<<<<<<< HEAD
-import java.util.List;
-=======
+
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
->>>>>>> origin/master
+
 import javax.faces.bean.ManagedBean;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,17 +40,15 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     private static final long serialVersionUID = 1L;
 
     @Autowired
-<<<<<<< HEAD
+
     GrupoService grupoService;
     
     @Autowired
     SubGrupoService subGrupoService;
-=======
-    private GrupoService grupoService;
 
-    @Autowired
-    private SubGrupoService subGrupoService;
+    
 
+    
     @Autowired
     private SubgrupoBean subgrupoBean;
 
@@ -116,12 +113,7 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
             subgrupos.clear();
         }
     }
->>>>>>> origin/master
 
-    public List<SubGrupo> getSubgrupos(Grupo grupo) {
-        return subGrupoService.listarPorGrupo(grupo);
-    }
-    
     @Override
     public GrupoService getGenericService() {
         return grupoService;
