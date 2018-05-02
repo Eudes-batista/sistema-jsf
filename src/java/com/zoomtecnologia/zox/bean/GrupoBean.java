@@ -96,13 +96,13 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
 
     @Override
     public void salvar() {
+        if (!modoAtualizacao) {
+            subgrupos.clear();
+        }
         super.salvar();
         modoAtualizacao = true;
         sub = new SubGrupo();
         sub.setSubGrupoPK(new SubGrupoPK());
-        if (sub.getSubGrupoPK().getGrupo() == null) {
-            subgrupos.clear();
-        }
     }
 
     @Override
