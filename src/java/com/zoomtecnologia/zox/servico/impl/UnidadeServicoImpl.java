@@ -54,6 +54,7 @@ public class UnidadeServicoImpl extends GenericServiceImpl<Unidade> implements U
                 Criterion nome = Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE);
                 Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
                 criteria.add(Restrictions.or(nome, codigo));
+                return criteria;
             }
         } else {
             return criarFiltro(filtro, criteria);

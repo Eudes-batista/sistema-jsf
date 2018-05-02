@@ -1,3 +1,4 @@
+
 a:hover{
     text-decoration: none !important;
 }
@@ -8,24 +9,14 @@ a:hover{
     border: 1px solid #eee;
     border-radius: 5px;
 }
-.titulo1,.titulo2{
-    padding-left: 5px;
-    color: #757575;
-}
-.titulo1{
-    font-size: 13pt;
-    font-weight: bold;
-}
-.titulo2{
-    font-size: 10pt;
-}
+
 .barraferramentas{
 
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
 }
 
-/*BOTÕES DO FORMULÁRIO*/
+/*BOTÕES DA GRID*/
 .btnovo{
     background: #6eceec;;
 }
@@ -43,9 +34,8 @@ a:hover{
     border: none !important;
     text-align: center !important;
     font-size: 15pt !important;
-    border-radius: 5px !important;
-    width: 42px !important;
-    margin-right: 5px !important;
+    padding-left: 5px;
+    color: #757575;
 }
 
 /*BOTÕES DA TABELA*/
@@ -64,12 +54,12 @@ a:hover{
     border-radius: 5px !important;
     width: 25px !important;
     height: 25px !important;
-    padding-top: 5px
+    padding-top: 5px;
 }
 .btexcluir:hover, .bteditar:hover{
     text-decoration: none;
     color: #fff !important;
-    box-shadow: 1px 1px 1px 1px rgba(150,150,150,.7);
+   
 }
 .btbusca{
     color: #6eceec !important;
@@ -77,7 +67,7 @@ a:hover{
 .btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
     text-decoration: none;
     color: #fff;
-    box-shadow: 1px 1px 1px 1px rgba(150,150,150,.7);
+   
 }
 .btnovo:focus,.btfiltro:focus,.btprint:focus{
     text-decoration: none;
@@ -104,11 +94,11 @@ table{
 table tbody tr:hover{
     background: #f5f5f5 !important;
 }
-table tbody tr td{
-    height: 0px !important;
-    padding: 5px !important;
+/*table tbody tr td{
+    height: 50px !important;
+    padding: 10px !important;
 
-}
+}*/
 .fundoGrid{
     padding: 10px !important;
 }

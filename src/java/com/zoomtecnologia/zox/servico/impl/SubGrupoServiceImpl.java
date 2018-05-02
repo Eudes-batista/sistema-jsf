@@ -5,8 +5,9 @@
  */
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.modelo.cadastros.Contato;
-import com.zoomtecnologia.zox.servico.ContatoService;
+import com.zoomtecnologia.zox.modelo.estoque.Grupo;
+import com.zoomtecnologia.zox.modelo.estoque.SubGrupo;
+import com.zoomtecnologia.zox.servico.SubGrupoService;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,17 +23,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author Administrador
+ * @author Wagner
  */
-@Service("contatoService")
+@Service("subGrupoService")
 @Transactional
-public class ContatoServiceImpl extends GenericServiceImpl<Contato> implements ContatoService {
+public class SubGrupoServiceImpl extends GenericServiceImpl<SubGrupo> implements SubGrupoService{
 
-    @PersistenceContext
+    private static final long serialVersionUID = 1L;
+
+     @PersistenceContext
     private EntityManager entityManager;
+    
+    @Override
+    public List<SubGrupo> listarPorGrupo(Grupo grupo) {
+        return  entityManager.createNamedQuery("SubGrupo.buscarPorGrupo",SubGrupo.class).
+                setParameter("grupo", grupo).getResultList();
+    }
 
     @Override
-    public List<Contato> filtrados(Contato filtro) {
+    public List<SubGrupo> filtrados(SubGrupo filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setFirstResult(filtro.getPrimeiroRegistro());
         criteria.setMaxResults(filtro.getQuantidadeRegistros());
@@ -45,16 +54,16 @@ public class ContatoServiceImpl extends GenericServiceImpl<Contato> implements C
     }
 
     @Override
-    public int quantidadeFiltrados(Contato filtro) {
+    public int quantidadeFiltrados(SubGrupo filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setProjection(Projections.rowCount());
         return ((Number) criteria.uniqueResult()).intValue();
     }
 
     @Override
-    public Criteria criarCriteriaParaFiltro(Contato filtro) {
+    public Criteria criarCriteriaParaFiltro(SubGrupo filtro) {
         Session session = (Session) entityManager.unwrap(Session.class);
-        Criteria criateria = session.createCriteria(Contato.class);
+        Criteria criateria = session.createCriteria(SubGrupo.class);
         if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
             criateria.add(Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE));
         }
@@ -62,8 +71,8 @@ public class ContatoServiceImpl extends GenericServiceImpl<Contato> implements C
     }
 
     @Override
-    public Criteria criarFiltro(Contato filtro, Criteria criteria) {
+    public Criteria criarFiltro(SubGrupo filtro, Criteria criterio) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-}
-
+    }
+    
 }

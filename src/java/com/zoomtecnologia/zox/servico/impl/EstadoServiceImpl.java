@@ -57,6 +57,6 @@ public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements Est
     @Override
     public Criteria criarFiltro(Estado filtro, Criteria criteria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+}
 
 }

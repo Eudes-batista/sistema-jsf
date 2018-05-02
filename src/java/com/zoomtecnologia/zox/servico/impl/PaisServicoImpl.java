@@ -59,6 +59,6 @@ public class PaisServicoImpl extends GenericServiceImpl<Pais> implements PaisSer
     @Override
     public Criteria criarFiltro(Pais filtro, Criteria criteria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+}
 
 }

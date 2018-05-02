@@ -6,7 +6,10 @@
 package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.estoque.Grupo;
+import com.zoomtecnologia.zox.modelo.estoque.SubGrupo;
 import com.zoomtecnologia.zox.servico.GrupoService;
+import com.zoomtecnologia.zox.servico.SubGrupoService;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -25,7 +28,14 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
 
     @Autowired
     GrupoService grupoService;
+    
+    @Autowired
+    SubGrupoService subGrupoService;
 
+    public List<SubGrupo> getSubgrupos(Grupo grupo) {
+        return subGrupoService.listarPorGrupo(grupo);
+    }
+    
     @Override
     public GrupoService getGenericService() {
         return grupoService;

@@ -24,10 +24,8 @@
                 <p:toolbar >
                     <p:toolbarGroup align="right" >
                         <p:commandButton value="Novo" oncomplete="PF('dlCad').show();"
-                                         process="@this" styleClass="btn btn-primary btn-block" icon="fa fa-plus"
-                                         update="@form:panelCadastro">
-                            <p:resetInput target="@form:panelCadastro" />
-                        </p:commandButton>
+                                         process="@this" styleClass="btn btn-primary btn-block" icon="fa fa-plus"/>
+                        
                     </p:toolbarGroup>
                     <p:toolbarGroup >
                         <p:inputText placeholder="Pesquisar por Descrição" value="#{unidadeBean.entidade.pesquisa}"
@@ -48,14 +46,14 @@
             <p:dataTable id="tabela" lazy="true" paginator="true"
                          rows="5" tableStyleClass="table table-hover"
                          value="#{unidadeBean.model}"
-                         var="e" reflow="true" paginatorPosition="bottom">
+                         var="e" reflow="true" paginatorPosition="bottom" rowKey="#{e.codigo}" selection="sinsgle">
                 <f:facet name="header">
                     <h3>Lista de Unidade</h3>
                 </f:facet>
-                <p:column headerText="Codigo" style="text-align: center;">
+                <p:column headerText="Codigo" style="text-align: center;" >
                     #{e.codigo}
                 </p:column>
-                <p:column headerText="Codigo">
+                <p:column headerText="Codigo" >
                     #{e.descricao}
                 </p:column>
                 <p:column headerText="Operações" style="text-align: center;">

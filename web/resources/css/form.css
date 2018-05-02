@@ -1,8 +1,69 @@
+/*--------CSS DO DIALOG--------------*/
+.ui-widget .ui-dialog{
+    padding: 0px !important;
+    background: #ccc !important; 
+    margin: 0px !important;
+    border: none !important;
+    
+}
+div.ui-dialog{
+    background: #f9f9f9 !important; 
+    padding: 0px;
+} 
+.ui-widget .ui-dialog-titlebar{
+    background: #7891ab !important;
+    margin-left:  0px !important;;
+    margin-right:   0px !important;;
+    border: none !important;
+    height: auto !important;
 
-.btn,.btn:hover{
+}
+
+.ui-widget .ui-dialog-title{
+    color: #f9f9f9 !important;
+    font-weight: bold !important;
+    font-family: tahoma !important;
+    margin: 0px !important;
+
+}
+span .ui-icon-plus{
+    color: #f9f9f9 !important;
+}
+span.ui-icon-minus:before {
+    font-family: FontAwesome;
+    color: #f9f9f9;
+    position: relative;
+    font-size: 13.3px;
+    padding: 0 4px;
+    top: -9px;
+    overflow: hidden;
+    content: "\f068" !important;
+}
+span.ui-icon-extlink:before {
+    font-family: FontAwesome;
+    color: #f9f9f9;
+    position: relative;
+    font-size: 13.3px;
+    padding: 0 4px;
+    top: -9px;
+    overflow: hidden;
+    content: "\f065" !important;
+}
+span.ui-icon-closethick:before {
+    font-family: FontAwesome;
+    color: #f9f9f9;
+    position: relative;
+    font-size: 13.3px;
+    padding: 0 4px;
+    overflow: hidden;
+    content: "\f00d" !important;
+}
+/*-------------------------------*/
+
+/*.btn,.btn:hover{
     margin-top:10px;
     margin-bottom:5px;
-}
+}*/
 a:hover{
     text-decoration: none;
 
@@ -31,8 +92,8 @@ input{
     color:#fff;
     background: #8CC63F;
     border: none;
-    box-shadow: 1px 1px 1px 1px rgba(150,150,150,.7);
-    width: 50px;
+
+
 }
 
 .btFooterSalvar{
@@ -50,7 +111,7 @@ input{
 .tamanhoForm{
     width:auto !important;
     border: none !important;
- 
+
 }
 @media only screen and (max-width: 768px) {
     .tamanhoForm{
