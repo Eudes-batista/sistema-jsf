@@ -10,7 +10,7 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-        <link rel="stylesheet" href="resources/css/bootstrap.css" />
+        <h:outputStylesheet library="css" name="bootstrap.css" />
         <h:outputStylesheet library="css" name="grid.css" />
         <h:outputStylesheet library="css" name="form.css" />
         <style>
@@ -77,7 +77,10 @@
                                      value="#{grupoBean.model}"
                                      var="g" reflow="true" tableStyleClass="table table-hover">
                             <p:column headerText="Codigo"  sortBy="#{g.codigo}">
-                                <p:commandLink oncomplete="PF('dlCadSub').show();" process="@this" update="formularioSubGrupo" actionListener="#{grupoBean.alterarSubgrupo(g)}">#{g.codigo}</p:commandLink>
+                                <p:commandLink oncomplete="PF('dlCadSub').show();" actionListener="#{grupoBean.preencherSubgrupo(g)}" 
+                                               process="@this" update="formularioSubGrupo" >
+                                    #{g.codigo}
+                                </p:commandLink>
                             </p:column>
                             <p:column headerText="Descrição" sortBy="#{g.descricao}" >
                                 #{g.descricao}
@@ -109,11 +112,6 @@
                 </h:form>
             </div>
         </div>
-        <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
-            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
-            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
-        </p:confirmDialog>
-
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
@@ -184,10 +182,32 @@
                             <p:column headerText="Descriçao">
                                 #{sg.descricao}
                             </p:column>
+                            <p:column width="120">
+                                <!--BOTOES DAS LINHAS DA GRID-->
+                                <div align="right">
+                                    <p:commandLink id="alterarSg"
+                                                   update="formularioSubGrupo:panelsubGrupo" actionListener="#{grupoBean.alterarSubgrupo(sg)}"
+                                                   process="@this" style="text-decoration: none !important;">
+                                        <p:resetInput target="formularioSubGrupo:panelsubGrupo" />
+                                        <span class="glyphicon glyphicon-pencil bteditar"></span>
+                                    </p:commandLink>
+                                    <p:commandLink  id="excluirSg"
+                                                    actionListener="#{grupoBean.excluirSubgrupo(sg)}" process="@this" update="tabelaCad formularioSubGrupo:msgCad" style="text-decoration: none !important;">
+                                        <span class="glyphicon glyphicon-trash btexcluir"></span>
+                                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                                    </p:commandLink>
+                                </div>
+                                <p:tooltip for="alterarSg" value="Alterar" position="bottom"/>
+                                <p:tooltip for="excluirSg" value="Excluir" position="bottom"/>
+                            </p:column>
                         </p:dataTable>
                     </p:panelGrid>
                 </div>
             </p:dialog>
         </h:form>
+        <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
+            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
+            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
+        </p:confirmDialog>
     </h:body>
 </html>

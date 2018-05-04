@@ -75,9 +75,9 @@
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10"
                                      value="#{grupoBean.model}"
-                                     var="g" reflow="true" tableStyleClass="table table-hover">
+                                     var="g" reflow="true" >
                             <p:column headerText="Codigo"  sortBy="#{g.codigo}">
-                                <p:commandLink oncomplete="PF('dlCadSub').show();" process="@this" update="formularioSubGrupo" actionListener="#{grupoBean.alterarSubgrupo(g)}">#{g.codigo}</p:commandLink>
+                                <p:commandLink oncomplete="PF('dlCadSub').show();" process="@this" update="formularioSubGrupo" actionListener="#{grupoBean.preencherSubgrupo(g)}">#{g.codigo}</p:commandLink>
                             </p:column>
                             <p:column headerText="Descrição" sortBy="#{g.descricao}" >
                                 #{g.descricao}

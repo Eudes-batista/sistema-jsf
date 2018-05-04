@@ -27,14 +27,15 @@ a:hover{
     border: 1px solid #f9f9f9;
     border-radius: 5px;
 }
-
-
-/*.barraferramentas{
-
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}*/
-
+/*Tira borda da paginacao e deixa da mesma cor do formulario*/
+.ui-paginator{
+    background-color: #f9f9f9;
+    border: none !important;
+}
+/*pinta o fundo da tabela*/
+.ui-datatable-tablewrapper{
+    background-color: #f9f9f9;
+}
 /*BOTÕES DA GRID*/
 .btnovo{
     background: #5c6a75;
@@ -158,7 +159,7 @@ table thead tr{
 }
 
 @media only screen and (max-width: 1920px) {
-    
+
     .btnovo,.btfiltro,.btprint,.btatualizar, .btnovo:hover, .btfiltro:hover, .btprint:hover,.btatualizar:hover{
         width: 100% !important;
         margin-top: 5px !important;
