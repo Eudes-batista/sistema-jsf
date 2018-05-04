@@ -43,7 +43,7 @@ public class Grupo extends Filtro implements EntidadeBase<String>, Serializable 
     @Length(max = 50, message = "Descrição do Grupo com até {max}.")
     String descricao;
 
-    @Column(name = "GPITEESP", length = 1, nullable = false, columnDefinition = "enum(O,V,M,A,P,C)")
+    @Column(name = "GPITEESP", length = 1)
     String tipo;
 
     @Override

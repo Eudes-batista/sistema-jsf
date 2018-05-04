@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zox</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="resources/css/bootstrap.css" />
+        <link rel="stylesheet" href="resources/css/bootstrap-dynamic-tabs.css" />
+        <link rel="stylesheet" href="resources/css/tabs.css" />
+    </head>
+    <body>
+        <div style="border: 0px solid #bbb;padding: 10px;position: absolute;top: 0px;width: 90%;">
+            <a href="#" onclick="gerarAba('estoque', 'grupo', 'Grupo');" style="color: #000;">Grupo</a>
+            <a href="#" onclick="gerarAba('estoque', 'unidades', 'Unidade');" style="color: #000;">Unidade</a>
+        </div>
+        <div id="tabs" class="right-tabs">
+        </div>
+    </body>
+    <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="resources/js/jquery-ui.js"></script>
+    <script src="resources/js/bootstrap.js"></script>
+    <script src="resources/js/bootstrap-dynamic-tabs.js"></script>
+    <script>
+                var tabs = $('#tabs').bootstrapDynamicTabs();
+                var gerarAba = function (modulo, aplicacao, label) {
+                    tabs.addTab({
+                        title: label,
+                        html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" height="' + window.innerHeight + 'px"></iframe>'
+                    });
+                    console.log('<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" height="' + window.innerHeight + 'px"></iframe>');
+                    var botaoLateral = document.getElementById("botaoLateral");
+                    botaoLateral.click();
+
+                };
+    </script>
+</html>

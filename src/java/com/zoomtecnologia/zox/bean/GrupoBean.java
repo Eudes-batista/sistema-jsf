@@ -45,8 +45,6 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
 
     private Map<Grupo, List<SubGrupo>> subgrupoPorGrupo = new HashMap<>();
 
-    private boolean modoAtualizacao = false;
-
     private List<SubGrupo> subgrupos;
 
     private SubGrupo sub;
@@ -54,7 +52,6 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     @Override
     public void novo() {
         super.novo();
-        modoAtualizacao = false;
     }
 
     /**
@@ -64,9 +61,9 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
      * @return List UMA LISTA DE SubGrupo
      */
     public List<SubGrupo> getSubgrupos(Grupo grupo) {
-        List<SubGrupo> subgrupos = subGrupoService.listarPorGrupo(grupo);
-        subgrupoPorGrupo.put(grupo, subgrupos);
-        return subgrupos;
+        List<SubGrupo> subgruposPor = subGrupoService.listarPorGrupo(grupo);
+        subgrupoPorGrupo.put(grupo, subgruposPor);
+        return subgruposPor;
     }
 
     public void excluirSubgrupo(SubGrupo subGrupo) {
@@ -80,14 +77,19 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     }
 
     /**
-     * Essa metodo e chamdo quando aperta o botão alterar da grid e lista os
+     * Essa metodo e chamdo quando aperta o link no codigo do frupo da grid e lista os
      * subgrupos referente aquele grupo selecionado
      *
      * @param grupo
      */
     @Override
     public void alterar(Grupo grupo) {
-        modoAtualizacao = true;
+        super.alterar(grupo);
+        subgrupos = subGrupoService.listarPorGrupo(grupo);
+        sub = new SubGrupo();
+        sub.setSubGrupoPK(new SubGrupoPK());
+    }
+    public void alterarSubgrupo(Grupo grupo) {
         super.alterar(grupo);
         subgrupos = subGrupoService.listarPorGrupo(grupo);
         sub = new SubGrupo();
@@ -96,11 +98,7 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
 
     @Override
     public void salvar() {
-        if (!modoAtualizacao) {
-            subgrupos.clear();
-        }
         super.salvar();
-        modoAtualizacao = true;
         sub = new SubGrupo();
         sub.setSubGrupoPK(new SubGrupoPK());
     }

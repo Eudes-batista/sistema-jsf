@@ -1,33 +1,52 @@
-
+body{
+    background: #f9f9f9 !important;
+}
+ul {
+    list-style: none;
+    padding: 3px;
+}
+li{
+    margin-bottom: 5px;
+}
 a:hover{
     text-decoration: none !important;
 }
-.fundoGrid{
-    background: #f9f9f9;
-    margin: 5px;
+.barraLateral{
+    margin-top: 5px;
+    padding-top: 10px;
+    background: #e8eff5;
+    /*padding: 5px;*/
+    border: 1px solid #f9f9f9;
+    border-radius: 5px;
+    height: 500px !important;
+}
+.barraPesquisa{
+    margin-top: 5px;
+    background: #e8eff5;
     padding: 5px;
-    border: 1px solid #eee;
+    border: 1px solid #f9f9f9;
     border-radius: 5px;
 }
 
-.barraferramentas{
+
+/*.barraferramentas{
 
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
-}
+}*/
 
 /*BOTÕES DA GRID*/
 .btnovo{
-    background: #6eceec;;
+    background: #5c6a75;
 }
 .btfiltro{
-    background: #f1cb27;
+    background: #5c6a75;
 }
 .btprint{
-    background: #7891ab;
+    background: #5c6a75;
 }
 .btatualizar{
-    background: #8CC63F;
+    background: #5c6a75;
 }
 .btnovo,.btfiltro,.btprint,.btatualizar{
     color: #fff !important;
@@ -43,7 +62,7 @@ a:hover{
     background: #F37E72;
 }
 .bteditar{
-    background: #7891ab;
+    background: #6eceec;
 }
 .btexcluir, .bteditar{
 
@@ -59,7 +78,7 @@ a:hover{
 .btexcluir:hover, .bteditar:hover{
     text-decoration: none;
     color: #fff !important;
-   
+
 }
 .btbusca{
     color: #6eceec !important;
@@ -67,7 +86,7 @@ a:hover{
 .btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
     text-decoration: none;
     color: #fff;
-   
+
 }
 .btnovo:focus,.btfiltro:focus,.btprint:focus{
     text-decoration: none;
@@ -109,10 +128,10 @@ table tbody tr:hover{
     margin-left: 5px !important;
 }
 table thead th{
-    background: #ddd !important;
+    background: #a0bcd4 !important;
     border: none !important;
     border-radius: 0px !important;
-    color: #757575 !important;
+    color: #f9f9f9 !important;
     text-shadow: 0 1px 1px transparent !important;
     text-decoration: none !important;
     font-family: tahoma;
@@ -122,22 +141,30 @@ table thead th{
 .ui-datatable-tablewrapper {
     overflow: hidden !important;
 }
+table tr td a{
+    text-decoration: underline !important;
+}    
+table tr td a:hover{
+    text-decoration: underline !important;
+}    
 table thead tr{
     border: none !important;
     background: #bbb !important;
+
 }
 
 .columnRight{
     text-align: right !important;
 }
 
-@media only screen and (max-width: 768px) {
-    .tamanhoForm{
-        width:100% !important;
-    }
+@media only screen and (max-width: 1920px) {
+    
     .btnovo,.btfiltro,.btprint,.btatualizar, .btnovo:hover, .btfiltro:hover, .btprint:hover,.btatualizar:hover{
         width: 100% !important;
         margin-top: 5px !important;
 
+    }
+    .barraLateral{
+        height: auto !important;
     }
 }
