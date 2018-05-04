@@ -19,7 +19,7 @@
                 border: none !important;
             }
             .tamanhoForm2{
-                width:800px !important;
+                width:500px !important;
                 border: none !important;
             }
             @media only screen and (max-width: 768px) {
@@ -77,10 +77,11 @@
                                      value="#{grupoBean.model}"
                                      var="g" reflow="true" tableStyleClass="table table-hover">
                             <p:column headerText="Codigo"  sortBy="#{g.codigo}">
-                                <p:commandLink oncomplete="PF('dlCadSub').show();" actionListener="#{grupoBean.preencherSubgrupo(g)}" 
+                                <p:commandLink id="itemSub" oncomplete="PF('dlCadSub').show();" actionListener="#{grupoBean.listarSubgrupos(g)}" 
                                                process="@this" update="formularioSubGrupo" >
                                     #{g.codigo}
                                 </p:commandLink>
+                                <p:tooltip for="itemSub" value="Click para cadastrar um Sub-Grupo" position="bottom"/>
                             </p:column>
                             <p:column headerText="Descrição" sortBy="#{g.descricao}" >
                                 #{g.descricao}
@@ -100,10 +101,11 @@
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
                                 </div>
-                                <p:tooltip for="alterar" value="Alterar" position="bottom"/>
-                                <p:tooltip for="excluir" value="Excluir" position="bottom"/>
                             </p:column>
+                            <p:tooltip for="alterar" value="Alterar" position="bottom"/>
+                            <p:tooltip for="excluir" value="Excluir" position="bottom"/>
                         </p:dataTable>
+
                         <p:blockUI block="tabela" trigger="tabela">
                             Aguarde....
                         </p:blockUI>
@@ -116,7 +118,7 @@
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="false"
-                      resizable="false"  styleClass="tamanhoForm1" modal="true">
+                      resizable="false"  styleClass="tamanhoForm1" >
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
@@ -134,7 +136,7 @@
                             <f:selectItem itemLabel="COMBUSTIVES" itemValue="C" />
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:panelGrid styleClass="barraBotoes ui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
+                    <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                         <p:commandButton value="Salvar"  styleClass="btn btn-success"
                                          actionListener="#{grupoBean.salvar()}"
                                          update="formGrid:tabela msgCad"
@@ -149,7 +151,7 @@
         <h:form id="formularioSubGrupo">
             <p:dialog id="dlSub" header="Grupo - #{grupoBean.entidade.descricao}" widgetVar="dlCadSub" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="true"
-                      resizable="false"  styleClass="tamanhoForm2" modal="true">
+                      resizable="false"  styleClass="tamanhoForm2" >
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dlSub" process="dlSub"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
@@ -169,13 +171,15 @@
                                 <f:selectItem itemLabel="TERCEIROS" itemValue="T" />
                                 <f:selectItem itemLabel="PROPRIA" itemValue="P" />
                             </p:selectOneMenu>
-                            <p:commandButton styleClass="btn btn-success" value="Adicionar"
+                        </p:panelGrid>
+                        <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
+                            <p:commandButton styleClass="btn btn-success" value="Adicionar" icon="fa fa-plus"
                                              actionListener="#{grupoBean.salvarSubgrupo()}"
                                              update="panelsubGrupo tabelaCad" process="panelsubGrupo"/>
                         </p:panelGrid>
                         <h:outputLabel ><h4>Lista de Sub-Grupo</h4></h:outputLabel>
                         <p:dataTable id="tabelaCad"  value="#{grupoBean.subgrupos}" var="sg"
-                                     style="border: none !important;background: transparent !important; ">
+                                     style="border: none !important;background: transparent !important; " emptyMessage="Nenhum Registro encontrado">
                             <p:column headerText="Codigo">
                                 #{sg.subGrupoPK.codigo}
                             </p:column>
@@ -192,7 +196,7 @@
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluirSg"
-                                                    actionListener="#{grupoBean.excluirSubgrupo(sg)}" process="@this" update="tabelaCad formularioSubGrupo:msgCad" style="text-decoration: none !important;">
+                                                    actionListener="#{grupoBean.excluirSubgrupo(sg)}" process="@this" update="formularioSubGrupo:tabelaCad formularioSubGrupo:msgCad" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>

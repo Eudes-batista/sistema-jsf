@@ -58,10 +58,11 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
     }
 
     public void excluir(E e) {
+        String erro="";
         try {
             getGenericService().excluir(entidade.getClass(), e);
         } catch (Exception ex) {
-            String erro = "Erro ao excluir o " + e.getClass().getSimpleName() + "\n";
+            erro = "Erro ao excluir o " + e.getClass().getSimpleName() + "\n";
             String[] search = {"ForeignKey".toLowerCase(), "Foreign Key".toLowerCase()};
             if (ex.getMessage() != null) {
                 if (ex.getMessage().toLowerCase().contains(search[0])
@@ -69,8 +70,11 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
                     erro = "esse registro não pode ser excluido, já existe movimentação";
                 }
             }
-            Messages.addGlobalError(erro);
-            ex.printStackTrace();
+        }finally{
+            if(!erro.isEmpty())
+                Messages.addGlobalError(erro);
+            else
+                Messages.addGlobalInfo("excluido com sucesso!!");
         }
     }
 

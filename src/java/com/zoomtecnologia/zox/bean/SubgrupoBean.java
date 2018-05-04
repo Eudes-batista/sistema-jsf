@@ -5,6 +5,7 @@ import com.zoomtecnologia.zox.modelo.estoque.SubGrupoPK;
 import com.zoomtecnologia.zox.servico.SubGrupoService;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class SubgrupoBean extends GenericoBean<SubGrupo, SubGrupoService> implem
     private static final long serialVersionUID = 1L;
 
     @Autowired
+    @Getter
     private SubGrupoService subGrupoService;
 
     @Override
