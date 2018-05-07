@@ -5,10 +5,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewAction action="#{unidadeBean.inicializar()}"/>
+        <f:viewAction action="#{ncmBean.inicializar()}"/>
     </f:metadata>
     <h:head>
-        <title>Unidade</title>
+        <title>Ncm</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
         <h:outputStylesheet library="css" name="bootstrap.css" />
@@ -53,7 +53,7 @@
                             </li>
                             <li>
                                 <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
-                                               process="@this" update="@form:tabela" actionListener="#{unidadeBean.inicializar()}"/>      
+                                               process="@this" update="@form:tabela" actionListener="#{ncmBean.inicializar()}"/>      
                             </li>
                         </ul>
 
@@ -66,8 +66,8 @@
                     <div class="col-md-11">
                         <!--BARRA DE PESQUISA-->
                         <p:panelGrid id="panelConsulta" layout="grid" columns="2" columnClasses="ui-grid-col-2.1,ui-grid-col-1" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
-                            <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{unidadeBean.entidade.pesquisa}"/>
-                            <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{unidadeBean.pesquisar()}"
+                            <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{ncmBean.entidade.pesquisa}"/>
+                            <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{ncmBean.pesquisar()}"
                                            update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
                         </p:panelGrid>
                         <p:messages id="msg" closable="true" showIcon="false"/>
@@ -75,29 +75,29 @@
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10"
-                                     value="#{unidadeBean.model}"
-                                     var="u" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{u.codigo}">
+                                     value="#{ncmBean.model}"
+                                     var="n" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
+                            <p:column headerText="Codigo"  sortBy="#{n.codigo}">
                                 <div align="center">
-                                    #{u.codigo}    
+                                    #{n.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{u.descricao}" >
+                            <p:column headerText="Descrição" sortBy="#{n.descricao}" >
                                 <div align="center">
-                                    #{u.descricao}
+                                    #{n.descricao}
                                 </div>
                             </p:column>
                             <p:column width="120">
                                 <!--BOTOES DAS LINHAS DA GRID-->
                                 <div align="right">
                                     <p:commandLink id="alterar"
-                                                   update="formulario:panelCadastro" actionListener="#{unidadeBean.alterar(u)}"
+                                                   update="formulario:panelCadastro" actionListener="#{ncmBean.alterar(n)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
                                         <p:resetInput target="formulario:panelCadastro" />
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
-                                                    actionListener="#{unidadeBean.excluir(u)}" process="@this" update="tabela @form:msg" style="text-decoration: none !important;">
+                                                    actionListener="#{ncmBean.excluir(n)}" process="@this" update="tabela @form:msg" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
@@ -117,23 +117,23 @@
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Unidade" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+            <p:dialog id="dl" header="Cadastro de Ncm" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="false"
                       resizable="false"  styleClass="tamanhoForm1" minimizable="true" >
-                <p:ajax event="close" listener="#{unidadeBean.novo()}" update="dl" process="dl"/>
+                <p:ajax event="close" listener="#{ncmBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                            <p:inputText placeholder="Codigo" value="#{unidadeBean.entidade.codigo}"
-                                         required="true" requiredMessage="Codigo do Unidade é Obrigatorio!" />
-                            <p:inputText placeholder="Nome" value="#{unidadeBean.entidade.descricao}"
-                                         required="true" requiredMessage="Nome do Unidade é Obrigatorio!"/>
+                            <p:inputText placeholder="Codigo" value="#{ncmBean.entidade.codigo}"
+                                         required="true" requiredMessage="Codigo do Ncm é Obrigatorio!" />
+                            <p:inputText placeholder="Nome" value="#{ncmBean.entidade.descricao}"
+                                         required="true" requiredMessage="Nome do Ncm é Obrigatorio!"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"
-                                             actionListener="#{unidadeBean.salvar()}"
+                                             actionListener="#{ncmBean.salvar()}"
                                              update="formGrid:tabela formulario:panelCadastro formulario:msgCad"
                                              process="formulario:panelCadastro"/>
                             <p:commandButton value="Sair" styleClass="btn btn-danger"

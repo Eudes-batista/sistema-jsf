@@ -5,10 +5,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewAction action="#{unidadeBean.inicializar()}"/>
+        <f:viewAction action="#{estadoBean.inicializar()}"/>
     </f:metadata>
     <h:head>
-        <title>Unidade</title>
+        <title>Estado</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
         <h:outputStylesheet library="css" name="bootstrap.css" />
@@ -53,7 +53,7 @@
                             </li>
                             <li>
                                 <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
-                                               process="@this" update="@form:tabela" actionListener="#{unidadeBean.inicializar()}"/>      
+                                               process="@this" update="@form:tabela" actionListener="#{estadoBean.inicializar()}"/>      
                             </li>
                         </ul>
 
@@ -66,8 +66,8 @@
                     <div class="col-md-11">
                         <!--BARRA DE PESQUISA-->
                         <p:panelGrid id="panelConsulta" layout="grid" columns="2" columnClasses="ui-grid-col-2.1,ui-grid-col-1" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
-                            <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{unidadeBean.entidade.pesquisa}"/>
-                            <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{unidadeBean.pesquisar()}"
+                            <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{estadoBean.entidade.pesquisa}"/>
+                            <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{estadoBean.pesquisar()}"
                                            update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
                         </p:panelGrid>
                         <p:messages id="msg" closable="true" showIcon="false"/>
@@ -75,29 +75,29 @@
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10"
-                                     value="#{unidadeBean.model}"
-                                     var="u" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{u.codigo}">
+                                     value="#{estadoBean.model}"
+                                     var="e" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
+                            <p:column headerText="Codigo"  sortBy="#{e.estadoPK.codigo}">
                                 <div align="center">
-                                    #{u.codigo}    
+                                    #{e.estadoPK.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{u.descricao}" >
+                            <p:column headerText="Descrição" sortBy="#{e.nome}" >
                                 <div align="center">
-                                    #{u.descricao}
+                                    #{e.nome}
                                 </div>
                             </p:column>
                             <p:column width="120">
                                 <!--BOTOES DAS LINHAS DA GRID-->
                                 <div align="right">
                                     <p:commandLink id="alterar"
-                                                   update="formulario:panelCadastro" actionListener="#{unidadeBean.alterar(u)}"
+                                                   update="formulario:panelCadastro" actionListener="#{estadoBean.alterar(e)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
                                         <p:resetInput target="formulario:panelCadastro" />
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
-                                                    actionListener="#{unidadeBean.excluir(u)}" process="@this" update="tabela @form:msg" style="text-decoration: none !important;">
+                                                    actionListener="#{estadoBean.excluir(e)}" process="@this" update="tabela @form:msg" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
@@ -117,23 +117,29 @@
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Unidade" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+            <p:dialog id="dl" header="Cadastro de Estado" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="false"
                       resizable="false"  styleClass="tamanhoForm1" minimizable="true" >
-                <p:ajax event="close" listener="#{unidadeBean.novo()}" update="dl" process="dl"/>
+                <p:ajax event="close" listener="#{estadoBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                            <p:inputText placeholder="Codigo" value="#{unidadeBean.entidade.codigo}"
-                                         required="true" requiredMessage="Codigo do Unidade é Obrigatorio!" />
-                            <p:inputText placeholder="Nome" value="#{unidadeBean.entidade.descricao}"
-                                         required="true" requiredMessage="Nome do Unidade é Obrigatorio!"/>
+                            <p:selectOneMenu value="#{estadoBean.entidade.estadoPK.pais}" required="true" requiredMessage="Campo pais é obrigatorio.">
+                                <f:selectItem itemLabel="Selecione um Pais" noSelectionOption="true" />
+                                <f:selectItems value="#{estadoBean.paises}" var="p" itemLabel="#{p.descricao}" itemValue="#{p}" />
+                            </p:selectOneMenu>
+                            <p:inputText placeholder="Codigo" value="#{estadoBean.entidade.estadoPK.codigo}"
+                                         required="true" requiredMessage="Codigo do Estado é Obrigatorio!" />
+                            <p:inputText placeholder="Nome" value="#{estadoBean.entidade.nome}"
+                                         required="true" requiredMessage="Nome do Estado é Obrigatorio!"/>
+                            <p:inputText placeholder="Sigla" value="#{estadoBean.entidade.sigla}"
+                                         required="true" requiredMessage="Sigla do Estado é Obrigatorio!"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"
-                                             actionListener="#{unidadeBean.salvar()}"
+                                             actionListener="#{estadoBean.salvar()}"
                                              update="formGrid:tabela formulario:panelCadastro formulario:msgCad"
                                              process="formulario:panelCadastro"/>
                             <p:commandButton value="Sair" styleClass="btn btn-danger"

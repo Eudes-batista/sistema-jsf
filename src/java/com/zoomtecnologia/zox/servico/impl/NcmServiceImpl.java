@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -48,8 +49,10 @@ public class NcmServiceImpl extends GenericServiceImpl<Ncm> implements NcmServic
     public Criteria criarCriteriaParaFiltro(Ncm filtro) {
         Session session = (Session) entityManager.unwrap(Session.class);
         Criteria criateria = session.createCriteria(Ncm.class);
-        if (StringUtils.isNotEmpty(filtro.getDescricao())) {
-            criateria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
+        if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
+            Criterion descricao = Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE);
+            Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
+            criateria.add(Restrictions.or(descricao, codigo));
         }
         return criateria;
     }
@@ -57,6 +60,6 @@ public class NcmServiceImpl extends GenericServiceImpl<Ncm> implements NcmServic
     @Override
     public Criteria criarFiltro(Ncm filtro, Criteria criteria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-}
+    }
 
 }

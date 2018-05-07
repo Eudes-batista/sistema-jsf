@@ -38,7 +38,7 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     private List<SubGrupo> subgrupos;
 
     private SubGrupo sub;
-
+    
     @Override
     public void novo() {
         super.novo();

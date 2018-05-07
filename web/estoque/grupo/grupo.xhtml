@@ -46,7 +46,7 @@
                             <li>
                                 <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
                                                styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
-                                               update="formulario:panelCadastro" process="@this">
+                                               update="formulario:panelCadastro" process="@this" >
                                     <p:resetInput target="formulario:panelCadastro" />    
                                 </p:commandLink>
                             </li>
@@ -77,14 +77,19 @@
                                      value="#{grupoBean.model}"
                                      var="g" reflow="true" tableStyleClass="table table-hover">
                             <p:column headerText="Codigo"  sortBy="#{g.codigo}">
-                                <p:commandLink id="itemSub" oncomplete="PF('dlCadSub').show();" actionListener="#{grupoBean.listarSubgrupos(g)}" 
-                                               process="@this" update="formularioSubGrupo" >
-                                    #{g.codigo}
-                                </p:commandLink>
+                                <div align="center">
+                                    <p:commandLink id="itemSub" oncomplete="PF('dlCadSub').show();" actionListener="#{grupoBean.listarSubgrupos(g)}" 
+                                                   process="@this" update="formularioSubGrupo">
+                                        #{g.codigo}
+                                        <p:resetInput target="formularioSubGrupo" />    
+                                    </p:commandLink>
+                                </div>   
                                 <p:tooltip for="itemSub" value="Click para cadastrar um Sub-Grupo" position="bottom"/>
                             </p:column>
                             <p:column headerText="Descrição" sortBy="#{g.descricao}" >
-                                #{g.descricao}
+                                <div align="center">
+                                    #{g.descricao}
+                                </div>
                             </p:column>
                             <p:column width="120">
                                 <!--BOTOES DAS LINHAS DA GRID-->
@@ -105,8 +110,7 @@
                             <p:tooltip for="alterar" value="Alterar" position="bottom"/>
                             <p:tooltip for="excluir" value="Excluir" position="bottom"/>
                         </p:dataTable>
-
-                        <p:blockUI block="tabela" trigger="tabela">
+                        <p:blockUI block="tabela" trigger="tabela pesquisar atualizar" >
                             Aguarde....
                         </p:blockUI>
                         <p:defaultCommand target="pesquisar"  />
@@ -118,31 +122,33 @@
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="false"
-                      resizable="false"  styleClass="tamanhoForm1" >
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" >
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                        <p:inputText placeholder="Codigo" value="#{grupoBean.entidade.codigo}"
-                                     required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" />
-                        <p:inputText placeholder="Nome" value="#{grupoBean.entidade.descricao}"
-                                     required="true" requiredMessage="Nome do Grupo é Obrigatorio!"/>
-                        <p:selectOneMenu value="#{grupoBean.entidade.tipo}">
-                            <f:selectItem itemLabel="Tipo específico de produto" noSelectionOption="true" itemValue=""/>
-                            <f:selectItem itemLabel="OUTROS" itemValue="O" />
-                            <f:selectItem itemLabel="VEICULOS" itemValue="V" />
-                            <f:selectItem itemLabel="ARMAS" itemValue="A" />
-                            <f:selectItem itemLabel="COMBUSTIVES" itemValue="C" />
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                    <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
-                        <p:commandButton value="Salvar"  styleClass="btn btn-success"
-                                         actionListener="#{grupoBean.salvar()}"
-                                         update="formGrid:tabela msgCad"
-                                         process="panelCadastro"/>
-                        <p:commandButton value="Sair" styleClass="btn btn-danger"
-                                         process="@this" oncomplete="PF('dlCad').hide();"/>
+                        <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
+                            <p:inputText placeholder="Codigo" value="#{grupoBean.entidade.codigo}"
+                                         required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" />
+                            <p:inputText placeholder="Nome" value="#{grupoBean.entidade.descricao}"
+                                         required="true" requiredMessage="Nome do Grupo é Obrigatorio!"/>
+                            <p:selectOneMenu value="#{grupoBean.entidade.tipo}">
+                                <f:selectItem itemLabel="Tipo específico de produto" noSelectionOption="true" itemValue=""/>
+                                <f:selectItem itemLabel="OUTROS" itemValue="O" />
+                                <f:selectItem itemLabel="VEICULOS" itemValue="V" />
+                                <f:selectItem itemLabel="ARMAS" itemValue="A" />
+                                <f:selectItem itemLabel="COMBUSTIVES" itemValue="C" />
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
+                            <p:commandButton value="Salvar"  styleClass="btn btn-success"
+                                             actionListener="#{grupoBean.salvar()}"
+                                             update="formGrid:tabela formulario:panelCadastro formulario:msgCad"
+                                             process="formulario:panelCadastro"/>
+                            <p:commandButton value="Sair" styleClass="btn btn-danger"
+                                             process="@this" oncomplete="PF('dlCad').hide();"/>
+                        </p:panelGrid>
                     </p:panelGrid>
                 </div>
             </p:dialog>
@@ -151,19 +157,19 @@
         <h:form id="formularioSubGrupo">
             <p:dialog id="dlSub" header="Grupo - #{grupoBean.entidade.descricao}" widgetVar="dlCadSub" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="true"
-                      resizable="false"  styleClass="tamanhoForm2" >
+                      resizable="false"  styleClass="tamanhoForm2" modal="true">
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dlSub" process="dlSub"/>
 
-                <p:messages id="msgCad" closable="true" showIcon="false"/>
+                <p:messages id="msgCadSub" closable="true" showIcon="false"/>
                 <div class="ui-fluid">   
                     <p:panelGrid  id="panelsubGrupo" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
                         <h:outputLabel ><h3>Sub-Grupo</h3></h:outputLabel>
                         <p:panelGrid  columns="2" layout="grid" styleClass="ui-panelgrid-blank">
-                            <p:inputText placeholder="Codigo" value="#{grupoBean.sub.subGrupoPK.codigo}"/>
-                            <p:inputText placeholder="Nome" value="#{grupoBean.sub.descricao}"/>
+                            <p:inputText placeholder="Codigo" value="#{grupoBean.sub.subGrupoPK.codigo}" required="true" requiredMessage="Codigo é Obrigatorio"/>
+                            <p:inputText placeholder="Nome" value="#{grupoBean.sub.descricao}" required="true" requiredMessage="Descrição é Obrigatorio"/>
                             <p:inputText placeholder="Ncm" value="#{grupoBean.sub.ncm}"/>
                             <p:inputText placeholder="Cest" value="#{grupoBean.sub.cest}"/>
-                            <p:selectOneMenu value="#{grupoBean.sub.iat}">
+                            <p:selectOneMenu value="#{grupoBean.sub.iat}" >
                                 <f:selectItem itemLabel="ARREDONDAMENTO" itemValue="A" />
                                 <f:selectItem itemLabel="TRUCAMENTO" itemValue="T" />
                             </p:selectOneMenu>
@@ -175,7 +181,7 @@
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank">
                             <p:commandButton styleClass="btn btn-success" value="Adicionar" icon="fa fa-plus"
                                              actionListener="#{grupoBean.salvarSubgrupo()}"
-                                             update="panelsubGrupo tabelaCad" process="panelsubGrupo"/>
+                                             update="panelsubGrupo tabelaCad msgCadSub" process="panelsubGrupo"/>
                         </p:panelGrid>
                         <h:outputLabel ><h4>Lista de Sub-Grupo</h4></h:outputLabel>
                         <p:dataTable id="tabelaCad"  value="#{grupoBean.subgrupos}" var="sg"
@@ -196,7 +202,7 @@
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluirSg"
-                                                    actionListener="#{grupoBean.excluirSubgrupo(sg)}" process="@this" update="formularioSubGrupo:tabelaCad formularioSubGrupo:msgCad" style="text-decoration: none !important;">
+                                                    actionListener="#{grupoBean.excluirSubgrupo(sg)}" process="@this" update="formularioSubGrupo:tabelaCad formularioSubGrupo:msgCadSub" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
