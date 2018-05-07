@@ -57,4 +57,9 @@ public class PaisServicoImpl extends GenericServiceImpl<Pais> implements PaisSer
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 }
 
+    @Override
+    public List<Pais> pesquisarPorPais(String descricao) {
+        return entityManager.createNamedQuery("Pais.buscarPorDescricao", Pais.class).setParameter("descricao", descricao).getResultList();
+    }
+
 }

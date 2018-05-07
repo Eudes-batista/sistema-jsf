@@ -126,7 +126,9 @@
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                            <p:selectOneMenu value="#{estadoBean.entidade.estadoPK.pais}" required="true" requiredMessage="Campo pais é obrigatorio.">
+                            <p:selectOneMenu value="#{estadoBean.entidade.estadoPK.pais}" required="true" requiredMessage="Campo pais é obrigatorio."
+                                             converter="converterPais">
+                                <p:ajax/>
                                 <f:selectItem itemLabel="Selecione um Pais" noSelectionOption="true" />
                                 <f:selectItems value="#{estadoBean.paises}" var="p" itemLabel="#{p.descricao}" itemValue="#{p}" />
                             </p:selectOneMenu>

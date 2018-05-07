@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
 @Table(name = "pais")
@@ -18,7 +18,7 @@ import com.zoomtecnologia.zox.modelo.EntidadeBase;
 @EqualsAndHashCode(callSuper = false)
 @NamedQueries({
     @NamedQuery(name = "Pais.listarTodos", query = "select p from Pais p order by p.descricao")
-    ,@NamedQuery(name = "Pais.buscarPorDescricao", query = "select p from Pais p where p.descricao like :descricao order by p.descricao")
+    ,@NamedQuery(name = "Pais.buscarPorDescricao", query = "select p from Pais p where p.descricao=:descricao")
 })
 public class Pais extends Filtro implements EntidadeBase<Integer>, Serializable {
 

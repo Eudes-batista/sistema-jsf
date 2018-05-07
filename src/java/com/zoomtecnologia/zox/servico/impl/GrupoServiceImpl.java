@@ -13,10 +13,12 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,7 +60,9 @@ public class GrupoServiceImpl extends GenericServiceImpl<Grupo> implements Grupo
         Session session = (Session) entityManager.unwrap(Session.class);
         Criteria criateria = session.createCriteria(Grupo.class);
         if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-            criateria.add(Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE));
+            Criterion descricao = Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE);
+            SimpleExpression codigo = Restrictions.eq("codigo", filtro.getPesquisa());
+            criateria.add(Restrictions.or(descricao,codigo));
         }
         return criateria;
     }

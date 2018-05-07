@@ -22,10 +22,10 @@ import org.springframework.stereotype.Service;
 public class EstadoBean extends GenericoBean<Estado, EstadoService> implements Serializable {
 
     @Autowired
-    EstadoService estadoService;
+    private EstadoService estadoService;
 
     @Autowired
-    PaisService paisService;
+    private PaisService paisService;
 
     private List<Pais> paises;
 
