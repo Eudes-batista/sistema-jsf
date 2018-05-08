@@ -7,7 +7,7 @@ import lombok.Data;
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
-@Table(name = "est_cadprodutos")
+@Table(name = "produto")
 @Data
 @NamedQueries({
     @NamedQuery(name = "Produto.buscarDescricao", query = "select p from Produto p where p.descricao like :descricao")

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "zoxcadcest")
+@Table(name = "cest")
 @Data
 @NamedQueries({
     @NamedQuery(name = "Cest.listarTodos", query = "select c from Cest c")

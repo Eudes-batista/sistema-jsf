@@ -22,7 +22,7 @@ import com.zoomtecnologia.zox.modelo.EntidadeBase;
  * @author Administrador
  */
 @Entity
-@Table(name = "zoxcnae")
+@Table(name = "cnae")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NamedQueries(

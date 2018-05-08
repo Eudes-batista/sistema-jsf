@@ -13,25 +13,28 @@ import javax.faces.convert.FacesConverter;
 
 /**
  *
- * @author Wagner
+ * @author administrador
  */
 @FacesConverter("converterPais")
-public class ConverterPais implements Converter{
+public class ConverterPais implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        Object obj = component.getAttributes().get(value);
-        Pais pais =(Pais) obj;
-        return pais;
+        if (value != null) {
+            Pais pais = (Pais) component.getAttributes().get(value);
+            return pais;
+        }
+        return null;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        if(value ==null){
-            return "";
+        if (value != null) {
+            Pais pais = (Pais) value;
+            component.getAttributes().put(pais.getDescricao(), pais);
+            return pais.getDescricao();
         }
-        Pais pais = (Pais) value;
-        return pais.getDescricao();
+        return "";
     }
-    
+
 }

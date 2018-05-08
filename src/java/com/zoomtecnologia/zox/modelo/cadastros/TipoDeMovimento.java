@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name="est_tipomovimento")
+@Table(name="tipomovimento")
 @Data
 public class TipoDeMovimento implements Serializable{
     private static final long serialVersionUID = 1L;

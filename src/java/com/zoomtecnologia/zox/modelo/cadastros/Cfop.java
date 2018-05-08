@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
-@Table(name = "zoxcadcfop")
+@Table(name = "cfop")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Cfop extends Filtro implements EntidadeBase<Integer>, Serializable {
