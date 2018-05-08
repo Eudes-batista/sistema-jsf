@@ -28,15 +28,15 @@
     <script src="resources/js/bootstrap.js"></script>
     <script src="resources/js/bootstrap-dynamic-tabs.js"></script>
     <script>
-                var tabs = $('#tabs').bootstrapDynamicTabs();
-                var gerarAba = function (modulo, aplicacao, label) {
-                    tabs.addTab({
-                        title: label,
-                        html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" height="' + window.innerHeight + 'px"></iframe>'
-                    });
-                    var botaoLateral = document.getElementById("botaoLateral");
+        var tabs = $('#tabs').bootstrapDynamicTabs();
+          var gerarAba = function (modulo, aplicacao, label) {
+            tabs.addTab({
+                title: label,
+                html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" height="' + window.innerHeight + 'px"></iframe>'
+                });
+                var botaoLateral = document.getElementById("botaoLateral");
                     botaoLateral.click();
 
-                };
+        };
     </script>
 </html>
