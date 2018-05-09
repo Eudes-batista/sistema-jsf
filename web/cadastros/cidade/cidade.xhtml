@@ -5,10 +5,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewAction action="#{cfopBean.inicializar()}"/>
+        <f:viewAction action="#{cidadeBean.inicializar()}"/>
     </f:metadata>
     <h:head>
-        <title>Cfop</title>
+        <title>Cidade</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
         <h:outputStylesheet library="css" name="bootstrap.css" />
@@ -53,7 +53,7 @@
                             </li>
                             <li>
                                 <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
-                                               process="@this" update="@form:tabela" actionListener="#{cfopBean.inicializar()}"/>      
+                                               process="@this" update="@form:tabela" actionListener="#{cidadeBean.inicializar()}"/>      
                             </li>
                         </ul>
 
@@ -66,38 +66,38 @@
                     <div class="col-md-11">
                         <!--BARRA DE PESQUISA-->
                         <p:panelGrid id="panelConsulta" layout="grid" columns="2" columnClasses="ui-grid-col-2.1,ui-grid-col-1" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
-                            <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{cfopBean.entidade.pesquisa}"/>
-                            <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{cfopBean.pesquisar()}"
+                            <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{cidadeBean.entidade.pesquisa}"/>
+                            <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{cidadeBean.pesquisar()}"
                                            update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
                         </p:panelGrid>
                         <p:messages id="msg" closable="true" showIcon="false"/>
 
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
-                                     rows="10" emptyMessage="Nenhum Registro encontrado"
-                                     value="#{cfopBean.model}"
-                                     var="c" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{c.codigo}">
+                                     rows="10"
+                                     value="#{cidadeBean.model}"
+                                     var="c" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
+                            <p:column headerText="Codigo"  sortBy="#{c.cidadePK.codigo}">
                                 <div align="center">
-                                    #{c.codigo}    
+                                    #{c.cidadePK.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{c.naturezaOperacao}" >
+                            <p:column headerText="Descrição" sortBy="#{c.nome}" >
                                 <div align="center">
-                                    #{c.naturezaOperacao}
+                                    #{c.nome}
                                 </div>
                             </p:column>
                             <p:column width="120">
                                 <!--BOTOES DAS LINHAS DA GRID-->
                                 <div align="right">
                                     <p:commandLink id="alterar"
-                                                   update="formulario:panelCadastro" actionListener="#{cfopBean.alterar(c)}"
+                                                   update="formulario:panelCadastro" actionListener="#{cidadeBean.alterar(c)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
                                         <p:resetInput target="formulario:panelCadastro" />
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
-                                                    actionListener="#{cfopBean.excluir(c)}" process="@this" update="tabela @form:msg" style="text-decoration: none !important;">
+                                                    actionListener="#{cidadeBean.excluir(c)}" process="@this" update="tabela @form:msg" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
@@ -117,29 +117,28 @@
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Cfop" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
-                      closable="true" responsive="true" fitViewport="true" draggable="true"
+            <p:dialog id="dl" header="Cadastro de Cidade" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+                      closable="true" responsive="true" fitViewport="true" draggable="false"
                       resizable="false"  styleClass="tamanhoForm1" minimizable="true" >
-                <p:ajax event="close" listener="#{cfopBean.novo()}" update="dl" process="dl"/>
+                <p:ajax event="close" listener="#{cidadeBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                            <p:inputText placeholder="Codigo" value="#{cfopBean.entidade.codigo}"
-                                         required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" />
-                            <p:inputText placeholder="Nome" value="#{cfopBean.entidade.naturezaOperacao}"
-                                         required="true" requiredMessage="Nome do Cfop é Obrigatorio!"/>
-                            <p:inputText placeholder="Codigo do Cop" value="#{cfopBean.entidade.codigocop}"
-                                         required="true" requiredMessage="Codigo do Cop é Obrigatorio!"/>
-                            <p:inputText placeholder="Descrição do Cop" value="#{cfopBean.entidade.descricaocop}"
-                                         required="true" requiredMessage="Descrição do Cop é Obrigatorio!"/>
-                            <p:inputText placeholder="Descrição Complata da natureza da Operação" value="#{cfopBean.entidade.descCompNatOp}"
-                                         required="true" requiredMessage="Descrição do Completa é Obrigatorio!"/>
+                            <p:selectOneMenu value="#{cidadeBean.entidade.cidadePK.estado}" required="true" requiredMessage="Campo estado é obrigatorio."
+                                             converter="converterEstado">
+                                <f:selectItem itemLabel="Selecione um Cidade" noSelectionOption="true" />
+                                <f:selectItems value="#{cidadeBean.estados}" var="e" itemLabel="#{e.nome}" itemValue="#{e}" />
+                            </p:selectOneMenu>
+                            <p:inputText placeholder="Codigo" value="#{cidadeBean.entidade.cidadePK.codigo}"
+                                         required="true" requiredMessage="Codigo do Cidade é Obrigatorio!" />
+                            <p:inputText placeholder="Nome" value="#{cidadeBean.entidade.nome}"
+                                         required="true" requiredMessage="Nome do Cidade é Obrigatorio!"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"
-                                             actionListener="#{cfopBean.salvar()}"
+                                             actionListener="#{cidadeBean.salvar()}"
                                              update="formGrid:tabela formulario:panelCadastro formulario:msgCad"
                                              process="formulario:panelCadastro"/>
                             <p:commandButton value="Sair" styleClass="btn btn-danger"

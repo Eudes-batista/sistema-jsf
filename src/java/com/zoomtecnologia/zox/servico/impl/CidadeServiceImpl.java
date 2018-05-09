@@ -1,7 +1,8 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.modelo.cadastros.Cfop;
-import com.zoomtecnologia.zox.servico.CfopService;
+import com.zoomtecnologia.zox.modelo.cadastros.Cidade;
+import com.zoomtecnologia.zox.modelo.cadastros.Cidade;
+import com.zoomtecnologia.zox.servico.CidadeService;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,17 +19,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author administrador
+ * @author eudes
  */
-@Service("cfopService")
+@Service("cidadeService")
 @Transactional
-public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopService{
+public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements CidadeService{
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<Cfop> filtrados(Cfop filtro) {
+    public List<Cidade> filtrados(Cidade filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setFirstResult(filtro.getPrimeiroRegistro());
         criteria.setMaxResults(filtro.getQuantidadeRegistros());
@@ -41,19 +42,19 @@ public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopSer
     }
 
     @Override
-    public int quantidadeFiltrados(Cfop filtro) {
+    public int quantidadeFiltrados(Cidade filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setProjection(Projections.rowCount());
         return ((Number) criteria.uniqueResult()).intValue();
     }
 
     @Override
-    public Criteria criarCriteriaParaFiltro(Cfop filtro) {
+    public Criteria criarCriteriaParaFiltro(Cidade filtro) {
         Session session = entityManager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Cfop.class);
+        Criteria criteria = session.createCriteria(Cidade.class);
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-                Criterion nome = Restrictions.ilike("naturezaOperacao", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion nome = Restrictions.ilike("nome", filtro.getPesquisa(), MatchMode.ANYWHERE);
                 Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
                 criteria.add(Restrictions.or(nome, codigo));
                 return criteria;
@@ -65,9 +66,9 @@ public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopSer
     }
 
     @Override
-    public Criteria criarFiltro(Cfop filtro, Criteria criteria) {
+    public Criteria criarFiltro(Cidade filtro, Criteria criteria) {
         Criteria c = criteria;
-        Criterion nome = Restrictions.ilike("descricao", filtro.getNaturezaOperacao(), MatchMode.ANYWHERE);
+        Criterion nome = Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE);
         return c.add(nome);
     }
     
