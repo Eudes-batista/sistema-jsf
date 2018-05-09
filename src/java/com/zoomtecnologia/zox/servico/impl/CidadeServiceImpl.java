@@ -54,7 +54,8 @@ public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements Cid
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
                 Criterion nome = Restrictions.ilike("nome", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                Criterion codigo = Restrictions.eq("cidadePK.codigo", filtro.getPesquisa());
+                String pesquisaNova = filtro.getPesquisa().toUpperCase().replaceAll("^[a-z]","");
+                Criterion codigo = Restrictions.eq("cidadePK.codigo",pesquisaNova == "" ? 0:null);
                 criteria.add(Restrictions.or(nome, codigo));
                 return criteria;
             }

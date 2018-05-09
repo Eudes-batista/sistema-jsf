@@ -28,6 +28,6 @@ public class CidadePK implements Serializable {
        ,@JoinColumn(name="MUCDPAIS",referencedColumnName = "UFCDPAIS",nullable = false)     
     })        
     @ForeignKey(name="cidadeFKestado")        
-    Estado estado;
+    private Estado estado;
     
 }

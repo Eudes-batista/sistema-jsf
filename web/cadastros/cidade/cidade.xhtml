@@ -126,7 +126,8 @@
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                            <p:selectOneMenu value="#{cidadeBean.entidade.cidadePK.estado}" required="true" requiredMessage="Campo estado é obrigatorio."
+                            <p:selectOneMenu value="#{cidadeBean.entidade.cidadePK.estado}" filter="true"
+                                             required="true" requiredMessage="Campo estado é obrigatorio."
                                              converter="converterEstado">
                                 <f:selectItem itemLabel="Selecione um Estado" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeBean.estados}" var="e" itemLabel="#{e.nome}" itemValue="#{e}" />

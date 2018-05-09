@@ -35,7 +35,7 @@ public class Cidade extends Filtro implements EntidadeBase<CidadePK>, Serializab
 
     @Override
     public CidadePK getId() {
-        return cidadePK;
+        return this.cidadePK;
     }
 
 }
