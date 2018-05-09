@@ -45,7 +45,7 @@
                     <div class="col-md-1 barraLateral" style="margin-right: -13px;">
                         <ul >
                             <li>
-                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
+                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();" actionListener="#{estadoBean.novo()}"
                                                styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
                                                update="formulario:panelCadastro" process="@this" >
                                     <p:resetInput target="formulario:panelCadastro" />    

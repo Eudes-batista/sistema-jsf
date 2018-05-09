@@ -1,7 +1,6 @@
 package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Cidade;
-import com.zoomtecnologia.zox.modelo.cadastros.Cidade;
 import com.zoomtecnologia.zox.servico.CidadeService;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -55,7 +54,7 @@ public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements Cid
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
                 Criterion nome = Restrictions.ilike("nome", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
+                Criterion codigo = Restrictions.eq("cidadePK.codigo", filtro.getPesquisa());
                 criteria.add(Restrictions.or(nome, codigo));
                 return criteria;
             }

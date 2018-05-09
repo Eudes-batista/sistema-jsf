@@ -45,7 +45,7 @@
                     <div class="col-md-1 barraLateral" style="margin-right: -13px;">
                         <ul >
                             <li>
-                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
+                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();" actionListener="#{cidadeBean.novo()}"
                                                styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
                                                update="formulario:panelCadastro" process="@this" >
                                     <p:resetInput target="formulario:panelCadastro" />    
@@ -128,7 +128,7 @@
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                             <p:selectOneMenu value="#{cidadeBean.entidade.cidadePK.estado}" required="true" requiredMessage="Campo estado é obrigatorio."
                                              converter="converterEstado">
-                                <f:selectItem itemLabel="Selecione um Cidade" noSelectionOption="true" />
+                                <f:selectItem itemLabel="Selecione um Estado" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeBean.estados}" var="e" itemLabel="#{e.nome}" itemValue="#{e}" />
                             </p:selectOneMenu>
                             <p:inputText placeholder="Codigo" value="#{cidadeBean.entidade.cidadePK.codigo}"
