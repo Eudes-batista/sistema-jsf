@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
 @Table(name = "cfop")
@@ -38,17 +38,11 @@ public class Cfop extends Filtro implements EntidadeBase<Integer>, Serializable 
     private String codigocop;
 
     /**
-     * DESCRICAO DO COP (CLASSE DA OPERACAO OU PRESTACAO)
-     */
-    @Column(name = "OPDESCOP", length = 30, nullable = false)
-    private String descricaocop;
-
-    /**
      * DESCRICAO COMPLETA DA NATUREZA DA OPERACAO
      */
     @Column(name = "OPDESCRI", length = 30, nullable = false)
     private String descCompNatOp;
-
+    
     @Override
     public Integer getId() {
         return this.codigo;

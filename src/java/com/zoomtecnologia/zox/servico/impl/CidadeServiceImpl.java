@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("cidadeService")
 @Transactional
-public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements CidadeService{
+public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements CidadeService {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -54,8 +54,10 @@ public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements Cid
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
                 Criterion nome = Restrictions.ilike("nome", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                String pesquisaNova = filtro.getPesquisa().toUpperCase().replaceAll("^[a-z]","");
-                Criterion codigo = Restrictions.eq("cidadePK.codigo",pesquisaNova == "" ? 0:null);
+                Criterion codigo = Restrictions.eq("cidadePK.codigo", 0);
+                if (StringUtils.isNumeric(filtro.getPesquisa())) {
+                    codigo = Restrictions.eq("cidadePK.codigo", Integer.parseInt(filtro.getPesquisa()));
+                }
                 criteria.add(Restrictions.or(nome, codigo));
                 return criteria;
             }
@@ -71,5 +73,5 @@ public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements Cid
         Criterion nome = Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE);
         return c.add(nome);
     }
-    
+
 }

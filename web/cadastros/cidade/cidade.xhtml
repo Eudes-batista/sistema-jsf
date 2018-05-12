@@ -128,7 +128,7 @@
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Cidade" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="false"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" >
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true">
                 <p:ajax event="close" listener="#{cidadeBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>

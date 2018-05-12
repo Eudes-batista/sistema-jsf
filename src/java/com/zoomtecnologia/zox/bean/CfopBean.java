@@ -19,6 +19,12 @@ public class CfopBean extends GenericoBean<Cfop, CfopService> implements Seriali
 
     @Autowired
     private CfopService cfopService;
+
+    @Override
+    public void inicializar() {
+        super.inicializar(); 
+    }
+    
     
     @Override
     public CfopService getGenericService() {

@@ -123,7 +123,7 @@
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Cfop" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="true"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" >
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true">
                 <p:ajax event="close" listener="#{cfopBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
@@ -134,10 +134,10 @@
                                          required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" disabled="#{cfopBean.inativo}"/>
                             <p:inputText placeholder="Nome" value="#{cfopBean.entidade.naturezaOperacao}"
                                          required="true" requiredMessage="Nome do Cfop é Obrigatorio!"/>
-                            <p:inputText placeholder="Codigo do Cop" value="#{cfopBean.entidade.codigocop}"
-                                         required="true" requiredMessage="Codigo do Cop é Obrigatorio!"/>
-                            <p:inputText placeholder="Descrição do Cop" value="#{cfopBean.entidade.descricaocop}"
-                                         required="true" requiredMessage="Descrição do Cop é Obrigatorio!"/>
+                            <p:selectOneMenu value="#{cfopBean.entidade.codigocop}"
+                                             required="true" requiredMessage="Codigo do Cop é Obrigatorio!">
+                                
+                            </p:selectOneMenu>
                             <p:inputText placeholder="Descrição Complata da natureza da Operação" value="#{cfopBean.entidade.descCompNatOp}"
                                          required="true" requiredMessage="Descrição do Completa é Obrigatorio!"/>
                         </p:panelGrid>
