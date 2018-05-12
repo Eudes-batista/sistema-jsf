@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.Length;
  * @author zox
  */
 @Entity
-@Table(name = "grupo")
+@Table(name = "zoxcadgrup")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NamedQueries({

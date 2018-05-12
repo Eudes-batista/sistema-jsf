@@ -24,6 +24,10 @@
         <param-name>primefaces.FONT_AWESOME</param-name>
         <param-value>true</param-value>
     </context-param>
+    <context-param>
+        <param-name>javax.faces.SEPARATOR_CHAR</param-name>
+        <param-value>-</param-value>
+    </context-param>
     <welcome-file-list>
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>

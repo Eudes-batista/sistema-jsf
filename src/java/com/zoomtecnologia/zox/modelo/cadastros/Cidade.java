@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -10,7 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 @Entity
 @Table(name = "cidade")
@@ -20,6 +20,7 @@ import com.zoomtecnologia.zox.modelo.EntidadeBase;
     @NamedQuery(name = "Cidade.listarTodos", query = "select c from Cidade c order by c.nome")
     ,@NamedQuery(name = "Cidade.buscarDescricao", query = "select c from Cidade c where c.nome like :nome")
 })
+
 public class Cidade extends Filtro implements EntidadeBase<CidadePK>, Serializable {
 
     private static final long serialVersionUID = 1L;

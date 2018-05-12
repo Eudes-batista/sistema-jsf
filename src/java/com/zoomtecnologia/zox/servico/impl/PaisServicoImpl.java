@@ -46,8 +46,8 @@ public class PaisServicoImpl extends GenericServiceImpl<Pais> implements PaisSer
     public Criteria criarCriteriaParaFiltro(Pais filtro) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Pais.class);
-        if (StringUtils.isNotEmpty(filtro.getDescricao())) {
-            criteria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
+        if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
+            criteria.add(Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE));
         }
         return criteria;
     }

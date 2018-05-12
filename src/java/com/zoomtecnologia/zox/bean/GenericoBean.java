@@ -17,6 +17,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
 
     private E entidade;
     private LazyDataModel<E> model;
+    private Boolean inativo=false;
 
     public GenericoBean() {
     }
@@ -24,6 +25,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
     public void novo() {
         this.entidade = null;
         this.entidade = createEntidade();
+        this.inativo=false;
     }
 
     public void inicializar() {
@@ -55,6 +57,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
 
     public void alterar(E e) {
         this.entidade = e;
+        this.inativo=true;
     }
 
     public void excluir(E e) {
@@ -103,7 +106,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
             }
         };
     }
-
+    
     public abstract D getGenericService();
 
     public abstract E createEntidade();

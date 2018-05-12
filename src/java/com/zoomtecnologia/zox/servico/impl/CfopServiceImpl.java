@@ -67,7 +67,7 @@ public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopSer
     @Override
     public Criteria criarFiltro(Cfop filtro, Criteria criteria) {
         Criteria c = criteria;
-        Criterion nome = Restrictions.ilike("descricao", filtro.getNaturezaOperacao(), MatchMode.ANYWHERE);
+        Criterion nome = Restrictions.ilike("naturezaOperacao", filtro.getNaturezaOperacao(), MatchMode.ANYWHERE);
         return c.add(nome);
     }
     

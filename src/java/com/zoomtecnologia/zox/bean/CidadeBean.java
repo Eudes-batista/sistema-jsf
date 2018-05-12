@@ -34,9 +34,9 @@ public class CidadeBean extends GenericoBean<Cidade, CidadeService> implements S
     private List<Estado> estados;
 
     @Override
-    public void novo() {
-        super.novo();
-        estados = estadoService.listaTodos(Estado.class);
+    public void inicializar() {
+        super.inicializar(); //To change body of generated methods, choose Tools | Templates.
+        estados=estadoService.listaTodos(Estado.class);
     }
 
     @Override

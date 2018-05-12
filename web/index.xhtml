@@ -1,10 +1,102 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewAction action="#{grupoBean.inicializar()}"/>
+    </f:metadata>
     <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <h:outputStylesheet library="css" name="grid.css" />
+        <h:outputStylesheet library="css" name="material.css" />
+
+        <style>
+            .tamanhoForm1{
+                width:500px !important;
+                border: none !important;
+                margin-top: 50px !important;
+            }
+            .tamanhoForm2{
+                width:500px !important;
+                border: none !important;
+                margin-top: 50px !important;
+            }
+            @media only screen and (max-width: 760px) {
+                .tamanhoForm1{
+                    width:100% !important;
+                }
+                .tamanhoForm2{
+                    width:100% !important;
+                }
+            }
+        </style>
+
     </h:head>
     <h:body>
-        <a href="layout.html">Principal</a>
+        <p:commandButton oncomplete="PF('dlCad').show();" value="reer"/>
+        <h:form id="formulario">
+            <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+                      closable="true" responsive="true"  draggable="true"
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
+                <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
+
+                <h:panelGroup>
+                    <div class="ui-fluid">
+                        <div class="jumbotron">
+                            <div class="container-fluid">
+                                <div class="row div-separade">
+                                    <div class="col-md-12">
+                                        <h:inputText id="codigo"  value="#{grupoBean.entidade.codigo}"
+                                                     required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" >
+                                            <f:passThroughAttribute name="required"  value="true"/>
+                                            <f:passThroughAttribute name="autocomplete" value="off"/>
+                                            <f:passThroughAttribute name="type" value="text"/>
+                                        </h:inputText>
+                                        <h:outputLabel for="codigo" value="Codigo"/>
+                                    </div>
+                                </div>
+                                <div class="row div-separade">
+                                    <div class="col-md-12">
+                                        <h:inputText id="descricao"  value="#{grupoBean.entidade.descricao}"
+                                                     required="true" requiredMessage="Nome do Grupo é Obrigatorio!">
+                                            <f:passThroughAttribute name="required"  value="true"/>
+                                            <f:passThroughAttribute name="autocomplete" value="off"/>
+                                            <f:passThroughAttribute name="type" value="text"/>
+                                        </h:inputText>
+                                        <h:outputLabel for="descricao" value="Descrição"/>
+                                    </div>
+                                </div>
+                                <div class="row div-separade">
+                                    <div class="col-md-12">
+                                        <h:selectOneMenu id="tipo" value="#{grupoBean.entidade.tipo}">
+                                            <f:selectItem itemLabel="Selecione uma opção" noSelectionOption="true"/>
+                                            <f:selectItem itemLabel="Outros" itemValue="O"/>
+                                            <f:selectItem itemLabel="Veículo" itemValue="V"/>
+                                            <f:selectItem itemLabel="Combustível" itemValue="C"/>
+                                            <f:selectItem itemLabel="Armas" itemValue="A"/>
+                                        </h:selectOneMenu>
+                                        <h:outputLabel for="tipo" value="Tipo"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:panelGroup>
+                <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
+                    <p:commandButton value="Salvar"  styleClass="btn btn-success"
+                                     actionListener="#{grupoBean.salvar()}"
+                                     update="formulario"
+                                     process="formulario"/>
+                    <p:commandButton value="Sair" styleClass="btn btn-danger"
+                                     process="@this" oncomplete="PF('dlCad').hide();"/>
+                </p:panelGrid>
+
+
+            </p:dialog>
+        </h:form>
     </h:body>
 </html>

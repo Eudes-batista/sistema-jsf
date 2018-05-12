@@ -63,10 +63,10 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     }
 
     public void listarSubgrupos(Grupo grupo) {
+        super.setEntidade(grupo);
         subgrupos = subGrupoService.listarPorGrupo(grupo);
         sub = new SubGrupo();
         sub.setSubGrupoPK(new SubGrupoPK());
-        super.setEntidade(grupo);
     }
 
     /* fim */

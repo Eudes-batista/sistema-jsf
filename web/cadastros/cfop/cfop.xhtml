@@ -13,7 +13,6 @@
         <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
         <h:outputStylesheet library="css" name="bootstrap.css" />
         <h:outputStylesheet library="css" name="grid.css" />
-        <h:outputStylesheet library="css" name="form.css" />
         <style>
             .tamanhoForm1{
                 width:500px !important;
@@ -30,9 +29,6 @@
                 .tamanhoForm2{
                     width:100% !important;
                 }
-                .btFooterSalvar,.btFooterVoltar, .btFooterSalvar:hover, .btFooterVoltar:hover{
-                    width: 100%;
-                }
             }
 
         </style>
@@ -47,13 +43,13 @@
                             <li>
                                 <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
                                                styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
-                                               update="formulario:panelCadastro" process="@this" >
-                                    <p:resetInput target="formulario:panelCadastro" />    
+                                               update="formulario-panelCadastro" process="@this" >
+                                    <p:resetInput target="formulario-panelCadastro" />    
                                 </p:commandLink>
                             </li>
                             <li>
                                 <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
-                                               process="@this" update="@form:tabela" actionListener="#{cfopBean.inicializar()}"/>      
+                                               process="@this" update="@form-tabela" actionListener="#{cfopBean.inicializar()}"/>      
                             </li>
                         </ul>
 
@@ -65,11 +61,19 @@
                     </div>
                     <div class="col-md-11">
                         <!--BARRA DE PESQUISA-->
-                        <p:panelGrid id="panelConsulta" layout="grid" columns="2" columnClasses="ui-grid-col-2.1,ui-grid-col-1" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
-                            <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{cfopBean.entidade.pesquisa}"/>
-                            <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{cfopBean.pesquisar()}"
-                                           update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
-                        </p:panelGrid>
+                        <div class="ui-fluid">
+                            <h:panelGroup id="panelConsulta" >
+                                <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
+                                    <div  class="tituloGrid">
+                                        CFOP
+                                    </div>
+                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{cfopBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
+
+                                </p:panelGrid>
+                                <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{cfopBean.pesquisar()}" 
+                                               update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
+                            </h:panelGroup>
+                        </div>
                         <p:messages id="msg" closable="true" showIcon="false"/>
 
                         <!--TABELA DA GRID-->
@@ -91,9 +95,9 @@
                                 <!--BOTOES DAS LINHAS DA GRID-->
                                 <div align="right">
                                     <p:commandLink id="alterar"
-                                                   update="formulario:panelCadastro" actionListener="#{cfopBean.alterar(c)}"
+                                                   update="formulario-panelCadastro" actionListener="#{cfopBean.alterar(c)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
-                                        <p:resetInput target="formulario:panelCadastro" />
+                                        <p:resetInput target="formulario-panelCadastro" />
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
@@ -108,7 +112,7 @@
                         </p:dataTable>
 
                         <p:blockUI block="tabela" trigger="tabela pesquisar atualizar" >
-                            Aguarde....
+                            <img src="../../resources/imagens/loading.gif"/>
                         </p:blockUI>
                         <p:defaultCommand target="pesquisar"  />
                     </div>
@@ -127,7 +131,7 @@
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                             <p:inputText placeholder="Codigo" value="#{cfopBean.entidade.codigo}"
-                                         required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" />
+                                         required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" disabled="#{cfopBean.inativo}"/>
                             <p:inputText placeholder="Nome" value="#{cfopBean.entidade.naturezaOperacao}"
                                          required="true" requiredMessage="Nome do Cfop é Obrigatorio!"/>
                             <p:inputText placeholder="Codigo do Cop" value="#{cfopBean.entidade.codigocop}"
@@ -140,8 +144,8 @@
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"
                                              actionListener="#{cfopBean.salvar()}"
-                                             update="formGrid:tabela formulario:panelCadastro formulario:msgCad"
-                                             process="formulario:panelCadastro"/>
+                                             update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                             process="formulario-panelCadastro"/>
                             <p:commandButton value="Sair" styleClass="btn btn-danger"
                                              process="@this" oncomplete="PF('dlCad').hide();"/>
                         </p:panelGrid>

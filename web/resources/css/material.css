@@ -1,0 +1,63 @@
+
+label{
+    display: block;
+    position: relative;
+    font-size: 11pt;
+    font-weight: normal;
+    top:-20px;
+    left: 0px;
+    color: #999;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+input{
+    display: block;
+    font-size: 11pt;
+    font-weight: normal;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    z-index: 2;
+}
+select{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    color: #999;
+    z-index: 2;
+}
+select + label{
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+select:focus{
+    outline: none;
+    border-bottom: 1px solid #97d47d;    
+}
+
+select:focus + label{
+    top: -40px;
+    font-size: 9pt;
+    color: #97d47d;
+    display: block;
+}
+input:focus, input:valid{
+    outline: none;
+    border-bottom: 1px solid #97d47d;
+}
+
+input:focus + label ,input:valid + label{
+    top: -40px;
+    font-size: 9pt;
+    color: #97d47d;    
+}
+
+.div-separade{
+    margin-top:10%;
+}
+.input-padrao{
+    
+}
