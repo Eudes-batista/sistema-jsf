@@ -8,7 +8,7 @@
         <f:viewAction action="#{empresaBean.inicializar()}"/>
     </f:metadata>
     <h:head>
-        <title>Pais</title>
+        <title>Empresa</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
         <h:outputStylesheet library="css" name="bootstrap.css" />
@@ -54,6 +54,7 @@
                                 <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
                                                process="@this" update="@form-tabela" actionListener="#{empresaBean.inicializar()}"/>      
                             </li>
+                            
                         </ul>
 
                         <p:tooltip for="novo" value="Novo" position="right"/>
@@ -68,7 +69,7 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        País
+                                        Empresa
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{empresaBean.entidade.pesquisa}"/>
 

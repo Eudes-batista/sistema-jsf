@@ -29,7 +29,7 @@
         <param-value>-</param-value>
     </context-param>
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>layout.html</welcome-file>
     </welcome-file-list>
     
     <!-- Bootstrap fonts -->
