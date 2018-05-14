@@ -40,7 +40,7 @@ public class Cfop extends Filtro implements EntidadeBase<Integer>, Serializable 
     /**
      * DESCRICAO COMPLETA DA NATUREZA DA OPERACAO
      */
-    @Column(name = "OPDESCRI", length = 30, nullable = false)
+    @Column(name = "OPDESCRI", length = 30)
     private String descCompNatOp;
     
     @Override

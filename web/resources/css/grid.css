@@ -118,10 +118,6 @@ li{
 }
 
 
-input{
-    /*border: 1px solid #EEE !important;*/
-}
-
 /*VALORESNA TEBELA*/
 table tbody tr,table tbody td{
     border: none !important;
@@ -200,21 +196,29 @@ table thead tr{
         text-align: left !important;
     }
 
-
+  tr td .ui-column-title{
+        border: none !important;
+        background: #eee!important;
+        color:#757575;
+        padding: 2px !important;
+        margin-top: 5px !important;
+        border-radius: 3px 3px 0px 0px !important;
+    }
 }
 
 /**********************************************CSS DOS FORMS********************************************************************************************/
 
+
 /***********FUNDO DO FORM*******/
 .ui-widget .ui-dialog{
     padding: 0px !important;
-    background: #f9f9f9 !important; 
+    background: #fff !important; 
     margin: 0px !important;
     border: none !important;
 
 }
 div.ui-dialog{
-    background: #f9f9f9 !important; 
+    background: #fff !important; 
     padding: 0px;
 } 
 
@@ -230,7 +234,7 @@ div.ui-dialog{
 
 /***********TITULO DO FORM*******/
 .ui-widget .ui-dialog-title{
-    color: #f9f9f9!important;
+    color: #fff!important;
     font-weight: bold !important;
     font-family: tahoma !important;
     margin: 0px !important;
@@ -239,13 +243,13 @@ div.ui-dialog{
 
 /***********COR DO ICONE MAIS DO FORM*******/
 span .ui-icon-plus{
-    color: #f9f9f9 !important;
+    color: #fff !important;
 }
 
 /***********ICONE MENOS DO FORM*******/
 span.ui-icon-minus:before {
     font-family: FontAwesome;
-    color: #f9f9f9;
+    color: #fff;
     position: relative;
     font-size: 13.3px;
     padding: 0 4px;
@@ -256,7 +260,7 @@ span.ui-icon-minus:before {
 /***********ICONE MAXIMIZAR DO FORM*******/
 span.ui-icon-extlink:before {
     font-family: FontAwesome;
-    color: #f9f9f9;
+    color: #fff;
     position: relative;
     font-size: 13.3px;
     padding: 0 4px;
@@ -268,7 +272,7 @@ span.ui-icon-extlink:before {
 /***********ICONE FECHAR DO FORM*******/
 span.ui-icon-closethick:before {
     font-family: FontAwesome;
-    color: #f9f9f9;
+    color: #fff;
     position: relative;
     font-size: 13.3px;
     padding: 0 4px;
@@ -292,10 +296,10 @@ span.ui-icon-closethick:before {
 
 /*COR DO PLACEHOLDER*/
 input::placeholder {
-  color: #ddd;
-  text-transform: capitalize;
+    color: #ddd;
+    text-transform: capitalize;
 }
-                                                
+
 @media only screen and (max-width: 768px) {
     .tamanhoForm1{
         width:100% !important;

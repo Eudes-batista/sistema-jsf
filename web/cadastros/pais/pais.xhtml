@@ -135,24 +135,17 @@
                         <div class="container-fluid">
                             <div class="row div-separade">
                                 <div class="col-md-12">
-                                    <h:inputText id="codigo"  value="#{paisBean.entidade.codigo}"
-                                                 required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" disabled="#{paisBean.inativo}">
-                                        <f:passThroughAttribute name="required"  value="true"/>
-                                        <f:passThroughAttribute name="autocomplete" value="off"/>
-                                        <f:passThroughAttribute name="type" value="text"/>
-                                    </h:inputText>
-                                    <h:outputLabel for="codigo" value="Codigo"/>
+                                    <p:inputText id="codigo"  value="#{paisBean.entidade.codigo}"
+                                                 required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" disabled="#{paisBean.inativo}" maxlength="4">
+                                        <p:keyFilter for="codigo" mask="num" />
+                                    </p:inputText>
                                 </div>
                             </div>
                             <div class="row div-separade">
                                 <div class="col-md-12">
-                                    <h:inputText id="descricao"  value="#{paisBean.entidade.descricao}"
+                                    <p:inputText id="descricao"  value="#{paisBean.entidade.descricao}" maxlength="50"
                                                  required="true" requiredMessage="Nome do Grupo é Obrigatorio!">
-                                        <f:passThroughAttribute name="required"  value="true"/>
-                                        <f:passThroughAttribute name="autocomplete" value="off"/>
-                                        <f:passThroughAttribute name="type" value="text"/>
-                                    </h:inputText>
-                                    <h:outputLabel for="descricao" value="Descrição"/>
+                                    </p:inputText>
                                 </div>
                             </div>
                         </div>
@@ -165,6 +158,8 @@
                                              process="@this" oncomplete="PF('dlCad').hide();"/>
                         </p:panelGrid>
                     </h:panelGroup>
+                    <p:commandButton id="button-default" style="display: none;"/>
+                    <p:defaultCommand target="formulario-button-default" />
                 </div>
             </p:dialog>
         </h:form>

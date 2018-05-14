@@ -130,10 +130,14 @@
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                            <p:inputText placeholder="Codigo" value="#{ncmBean.entidade.codigo}"
-                                         required="true" requiredMessage="Codigo do Ncm é Obrigatorio!" disabled="#{ncmBean.inativo}"/>
+                            <p:inputText id="ncm" placeholder="Codigo" value="#{ncmBean.entidade.codigo}"
+                                         required="true" requiredMessage="Codigo do Ncm é Obrigatorio!" disabled="#{ncmBean.inativo}"
+                                         maxlength="8" validatorMessage="O NCM tem que ter no minimo 8 números">
+                                <p:keyFilter for="ncm" mask="num" />
+                                <f:validateLength minimum="8" maximum="8" />
+                            </p:inputText>
                             <p:inputText placeholder="Nome" value="#{ncmBean.entidade.descricao}"
-                                         required="true" requiredMessage="Nome do Ncm é Obrigatorio!"/>
+                                         required="true" requiredMessage="Nome do Ncm é Obrigatorio!" maxlength="150"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"

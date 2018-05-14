@@ -135,12 +135,14 @@
                                 <f:selectItem itemLabel="Selecione um Pais" noSelectionOption="true" />
                                 <f:selectItems value="#{estadoBean.paises}" var="p" itemLabel="#{p.descricao}" itemValue="#{p}" />
                             </p:selectOneMenu>
-                            <p:inputText placeholder="Codigo" value="#{estadoBean.entidade.estadoPK.codigo}"
-                                         required="true" requiredMessage="Codigo do Estado é Obrigatorio!" disabled="#{estadoBean.inativo}"/>
+                            <p:inputText id="codigo" placeholder="Codigo" value="#{estadoBean.entidade.estadoPK.codigo}"
+                                         required="true" requiredMessage="Codigo do Estado é Obrigatorio!" disabled="#{estadoBean.inativo}" maxlength="2">
+                                <p:keyFilter for="codigo" mask="num"/>
+                            </p:inputText>
                             <p:inputText placeholder="Nome" value="#{estadoBean.entidade.nome}"
-                                         required="true" requiredMessage="Nome do Estado é Obrigatorio!"/>
+                                         required="true" requiredMessage="Nome do Estado é Obrigatorio!" maxlength="50"/>
                             <p:inputText placeholder="Sigla" value="#{estadoBean.entidade.sigla}"
-                                         required="true" requiredMessage="Sigla do Estado é Obrigatorio!"/>
+                                         required="true" requiredMessage="Sigla do Estado é Obrigatorio!" maxlength="2"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"
@@ -151,6 +153,8 @@
                                              process="@this" oncomplete="PF('dlCad').hide();"/>
                         </p:panelGrid>
                     </p:panelGrid>
+                    <p:commandButton id="button-default" style="display: none;"/>
+                    <p:defaultCommand target="formulario-button-default" />
                 </div>
             </p:dialog>
         </h:form>

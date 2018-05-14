@@ -131,9 +131,11 @@
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                             <p:inputText placeholder="Codigo" value="#{unidadeBean.entidade.codigo}"
-                                         required="true" requiredMessage="Codigo do Unidade é Obrigatorio!" disabled="#{unidadeBean.inativo}"/>
+                                         required="true" requiredMessage="Codigo do Unidade é Obrigatorio!" disabled="#{unidadeBean.inativo}"
+                                         maxlength="5"/>
                             <p:inputText placeholder="Nome" value="#{unidadeBean.entidade.descricao}"
-                                         required="true" requiredMessage="Nome do Unidade é Obrigatorio!"/>
+                                         required="true" requiredMessage="Nome do Unidade é Obrigatorio!"
+                                         maxlength="20"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"

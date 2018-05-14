@@ -81,13 +81,13 @@
                                      rows="10" emptyMessage="Nenhum Registro encontrado"
                                      value="#{cfopBean.model}"
                                      var="c" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{c.codigo}">
-                                <div align="center">
+                            <p:column headerText="Codigo"  sortBy="#{c.codigo}" style="text-align: left;">
+                                <div align="left">
                                     #{c.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{c.naturezaOperacao}" >
-                                <div align="center">
+                            <p:column headerText="Descrição" sortBy="#{c.naturezaOperacao}" style="text-align: left;">
+                                <div align="left">
                                     #{c.naturezaOperacao}
                                 </div>
                             </p:column>
@@ -101,7 +101,7 @@
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
-                                                    actionListener="#{cfopBean.excluir(c)}" process="@this" update="tabela @form:msg" style="text-decoration: none !important;">
+                                                    actionListener="#{cfopBean.excluir(c)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
@@ -130,16 +130,19 @@
                 <div class="ui-fluid">
                     <p:panelGrid id="panelCadastro" columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
                         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-12">
-                            <p:inputText placeholder="Codigo" value="#{cfopBean.entidade.codigo}"
-                                         required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" disabled="#{cfopBean.inativo}"/>
-                            <p:inputText placeholder="Nome" value="#{cfopBean.entidade.naturezaOperacao}"
-                                         required="true" requiredMessage="Nome do Cfop é Obrigatorio!"/>
-                            <p:selectOneMenu value="#{cfopBean.entidade.codigocop}"
+                            <p:inputText id="cfop" placeholder="Codigo" value="#{cfopBean.entidade.codigo}" maxlength="4"
+                                           required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" disabled="#{cfopBean.inativo}">
+                                <p:ajax event="blur" process="@this" update="cop" listener="#{cfopBean.carregarCop()}"/>
+                                <p:keyFilter for="cfop" mask="num" />
+                            </p:inputText>
+                            <p:inputText placeholder="Natureza de Operação" value="#{cfopBean.entidade.naturezaOperacao}"
+                                         required="true" requiredMessage="Nome do Cfop é Obrigatorio!" maxlength="60"/>
+                            <p:selectOneMenu id="cop" value="#{cfopBean.entidade.codigocop}" filter="true" 
                                              required="true" requiredMessage="Codigo do Cop é Obrigatorio!">
-                                
+                                <f:selectItems value="#{cfopBean.cops.entrySet()}" var="c" itemLabel="#{c.key} - #{c.value}" itemValue="#{c.key}"/>
                             </p:selectOneMenu>
                             <p:inputText placeholder="Descrição Complata da natureza da Operação" value="#{cfopBean.entidade.descCompNatOp}"
-                                         required="true" requiredMessage="Descrição do Completa é Obrigatorio!"/>
+                                         maxlength="30"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"
@@ -150,6 +153,8 @@
                                              process="@this" oncomplete="PF('dlCad').hide();"/>
                         </p:panelGrid>
                     </p:panelGrid>
+                    <p:commandButton id="button-default" style="display: none;"/>
+                    <p:defaultCommand target="formulario-button-default" />
                 </div>
             </p:dialog>
         </h:form>

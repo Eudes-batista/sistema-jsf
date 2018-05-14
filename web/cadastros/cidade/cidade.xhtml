@@ -141,10 +141,12 @@
                                 <f:selectItem itemLabel="Selecione um Estado" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeBean.estados}" var="e" itemLabel="#{e.nome}" itemValue="#{e}" />
                             </p:selectOneMenu>
-                            <p:inputText placeholder="Codigo" value="#{cidadeBean.entidade.cidadePK.codigo}"
-                                         required="true" requiredMessage="Codigo do Cidade é Obrigatorio!" disabled="#{cidadeBean.inativo}"/>
+                            <p:inputText id="codigo" placeholder="Codigo" value="#{cidadeBean.entidade.cidadePK.codigo}"
+                                         required="true" requiredMessage="Codigo do Cidade é Obrigatorio!" disabled="#{cidadeBean.inativo}" maxlength="7">
+                                <p:keyFilter for="codigo" mask="num" />
+                            </p:inputText>
                             <p:inputText placeholder="Nome" value="#{cidadeBean.entidade.nome}"
-                                         required="true" requiredMessage="Nome do Cidade é Obrigatorio!"/>
+                                         required="true" requiredMessage="Nome do Cidade é Obrigatorio!" maxlength="60"/>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
                             <p:commandButton value="Salvar"  styleClass="btn btn-success"
@@ -156,6 +158,8 @@
                         </p:panelGrid>
                     </p:panelGrid>
                 </div>
+                <p:commandButton id="button-default" style="display: none;"/>
+                <p:defaultCommand target="formulario-button-default" />
             </p:dialog>
         </h:form>
         <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >

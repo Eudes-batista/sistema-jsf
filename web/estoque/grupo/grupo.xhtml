@@ -127,7 +127,7 @@
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+            <p:dialog id="dl" header="Cadastro de Grupo/Sub-Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true"  draggable="true"
                       resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
@@ -138,14 +138,14 @@
                         <div class="container-fluid">
                             <div class="row ">
                                 <div class="col-md-12">
-                                    <p:inputText id="codigo" styleClass="form-control" value="#{grupoBean.entidade.codigo}" placeholder="Codígo"
+                                    <p:inputText id="codigo" styleClass="form-control" value="#{grupoBean.entidade.codigo}" placeholder="Codígo" maxlength="20"
                                                  required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" disabled="#{grupoBean.inativo}">
                                     </p:inputText>
                                 </div>
                             </div>
                             <div class="row ">
                                 <div class="col-md-12">
-                                    <p:inputText id="descricao" styleClass="form-control" value="#{grupoBean.entidade.descricao}" placeholder="Nome"
+                                    <p:inputText id="descricao" styleClass="form-control" value="#{grupoBean.entidade.descricao}" placeholder="Nome" maxlength="50"
                                                  required="true" requiredMessage="Nome do Grupo é Obrigatorio!">
                                     </p:inputText>
                                 </div>
@@ -171,6 +171,8 @@
                                              process="@this" oncomplete="PF('dlCad').hide();"/>
                         </p:panelGrid>
                     </h:panelGroup>
+                    <p:commandButton id="button-default" style="display: none;"/>
+                    <p:defaultCommand target="formulario-button-default" />
                 </div>
             </p:dialog>
         </h:form>
@@ -179,18 +181,26 @@
         <h:form id="formularioSubGrupo">
             <p:dialog id="dlSub" header="Grupo - #{grupoBean.entidade.descricao}" widgetVar="dlCadSub" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="true"
-                      resizable="false"  styleClass="tamanhoForm2" modal="true">
+                      resizable="false"  styleClass="tamanhoForm2" modal="true" position="top">
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dlSub" process="dlSub"/>
 
                 <p:messages id="msgCadSub" closable="true" showIcon="false"/>
                 <div class="ui-fluid">   
                     <p:panelGrid  id="panelsubGrupo" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
-                        <h:outputLabel ><h3>Sub-Grupo</h3></h:outputLabel>
+                        <h3>Sub-Grupo</h3>
                         <p:panelGrid  columns="2" layout="grid" styleClass="ui-panelgrid-blank">
-                            <p:inputText placeholder="Codigo" value="#{grupoBean.sub.subGrupoPK.codigo}" required="true" requiredMessage="Codigo é Obrigatorio"/>
-                            <p:inputText placeholder="Nome" value="#{grupoBean.sub.descricao}" required="true" requiredMessage="Descrição é Obrigatorio"/>
-                            <p:inputText placeholder="Ncm" value="#{grupoBean.sub.ncm}"/>
-                            <p:inputText placeholder="Cest" value="#{grupoBean.sub.cest}"/>
+                            <p:inputText placeholder="Codigo" value="#{grupoBean.sub.subGrupoPK.codigo}" required="true" requiredMessage="Codigo é Obrigatorio"
+                                         maxlength="20"/>
+                            <p:inputText placeholder="Nome" value="#{grupoBean.sub.descricao}" required="true" requiredMessage="Descrição é Obrigatorio"
+                                         maxlength="50"/>
+                            <p:inputText id="ncm" placeholder="Ncm" value="#{grupoBean.sub.ncm}" maxlength="8" validatorMessage="O NCM tem que ter no minimo 8 números">
+                                <p:keyFilter for="ncm" mask="num" />
+                                <f:validateLength minimum="8" maximum="8" />
+                            </p:inputText>
+                            <p:inputText id="cest" placeholder="Cest" value="#{grupoBean.sub.cest}" maxlength="7" validatorMessage="O CEST tem que ter no minimo 7 números">
+                                <p:keyFilter for="cest" mask="num" />
+                                <f:validateLength minimum="7" maximum="7" />
+                            </p:inputText>
                             <p:selectOneMenu value="#{grupoBean.sub.iat}" >
                                 <f:selectItem itemLabel="ARREDONDAMENTO" itemValue="A" />
                                 <f:selectItem itemLabel="TRUCAMENTO" itemValue="T" />
@@ -205,6 +215,8 @@
                                              actionListener="#{grupoBean.salvarSubgrupo()}"
                                              update="panelsubGrupo tabelaCad msgCadSub" process="panelsubGrupo"/>
                         </p:panelGrid>
+                        <p:commandButton id="button-defaultSub" style="display: none;"/>
+                        <p:defaultCommand target="formularioSubGrupo-button-defaultSub" />
                         <h:outputLabel ><h4>Lista de Sub-Grupo</h4></h:outputLabel>
                         <p:dataTable id="tabelaCad"  value="#{grupoBean.subgrupos}" var="sg"
                                      style="border: none !important;background: transparent !important; " emptyMessage="Nenhum Registro encontrado">

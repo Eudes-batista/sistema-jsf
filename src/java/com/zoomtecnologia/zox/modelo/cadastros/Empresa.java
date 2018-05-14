@@ -28,72 +28,75 @@ public class Empresa implements Serializable {
      */
     @Id
     @Column(name = "EPCODEMP", length = 3, nullable = false)
-    String codigo;
+    private String codigo;
 
     /**
      * DOCUMENTO DE INDENTIFICACAO EX: (<b>CNPJ,OUTROS</b>)
      */
     @Column(name = "EPDOCEMI", length = 14, nullable = false)
-    String documentoIndentificacao;
+    private String documentoIndentificacao;
 
     /**
      * RAZAO SOCIAL DA EMPRESA
      */
     @Column(name = "EPRAZSOC", length = 60, nullable = false)
-    String razaoSocial;
+    private String razaoSocial;
 
     /**
      * NOME FANTASIA
      */
     @Column(name = "EPNOMFAN", length = 60, nullable = false)
-    String nomeFantasia;
+    private String nomeFantasia;
 
     @Column(name = "EPENDEMP", length = 60, nullable = false)
-    String endereco;
+    private String endereco;
 
     @Column(name = "EPNROEND", length = 10, nullable = false)
-    String numeroEndereco;
+    private String numeroEndereco;
 
     @Column(name = "EPCPLEND", length = 60, nullable = true)
-    String complemento;
+    private String complemento;
 
     @Column(name = "EPBAIRRO", length = 60, nullable = true)
-    String bairro;
+    private String bairro;
 
     @Column(name = "EPCODMUN", length = 7, nullable = false)
-    Integer codigoMunicipio;
+    private Integer codigoMunicipio;
 
     @Column(name = "EPCIDADE", length = 60, nullable = false)
-    String nomeMunicipio;
+    private String nomeMunicipio;
 
     @Column(name = "EPCUFEMP", length = 2, nullable = false)
-    String siglaEstado;
+    private String siglaEstado;
 
     @Column(name = "EPCEPEMP", length = 8, nullable = false)
-    Integer cep;
+    private Integer cep;
 
     @Column(name = "EPCDPAIS", length = 4, nullable = false, columnDefinition = "int not null default 1054")
-    Integer codigoPais;
+    private Integer codigoPais;
 
     @Column(name = "EPDSPAIS", length = 50, nullable = false, columnDefinition = "varchar(50) not null default 'BRASIL'")
-    String descricaoPais;
+    private String descricaoPais;
 
     @Column(name = "EPINSEST", length = 14, nullable = false, columnDefinition = "varchar(14) not null default 'ISENTO'")
-    String inscricaoEstadual;
+    private String inscricaoEstadual;
 
     @Column(name = "EPINSCST", length = 14, nullable = false)
-    String inscricaoEstadualSt;
+    private String inscricaoEstadualSt;
 
     @Column(name = "EPINSMUN", length = 15, nullable = false)
-    String inscricaoMunicipal;
+    private String inscricaoMunicipal;
 
     @Column(name = "EPCDCNAE", length = 7, nullable = false)
-    Integer cnae;
-
-    @Column(name = "EPNUMCRT", length = 7, nullable = false, columnDefinition = "enum(0,1,2,3) default '0'")
-    String regimeTributario;
+    private Integer cnae;
+    
+    /**
+     * CODIGO DE REGIME TRIBUTARIO DA EMPRESA (1) SEMPLES NACIONAL, (2) SIMPLES NACIONAL - EXCESSO DE SUBLIMITE DE RECEITA BRUTA OU (3) REGIME NACIONAL
+     */
+    @Column(name = "EPNUMCRT", length = 7, nullable = false,columnDefinition = "varchar(7) not null default '1' ")        
+    private String regimeTributario;
 
     @Column(name = "EPTELEFO", length = 14, nullable = false)
-    String telefone;
+    private String telefone;
 
 }
