@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author eudes
+ * @author Wagner
  */
 @Repository
 public interface EmpresaService extends EntidadeService<Empresa>{

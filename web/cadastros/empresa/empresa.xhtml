@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewAction action="#{empresaBean.inicializar()}"/>
+    </f:metadata>
+    <h:head>
+        <title>Pais</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <h:outputStylesheet library="css" name="grid.css" />
+        <h:outputStylesheet library="css" name="material.css" />
+        <style>
+            .tamanhoForm1{
+                width:500px !important;
+                border: none !important;
+                margin-top: 50px !important;
+            }
+            .tamanhoForm2{
+                width:500px !important;
+                border: none !important;
+                margin-top: 50px !important;
+            }
+            @media only screen and (max-width: 760px) {
+                .tamanhoForm1{
+                    width:100% !important;
+                }
+                .tamanhoForm2{
+                    width:100% !important;
+                }
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <h:form id="formGrid">
+                    <!--BARRA DE BOTÕES LATERAL-->
+                    <div class="col-md-1 barraLateral" style="margin-right: -13px;">
+                        <ul >
+                            <li>
+                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
+                                               styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
+                                               update="formulario-panelCadastro" process="@this" >
+                                    <p:resetInput target="formulario-panelCadastro" />    
+                                </p:commandLink>
+                            </li>
+                            <li>
+                                <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
+                                               process="@this" update="@form-tabela" actionListener="#{empresaBean.inicializar()}"/>      
+                            </li>
+                        </ul>
+
+                        <p:tooltip for="novo" value="Novo" position="right"/>
+                        <!--            <p:tooltip for="filtro" value="Filtro" position="bottom"/>
+                                    <p:tooltip for="print" value="Imprimir" position="bottom"/>-->
+                        <p:tooltip for="atualizar" value="Atualizar" position="right"/>
+                        <p:tooltip for="pesquisar" value="Pesquisar" position="right"/>
+                    </div>
+                    <div class="col-md-11">
+                        <!--BARRA DE PESQUISA-->
+                        <div class="ui-fluid">
+                            <h:panelGroup id="panelConsulta" >
+                                <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
+                                    <div  class="tituloGrid">
+                                        País
+                                    </div>
+                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{empresaBean.entidade.pesquisa}"/>
+
+                                </p:panelGrid>
+                                <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{empresaBean.pesquisar()}" 
+                                               update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
+                            </h:panelGroup>
+                        </div>
+                        <p:messages id="msg" closable="true" showIcon="false"/>
+
+                        <!--TABELA DA GRID-->
+                        <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
+                                     rows="10"
+                                     value="#{empresaBean.model}"
+                                     var="e" reflow="true" tableStyleClass="table table-hover">
+                            <p:column headerText="Codigo"  sortBy="#{e.codigo}">
+                                <div align="center">
+                                    #{e.codigo}    
+                                </div>
+                            </p:column>
+                            <p:column headerText="Descrição" sortBy="#{e.razaoSocial}" >
+                                <div align="center">
+                                    #{e.razaoSocial}
+                                </div>
+                            </p:column>
+                            <p:column width="120">
+                                <!--BOTOES DAS LINHAS DA GRID-->
+                                <div align="right">
+                                    <p:commandLink id="alterar"
+                                                   update="formulario-panelCadastro" actionListener="#{empresaBean.alterar(e)}"
+                                                   oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
+                                        <p:resetInput target="formulario-panelCadastro" />
+                                        <span class="glyphicon glyphicon-pencil bteditar"></span>
+                                    </p:commandLink>
+                                    <p:commandLink  id="excluir"
+                                                    actionListener="#{empresaBean.excluir(e)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
+                                        <span class="glyphicon glyphicon-trash btexcluir"></span>
+                                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                                    </p:commandLink>
+                                </div>
+                            </p:column>
+                            <p:tooltip for="alterar" value="Alterar" position="bottom"/>
+                            <p:tooltip for="excluir" value="Excluir" position="bottom"/>
+                        </p:dataTable>
+
+                        <p:blockUI block="tabela" trigger="tabela pesquisar atualizar" >
+                            <img src="../../resources/imagens/loading.gif"/>
+                        </p:blockUI>
+                        <p:defaultCommand target="pesquisar"  />
+                    </div>
+                </h:form>
+            </div>
+        </div>
+        <!--FORMULÁRIO Empresa-->
+        <h:form id="formulario">
+            <p:dialog id="dl" header="Cadastro de Empresa" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+                      closable="true" responsive="true"  draggable="true"
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
+                <p:ajax event="close" listener="#{empresaBean.novo()}" update="dl" process="dl"/>
+
+                <p:messages id="msgCad" closable="true" showIcon="false"/>
+                <div class="ui-fluid">
+                    <h:panelGroup id="panelCadastro">
+                        <div class="container-fluid">
+                            <div class="row div-separade">
+                                <div class="col-md-12">
+                                    <p:inputText id="codigo"  value="#{empresaBean.entidade.codigo}"
+                                                 required="true" requiredMessage="Codigo do Empresa é Obrigatorio!" disabled="#{empresaBean.inativo}" maxlength="3">
+                                        <p:keyFilter for="codigo" mask="num" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row div-separade">
+                                <div class="col-md-12">
+                                    <p:inputText id="razaosocial"  value="#{empresaBean.entidade.razaoSocial}" maxlength="50"
+                                                 required="true" requiredMessage="Nome do Empresa é Obrigatorio!">
+                                    </p:inputText>
+                                </div>
+                            </div>
+                        </div>
+                        <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
+                            <p:commandButton value="Salvar"  styleClass="btn btn-success"
+                                             actionListener="#{empresaBean.salvar()}"
+                                             update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                             process="formulario-panelCadastro"/>
+                            <p:commandButton value="Sair" styleClass="btn btn-danger"
+                                             process="@this" oncomplete="PF('dlCad').hide();"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+                    <p:commandButton id="button-default" style="display: none;"/>
+                    <p:defaultCommand target="formulario-button-default" />
+                </div>
+            </p:dialog>
+        </h:form>
+        <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
+            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
+            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
+        </p:confirmDialog>
+    </h:body>
+</html>
+

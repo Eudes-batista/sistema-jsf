@@ -1,5 +1,7 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
+import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +21,7 @@ import lombok.Data;
             + "e.documentoIndentificacao = :documetoIndentificacao or "
             + "e.inscricaoEstadual = :inscricaoEstadual")
 })
-public class Empresa implements Serializable {
+public class Empresa extends Filtro implements EntidadeBase<String>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -99,5 +101,12 @@ public class Empresa implements Serializable {
 
     @Column(name = "EPTELEFO", length = 14)
     private String telefone;
+
+    @Override
+    public String getId() {
+        return this.codigo;
+    }
+
+   
 
 }
