@@ -57,7 +57,7 @@ public class Empresa implements Serializable {
     @Column(name = "EPCPLEND", length = 60, nullable = true)
     private String complemento;
 
-    @Column(name = "EPBAIRRO", length = 60, nullable = true)
+    @Column(name = "EPBAIRRO", length = 60, nullable = false)
     private String bairro;
 
     @Column(name = "EPCODMUN", length = 7, nullable = false)
@@ -81,22 +81,23 @@ public class Empresa implements Serializable {
     @Column(name = "EPINSEST", length = 14, nullable = false, columnDefinition = "varchar(14) not null default 'ISENTO'")
     private String inscricaoEstadual;
 
-    @Column(name = "EPINSCST", length = 14, nullable = false)
+    @Column(name = "EPINSCST", length = 14)
     private String inscricaoEstadualSt;
 
-    @Column(name = "EPINSMUN", length = 15, nullable = false)
+    @Column(name = "EPINSMUN", length = 15)
     private String inscricaoMunicipal;
 
-    @Column(name = "EPCDCNAE", length = 7, nullable = false)
+    @Column(name = "EPCDCNAE", length = 7)
     private Integer cnae;
-    
+
     /**
-     * CODIGO DE REGIME TRIBUTARIO DA EMPRESA (1) SEMPLES NACIONAL, (2) SIMPLES NACIONAL - EXCESSO DE SUBLIMITE DE RECEITA BRUTA OU (3) REGIME NACIONAL
+     * CODIGO DE REGIME TRIBUTARIO DA EMPRESA (1) SEMPLES NACIONAL, (2) SIMPLES
+     * NACIONAL - EXCESSO DE SUBLIMITE DE RECEITA BRUTA OU (3) REGIME NACIONAL
      */
-    @Column(name = "EPNUMCRT", length = 7, nullable = false,columnDefinition = "varchar(7) not null default '1' ")        
+    @Column(name = "EPNUMCRT", length = 7, nullable = false, columnDefinition = "varchar(7) not null default '1' ")
     private String regimeTributario;
 
-    @Column(name = "EPTELEFO", length = 14, nullable = false)
+    @Column(name = "EPTELEFO", length = 14)
     private String telefone;
 
 }

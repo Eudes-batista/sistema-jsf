@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Cidade;
+import com.zoomtecnologia.zox.modelo.cadastros.Estado;
 import com.zoomtecnologia.zox.servico.CidadeService;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -72,6 +73,11 @@ public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements Cid
         Criteria c = criteria;
         Criterion nome = Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE);
         return c.add(nome);
+    }
+
+    @Override
+    public List<Cidade> listarPorEstado(Estado estado) {
+        return entityManager.createNamedQuery("Cidade.buscarPorEstado", Cidade.class).setParameter("cidadePK.estado", estado).getResultList();
     }
 
 }

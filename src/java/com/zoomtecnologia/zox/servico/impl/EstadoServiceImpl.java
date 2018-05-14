@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Estado;
+import com.zoomtecnologia.zox.modelo.cadastros.Pais;
 import com.zoomtecnologia.zox.servico.EstadoService;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -58,5 +59,10 @@ public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements Est
     public Criteria criarFiltro(Estado filtro, Criteria criteria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 }
+
+    @Override
+    public List<Estado> listarPorPais(Pais pais) {
+       return entityManager.createNamedQuery("Estado.buscarPorPais", Estado.class).setParameter("estadoPK.estado", pais).getResultList();
+    }
 
 }
