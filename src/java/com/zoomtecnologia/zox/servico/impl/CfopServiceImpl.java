@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("cfopService")
 @Transactional
-public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopService{
+public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopService {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -54,7 +54,10 @@ public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopSer
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
                 Criterion nome = Restrictions.ilike("naturezaOperacao", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
+                Criterion codigo = Restrictions.eq("codigo", 0);
+                if (StringUtils.isNumeric(filtro.getPesquisa())) {
+                    codigo = Restrictions.eq("codigo", Integer.parseInt(filtro.getPesquisa()));
+                }
                 criteria.add(Restrictions.or(nome, codigo));
                 return criteria;
             }
@@ -70,5 +73,5 @@ public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopSer
         Criterion nome = Restrictions.ilike("naturezaOperacao", filtro.getNaturezaOperacao(), MatchMode.ANYWHERE);
         return c.add(nome);
     }
-    
+
 }

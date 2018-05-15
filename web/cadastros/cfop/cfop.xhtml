@@ -137,7 +137,7 @@
                             </p:inputText>
                             <p:inputText placeholder="Natureza de Operação" value="#{cfopBean.entidade.naturezaOperacao}"
                                          required="true" requiredMessage="Nome do Cfop é Obrigatorio!" maxlength="60"/>
-                            <p:selectOneMenu id="cop" value="#{cfopBean.entidade.codigocop}" filter="true" 
+                            <p:selectOneMenu id="cop" value="#{cfopBean.entidade.codigocop}" filter="true" filterMatchMode="contains"
                                              required="true" requiredMessage="Codigo do Cop é Obrigatorio!">
                                 <f:selectItems value="#{cfopBean.cops.entrySet()}" var="c" itemLabel="#{c.key} - #{c.value}" itemValue="#{c.key}"/>
                             </p:selectOneMenu>

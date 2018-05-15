@@ -81,7 +81,7 @@
 
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
-                                     rows="10"
+                                     rows="10" emptyMessage="Nenhum Registro encontrado"
                                      value="#{empresaBean.model}"
                                      var="e" reflow="true" tableStyleClass="table table-hover">
                             <p:column headerText="Codigo"  sortBy="#{e.codigo}">
@@ -89,9 +89,19 @@
                                     #{e.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{e.razaoSocial}" >
+                            <p:column headerText="Documento de Indetificação"  sortBy="#{e.documentoIndentificacao}">
+                                <div align="center">
+                                    #{e.documentoIndentificacao}    
+                                </div>
+                            </p:column>
+                            <p:column headerText="Razão Social" sortBy="#{e.razaoSocial}" >
                                 <div align="center">
                                     #{e.razaoSocial}
+                                </div>
+                            </p:column>
+                            <p:column headerText="Nome Fantasia" sortBy="#{e.nomeFantasia}" >
+                                <div align="center">
+                                    #{e.nomeFantasia}
                                 </div>
                             </p:column>
                             <p:column width="120">
@@ -134,11 +144,19 @@
                     <h:panelGroup id="panelCadastro">
                         <p:panelGrid layout="grid" columns="1" styleClass="ui-panelgrid-blank">
                             <p:inputText id="codigo"  value="#{empresaBean.entidade.codigo}" placeholder="Codigo"
-                                         required="true" requiredMessage="Codigo do Empresa é Obrigatorio!" disabled="#{empresaBean.inativo}" maxlength="3">
+                                         required="true" requiredMessage="Codigo é Obrigatorio!" disabled="#{empresaBean.inativo}" maxlength="3">
                                 <p:keyFilter for="codigo" mask="num" />
                             </p:inputText>
+                            <p:panelGrid layout="grid" columns="2" styleClass="ui-panelgrid-blank">
+                                <p:inputMask id="cnpj"  value="#{empresaBean.entidade.documentoIndentificacao}" placeholder="CNPJ" mask="99.999.999/9999-99"
+                                             required="true" requiredMessage="CNPJ é Obrigatorio!" >
+                                </p:inputMask>
+                                <p:inputText id="inscricaoEstadual"  value="#{empresaBean.entidade.inscricaoEstadual}" placeholder="Inscricao estadual" maxlength="14">
+                                    <p:keyFilter for="inscricaoEstadual" mask="num" />
+                                </p:inputText>
+                            </p:panelGrid>
                             <p:inputText id="razaosocial"  value="#{empresaBean.entidade.razaoSocial}" maxlength="50" placeholder="Razão Social"
-                                         required="true" requiredMessage="Nome do Empresa é Obrigatorio!">
+                                         required="true" requiredMessage="Razão Social é Obrigatorio!">
                             </p:inputText>
                         </p:panelGrid>
                         <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">

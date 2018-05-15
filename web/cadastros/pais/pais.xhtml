@@ -81,7 +81,7 @@
 
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
-                                     rows="10"
+                                     rows="10" emptyMessage="Nenhum registro encontrado"
                                      value="#{paisBean.model}"
                                      var="p" reflow="true" tableStyleClass="table table-hover">
                             <p:column headerText="Codigo"  sortBy="#{p.codigo}">
