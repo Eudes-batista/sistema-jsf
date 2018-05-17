@@ -1,19 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/modelo.xhtml">
     <f:metadata>
         <f:viewAction action="#{paisBean.inicializar()}"/>
     </f:metadata>
-    <h:head>
-        <title>Pais</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-        <h:outputStylesheet library="css" name="bootstrap.css" />
-        <h:outputStylesheet library="css" name="grid.css" />
-        <h:outputStylesheet library="css" name="material.css" />
+
+    <ui:define name="conteudo">
+
         <style>
             .tamanhoForm1{
                 width:500px !important;
@@ -35,8 +33,7 @@
             }
 
         </style>
-    </h:head>
-    <h:body>
+
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
@@ -84,13 +81,13 @@
                                      rows="10" emptyMessage="Nenhum registro encontrado"
                                      value="#{paisBean.model}"
                                      var="p" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{p.codigo}">
-                                <div align="center">
+                            <p:column headerText="Codigo"  sortBy="#{p.codigo}" style="text-align: left;">
+                                <div align="left">
                                     #{p.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{p.descricao}" >
-                                <div align="center">
+                            <p:column headerText="Descrição" sortBy="#{p.descricao}" style="text-align: left;">
+                                <div align="left">
                                     #{p.descricao}
                                 </div>
                             </p:column>
@@ -133,30 +130,37 @@
                 <div class="ui-fluid">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
-                            <div class="row div-separade">
+                            <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="codigo"  value="#{paisBean.entidade.codigo}"
+                                    <p:inputText id="codigo"  value="#{paisBean.entidade.codigo}" class="form-control" placeholder="Codigo"
                                                  required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" disabled="#{paisBean.inativo}" maxlength="4">
                                         <p:keyFilter for="codigo" mask="num" />
                                     </p:inputText>
                                 </div>
                             </div>
-                            <div class="row div-separade">
+                            <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="descricao"  value="#{paisBean.entidade.descricao}" maxlength="50"
+                                    <p:inputText id="descricao" class="form-control" value="#{paisBean.entidade.descricao}" maxlength="50" placeholder="Descrição"
                                                  required="true" requiredMessage="Nome do Grupo é Obrigatorio!">
                                     </p:inputText>
                                 </div>
                             </div>
+                            <!--botoes salvar e sair-->
+                            <div class="row espaco">
+                                <div class="col-md-8">
+
+                                    <p:commandButton value="Salvar"  styleClass="btn btsalvar"
+                                                     actionListener="#{paisBean.salvar()}"
+                                                     update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                     process="formulario-panelCadastro"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:commandButton value="Sair" styleClass="btn btsair"
+                                                     process="@this" oncomplete="PF('dlCad').hide();"/>
+                                </div>
+                            </div>
                         </div>
-                        <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
-                            <p:commandButton value="Salvar"  styleClass="btn btn-success"
-                                             actionListener="#{paisBean.salvar()}"
-                                             update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
-                                             process="formulario-panelCadastro"/>
-                            <p:commandButton value="Sair" styleClass="btn btn-danger"
-                                             process="@this" oncomplete="PF('dlCad').hide();"/>
-                        </p:panelGrid>
+
                     </h:panelGroup>
                     <p:commandButton id="button-default" style="display: none;"/>
                     <p:defaultCommand target="formulario-button-default" />
@@ -167,6 +171,6 @@
             <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
             <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
         </p:confirmDialog>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
 

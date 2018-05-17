@@ -5,98 +5,22 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewAction action="#{grupoBean.inicializar()}"/>
+        <f:viewAction action="#{empresaBean.inicializar()}"/>
     </f:metadata>
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-        <h:outputStylesheet library="css" name="bootstrap.css" />
-        <h:outputStylesheet library="css" name="grid.css" />
-        <h:outputStylesheet library="css" name="material.css" />
-
-        <style>
-            .tamanhoForm1{
-                width:500px !important;
-                border: none !important;
-                margin-top: 50px !important;
-            }
-            .tamanhoForm2{
-                width:500px !important;
-                border: none !important;
-                margin-top: 50px !important;
-            }
-            @media only screen and (max-width: 760px) {
-                .tamanhoForm1{
-                    width:100% !important;
-                }
-                .tamanhoForm2{
-                    width:100% !important;
-                }
-            }
-        </style>
-
+        <meta charset="UTF-8" />
     </h:head>
     <h:body>
-        <p:commandButton oncomplete="PF('dlCad').show();" value="reer"/>
-        <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
-                      closable="true" responsive="true"  draggable="true"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
-                <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
+        <h:form>
+            <p:inputMask id="cep" mask="99.999-999" class="form-control" value="#{empresaBean.entidade.cep}" placeholder="CEP" 
+                         required="true" requiredMessage="CEP é Obrigatorio!"  converter="converterMask">
+                <p:ajax event="blur" process="@this" update="endereco" listener="#{empresaBean.consultarCep()}" />
+            </p:inputMask>
 
-                <h:panelGroup>
-                    <div class="ui-fluid">
-                        <div class="jumbotron">
-                            <div class="container-fluid">
-                                <div class="row div-separade">
-                                    <div class="col-md-12">
-                                        <h:inputText id="codigo"  value="#{grupoBean.entidade.codigo}"
-                                                     required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" >
-                                            <f:passThroughAttribute name="required"  value="true"/>
-                                            <f:passThroughAttribute name="autocomplete" value="off"/>
-                                            <f:passThroughAttribute name="type" value="text"/>
-                                        </h:inputText>
-                                        <h:outputLabel for="codigo" value="Codigo"/>
-                                    </div>
-                                </div>
-                                <div class="row div-separade">
-                                    <div class="col-md-12">
-                                        <h:inputText id="descricao"  value="#{grupoBean.entidade.descricao}"
-                                                     required="true" requiredMessage="Nome do Grupo é Obrigatorio!">
-                                            <f:passThroughAttribute name="required"  value="true"/>
-                                            <f:passThroughAttribute name="autocomplete" value="off"/>
-                                            <f:passThroughAttribute name="type" value="text"/>
-                                        </h:inputText>
-                                        <h:outputLabel for="descricao" value="Descrição"/>
-                                    </div>
-                                </div>
-                                <div class="row div-separade">
-                                    <div class="col-md-12">
-                                        <h:selectOneMenu id="tipo" value="#{grupoBean.entidade.tipo}">
-                                            <f:selectItem itemLabel="Selecione uma opção" noSelectionOption="true"/>
-                                            <f:selectItem itemLabel="Outros" itemValue="O"/>
-                                            <f:selectItem itemLabel="Veículo" itemValue="V"/>
-                                            <f:selectItem itemLabel="Combustível" itemValue="C"/>
-                                            <f:selectItem itemLabel="Armas" itemValue="A"/>
-                                        </h:selectOneMenu>
-                                        <h:outputLabel for="tipo" value="Tipo"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </h:panelGroup>
-                <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
-                    <p:commandButton value="Salvar"  styleClass="btn btn-success"
-                                     actionListener="#{grupoBean.salvar()}"
-                                     update="formulario"
-                                     process="formulario"/>
-                    <p:commandButton value="Sair" styleClass="btn btn-danger"
-                                     process="@this" oncomplete="PF('dlCad').hide();"/>
-                </p:panelGrid>
-
-
-            </p:dialog>
+            <p:inputText id="endereco" styleClass="form-control" value="#{empresaBean.entidade.endereco}" maxlength="60" placeholder="Endereço"
+                         required="true" requiredMessage="Endereço é Obrigatorio!">
+            </p:inputText>
         </h:form>
     </h:body>
 </html>

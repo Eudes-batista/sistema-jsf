@@ -10,6 +10,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 @Table(name = "empresa")
@@ -21,6 +23,7 @@ import lombok.Data;
             + "e.documentoIndentificacao = :documetoIndentificacao or "
             + "e.inscricaoEstadual = :inscricaoEstadual")
 })
+@EqualsAndHashCode(callSuper = false)
 public class Empresa extends Filtro implements EntidadeBase<String>, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +39,7 @@ public class Empresa extends Filtro implements EntidadeBase<String>, Serializabl
      * DOCUMENTO DE INDENTIFICACAO EX: (<b>CNPJ,OUTROS</b>)
      */
     @Column(name = "EPDOCEMI", length = 14, nullable = false)
+    @CNPJ(message = "CNPJ invalido, verifique o cnpj")
     private String documentoIndentificacao;
 
     /**

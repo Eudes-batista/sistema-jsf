@@ -50,15 +50,19 @@ public class PessoaServicoImpl extends GenericServiceImpl<Pessoa> implements Pes
     public Criteria criarCriteriaParaFiltro(Pessoa filtro) {
         Session session = entityManager.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Pessoa.class);
-        if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-            Criterion razaoSocial, nomeFantasia, documentoIndentificacao, inscricaoEstadual;
-            razaoSocial = Restrictions.ilike("razaoSocial", filtro.getPesquisa(), MatchMode.ANYWHERE);
-            nomeFantasia = Restrictions.eq("nomeFantasia", filtro.getPesquisa());
-            documentoIndentificacao = Restrictions.eq("documentoIdentificacao", filtro.getPesquisa());
-            inscricaoEstadual = Restrictions.eq("inscricaoEstadual", filtro.getPesquisa());
-            Disjunction expressao = Restrictions.or(razaoSocial, nomeFantasia, documentoIndentificacao, inscricaoEstadual);
-            criteria.add(expressao);
-            return criteria;
+        if (!filtro.isFiltrar()) {
+            if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
+                Criterion razaoSocial, nomeFantasia, documentoIndentificacao, inscricaoEstadual;
+                razaoSocial = Restrictions.ilike("razaoSocial", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                nomeFantasia = Restrictions.ilike("nomeFantasia", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                documentoIndentificacao = Restrictions.eq("documentoIdentificacao", filtro.getPesquisa());
+                inscricaoEstadual = Restrictions.eq("inscricaoEstadual", filtro.getPesquisa());
+                Disjunction expressao = Restrictions.or(razaoSocial, nomeFantasia, documentoIndentificacao, inscricaoEstadual);
+                criteria.add(expressao);
+                return criteria;
+            }
+        }else{
+            return criarFiltro(filtro, criteria);
         }
 
         return criteria;
@@ -67,6 +71,6 @@ public class PessoaServicoImpl extends GenericServiceImpl<Pessoa> implements Pes
     @Override
     public Criteria criarFiltro(Pessoa filtro, Criteria criteria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-}
+    }
 
 }

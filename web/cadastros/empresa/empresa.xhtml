@@ -1,22 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/modelo.xhtml">
     <f:metadata>
         <f:viewAction action="#{empresaBean.inicializar()}"/>
     </f:metadata>
-    <h:head>
-        <title>Empresa</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-        <h:outputStylesheet library="css" name="bootstrap.css" />
-        <h:outputStylesheet library="css" name="grid.css" />
-        <h:outputStylesheet library="css" name="material.css" />
+
+    <ui:define name="conteudo">     
         <style>
             .tamanhoForm1{
-                width:500px !important;
+                width:900px !important;
                 border: none !important;
                 margin-top: 50px !important;
             }
@@ -35,8 +32,6 @@
             }
 
         </style>
-    </h:head>
-    <h:body>
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
@@ -70,7 +65,7 @@
                                     <div  class="tituloGrid">
                                         Empresa
                                     </div>
-                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{empresaBean.entidade.pesquisa}"/>
+                                    <p:inputText id="textPesquisa" styleClass="form-control" placeholder="Pesquisa" value="#{empresaBean.entidade.pesquisa}"/>
 
                                 </p:panelGrid>
                                 <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{empresaBean.pesquisar()}" 
@@ -84,23 +79,23 @@
                                      rows="10" emptyMessage="Nenhum Registro encontrado"
                                      value="#{empresaBean.model}"
                                      var="e" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{e.codigo}">
-                                <div align="center">
+                            <p:column headerText="Codigo"  sortBy="#{e.codigo}" style="text-align: left;">
+                                <div align="left">
                                     #{e.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Documento de Indetificação"  sortBy="#{e.documentoIndentificacao}">
-                                <div align="center">
+                            <p:column headerText="Documento de Indetificação"  sortBy="#{e.documentoIndentificacao}" style="text-align: left;">
+                                <div align="left">
                                     #{e.documentoIndentificacao}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Razão Social" sortBy="#{e.razaoSocial}" >
-                                <div align="center">
+                            <p:column headerText="Razão Social" sortBy="#{e.razaoSocial}" style="text-align: left;">
+                                <div align="left">
                                     #{e.razaoSocial}
                                 </div>
                             </p:column>
-                            <p:column headerText="Nome Fantasia" sortBy="#{e.nomeFantasia}" >
-                                <div align="center">
+                            <p:column headerText="Nome Fantasia" sortBy="#{e.nomeFantasia}" style="text-align: left;">
+                                <div align="left">
                                     #{e.nomeFantasia}
                                 </div>
                             </p:column>
@@ -133,50 +128,150 @@
             </div>
         </div>
         <!--FORMULÁRIO Empresa-->
-        <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Empresa" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
-                      closable="true" responsive="true"  draggable="true"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
-                <p:ajax event="close" listener="#{empresaBean.novo()}" update="dl" process="dl"/>
+        <f:view encoding="UTF-8">
+            <h:form id="formulario" acceptcharset="UTF-8">
+                <p:dialog id="dl" header="Cadastro de Empresa" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+                          closable="true" responsive="true"  draggable="true"
+                          resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
+                    <p:ajax event="close" listener="#{empresaBean.novo()}" update="dl" process="dl" />
 
-                <p:messages id="msgCad" closable="true" showIcon="false"/>
-                <div class="ui-fluid">
-                    <h:panelGroup id="panelCadastro">
-                        <p:panelGrid layout="grid" columns="1" styleClass="ui-panelgrid-blank">
-                            <p:inputText id="codigo"  value="#{empresaBean.entidade.codigo}" placeholder="Codigo"
-                                         required="true" requiredMessage="Codigo é Obrigatorio!" disabled="#{empresaBean.inativo}" maxlength="3">
-                                <p:keyFilter for="codigo" mask="num" />
-                            </p:inputText>
-                            <p:panelGrid layout="grid" columns="2" styleClass="ui-panelgrid-blank">
-                                <p:inputMask id="cnpj"  value="#{empresaBean.entidade.documentoIndentificacao}" placeholder="CNPJ" mask="99.999.999/9999-99"
-                                             required="true" requiredMessage="CNPJ é Obrigatorio!" >
-                                </p:inputMask>
-                                <p:inputText id="inscricaoEstadual"  value="#{empresaBean.entidade.inscricaoEstadual}" placeholder="Inscricao estadual" maxlength="14">
-                                    <p:keyFilter for="inscricaoEstadual" mask="num" />
-                                </p:inputText>
-                            </p:panelGrid>
-                            <p:inputText id="razaosocial"  value="#{empresaBean.entidade.razaoSocial}" maxlength="50" placeholder="Razão Social"
-                                         required="true" requiredMessage="Razão Social é Obrigatorio!">
-                            </p:inputText>
-                        </p:panelGrid>
-                        <p:panelGrid styleClass="sui-panelgrid-blank" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" layout="grid" style="text-align: right;">
-                            <p:commandButton value="Salvar"  styleClass="btn btn-success"
-                                             actionListener="#{empresaBean.salvar()}"
-                                             update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
-                                             process="formulario-panelCadastro"/>
-                            <p:commandButton value="Sair" styleClass="btn btn-danger"
-                                             process="@this" oncomplete="PF('dlCad').hide();"/>
-                        </p:panelGrid>
-                    </h:panelGroup>
-                    <p:commandButton id="button-default" style="display: none;"/>
-                    <p:defaultCommand target="formulario-button-default" />
-                </div>
-            </p:dialog>
-        </h:form>
+                    <p:growl id="msgCad" />
+                    <div class="ui-fluid">
+                        <h:panelGroup id="panelCadastro">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Dados Principais</div>
+                                <div class="panel-body">
+                                    <!--codigo da empresa-->
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <p:inputText id="codigo" styleClass="form-control campo-destaque"  value="#{empresaBean.entidade.codigo}" placeholder="Codigo"
+                                                         required="true" requiredMessage="Codigo é Obrigatorio!" disabled="#{empresaBean.inativo}" maxlength="3">                                
+                                            </p:inputText>
+                                        </div>
+                                    </div>
+                                    <!--cnpj inscrição estadual e inscrição municipal-->
+                                    <div class="row espaco">
+                                        <div class="col-md-4">
+                                            <p:inputMask id="cnpj" class="form-control" value="#{empresaBean.entidade.documentoIndentificacao}" placeholder="CNPJ" mask="99.999.999/9999-99"
+                                                         required="true" requiredMessage="CNPJ é Obrigatorio!" >
+                                            </p:inputMask>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p:inputText id="inscricaoEstadual" class="form-control" value="#{empresaBean.entidade.inscricaoEstadual}" placeholder="Inscricao Estadual" maxlength="14">
+                                                <p:keyFilter for="inscricaoEstadual" mask="num" />
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p:inputText id="inscricaoMunicipal" class="form-control" value="#{empresaBean.entidade.inscricaoMunicipal}" placeholder="Inscricao Municipal" maxlength="14">
+                                                <p:keyFilter for="inscricaoMunicipal" mask="num" />
+                                            </p:inputText>
+                                        </div>
+                                    </div>
+                                    <!--razao social e nome fantasia-->
+                                    <div class="row espaco">
+                                        <div class="col-md-6">
+                                            <p:inputText id="razaosocial" styleClass="form-control" value="#{empresaBean.entidade.razaoSocial}" maxlength="120" placeholder="Razão Social"
+                                                         required="true" requiredMessage="Razão Social é Obrigatorio!">
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p:inputText id="nomefantasia" styleClass="form-control" value="#{empresaBean.entidade.nomeFantasia}" maxlength="120" placeholder="Nome Fantasia"
+                                                         required="true" requiredMessage="Nome Fantasia é Obrigatorio!">
+                                            </p:inputText>
+                                        </div>
+                                    </div>
+                                    <!--Inscricao EstadualST Cnae RegimeTributario-->
+                                    <div class="row espaco">
+                                        <div class="col-md-4">
+                                            <p:inputText id="inscricaoEstadualST" class="form-control" value="#{empresaBean.entidade.inscricaoEstadualSt}" placeholder="Inscrição Estadual ST" 
+                                                         >
+                                                <p:keyFilter for="inscricaoEstadualST" mask="num" />
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p:inputText id="cnae" class="form-control" value="#{empresaBean.entidade.cnae}" placeholder="CNAE" maxlength="7">
+                                                <p:keyFilter for="cnae" mask="num" />
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p:selectOneMenu id="regime" value="#{empresaBean.entidade.regimeTributario}" required="true"
+                                                             requiredMessage="Regime é Obrigatorio">
+                                                <f:selectItem itemLabel="Selecione um Regime" noSelectionOption="true" class="place-cor"/>
+                                                <f:selectItem itemLabel="Simples Nacional" itemValue="1"/>
+                                                <f:selectItem itemLabel="Lucro Presumido (Normal)" itemValue="2"/>
+                                                <f:selectItem itemLabel="Lucro Real" itemValue="3"/>
+                                            </p:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <!--******************-->
+                                </div>
+                            </div>
+
+                            <!--Endereço da empresa-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Endereço</div>
+                                <div class="panel-body">
+                                    <div class="row espaco">
+                                        <div class="col-md-2">
+                                            <p:inputMask id="cep" mask="99.999-999" class="form-control" value="#{empresaBean.entidade.cep}" placeholder="CEP" 
+                                                         required="true" requiredMessage="CEP é Obrigatorio!"  converter="converterMask">
+                                                <p:ajax event="blur" process="@this" update="endereco" listener="#{empresaBean.consultarCep()}" />
+                                            </p:inputMask>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p:inputText id="endereco" styleClass="form-control" value="#{empresaBean.entidade.endereco}" maxlength="60" placeholder="Endereço"
+                                                         required="true" requiredMessage="Endereço é Obrigatorio!">
+                                            </p:inputText>
+                                        </div>
+                                    </div>
+                                    <div class="row espaco">
+                                        <div class="col-md-6">
+                                            <p:inputText id="numero" styleClass="form-control" value="#{empresaBean.entidade.numeroEndereco}" maxlength="10" placeholder="Número"
+                                                         required="true" requiredMessage="Número é Obrigatorio!">
+                                            </p:inputText>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--******************-->
+
+
+                            <!--botoes salvar e sair-->
+                            <div class="row espaco">
+                                <div class="col-md-2 col-lg-offset-8">
+
+                                    <p:commandButton value="Salvar"  styleClass="btn btsalvar"
+                                                     actionListener="#{empresaBean.salvar()}"
+                                                     update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                     process="formulario-panelCadastro"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <p:commandButton value="Sair" styleClass="btn btsair"
+                                                     process="@this" oncomplete="PF('dlCad').hide();"/>
+                                    <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
+                                </div>
+                            </div>
+
+                        </h:panelGroup>
+                        <p:commandButton id="button-default" style="display: none;"/>
+                        <p:defaultCommand target="formulario-button-default" />
+                    </div>
+                </p:dialog>
+
+                <!--MAPA DE TECLAS DE ATALHO-->
+
+                <!--NOVO-->
+                <p:hotkey bind="f1" update="formulario-panelCadastro" process="@this"
+                          oncomplete="PF('dlCad').show();">
+                    <p:resetInput target="formulario-panelCadastro" />    
+                </p:hotkey>
+            </h:form>
+        </f:view> 
         <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
             <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
             <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
         </p:confirmDialog>
-    </h:body>
-</html>
+
+    </ui:define>
+</ui:composition>
 

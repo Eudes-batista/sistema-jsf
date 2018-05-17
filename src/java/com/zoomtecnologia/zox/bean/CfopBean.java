@@ -59,6 +59,7 @@ public class CfopBean extends GenericoBean<Cfop, CfopService> implements Seriali
                 cops.put("EA99", "OUTRAS ENTRADAS/AQUISICOES");
             }
         }
+        
     }
 
     @Override

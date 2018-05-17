@@ -1,18 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/modelo.xhtml">
     <f:metadata>
         <f:viewAction action="#{unidadeBean.inicializar()}"/>
     </f:metadata>
-    <h:head>
-        <title>Unidade</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-        <h:outputStylesheet library="css" name="bootstrap.css" />
-        <h:outputStylesheet library="css" name="grid.css" />
+
+    <ui:define name="conteudo">
         <style>
             .tamanhoForm1{
                 width:500px !important;
@@ -32,8 +30,7 @@
             }
 
         </style>
-    </h:head>
-    <h:body>
+
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
@@ -81,13 +78,13 @@
                                      rows="10"
                                      value="#{unidadeBean.model}"
                                      var="u" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{u.codigo}">
-                                <div align="center">
+                            <p:column headerText="Codigo"  sortBy="#{u.codigo}" style="text-align: left;">
+                                <div align="left">
                                     #{u.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{u.descricao}" >
-                                <div align="center">
+                            <p:column headerText="Descrição" sortBy="#{u.descricao}" style="text-align: left;">
+                                <div align="left">
                                     #{u.descricao}
                                 </div>
                             </p:column>
@@ -153,5 +150,5 @@
             <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
             <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
         </p:confirmDialog>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>

@@ -1,18 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/modelo.xhtml">
     <f:metadata>
         <f:viewAction action="#{ncmBean.inicializar()}"/>
     </f:metadata>
-    <h:head>
-        <title>Ncm</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-        <h:outputStylesheet library="css" name="bootstrap.css" />
-        <h:outputStylesheet library="css" name="grid.css" />
+
+    <ui:define name="conteudo">
         <style>
             .tamanhoForm1{
                 width:500px !important;
@@ -32,8 +30,6 @@
             }
 
         </style>
-    </h:head>
-    <h:body>
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
@@ -65,7 +61,7 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                       NCM
+                                        NCM
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{ncmBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
 
@@ -81,13 +77,13 @@
                                      rows="10"
                                      value="#{ncmBean.model}"
                                      var="n" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
-                            <p:column headerText="Codigo"  sortBy="#{n.codigo}">
-                                <div align="center">
+                            <p:column headerText="Codigo"  sortBy="#{n.codigo}" style="text-align: left;">
+                                <div align="left">
                                     #{n.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{n.descricao}" >
-                                <div align="center">
+                            <p:column headerText="Descrição" sortBy="#{n.descricao}" style="text-align: left;">
+                                <div align="left">
                                     #{n.descricao}
                                 </div>
                             </p:column>
@@ -155,6 +151,7 @@
             <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
             <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
         </p:confirmDialog>
-    </h:body>
-</html>
+    </ui:define>
+
+</ui:composition>
 

@@ -2,9 +2,6 @@
 /****************  CSS DA GRID  *************************************************************************************/
 
 
-*{
-    font-family: tahoma,sans-serif;
-}
 body{
     background: #fff !important;
 }
@@ -40,10 +37,6 @@ li{
 }
 
 
-.btbusca{
-    color: #6eceec !important;
-}
-
 /*TITULO DO CABEÇALHO*/
 .tituloGrid{
     color: #959595 !important;
@@ -63,59 +56,8 @@ li{
     background-color: #f9f9f9;
 }
 
-/*BOTÕES DA GRID*/
-.btnovo{
-    background: transparent;
-}
-.btfiltro{
-    background: transparent;
-}
-.btprint{
-    background: transparent;
-}
-.btatualizar{
-    background: transparent;
-}
-.btnovo,.btfiltro,.btprint,.btatualizar{
-    border: none !important;
-    text-align: center !important;
-    font-size: 20pt !important;
-    padding-left: 5px;
-    color: #757575;
-    width: auto !important;
-}
 
-/*BOTÕES DA TABELA*/
-.btexcluir{
-    background: #F37E72;
-}
-.bteditar{
-    background: #6eceec;
-}
-.btsub{
-    background: #fdc006;
-}
-.btexcluir, .bteditar, .btsub{
 
-    color: #fff !important;
-    border: none !important;
-    text-align: center !important;
-    font-size: 10pt !important;
-    border-radius: 5px !important;
-    width: 25px !important;
-    height: 25px !important;
-    padding-top: 5px;
-    text-decoration: none !important;
-}
-.btexcluir:hover, .bteditar:hover, .btsub:hover{
-    text-decoration: none !important;
-    color: #fff !important;
-
-}
-
-.btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
-    text-decoration: none !important;
-}
 
 
 /*VALORESNA TEBELA*/
@@ -196,7 +138,7 @@ table thead tr{
         text-align: left !important;
     }
 
-  tr td .ui-column-title{
+    tr td .ui-column-title{
         border: none !important;
         background: #eee!important;
         color:#757575;
@@ -208,6 +150,10 @@ table thead tr{
 
 /**********************************************CSS DOS FORMS********************************************************************************************/
 
+/*ESPAÇAMENTO ENTRA CAMPOS DO FORMULÁRIO*/
+.espaco{
+    margin-top: 15px !important;
+}
 
 /***********FUNDO DO FORM*******/
 .ui-widget .ui-dialog{
@@ -279,7 +225,19 @@ span.ui-icon-closethick:before {
     overflow: hidden;
     content: "\f00d" !important;
 }
-/*-------------------------------*/
+
+/*FONT EM TODOS COMPONENTES*/
+.ui-fluid{
+    font-family: Arial,sans-serif !important;
+}
+
+.panel-heading{
+    font-size: 12pt !important;
+    color: #858585 !important;
+    font-weight: bold !important;
+    border: none !important;
+}
+
 
 .tamanhoForm{
     width:auto !important;
@@ -294,10 +252,18 @@ span.ui-icon-closethick:before {
     border-radius: 5px !important;
 }
 
+
 /*COR DO PLACEHOLDER*/
 input::placeholder {
     color: #ddd;
     text-transform: capitalize;
+}
+
+.ui-selectonemenu{
+    color: #ddd !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 11pt !important;
+    
 }
 
 @media only screen and (max-width: 768px) {
@@ -307,10 +273,23 @@ input::placeholder {
     .tamanhoForm2{
         width:100% !important;
     }
-    .btFooterSalvar,.btFooterVoltar, .btFooterSalvar:hover, .btFooterVoltar:hover{
-        width: 100%;
+    
+    .form-control{
+        margin-bottom: 5px !important;
+    }
+    .btsalvar, .btsair{
+        margin-bottom: 5px !important;
     }
 }
 
-.form-control{margin-bottom: 5px !important;}
+.form-control{
+    text-transform: uppercase !important;
+    font-size: 11pt !important;
+    font-family: Arial, sans-serif !important;
+}
 
+/*CAMPO DESTAQUE*/
+.campo-destaque{
+    font-size: 13pt !important;
+    font-weight: bold !important;
+}

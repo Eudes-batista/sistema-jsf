@@ -1,0 +1,70 @@
+/*BOTÕES DA TABELA*/
+.btexcluir{
+    background: #F37E72;
+}
+.bteditar{
+    background: #6eceec;
+}
+.btsub{
+    background: #fdc006;
+}
+.btexcluir, .bteditar, .btsub{
+
+    color: #fff !important;
+    border: none !important;
+    text-align: center !important;
+    font-size: 10pt !important;
+    border-radius: 5px !important;
+    width: 25px !important;
+    height: 25px !important;
+    padding-top: 5px;
+    text-decoration: none !important;
+}
+.btexcluir:hover, .bteditar:hover, .btsub:hover{
+    text-decoration: none !important;
+    color: #fff !important;
+
+}
+
+.btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
+    text-decoration: none !important;
+}
+/*BOTÕES DA GRID*/
+.btnovo{
+    background: transparent;
+}
+.btfiltro{
+    background: transparent;
+}
+.btprint{
+    background: transparent;
+}
+.btatualizar{
+    background: transparent;
+}
+.btnovo,.btfiltro,.btprint,.btatualizar{
+    border: none !important;
+    text-align: center !important;
+    font-size: 20pt !important;
+    color: #7891ab !important;
+    width: auto !important;
+}
+
+.btbusca{
+    color: #6eceec !important;
+}
+
+/*BOTOES DO FORMULARIO*/
+
+.btsalvar{
+    background: #8cc63f !important;
+}
+.btsair{
+    background: #f37e72 !important;
+}
+.btsalvar, .btsair{
+    font-size: 11pt !important;
+    color: #fff !important;
+    border: none !important;
+    font-family: Arial, sans-serif !important;
+}
