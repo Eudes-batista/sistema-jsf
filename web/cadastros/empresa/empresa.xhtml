@@ -238,15 +238,18 @@
                                             <p:inputText id="bairro" class="form-control" value="#{empresaBean.entidade.bairro}" maxlength="60" placeholder="Bairro" />
                                         </div>
                                         <div class="col-md-2">
-                                            <p:selectOneMenu id="estado" value="#{empresaBean.entidade.siglaEstado}" required="true" requiredMessage="O Estado é Obrigatório.">
+                                            <p:selectOneMenu id="estado" value="#{empresaBean.entidade.siglaEstado}" required="true" requiredMessage="O Estado é Obrigatório."
+                                                             filter="true">
                                                 <f:selectItem itemLabel="UF" noSelectionOption="true"/>
-                                                <f:selectItems/>
+                                                <f:selectItems value="#{empresaBean.estados}" var="es" itemLabel="#{es.sigla}" itemValue="#{es.sigla}"/>
+                                                <p:ajax event="valueChange" process="@this" update="cidade" listener="#{empresaBean.carregarCidade()}"/>
                                             </p:selectOneMenu>
                                         </div>
                                         <div class="col-md-3">
-                                            <p:selectOneMenu id="cidade" value="#{empresaBean.entidade.nomeMunicipio}" required="true" requiredMessage="O Nome da Cidade é Obrigatório.">
+                                            <p:selectOneMenu id="cidade" value="#{empresaBean.entidade.nomeMunicipio}" required="true" requiredMessage="O Nome da Cidade é Obrigatório."
+                                                             filter="true">
                                                 <f:selectItem itemLabel="Cidade" noSelectionOption="true"/>
-                                                <f:selectItems/>
+                                                <f:selectItems value="#{empresaBean.cidades}" var="c" itemLabel="#{c.nome}" itemValue="#{c.nome}"/>
                                             </p:selectOneMenu>
                                         </div>
                                     </div>

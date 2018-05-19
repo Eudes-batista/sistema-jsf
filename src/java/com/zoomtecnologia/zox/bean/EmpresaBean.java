@@ -10,6 +10,7 @@ import com.zoomtecnologia.zox.util.WebServiceCep;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -29,18 +30,22 @@ public class EmpresaBean extends GenericoBean<Empresa, EmpresaService> {
     private CidadeService cidadeService;
 
     @Getter
+    @Setter
     private List<Estado> estados;
     @Getter
+    @Setter
     private List<Cidade> cidades;
 
     @Override
     public void inicializar() {
         super.inicializar();
         this.estados = this.estadoService.listaTodos(Estado.class);
-        this.cidades = this.cidadeService.listarPorEstado(this.estadoService.listarPorCodigo(26));
     }
-    
+
     public void carregarCidade() {
+        if (super.getEntidade().getSiglaEstado() != null) 
+            if (!super.getEntidade().getSiglaEstado().isEmpty()) 
+                this.cidades = this.cidadeService.listarPorEstado(super.getEntidade().getSiglaEstado());
         
     }
 
