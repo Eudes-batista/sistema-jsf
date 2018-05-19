@@ -26,5 +26,14 @@ public class EstadoPK implements Serializable{
     @JoinColumn(name = "UFCDPAIS", nullable = false)
     @ForeignKey(name = "estadoFKpais")
     Pais pais;
+
+    public EstadoPK() {
+    }
+
+    public EstadoPK(Integer codigo, Pais pais) {
+        this.codigo = codigo;
+        this.pais = pais;
+    }
+   
     
 }

@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EstadoService extends EntidadeService<Estado> {
     public List<Estado> listarPorPais(Pais pais);
+    public Estado listarPorCodigo(Integer codigo);
 }

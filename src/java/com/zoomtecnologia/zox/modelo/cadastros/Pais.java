@@ -24,16 +24,24 @@ public class Pais extends Filtro implements EntidadeBase<Integer>, Serializable 
 
     private static final long serialVersionUID = 1L;
 
+    public Pais() {
+    }
+
+    public Pais(Integer codigo) {
+        this.codigo = codigo;
+    }
+
     @Id
     @Column(name = "NACODIGO", length = 4, nullable = false)
-    Integer codigo;
+    private Integer codigo;
 
     @Column(name = "NADESCRI", length = 50, nullable = false)
-    String descricao;
+    private String descricao;
 
     @Override
     public Integer getId() {
         return this.codigo;
     }
 
+  
 }

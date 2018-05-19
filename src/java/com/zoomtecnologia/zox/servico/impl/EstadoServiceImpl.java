@@ -57,12 +57,16 @@ public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements Est
 
     @Override
     public Criteria criarFiltro(Estado filtro, Criteria criteria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
 }
 
     @Override
     public List<Estado> listarPorPais(Pais pais) {
        return entityManager.createNamedQuery("Estado.buscarPorPais", Estado.class).setParameter("estadoPK.estado", pais).getResultList();
+    }
+    @Override
+    public Estado listarPorCodigo(Integer codigo) {
+       return entityManager.createNamedQuery("Estado.buscarCodigo", Estado.class).setParameter("codigo", codigo).getSingleResult();
     }
 
 }

@@ -27,7 +27,7 @@ public class Cidade extends Filtro implements EntidadeBase<CidadePK>, Serializab
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    CidadePK cidadePK;
+    private CidadePK cidadePK;
 
     /**
      * NOME DO MUNICIPIO DE ACORDO COM O IBGE

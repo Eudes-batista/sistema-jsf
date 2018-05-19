@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.filtros;
 
 import java.io.Serializable;
+import javax.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@MappedSuperclass
 public abstract class Filtro implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -27,33 +27,41 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @NamedQueries({
     @NamedQuery(name = "Estado.listarTodos", query = "select e from Estado e order by e.nome")
-    ,@NamedQuery(name = "Estado.buscarNome", query = "select e from Estado e where e.nome like :nome or e.sigla = :sigla")
+    ,@NamedQuery(name = "Estado.buscarCodigo", query = "select e from Estado e where e.estadoPK.codigo=:codigo")
     ,@NamedQuery(name = "Estado.buscarPorPais", query = "select e from Estado e where e.estadoPK.pais=:pais")
 })
 public class Estado extends Filtro implements EntidadeBase<EstadoPK>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Estado(EstadoPK estadoPK) {
+        this.estadoPK = estadoPK;
+    }
+
+    public Estado() {
+    }
+
     /**
      * CODIGO DO ESTADO
      */
     @EmbeddedId
-    EstadoPK estadoPK;
+    private EstadoPK estadoPK;
 
+    
     /**
      * NOME DO ESTADO
      */
     @Column(name = "UFNOMEUF", length = 50, nullable = false)
-    String nome;
+    private String nome;
 
     /**
      * SIGLA DO ESTADO
      */
     @Column(name = "UFSIGLAUF", length = 2, nullable = false)
-    String sigla;
+    private String sigla;
 
     public EstadoPK getId() {
         return this.estadoPK;
     }
-
+    
 }

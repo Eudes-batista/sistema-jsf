@@ -10,22 +10,24 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-
 /**
  *
  * @author Wagner
  */
 @FacesConverter("converterMask")
-public class ConverterMask implements Converter{
+public class ConverterMask implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-      return Integer.parseInt(value.replaceAll("\\D", ""));
+        if (!(value = value.replaceAll("\\D", "")).isEmpty()) {
+            return Integer.parseInt(value);
+        }
+        return 0;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-       return String.valueOf(value);
+        return String.valueOf(value);
     }
-    
+
 }

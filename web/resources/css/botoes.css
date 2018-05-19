@@ -29,9 +29,19 @@
 .btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
     text-decoration: none !important;
 }
+.btnovo-desable:hover,.btfiltro-desable:hover,.btprint-desable:hover,.btatualizar-desable:hover{
+    text-decoration: none !important;
+    color: #e5e5e5;
+}
 /*BOTÕES DA GRID*/
 .btnovo{
     background: transparent;
+}
+.btnovo:disabled, 
+.btfiltro:disabled,
+.btprint:disabled, 
+.btatualizar:disabled{
+    color: #e5e5e5;
 }
 .btfiltro{
     background: transparent;
@@ -59,10 +69,18 @@
 .btsalvar{
     background: #8cc63f !important;
 }
+.btsalvar:disabled, .btsair:disabled, .btconfigurar:disabled{
+    background: #e5e5e5 !important;
+    color: #fff !important;
+}
 .btsair{
     background: #f37e72 !important;
 }
-.btsalvar, .btsair{
+.btconfigurar{
+    background: #dfb777 !important;
+    color: #fff !important;
+}
+.btsalvar, .btsair, .btconfigurar{
     font-size: 11pt !important;
     color: #fff !important;
     border: none !important;

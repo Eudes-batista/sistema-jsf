@@ -77,7 +77,7 @@ public class CidadeServiceImpl extends GenericServiceImpl<Cidade> implements Cid
 
     @Override
     public List<Cidade> listarPorEstado(Estado estado) {
-        return entityManager.createNamedQuery("Cidade.buscarPorEstado", Cidade.class).setParameter("cidadePK.estado", estado).getResultList();
+        return entityManager.createNamedQuery("Cidade.buscarPorEstado", Cidade.class).setParameter("estado", estado).getResultList();
     }
 
 }
