@@ -38,7 +38,7 @@ public class Empresa extends Filtro implements EntidadeBase<String>, Serializabl
     /**
      * DOCUMENTO DE INDENTIFICACAO EX: (<b>CNPJ,OUTROS</b>)
      */
-    @Column(name = "EPDOCEMI", length = 14, nullable = false)
+    @Column(name = "EPDOCEMI", length = 18, nullable = false)
     @CNPJ(message = "CNPJ invalido, verifique o cnpj")
     private String documentoIndentificacao;
 

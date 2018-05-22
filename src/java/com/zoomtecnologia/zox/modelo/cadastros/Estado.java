@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false,of={"sigla"})
 @NamedQueries({
-    @NamedQuery(name = "Estado.listarTodos", query = "select e from Estado e order by e.nome")
+    @NamedQuery(name = "Estado.listarTodos", query = "select e from Estado e left outer join fetch e.estadoPK.pais order by e.nome")
     ,@NamedQuery(name = "Estado.buscarCodigo", query = "select e from Estado e where e.estadoPK.codigo=:codigo")
     ,@NamedQuery(name = "Estado.buscarPorPais", query = "select e from Estado e where e.estadoPK.pais=:pais")
 })

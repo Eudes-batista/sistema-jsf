@@ -52,9 +52,11 @@ public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements E
         Criteria criteria = session.createCriteria(Empresa.class);
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-                Criterion nome = Restrictions.ilike("razaoSocial", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion razaoSocial = Restrictions.ilike("razaoSocial", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion nomeFantasia = Restrictions.ilike("nomeFantasia", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion cnpj = Restrictions.eq("documentoIndentificacao", filtro.getPesquisa());
                 Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
-                criteria.add(Restrictions.or(nome, codigo));
+                criteria.add(Restrictions.or(razaoSocial,nomeFantasia,cnpj, codigo));
                 return criteria;
             }
         } else {

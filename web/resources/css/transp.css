@@ -1,9 +1,9 @@
 
 /****************  CSS DA GRID  *************************************************************************************/
 
-
-body{
-    background: #fff !important;
+.fundo{
+    background: url("#{resource['imagens/fundo01.jpg']}") no-repeat !important;
+    background-size: 100%;
 }
 
 a:hover{
@@ -14,7 +14,7 @@ a:hover{
 div .barraLateral{
     margin-top: 5px;
     padding-top: 2px;
-    background: #f7f7f7;
+    background: rgba(150,150,150,.5);
     border-radius: 5px;
     height: 761px !important;
 }
@@ -39,7 +39,7 @@ li{
 
 /*TITULO DO CABEÇALHO*/
 .tituloGrid{
-    color: #959595 !important;
+    color: #fff !important;
     text-align: left !important;
     font-size: 20pt;
     font-weight: bold;
@@ -48,17 +48,17 @@ li{
 
 /*Tira borda da paginacao e deixa da mesma cor do formulario*/
 .ui-paginator{
-    background-color: #f9f9f9;
+    background-color: transparent !important;
     border: none !important;
 }
 /*pinta o fundo da tabela*/
 .ui-datatable-tablewrapper{
-    background-color: #f9f9f9;
+    background: transparent !important;
 }
 
-
-
-
+.ui-datatable{
+    background: transparent !important;
+}
 
 /*VALORESNA TEBELA*/
 table tbody tr,table tbody td{
@@ -68,7 +68,7 @@ table tbody tr,table tbody td{
     padding-bottom: 2px !important;
     padding-right: 7px !important;
     padding-left: 7px !important;
-    font-family: Arial, sans-serif;
+    background: transparent !important;
 }
 
 
@@ -77,6 +77,7 @@ table{
     border: none !important;
     border-radius: 5px;
     margin-left: 3px;
+    background: transparent !important;
 
 }
 
@@ -105,7 +106,6 @@ table thead th{
     font-family: tahoma;
     font-size: 10pt !important;
     padding: 5px !important;
-    font-family: Arial, sans-serif;
 }
 .ui-datatable-tablewrapper {
     overflow: hidden !important;
@@ -152,9 +152,6 @@ table thead tr{
 
 /**********************************************CSS DOS FORMS********************************************************************************************/
 
-
-
-
 /*ESPAÇAMENTO ENTRA CAMPOS DO FORMULÁRIO*/
 .espaco{
     margin-top: 15px !important;
@@ -163,19 +160,20 @@ table thead tr{
 /***********FUNDO DO FORM*******/
 .ui-widget .ui-dialog{
     padding: 0px !important;
-    background: #FFF !important; 
+    background: transparent !important; 
+    background-color: rgba(100,100,100,.8) !important; 
     margin: 0px !important;
     border: none !important;
 
 }
 div.ui-dialog{
-    background: #FFF !important; 
+    background: rgba(100,100,100,.8) !important;
     padding: 0px;
 } 
 
 /***********CABEÇALHO DO FORM*******/
 .ui-widget .ui-dialog-titlebar{
-    background: #7891ab !important;
+    background-color: rgba(68, 183, 219, 0.8) !important;
     margin-left:  0px !important;;
     margin-right:   0px !important;;
     border: none !important;
@@ -231,20 +229,31 @@ span.ui-icon-closethick:before {
     content: "\f00d" !important;
 }
 
+/*PANELS*/
+.panel-body{
+    background: rgba(50, 50, 50, 0.4) !important;
+}
+
+
+.panel, .panel-default{
+    background: transparent !important;
+    border: none;   
+
+}
+
+.panel-heading{
+    font-size: 12pt !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    border: none !important;
+    background: rgba(150, 150, 150 ,0.4) !important;
+}
+
 /*FONT EM TODOS COMPONENTES*/
 .ui-fluid{
     font-family: Arial,sans-serif !important;
 }
 
-.panel-heading{
-    font-size: 12pt !important;
-    color: #858585 !important;
-    font-weight: bold !important;
-    border: none !important;
-}
-.panel-body{
-    background: #fff !important;
-}
 
 .tamanhoForm{
     width:auto !important;
@@ -262,18 +271,32 @@ span.ui-icon-closethick:before {
 
 /*COR DO PLACEHOLDER*/
 input::placeholder {
-    color: #ddd;
+    color: #ddd !important;
     text-transform: capitalize;
 }
 
+/*SELECT PRIMEFACES*/
 .ui-selectonemenu{
     color: #ddd !important;
     font-family: Arial, sans-serif !important;
     font-size: 11pt !important;
-
+    background: rgba(200,200,200,0.2) !important;
+    border: none !important;
 }
 
-@media only screen and (max-width: 760px) {
+.ui-selectonemenu-trigger{
+    border: none !important;
+}
+
+.form-control:required{
+    border-left: 3px solid #efcf00 !important;
+
+}
+.select-requerido{
+    border-left: 3px solid #efcf00 !important;
+}
+
+@media only screen and (max-width: 768px) {
     .tamanhoForm1{
         width:100% !important;
     }
@@ -294,8 +317,13 @@ input::placeholder {
     text-transform: uppercase !important;
     font-size: 11pt !important;
     font-family: Arial, sans-serif !important;
+    background: rgba(200,200,200,0.2) !important;
+    color:#fff !important;
+    border: none !important;
 
 }
+
+
 
 /*.col-md-1, .col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12{
     padding-left: 5px !important;
@@ -305,8 +333,4 @@ input::placeholder {
 .campo-destaque{
     font-size: 13pt !important;
     font-weight: bold !important;
-}
-.tamanhoForm1, .tamanhoForm2{
-    border: none !important;
-    margin-top: 2% !important;
 }

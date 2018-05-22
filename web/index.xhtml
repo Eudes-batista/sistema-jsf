@@ -1,26 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <f:metadata>
-        <f:viewAction action="#{empresaBean.inicializar()}"/>
-    </f:metadata>
-    <h:head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <meta charset="UTF-8" />
-    </h:head>
-    <h:body>
-        <h:form>
-            <p:inputMask id="cep" mask="99.999-999" class="form-control" value="#{empresaBean.entidade.cep}" placeholder="CEP" 
-                         required="true" requiredMessage="CEP é Obrigatorio!"  converter="converterMask">
-                <p:ajax event="blur" process="@this" update="endereco" listener="#{empresaBean.consultarCep()}" />
-            </p:inputMask>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-            <p:inputText id="endereco" styleClass="form-control" value="#{empresaBean.entidade.endereco}" maxlength="60" placeholder="Endereço"
-                         required="true" requiredMessage="Endereço é Obrigatorio!">
-            </p:inputText>
-        </h:form>
+    <h:head></h:head>
+    <h:body>
+        
+        <h:panelGroup id="panel">
+            <div class="alert alert-danger">
+                <div>Teste</div>
+            </div>
+        </h:panelGroup>
+        
     </h:body>
 </html>

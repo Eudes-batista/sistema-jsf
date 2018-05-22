@@ -69,4 +69,9 @@ public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements Est
        return entityManager.createNamedQuery("Estado.buscarCodigo", Estado.class).setParameter("codigo", codigo).getSingleResult();
     }
 
+    @Override
+    public List<Estado> listaTodos(Class<Estado> classe) {
+        return entityManager.createNamedQuery("Estado.listarTodos", classe).getResultList();
+    }
+
 }

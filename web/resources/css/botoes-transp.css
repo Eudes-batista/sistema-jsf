@@ -1,0 +1,96 @@
+/*BOTÕES DA TABELA*/
+.btexcluir{
+    background: #F37E72;
+}
+.bteditar{
+    background: #6eceec;
+}
+.btsub{
+    background: #fdc006;
+}
+.btexcluir, .bteditar, .btsub{
+
+    color: #fff !important;
+    border: none !important;
+    text-align: center !important;
+    font-size: 10pt !important;
+    border-radius: 5px !important;
+    width: 25px !important;
+    height: 25px !important;
+    padding-top: 5px;
+    text-decoration: none !important;
+}
+.btexcluir:hover, .bteditar:hover, .btsub:hover{
+    text-decoration: none !important;
+    color: #fff !important;
+
+}
+
+.btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
+    text-decoration: none !important;
+}
+.btnovo-desable:hover,.btfiltro-desable:hover,.btprint-desable:hover,.btatualizar-desable:hover{
+    text-decoration: none !important;
+    color: #e5e5e5;
+}
+/*BOTÕES DA GRID*/
+.btnovo{
+    background: transparent;
+}
+.btnovo:disabled, 
+.btfiltro:disabled,
+.btprint:disabled, 
+.btatualizar:disabled{
+    color: #e5e5e5;
+}
+.btfiltro{
+    background: transparent;
+}
+.btprint{
+    background: transparent;
+}
+.btatualizar{
+    background: transparent;
+}
+.btnovo,.btfiltro,.btprint,.btatualizar{
+    border: none !important;
+    text-align: center !important;
+    font-size: 20pt !important;
+    color: #7891ab !important;
+    width: auto !important;
+}
+
+.btbusca{
+    color: #6eceec !important;
+}
+
+/*BOTOES DO FORMULARIO*/
+
+.btsalvar{
+    background-color: rgba(84, 214, 95, 0.3) !important;
+    transition: all 0.3s ease;
+}
+.btsalvar:hover{
+    background: #8cc63f !important;
+}
+.btsalvar:disabled, .btsair:disabled, .btconfigurar:disabled{
+    background: #e5e5e5 !important;
+    color: #fff !important;
+}
+.btsair{
+    background-color: rgba(210, 93, 95, 0.3) !important;
+
+}
+.btsair:hover{
+    background: #f37e72 !important;
+}
+.btconfigurar{
+    background: #dfb777 !important;
+    color: #fff !important;
+}
+.btsalvar, .btsair, .btconfigurar{
+    font-size: 11pt !important;
+    color: #fff !important;
+    border: none !important;
+    font-family: Arial, sans-serif !important;
+}

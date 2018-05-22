@@ -15,13 +15,12 @@
         <style>
             .tamanhoForm1{
                 width:500px !important;
-                border: none !important;
-                margin-top: 50px !important;
+                
             }
             .tamanhoForm2{
                 width:500px !important;
-                border: none !important;
-                margin-top: 50px !important;
+                
+               
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -145,22 +144,23 @@
                                     </p:inputText>
                                 </div>
                             </div>
-                            <!--botoes salvar e sair-->
+                        </div>
+                        <!--botoes salvar e sair-->
+                        <div class="container-fluid espaco">
                             <div class="row espaco">
-                                <div class="col-md-8">
-
-                                    <p:commandButton value="Salvar"  styleClass="btn btsalvar"
+                                <div class="col-md-8 ">
+                                    <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
                                                      actionListener="#{paisBean.salvar()}"
                                                      update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
-                                                     process="formulario-panelCadastro"/>
+                                                     process="formulario-panelCadastro" />
                                 </div>
                                 <div class="col-md-4">
                                     <p:commandButton value="Sair" styleClass="btn btsair"
                                                      process="@this" oncomplete="PF('dlCad').hide();"/>
+                                    <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
                                 </div>
                             </div>
                         </div>
-
                     </h:panelGroup>
                     <p:commandButton id="button-default" style="display: none;"/>
                     <p:defaultCommand target="formulario-button-default" />

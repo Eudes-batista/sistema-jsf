@@ -13,14 +13,12 @@
     <ui:define name="conteudo">     
         <style>
             .tamanhoForm1{
-                width:900px !important;
-                border: none !important;
-                margin-top: 2% !important;
+                width:1024px !important;
+
             }
             .tamanhoForm2{
                 width:500px !important;
-                border: none !important;
-                margin-top: 50px !important;
+
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -39,10 +37,10 @@
                     <div class="col-md-1 barraLateral" style="margin-right: -13px;">
                         <ul >
                             <li>
-                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
+                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();" actionListener="#{empresaBean.novo()}"
                                                styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
-                                               update="formulario-panelCadastro" process="@this" >
-                                    <p:resetInput target="formulario-panelCadastro" />    
+                                               update="formulario-tabEmpresa-panelCadastro" process="@this" >
+                                    <p:resetInput target="formulario-tabEmpresa-panelCadastro" />    
                                 </p:commandLink>
                             </li>
                             <li>
@@ -78,7 +76,7 @@
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10" emptyMessage="Nenhum Registro encontrado"
                                      value="#{empresaBean.model}"
-                                     var="e" reflow="true" tableStyleClass="table table-hover">
+                                     var="e" reflow="true" >
                             <p:column headerText="Codigo"  sortBy="#{e.codigo}" style="text-align: left;">
                                 <div align="left">
                                     #{e.codigo}    
@@ -103,9 +101,9 @@
                                 <!--BOTOES DAS LINHAS DA GRID-->
                                 <div align="right">
                                     <p:commandLink id="alterar"
-                                                   update="formulario-panelCadastro" actionListener="#{empresaBean.alterar(e)}"
+                                                   update="formulario-tabEmpresa-panelCadastro" actionListener="#{empresaBean.alterar(e)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
-                                        <p:resetInput target="formulario-panelCadastro" />
+                                        <p:resetInput target="formulario-tabEmpresa-panelCadastro" />
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
@@ -131,163 +129,176 @@
         <f:view encoding="UTF-8">
             <h:form id="formulario" acceptcharset="UTF-8">
                 <p:dialog id="dl" header="Cadastro de Empresa" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
-                          closable="true" responsive="true"  draggable="true"
-                          resizable="false"  styleClass="tamanhoForm1" minimizable="true" visible="true" position="top" modal="true" >
+                          closable="true" responsive="true"  draggable="true" dynamic="true"
+                          resizable="false"  styleClass="tamanhoForm1" minimizable="true" visible="false" position="top" modal="true" >
                     <p:ajax event="close" listener="#{empresaBean.novo()}" update="dl" process="dl" />
+                    <p:tabView id="tabEmpresa">
+                        <p:tab title="Empresa">
+                            <p:growl id="msgCad" />
+                            <div class="ui-fluid">
+                                <h:panelGroup id="panelCadastro">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Dados Principais</div>
+                                        <div class="panel-body">
+                                            <!--codigo da empresa-->
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <p:inputText id="codigo" styleClass="form-control campo-destaque"  value="#{empresaBean.entidade.codigo}" placeholder="Codigo"
+                                                                 required="true" requiredMessage="Codigo é Obrigatorio!" disabled="#{empresaBean.inativo}" maxlength="3"
+                                                                 onkeyup="upperCase(this)">                                
+                                                        <f:passThroughAttribute name="required" value="true"/>
+                                                    </p:inputText>
+                                                </div>
+                                            </div> 
+                                            <!--cnpj inscrição estadual e inscrição municipal-->
+                                            <div class="row espaco">
+                                                <div class="col-md-4">
+                                                    <p:inputMask id="cnpj" class="form-control" value="#{empresaBean.entidade.documentoIndentificacao}" placeholder="CNPJ" mask="99.999.999/9999-99"
+                                                                 required="true" requiredMessage="CNPJ é Obrigatorio!" >
+                                                        <f:passThroughAttribute name="required" value="true"/>
+                                                        <p:ajax event="blur" process="@this" update="informacoes informacoes2"  listener="#{empresaBean.carregarDadosEmpresa()}"/>
+                                                    </p:inputMask>
+                                                </div>
 
-                    <p:growl id="msgCad" />
-                    <div class="ui-fluid">
-                        <h:panelGroup id="panelCadastro">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Dados Principais</div>
-                                <div class="panel-body">
-                                    <!--codigo da empresa-->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <p:inputText id="codigo" styleClass="form-control campo-destaque"  value="#{empresaBean.entidade.codigo}" placeholder="Codigo"
-                                                         required="true" requiredMessage="Codigo é Obrigatorio!" disabled="#{empresaBean.inativo}" maxlength="3">                                
-                                            </p:inputText>
+                                                <div class="col-md-4">
+                                                    <p:inputText id="inscricaoEstadual" class="form-control" value="#{empresaBean.entidade.inscricaoEstadual}" placeholder="Inscricao Estadual" maxlength="14">
+                                                        <p:keyFilter for="inscricaoEstadual" mask="num" preventPaste="false"/>
+                                                    </p:inputText>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p:inputText id="inscricaoMunicipal" class="form-control" value="#{empresaBean.entidade.inscricaoMunicipal}" placeholder="Inscricao Municipal" maxlength="14">
+                                                        <p:keyFilter for="inscricaoMunicipal" mask="num" />
+                                                    </p:inputText>
+                                                </div>
+                                            </div>
+                                            <h:panelGroup id="informacoes">
+                                                <!--razao social e nome fantasia-->
+                                                <div class="row espaco">
+                                                    <div class="col-md-8">
+                                                        <p:inputText id="razaosocial" styleClass="form-control" value="#{empresaBean.entidade.razaoSocial}" maxlength="120" placeholder="Razão Social"
+                                                                     required="true" requiredMessage="Razão Social é Obrigatorio!"
+                                                                     onkeyup="upperCase(this)">
+                                                            <f:passThroughAttribute name="required" value="true"/>
+                                                        </p:inputText>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p:inputText id="nomefantasia" styleClass="form-control" value="#{empresaBean.entidade.nomeFantasia}" maxlength="120" placeholder="Nome Fantasia"
+                                                                     required="true" requiredMessage="Nome Fantasia é Obrigatorio!">
+                                                            <f:passThroughAttribute name="required" value="true"/>
+                                                        </p:inputText>
+                                                    </div>
+                                                </div>
+                                                <!--Inscricao EstadualST Cnae RegimeTributario-->
+                                                <div class="row espaco">
+                                                    <div class="col-md-4">
+                                                        <p:inputText id="inscricaoEstadualST" class="form-control" value="#{empresaBean.entidade.inscricaoEstadualSt}" placeholder="Inscrição Estadual ST" 
+                                                                     >
+                                                            <p:keyFilter for="inscricaoEstadualST" mask="num" />
+                                                        </p:inputText>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p:inputText id="cnae" class="form-control" value="#{empresaBean.entidade.cnae}" placeholder="CNAE" maxlength="7"
+                                                                     converter="converterMaskInteger">
+                                                            <p:keyFilter for="cnae" mask="num" />
+                                                        </p:inputText>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p:selectOneMenu id="regime" value="#{empresaBean.entidade.regimeTributario}" required="true"
+                                                                         requiredMessage="Regime é Obrigatorio" styleClass="select-requerido">
+                                                            <f:selectItem itemLabel="Selecione um Regime" noSelectionOption="true" class="place-cor"/>
+                                                            <f:selectItem itemLabel="Simples Nacional" itemValue="1"/>
+                                                            <f:selectItem itemLabel="Lucro Presumido (Normal)" itemValue="2"/>
+                                                            <f:selectItem itemLabel="Lucro Real" itemValue="3"/>
+                                                        </p:selectOneMenu>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>   
+                                            <!--******************-->
                                         </div>
                                     </div>
-                                    <!--cnpj inscrição estadual e inscrição municipal-->
-                                    <div class="row espaco">
-                                        <div class="col-md-4">
-                                            <p:inputMask id="cnpj" class="form-control" value="#{empresaBean.entidade.documentoIndentificacao}" placeholder="CNPJ" mask="99.999.999/9999-99"
-                                                         required="true" requiredMessage="CNPJ é Obrigatorio!" >
-                                            </p:inputMask>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p:inputText id="inscricaoEstadual" class="form-control" value="#{empresaBean.entidade.inscricaoEstadual}" placeholder="Inscricao Estadual" maxlength="14">
-                                                <p:keyFilter for="inscricaoEstadual" mask="num" />
-                                            </p:inputText>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p:inputText id="inscricaoMunicipal" class="form-control" value="#{empresaBean.entidade.inscricaoMunicipal}" placeholder="Inscricao Municipal" maxlength="14">
-                                                <p:keyFilter for="inscricaoMunicipal" mask="num" />
-                                            </p:inputText>
-                                        </div>
-                                    </div>
-                                    <!--razao social e nome fantasia-->
-                                    <div class="row espaco">
-                                        <div class="col-md-6">
-                                            <p:inputText id="razaosocial" styleClass="form-control" value="#{empresaBean.entidade.razaoSocial}" maxlength="120" placeholder="Razão Social"
-                                                         required="true" requiredMessage="Razão Social é Obrigatorio!">
-                                            </p:inputText>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p:inputText id="nomefantasia" styleClass="form-control" value="#{empresaBean.entidade.nomeFantasia}" maxlength="120" placeholder="Nome Fantasia"
-                                                         required="true" requiredMessage="Nome Fantasia é Obrigatorio!">
-                                            </p:inputText>
-                                        </div>
-                                    </div>
-                                    <!--Inscricao EstadualST Cnae RegimeTributario-->
-                                    <div class="row espaco">
-                                        <div class="col-md-4">
-                                            <p:inputText id="inscricaoEstadualST" class="form-control" value="#{empresaBean.entidade.inscricaoEstadualSt}" placeholder="Inscrição Estadual ST" 
-                                                         >
-                                                <p:keyFilter for="inscricaoEstadualST" mask="num" />
-                                            </p:inputText>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p:inputText id="cnae" class="form-control" value="#{empresaBean.entidade.cnae}" placeholder="CNAE" maxlength="7">
-                                                <p:keyFilter for="cnae" mask="num" />
-                                            </p:inputText>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p:selectOneMenu id="regime" value="#{empresaBean.entidade.regimeTributario}" required="true"
-                                                             requiredMessage="Regime é Obrigatorio">
-                                                <f:selectItem itemLabel="Selecione um Regime" noSelectionOption="true" class="place-cor"/>
-                                                <f:selectItem itemLabel="Simples Nacional" itemValue="1"/>
-                                                <f:selectItem itemLabel="Lucro Presumido (Normal)" itemValue="2"/>
-                                                <f:selectItem itemLabel="Lucro Real" itemValue="3"/>
-                                            </p:selectOneMenu>
-                                        </div>
-                                    </div>
-                                    <!--******************-->
-                                </div>
-                            </div>
+                                    <h:panelGroup id="informacoes2">
+                                        <!--Endereço da empresa-->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Endereço</div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <p:inputMask id="cep" mask="99.999-999" class="form-control" value="#{empresaBean.entidade.cep}" placeholder="CEP" 
+                                                                     required="true" requiredMessage="CEP é Obrigatorio!"  converter="converterMaskInteger">
+                                                            <p:ajax event="blur" process="@this" update="endereco bairro estado cidade" listener="#{empresaBean.consultarCep()}" />
+                                                        </p:inputMask>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p:inputText id="endereco" styleClass="form-control" value="#{empresaBean.entidade.endereco}" maxlength="60" placeholder="Endereço"
+                                                                     required="true" requiredMessage="Endereço é Obrigatorio!"
+                                                                     onkeyup="upperCase(this)" />
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p:inputText id="numero" styleClass="form-control" value="#{empresaBean.entidade.numeroEndereco}" maxlength="10" placeholder="Número"
+                                                                     required="true" requiredMessage="Número é Obrigatorio!" onkeyup="upperCase(this)"/>
+                                                    </div>  
+                                                </div>
+                                                <div class="row espaco">
+                                                    <div class="col-md-4">
+                                                        <p:inputText id="complemento" class="form-control" value="#{empresaBean.entidade.complemento}" maxlength="60" placeholder="Complemento" onkeyup="upperCase(this)"/>
+                                                    </div>
 
-                            <!--Endereço da empresa-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Endereço</div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <p:inputMask id="cep" mask="99.999-999" class="form-control" value="#{empresaBean.entidade.cep}" placeholder="CEP" 
-                                                         required="true" requiredMessage="CEP é Obrigatorio!"  converter="converterMask">
-                                                <p:ajax event="blur" process="@this" update="endereco" listener="#{empresaBean.consultarCep()}" />
-                                            </p:inputMask>
+                                                    <div class="col-md-3">
+                                                        <p:inputText id="bairro" class="form-control" value="#{empresaBean.entidade.bairro}" maxlength="60" placeholder="Bairro" onkeyup="upperCase(this)"/>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p:selectOneMenu id="estado" value="#{empresaBean.entidade.siglaEstado}" required="true" requiredMessage="O Estado é Obrigatório."
+                                                                         filter="true"  styleClass="select-requerido">
+                                                            <f:selectItem itemLabel="UF" noSelectionOption="true"/>
+                                                            <f:selectItems value="#{empresaBean.estados}" var="es" itemLabel="#{es.sigla}" itemValue="#{es.sigla}"/>
+                                                            <p:ajax event="valueChange" process="@this" update="cidade" listener="#{empresaBean.carregarCidade()}"/>
+                                                        </p:selectOneMenu>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p:selectOneMenu id="cidade" value="#{empresaBean.entidade.nomeMunicipio}" 
+                                                                         filter="true"  styleClass="select-requerido" >
+                                                            <!--required="true" requiredMessage="O Nome da Cidade é Obrigatório."-->
+                                                            <f:selectItem itemLabel="Cidade" noSelectionOption="true"/>
+                                                            <f:selectItems value="#{empresaBean.cidades}" var="c" itemLabel="#{c.nome}" itemValue="#{c.nomeToUpperCase}"/>
+                                                        </p:selectOneMenu>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-8">
-                                            <p:inputText id="endereco" styleClass="form-control" value="#{empresaBean.entidade.endereco}" maxlength="60" placeholder="Endereço"
-                                                         required="true" requiredMessage="Endereço é Obrigatorio!">
-                                            </p:inputText>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <p:inputText id="numero" styleClass="form-control" value="#{empresaBean.entidade.numeroEndereco}" maxlength="10" placeholder="Número"
-                                                         required="true" requiredMessage="Número é Obrigatorio!">
-                                            </p:inputText>
-                                        </div>  
-                                    </div>
-                                    <div class="row espaco">
-                                        <div class="col-md-4">
-                                            <p:inputText id="complemento" class="form-control" value="#{empresaBean.entidade.complemento}" maxlength="60" placeholder="Complemento" />
-                                        </div>
+                                    </h:panelGroup>
+                                    <!--botoes salvar e sair-->
+                                    <div class="container-fluid espaco">
+                                        <div class="row espaco">
+                                            <div class="col-md-2 col-lg-offset-8">
+                                                <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
+                                                                 actionListener="#{empresaBean.salvar()}"
+                                                                 update="formGrid-tabela formulario-tabEmpresa-panelCadastro formulario-tabEmpresa-msgCad tabConfiguracao"
+                                                                 process="formulario-tabEmpresa-panelCadastro" />
+                                            </div>
 
-                                        <div class="col-md-3">
-                                            <p:inputText id="bairro" class="form-control" value="#{empresaBean.entidade.bairro}" maxlength="60" placeholder="Bairro" />
-                                        </div>
-                                        <div class="col-md-2">
-                                            <p:selectOneMenu id="estado" value="#{empresaBean.entidade.siglaEstado}" required="true" requiredMessage="O Estado é Obrigatório."
-                                                             filter="true">
-                                                <f:selectItem itemLabel="UF" noSelectionOption="true"/>
-                                                <f:selectItems value="#{empresaBean.estados}" var="es" itemLabel="#{es.sigla}" itemValue="#{es.sigla}"/>
-                                                <p:ajax event="valueChange" process="@this" update="cidade" listener="#{empresaBean.carregarCidade()}"/>
-                                            </p:selectOneMenu>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p:selectOneMenu id="cidade" value="#{empresaBean.entidade.nomeMunicipio}" required="true" requiredMessage="O Nome da Cidade é Obrigatório."
-                                                             filter="true">
-                                                <f:selectItem itemLabel="Cidade" noSelectionOption="true"/>
-                                                <f:selectItems value="#{empresaBean.cidades}" var="c" itemLabel="#{c.nome}" itemValue="#{c.nome}"/>
-                                            </p:selectOneMenu>
+                                            <div class="col-md-2">
+                                                <p:commandButton value="Sair" styleClass="btn btsair"
+                                                                 process="@this" oncomplete="PF('dlCad').hide();"/>
+                                                <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </h:panelGroup>
+                                <p:commandButton id="button-default" style="display: none;"/>
+                                <p:defaultCommand target="formulario-tabEmpresa-button-default" />
                             </div>
-                            <!--botoes salvar e sair-->
-                            <div class="container-fluid espaco">
-                                <div class="row espaco">
-                                    <div class="col-md-2 col-lg-offset-6">
-                                        <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
-                                                         actionListener="#{empresaBean.salvar()}"
-                                                         update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
-                                                         process="formulario-panelCadastro"/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <p:commandButton value="Configuração" styleClass="btn btconfigurar"
-                                                         process="@this" disabled="#{!empresaBean.inativo}"/>
-                                        
-                                    </div>
-                                    <div class="col-md-2">
-                                        <p:commandButton value="Sair" styleClass="btn btsair"
-                                                         process="@this" oncomplete="PF('dlCad').hide();"/>
-                                        <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </h:panelGroup>
-                        <p:commandButton id="button-default" style="display: none;"/>
-                        <p:defaultCommand target="formulario-button-default" />
-                    </div>
+                        </p:tab>
+                        <p:tab id="tabConfiguracao" title="Configurações" rendered="#{empresaBean.inativo}">
+
+                        </p:tab>
+                    </p:tabView>
                 </p:dialog>
-
                 <!--MAPA DE TECLAS DE ATALHO-->
 
                 <!--NOVO-->
-                <p:hotkey bind="f1" update="formulario-panelCadastro" process="@this"
+                <p:hotkey bind="f1" update="formulario-tabEmpresa-panelCadastro" process="@this"
                           oncomplete="PF('dlCad').show();">
-                    <p:resetInput target="formulario-panelCadastro" />    
+                    <p:resetInput target="formulario-tabEmpresa-panelCadastro" />    
                 </p:hotkey>
             </h:form>
         </f:view> 
@@ -295,7 +306,6 @@
             <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
             <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
         </p:confirmDialog>
-
     </ui:define>
 </ui:composition>
 

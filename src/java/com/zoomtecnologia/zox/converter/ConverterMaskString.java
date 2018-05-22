@@ -14,13 +14,13 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Wagner
  */
-@FacesConverter("converterMask")
-public class ConverterMask implements Converter {
+@FacesConverter("converterMaskString")
+public class ConverterMaskString implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        if (!(value = value.replaceAll("\\D", "")).isEmpty()) {
-            return Integer.parseInt(value);
+        if (!(value = value.replaceAll("\\D", "")).isEmpty()) {   
+            return value;
         }
         return 0;
     }

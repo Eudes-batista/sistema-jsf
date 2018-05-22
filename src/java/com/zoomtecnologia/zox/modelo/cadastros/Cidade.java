@@ -46,5 +46,9 @@ public class Cidade extends Filtro implements EntidadeBase<CidadePK>, Serializab
     public CidadePK getId() {
         return this.cidadePK;
     }
-
+    
+    public String getNomeToUpperCase(){
+        return this.nome.toUpperCase();
+    }
+    
 }
