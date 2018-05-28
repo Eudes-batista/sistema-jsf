@@ -126,12 +126,12 @@
                 <p:ajax event="close" listener="#{paisBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
-                <div class="ui-fluid">
+                <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="codigo"  value="#{paisBean.entidade.codigo}" class="form-control" placeholder="Codigo"
+                                    <p:inputText id="codigo"  value="#{paisBean.entidade.codigo}" styleClass="form-control" placeholder="Codigo"
                                                  required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" disabled="#{paisBean.inativo}" maxlength="4">
                                         <p:keyFilter for="codigo" mask="num" />
                                     </p:inputText>
@@ -139,7 +139,7 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="descricao" class="form-control" value="#{paisBean.entidade.descricao}" maxlength="50" placeholder="Descrição"
+                                    <p:inputText id="descricao" styleClass="form-control" value="#{paisBean.entidade.descricao}" maxlength="50" placeholder="Descrição"
                                                  required="true" requiredMessage="Nome do Grupo é Obrigatorio!">
                                     </p:inputText>
                                 </div>

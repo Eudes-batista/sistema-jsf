@@ -23,14 +23,17 @@ import org.hibernate.annotations.ForeignKey;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NamedQueries({
-    @NamedQuery(name="ConfiguracaoEmpresa.buscarPorEmpresa",query="select c from ConfiguracaoEmpresa c where c.empresa.codigo=:empresa")
+    @NamedQuery(name="ConfiguracaoEmpresa.buscarPorEmpresa",query="select c from ConfiguracaoEmpresa c where c.codigo=:empresa")
 })
-public class ConfiguracaoEmpresa extends Filtro implements Serializable, EntidadeBase<Empresa> {
+public class ConfiguracaoEmpresa extends Filtro implements Serializable, EntidadeBase<String> {
 
 /**
  * CHAVE PRIMARIA CODIGO DA EMPRESA
  */
     @Id
+    @Column (name = "codigo",length =3 , nullable = false)
+    private String codigo;
+    
     @OneToOne
     @JoinColumn(name = "empresa", nullable = false)
     @ForeignKey(name = "configuracao_empresaFKempresa")
@@ -38,7 +41,8 @@ public class ConfiguracaoEmpresa extends Filtro implements Serializable, Entidad
 /**
  * CAMINHO DO CERTIFICADO
  */
-    @Column (name = "caminho_certificado", nullable = false)
+    
+    @Column (name = "caminho_certificado", nullable = false,columnDefinition = "text")
     private String caminhoCertificado;
     
     /**
@@ -63,7 +67,7 @@ public class ConfiguracaoEmpresa extends Filtro implements Serializable, Entidad
      * PORTA DO SERVIDOR SMTP
      */
     @Column (name = "porta_smtp", length = 5, nullable = true)
-    private int portaSmtp;
+    private Integer portaSmtp;
     
     /**
      * EMAIL
@@ -99,13 +103,13 @@ public class ConfiguracaoEmpresa extends Filtro implements Serializable, Entidad
      * NUMERO DA ULTIMA NFE
      */
     @Column (name = "ultima_nfe", length = 9, nullable = false)
-    private int ultimaNfe;
+    private Integer ultimaNfe;
     
     /**
      * SERIE DA NFE
      */
     @Column (name = "serie_nfe", length = 3, nullable = false)
-    private int serieNfe;
+    private Integer serieNfe;
     
     /**
      * DATA DA ULTIMA NFE
@@ -146,8 +150,8 @@ public class ConfiguracaoEmpresa extends Filtro implements Serializable, Entidad
     
     
     @Override
-    public Empresa getId() {
-        return this.empresa;
+    public String getId() {
+        return this.codigo;
     }
 
 }

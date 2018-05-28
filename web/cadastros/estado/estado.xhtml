@@ -65,7 +65,7 @@
                                     <div  class="tituloGrid">
                                         Estados
                                     </div>
-                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{estadoBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
+                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{estadoBean.entidade.pesquisa}" styleClass="form-control campoPesquisa"/>
 
                                 </p:panelGrid>
                                 <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{estadoBean.pesquisar()}" 
@@ -125,7 +125,7 @@
                 <p:ajax event="close" listener="#{estadoBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
-                <div class="ui-fluid">
+                <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
                             <div class="row espaco">
@@ -140,7 +140,7 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="codigo" placeholder="Codigo" value="#{estadoBean.entidade.estadoPK.codigo}"
+                                    <p:inputText id="codigo" placeholder="Codigo" styleClass="form-control" value="#{estadoBean.entidade.estadoPK.codigo}" 
                                                  required="true" requiredMessage="Codigo do Estado é Obrigatorio!" disabled="#{estadoBean.inativo}" maxlength="2">
                                         <p:keyFilter for="codigo" mask="num"/>
                                     </p:inputText> 
@@ -148,13 +148,13 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText placeholder="Nome" value="#{estadoBean.entidade.nome}"
+                                    <p:inputText placeholder="Nome" styleClass="form-control" value="#{estadoBean.entidade.nome}" 
                                                  required="true" requiredMessage="Nome do Estado é Obrigatorio!" maxlength="50"/>  
                                 </div>
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText placeholder="Sigla" value="#{estadoBean.entidade.sigla}"
+                                    <p:inputText placeholder="Sigla" styleClass="form-control" value="#{estadoBean.entidade.sigla}" 
                                                  required="true" requiredMessage="Sigla do Estado é Obrigatorio!" maxlength="2"/> 
                                 </div>
                             </div>

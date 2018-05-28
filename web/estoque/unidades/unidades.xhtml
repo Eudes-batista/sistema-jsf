@@ -18,6 +18,7 @@
             }
             .tamanhoForm2{
                 width:500px !important;
+
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -29,7 +30,6 @@
             }
 
         </style>
-
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
@@ -76,7 +76,7 @@
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10"
                                      value="#{unidadeBean.model}"
-                                     var="u" reflow="true" tableStyleClass="table table-hover">
+                                     var="u" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
                             <p:column headerText="Codigo"  sortBy="#{u.codigo}" style="text-align: left;">
                                 <div align="left">
                                     #{u.codigo}    
@@ -117,27 +117,27 @@
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Unidade" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+            <p:dialog id="dl" header="Cadastro de Unidades" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="false"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="false"  closeOnEscape="true">
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true">
                 <p:ajax event="close" listener="#{unidadeBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
-                <div class="ui-fluid">
+                <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="codigo" placeholder="Codigo" value="#{unidadeBean.entidade.codigo}"
-                                                 required="true" requiredMessage="Codigo do Unidade é Obrigatorio!" disabled="#{unidadeBean.inativo}"
+                                    <p:inputText id="codigo" placeholder="Codigo" styleClass="form-control" value="#{unidadeBean.entidade.codigo}"
+                                                 required="true" requiredMessage="Codigo da Unidade é Obrigatorio!" disabled="#{unidadeBean.inativo}"
                                                  maxlength="5" onkeyup="upperCase(this)"/>
                                 </div>
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="nome" placeholder="Nome" value="#{unidadeBean.entidade.descricao}"
-                                                 required="true" requiredMessage="Nome do Unidade é Obrigatorio!"
-                                                 maxlength="20" onkeyup="upperCase(this)"/>
+                                    <p:inputText id="nome" placeholder="Nome" styleClass="form-control" value="#{unidadeBean.entidade.descricao}"
+                                                 required="true" requiredMessage="Nome da Unidade é Obrigatorio!"
+                                                 maxlength="20" onkeyup="upperCase(this)"/>  
                                 </div>
                             </div>
                         </div>
@@ -166,4 +166,6 @@
             <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
         </p:confirmDialog>
     </ui:define>
+
 </ui:composition>
+

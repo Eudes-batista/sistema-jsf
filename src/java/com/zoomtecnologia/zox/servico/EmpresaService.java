@@ -15,4 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmpresaService extends EntidadeService<Empresa>{
     
+    public Empresa buscarPorEmpresa(Empresa empresa);
+    
 }

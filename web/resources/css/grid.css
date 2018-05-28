@@ -1,7 +1,8 @@
 
 /****************  CSS DA GRID  *************************************************************************************/
-
-
+*{
+    font-family: Arial, sans-serif;
+}
 body{
     background: #fff !important;
 }
@@ -29,8 +30,8 @@ li{
 /*BARRA DE PESQUISA DA GRID*/
 .barraPesquisa{
     margin-top: 5px;
-    /*    background: linear-gradient(41deg, #424b59 20%, #1fc8db 61%, #1fc8db 75%) !important;*/
-    background: transparent !important;
+    background: linear-gradient(41deg, #fff 20%, #f5f5f5 61%, #7891ab 75%) !important;
+    /*background: #7891ab !important;*/
     padding: 5px;
     border-radius: 5px 0px 0px 0px !important;
     text-align: right !important;
@@ -39,7 +40,7 @@ li{
 
 /*TITULO DO CABEÇALHO*/
 .tituloGrid{
-    color: #959595 !important;
+    color: #7891ab !important;
     text-align: left !important;
     font-size: 20pt;
     font-weight: bold;
@@ -69,6 +70,7 @@ table tbody tr,table tbody td{
     padding-right: 7px !important;
     padding-left: 7px !important;
     font-family: Arial, sans-serif;
+    color: #959595;
 }
 
 
@@ -96,7 +98,7 @@ table tbody tr:hover{
     margin-left: 5px !important;
 }
 table thead th{
-    background: #BBB !important;
+    background: #7891ab !important;
     border: none !important;
     border-radius: 0px!important;
     color: #f9f9f9 !important;
@@ -169,9 +171,14 @@ table thead tr{
 
 }
 div.ui-dialog{
-    background: #FFF !important; 
+    background: #7891ab !important; 
     padding: 0px;
 } 
+.sobre-fundo{
+    background: #fff !important;
+    padding: 10px !important;
+    border-radius: 3px !important;
+}
 
 /***********CABEÇALHO DO FORM*******/
 .ui-widget .ui-dialog-titlebar{
@@ -189,7 +196,6 @@ div.ui-dialog{
     font-weight: bold !important;
     font-family: tahoma !important;
     margin: 0px !important;
-
 }
 
 /***********COR DO ICONE MAIS DO FORM*******/
@@ -235,22 +241,29 @@ span.ui-icon-closethick:before {
 .ui-fluid{
     font-family: Arial,sans-serif !important;
 }
-
-.panel-heading{
+/*TITULO DO PANEL*/
+.panel-heading,.panel-heading a{
     font-size: 12pt !important;
     color: #858585 !important;
     font-weight: bold !important;
     border: none !important;
+    background: #dce2e9 !important;
+    border-radius: 0px !important;
+    font-weight: bold !important;
 }
-.panel-body{
-    background: #fff !important;
+/*CORPO DO PANEL*/
+.panel-body, .panel, .panel-default{
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 0px solid #ccc !important;
 }
-
+/*TAMANHO DO FORM*/
 .tamanhoForm{
     width:auto !important;
     border: none !important;
 
 }
+/*BARRA DE BOTOES DO FORM*/
 .barraBotoes{
     margin-top: 5px !important;
     background: transparent !important;
@@ -262,15 +275,16 @@ span.ui-icon-closethick:before {
 
 /*COR DO PLACEHOLDER*/
 input::placeholder {
-    color: #ddd;
+    color: #a8d2da !important   ;
     text-transform: capitalize;
 }
 
+/*SELECTIONS*/
 .ui-selectonemenu{
-    color: #ddd !important;
+    color: #aaa !important;
     font-family: Arial, sans-serif !important;
     font-size: 11pt !important;
-
+    background: #fff !important;
 }
 
 @media only screen and (max-width: 760px) {
@@ -293,14 +307,21 @@ input::placeholder {
 .form-control{
     text-transform: uppercase !important;
     font-size: 11pt !important;
-    font-family: Arial, sans-serif !important;
+    font-family: Arial, sans-serif !important; 
+    color: #757575 !important;
 
 }
+/*MENSAGEM DE EXCLUIR*/
+.ui-confirm-dialog .ui-dialog-content,.ui-confirm-dialog .ui-dialog-footer{
+    background: #fff !important;
+    margin-top: -5px !important ;
+}
 
-/*.col-md-1, .col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12{
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-}*/
+/*TABS FUNDO*/
+.ui-tabs{
+    background: #fff !important;
+}
+
 /*CAMPO DESTAQUE*/
 .campo-destaque{
     font-size: 13pt !important;

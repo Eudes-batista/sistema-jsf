@@ -116,16 +116,16 @@
         <h:form id="formulario" acceptcharset="UTF-8">
             <p:dialog id="dl" header="Cadastro de Cfop" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
                       closable="true" responsive="true" fitViewport="true" draggable="true"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="false">
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true">
                 <p:ajax event="close" listener="#{cfopBean.novo()}" update="dl" process="dl"/>
 
                 <p:growl id="msgCad" />
-                <div class="ui-fluid">
+                <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="cfop" placeholder="Codigo" value="#{cfopBean.entidade.codigo}" maxlength="4"
+                                    <p:inputText id="cfop" placeholder="Codigo" styleClass="form-control" value="#{cfopBean.entidade.codigo}" maxlength="4"
                                                  required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" disabled="#{cfopBean.inativo}">
                                         <p:ajax event="blur" process="@this" update="cop" listener="#{cfopBean.carregarCop()}"/>
                                         <p:keyFilter for="cfop" mask="num" />
@@ -134,7 +134,7 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText placeholder="Natureza de Operação" value="#{cfopBean.entidade.naturezaOperacao}"
+                                    <p:inputText placeholder="Natureza de Operação" styleClass="form-control" value="#{cfopBean.entidade.naturezaOperacao}"
                                                  required="true" requiredMessage="Nome do Cfop é Obrigatorio!" maxlength="60"/>  
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText placeholder="Descrição completa da natureza da operação" value="#{cfopBean.entidade.descCompNatOp}"
+                                    <p:inputText placeholder="Descrição completa da natureza da operação" styleClass="form-control" value="#{cfopBean.entidade.descCompNatOp}"
                                                  maxlength="30"/>                                   
                                 </div>
                             </div>

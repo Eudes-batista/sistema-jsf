@@ -5,6 +5,7 @@ import com.zoomtecnologia.zox.modelo.cadastros.Empresa;
 import com.zoomtecnologia.zox.servico.EmpresaService;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -70,6 +71,16 @@ public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements E
         Criteria c = criteria;
         Criterion nome = Restrictions.ilike("razaoSocial", filtro.getRazaoSocial(), MatchMode.ANYWHERE);
         return c.add(nome);
+    }
+    
+    @Override
+    public Empresa buscarPorEmpresa(Empresa empresa){
+        try{
+            return entityManager.createNamedQuery("Empresa.buscarPorCodigo",Empresa.class).setParameter("codigo",empresa.getCodigo()).getSingleResult();
+        }catch(NoResultException ex){
+            return null;
+        }
+        
     }
 
 }

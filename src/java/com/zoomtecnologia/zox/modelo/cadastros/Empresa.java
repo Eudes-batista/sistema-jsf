@@ -16,14 +16,15 @@ import org.hibernate.validator.constraints.br.CNPJ;
 @Entity
 @Table(name = "empresa")
 @Data
+@EqualsAndHashCode(callSuper = false,of={"codigo"})
 @NamedQueries({
     @NamedQuery(name = "Empresa.buscarRazaoSocial",
             query = "select e from Empresa e where e.razaoSocial like :razaoSocial or "
             + "e.nomeFantasia like :nomeFantasia or "
             + "e.documentoIndentificacao = :documetoIndentificacao or "
             + "e.inscricaoEstadual = :inscricaoEstadual")
+   ,@NamedQuery(name="Empresa.buscarPorCodigo",query="select e from Empresa e where e.codigo=:codigo")     
 })
-@EqualsAndHashCode(callSuper = false)
 public class Empresa extends Filtro implements EntidadeBase<String>, Serializable {
 
     private static final long serialVersionUID = 1L;

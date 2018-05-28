@@ -129,7 +129,7 @@
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
-                <div class="ui-fluid ">
+                <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
                             <div class="row espaco">
@@ -193,15 +193,15 @@
                     <p:panelGrid  id="panelsubGrupo" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
                         <h3 class="tituloGrid">Sub-Grupo</h3>
                         <p:panelGrid  columns="2" layout="grid" styleClass="ui-panelgrid-blank">
-                            <p:inputText placeholder="Codigo" value="#{grupoBean.sub.subGrupoPK.codigo}" required="true" requiredMessage="Codigo é Obrigatorio"
+                            <p:inputText placeholder="Codigo" styleClass="form-control" value="#{grupoBean.sub.subGrupoPK.codigo}" required="true" requiredMessage="Codigo é Obrigatorio"
                                          maxlength="20"/>
-                            <p:inputText placeholder="Nome" value="#{grupoBean.sub.descricao}" required="true" requiredMessage="Descrição é Obrigatorio"
+                            <p:inputText placeholder="Nome" styleClass="form-control" value="#{grupoBean.sub.descricao}" required="true" requiredMessage="Descrição é Obrigatorio"
                                          maxlength="50"/>
-                            <p:inputText id="ncm" placeholder="Ncm" value="#{grupoBean.sub.ncm}" maxlength="8" validatorMessage="O NCM tem que ter no minimo 8 números">
+                            <p:inputText id="ncm" placeholder="Ncm" styleClass="form-control" value="#{grupoBean.sub.ncm}" maxlength="8" validatorMessage="O NCM tem que ter no minimo 8 números">
                                 <p:keyFilter for="ncm" mask="num" />
                                 <f:validateLength minimum="8" maximum="8" />
                             </p:inputText>
-                            <p:inputText id="cest" placeholder="Cest" value="#{grupoBean.sub.cest}" maxlength="7" validatorMessage="O CEST tem que ter no minimo 7 números">
+                            <p:inputText id="cest" placeholder="Cest" styleClass="form-control" value="#{grupoBean.sub.cest}" maxlength="7" validatorMessage="O CEST tem que ter no minimo 7 números">
                                 <p:keyFilter for="cest" mask="num" />
                                 <f:validateLength minimum="7" maximum="7" />
                             </p:inputText>

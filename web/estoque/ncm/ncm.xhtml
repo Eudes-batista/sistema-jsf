@@ -123,12 +123,12 @@
                 <p:ajax event="close" listener="#{ncmBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
-                <div class="ui-fluid">
+                <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText id="ncm" placeholder="Codigo" value="#{ncmBean.entidade.codigo}"
+                                    <p:inputText id="ncm" placeholder="Codigo" styleClass="form-control" value="#{ncmBean.entidade.codigo}"
                                                  required="true" requiredMessage="Codigo do Ncm é Obrigatorio!" disabled="#{ncmBean.inativo}"
                                                  maxlength="8" validatorMessage="O NCM tem que ter no minimo 8 números">
                                         <p:keyFilter for="ncm" mask="num" />
@@ -138,7 +138,7 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText placeholder="Nome" value="#{ncmBean.entidade.descricao}"
+                                    <p:inputText placeholder="Nome" styleClass="form-control" value="#{ncmBean.entidade.descricao}"
                                                  required="true" requiredMessage="Nome do Ncm é Obrigatorio!" maxlength="150"/>
                                 </div>
                             </div>
