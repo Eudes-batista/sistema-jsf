@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "pais")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false,of={"codigo"})
 @NamedQueries({
     @NamedQuery(name = "Pais.listarTodos", query = "select p from Pais p order by p.descricao")
     ,@NamedQuery(name = "Pais.buscarPorDescricao", query = "select p from Pais p where p.descricao=:descricao")
