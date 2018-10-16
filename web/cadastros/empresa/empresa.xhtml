@@ -6,7 +6,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/modelo.xhtml"
-                xmlns:o="http://omnifaces.org/ui">
+                xmlns:o="http://omnifaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:metadata>
         <f:viewAction action="#{empresaBean.inicializar()}"/>
     </f:metadata>
@@ -130,7 +131,7 @@
         <f:view encoding="UTF-8">
             <h:form id="formulario" acceptcharset="UTF-8" enctype="multipart/form-data">
                 <p:dialog id="dl" header="Cadastro de Empresa" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
-                          closable="true" responsive="true"  draggable="true" dynamic="true"
+                          closable="true" responsive="true"  draggable="true" dynamic="true" closeOnEscape="true"
                           resizable="false"  styleClass="tamanhoForm1" minimizable="true" visible="false" position="top" modal="true" >
                     <p:tabView id="tabEmpresa">
                         <p:tab title="Empresa">
@@ -331,71 +332,78 @@
                                         </div>
                                     </div>
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">NFe</div>
-                                        <div class="panel-body">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <p:selectOneMenu id="ambiente" value="#{empresaBean.configuracaoEmpresa.ambienteNfe}">
-                                                            <f:selectItem itemLabel="Ambiente da NFe" noSelectionOption="true"/>
-                                                            <f:selectItem itemLabel="Homologação" itemValue="HOMOLOGACAO"/>
-                                                            <f:selectItem itemLabel="Produção" itemValue="PRODUCAO"/>
-                                                        </p:selectOneMenu>
-                                                        <p:tooltip for="ambiente" value="Ambiente da NF-e" position="top" />
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" href="#nfePanel" class="glyphicon glyphicon-chevron-down" ><span> NF-e</span></a>
+                                        </div>
+                                        <div id="nfePanel" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <p:selectOneMenu id="ambiente" value="#{empresaBean.configuracaoEmpresa.ambienteNfe}">
+                                                                <f:selectItem itemLabel="Ambiente da NFe" noSelectionOption="true"/>
+                                                                <f:selectItem itemLabel="Homologação" itemValue="HOMOLOGACAO"/>
+                                                                <f:selectItem itemLabel="Produção" itemValue="PRODUCAO"/>
+                                                            </p:selectOneMenu>
+                                                            <p:tooltip for="ambiente" value="Ambiente da NF-e" position="top" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p:inputText id="ultimaNfe" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.ultimaNfe}" maxlength="9" placeholder="Nº da Última Nota"
+                                                                         required="true" requiredMessage="Serie é Obrigatorio"/>
+                                                            <p:tooltip for="ultimaNfe" value="Número da ultima nota" position="top" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p:inputText id="serieNfe" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.serieNfe}" maxlength="3" placeholder="Série"/>
+                                                            <p:tooltip for="serieNfe" value="Serie da ultima nota" position="top" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p:inputMask mask="99/99/9999" id="dataUltimaNfe" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.dataUltimaNfe}"  placeholder="Data da Última nota"
+                                                                         converter="converterData"/>
+                                                            <p:tooltip for="dataUltimaNfe" value="Data da ultima nota" position="top" />
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <p:inputText id="ultimaNfe" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.ultimaNfe}" maxlength="9" placeholder="Nº da Última Nota"/>
-                                                        <p:tooltip for="ultimaNfe" value="Número da ultima nota" position="top" />
+                                                    <div class="row espaco">
+                                                        <div class="col-md-3">
+                                                            <p:selectOneMenu id="versao" value="#{empresaBean.configuracaoEmpresa.versaoNfe}" >
+                                                                <f:selectItem itemLabel="VERSÂO" noSelectionOption="true"/>
+                                                                <f:selectItem itemLabel="V3.10" itemValue="3.10"/>
+                                                                <f:selectItem itemLabel="V4.00" itemValue="4.00"/>
+                                                            </p:selectOneMenu>
+                                                            <p:tooltip for="versao" value="Versão" position="top" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p:selectOneMenu id="formaEmissao" value="#{empresaBean.configuracaoEmpresa.formaEmissao}">
+                                                                <f:selectItem itemLabel="Forma de Emissão" noSelectionOption="true"/>
+                                                                <f:selectItem itemLabel="NORMAL" itemValue="NORMAL"/>
+                                                                <f:selectItem itemLabel="CONTINGENCIA" itemValue="CONTINGENCIA"/>
+                                                            </p:selectOneMenu>
+                                                            <p:tooltip for="formaEmissao" value="Forma de Emissão" position="top" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p:inputText id="token" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.tokenNfe}" maxlength="20" placeholder="Token"/>
+                                                            <p:tooltip for="token" value="Token ou CSC" position="top" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <p:inputText id="IdToken" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.idTokenNfe}"  placeholder="Id Token"
+                                                                         />
+                                                            <p:tooltip for="IdToken" value="Id do Token" position="top" />
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <p:inputText id="serieNfe" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.serieNfe}" maxlength="3" placeholder="Série"/>
-                                                        <p:tooltip for="serieNfe" value="Serie da ultima nota" position="top" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <p:inputMask mask="99/99/9999" id="dataUltimaNfe" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.dataUltimaNfe}"  placeholder="Data da Última nota"
-                                                                     converter="converterData"/>
-                                                        <p:tooltip for="dataUltimaNfe" value="Data da ultima nota" position="top" />
-                                                    </div>
-                                                </div>
-                                                <div class="row espaco">
-                                                    <div class="col-md-3">
-                                                        <p:selectOneMenu id="versao" value="#{empresaBean.configuracaoEmpresa.versaoNfe}" >
-                                                            <f:selectItem itemLabel="VERSÂO" noSelectionOption="true"/>
-                                                            <f:selectItem itemLabel="V3.10" itemValue="3.10"/>
-                                                            <f:selectItem itemLabel="V4.00" itemValue="4.00"/>
-                                                        </p:selectOneMenu>
-                                                        <p:tooltip for="versao" value="Versão" position="top" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <p:selectOneMenu id="formaEmissao" value="#{empresaBean.configuracaoEmpresa.formaEmissao}">
-                                                            <f:selectItem itemLabel="Forma de Emissão" noSelectionOption="true"/>
-                                                            <f:selectItem itemLabel="NORMAL" itemValue="NORMAL"/>
-                                                            <f:selectItem itemLabel="CONTINGENCIA" itemValue="CONTINGENCIA"/>
-                                                        </p:selectOneMenu>
-                                                        <p:tooltip for="formaEmissao" value="Forma de Emissão" position="top" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <p:inputText id="token" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.tokenNfe}" maxlength="20" placeholder="Token"/>
-                                                        <p:tooltip for="token" value="Token ou CSC" position="top" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <p:inputText id="IdToken" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.idTokenNfe}"  placeholder="Id Token"
-                                                                     />
-                                                        <p:tooltip for="IdToken" value="Id do Token" position="top" />
-                                                    </div>
-                                                </div>
-                                                <div class="row espaco">
-                                                    <div class="col-md-8">
-                                                        <p:fileUpload id="caminhoLogo" mode="advanced" value="#{empresaBean.configuracaoEmpresa.caminhoLogo}" cancelLabel="Cancelar" 
-                                                                      uploadLabel="Carregar" label="Adicionar" allowTypes="/(\.|\/)(jpe?g|png)$/" 
-                                                                      fileUploadListener="#{empresaBean.carregarLogo}" 
-                                                                      process="@this" update="logo" auto="true"/>
-                                                        <p:tooltip for="caminhoLogo" value="Caminho da logo da empresa" position="top" />
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <h:panelGroup id="logo">
-                                                            <p:graphicImage width="300" library="imagens" name="logo.#{empresaBean.configuracaoEmpresa.caminhoLogo}"/>
-                                                        </h:panelGroup>
+                                                    <div class="row espaco">
+                                                        <div class="col-md-8">
+                                                            <p:fileUpload id="caminhoLogo" mode="advanced" value="#{empresaBean.configuracaoEmpresa.caminhoLogo}" cancelLabel="Cancelar" 
+                                                                          uploadLabel="Carregar" label="Adicionar" allowTypes="/(\.|\/)(jpe?g|png)$/" 
+                                                                          fileUploadListener="#{empresaBean.carregarLogo}" 
+                                                                          process="@this" update="logo" auto="true"/>
+                                                            <p:tooltip for="caminhoLogo" value="Caminho da logo da empresa" position="top" />
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <h:panelGroup id="logo">
+                                                                <c:if test="#{not empty empresaBean.configuracaoEmpresa.caminhoLogo}">
+                                                                    <p:graphicImage width="300" library="imagens" name="#{empresaBean.configuracaoEmpresa.caminhoLogo}"/>
+                                                                </c:if>
+                                                            </h:panelGroup>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -404,7 +412,7 @@
 
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" href="#emailPanel" >Email</a>
+                                             <a data-toggle="collapse" href="#emailPanel" class="glyphicon glyphicon-chevron-down" ><span> Email</span></a>
                                         </div>
                                         <div id="emailPanel" class="panel-collapse collapse">
                                             <div class="panel-body">
@@ -425,12 +433,36 @@
                                                                         redisplay="true"/>
                                                             <p:tooltip for="senha" value="Senha do E-mail" position="top" />
                                                         </div>
+                                                        <div class="col-md-3">
+                                                            <p:inputText id="assunto" value="#{empresaBean.configuracaoEmpresa.assuntoEmail}" placeholder="Assunto do E-mail" styleClass="form-control"/>
+                                                            <p:tooltip for="assunto" value="Assunto do E-mail" position="top" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row espaco">
+                                                        <div class="col-md-12">
+                                                            <p:inputTextarea id="mensagemEmail" value="#{empresaBean.configuracaoEmpresa.mensagemEmail}" placeholder="Mensagem do E-mail" styleClass="form-control"/>
+                                                            <p:tooltip for="mensagemEmail" value="Mensagem do E-mail" position="top" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" href="#tributacaoPanel" class="glyphicon glyphicon-chevron-down" ><span> Tributação</span></a>
+                                        </div>
+                                        <div id="tributacaoPanel" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </h:panelGroup> 
                         </p:tab>

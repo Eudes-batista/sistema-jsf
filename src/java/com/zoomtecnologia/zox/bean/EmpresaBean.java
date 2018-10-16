@@ -63,9 +63,6 @@ public class EmpresaBean extends GenericoBean<Empresa, EmpresaService> {
     @Getter
     @Setter
     private List<Cidade> cidades;
-    
-    @Getter
-    private String tipo;
 
     /**
      * Carrega a cidade pelo estado selecionado
@@ -182,11 +179,11 @@ public class EmpresaBean extends GenericoBean<Empresa, EmpresaService> {
        String caminho = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/imagens/");
         try {
            String[] img = event.getFile().getFileName().split(Pattern.quote("."));
-            this.tipo = img[1];
-            caminho = caminho+"logo."+this.tipo;
+            String nomeDoArquivo="logo_"+this.getEntidade().getCodigo()+"."+img[1];
+            caminho = caminho+nomeDoArquivo;
             FileOutputStream fileOutputStream = new FileOutputStream(caminho);
             fileOutputStream.write(event.getFile().getContents());
-            this.configuracaoEmpresa.setCaminhoLogo(this.tipo);
+            this.configuracaoEmpresa.setCaminhoLogo(nomeDoArquivo);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(EmpresaBean.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
