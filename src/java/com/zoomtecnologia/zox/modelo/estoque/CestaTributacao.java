@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zoomtecnologia.zox.modelo.estoque;
 
 import java.io.Serializable;
@@ -15,16 +10,11 @@ import javax.persistence.Table;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-/**
- *
- * @author Administrador
- */
 @Entity
 @Table(name = "cesta_tributacao")
 @Data
 @NamedQueries({
-    @NamedQuery(name = "CestaTributacao.listarTodos", query = "select u from CestaTributacao u")
-    ,
+    @NamedQuery(name = "CestaTributacao.listarTodos", query = "select u from CestaTributacao u"),
     @NamedQuery(name = "CestaTributacao.buscarDescricao", query = "select u from CestaTributacao u where u.descricao like :descricao")
 })
 public class CestaTributacao implements Serializable {
