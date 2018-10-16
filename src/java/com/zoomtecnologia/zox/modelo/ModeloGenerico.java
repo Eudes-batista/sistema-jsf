@@ -10,8 +10,8 @@ import com.zoomtecnologia.zox.servico.EntidadeService;
 public abstract class ModeloGenerico<E extends Filtro, D extends EntidadeService> extends LazyDataModel<E> {
 
     private static final long serialVersionUID = 1L;
-    private Filtro filtro;
-    private EntidadeService genericServico;
+    private final Filtro filtro;
+    private final EntidadeService genericServico;
 
     public ModeloGenerico() {
         this.genericServico = getGenericServiceModel();
