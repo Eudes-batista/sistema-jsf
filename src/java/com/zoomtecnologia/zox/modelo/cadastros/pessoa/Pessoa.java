@@ -31,7 +31,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "pessoa")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false,of = {"documentoIdentificacao"})
 public class Pessoa extends Filtro implements EntidadeBase<String>, Serializable {
 
     @Id
