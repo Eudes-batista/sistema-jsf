@@ -21,6 +21,7 @@ public class FiltroRequisicoes implements Filter{
     public void doFilter(ServletRequest sr, ServletResponse sr1, FilterChain fc) throws IOException, ServletException {
         sr.setCharacterEncoding("UTF-8");
         fc.doFilter(sr, sr1);
+        
     }
 
     @Override

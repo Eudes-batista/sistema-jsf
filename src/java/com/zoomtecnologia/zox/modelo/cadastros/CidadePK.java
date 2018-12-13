@@ -16,7 +16,7 @@ public class CidadePK implements Serializable {
     /**
      * CODIGO CHAVE DO MUNICIPIO DE ACORDO COM O IBGE
      */
-    @Column(name = "MUCODIGO", length = 7, nullable = false)
+    @Column(length = 7, nullable = false)
     private Integer codigo;
 
     /**
@@ -24,8 +24,8 @@ public class CidadePK implements Serializable {
      */
     @ManyToOne
     @JoinColumns({
-        @JoinColumn(name="MUCODIUF",referencedColumnName = "UFCODIGO",nullable = false)
-       ,@JoinColumn(name="MUCDPAIS",referencedColumnName = "UFCDPAIS",nullable = false)     
+        @JoinColumn(name="codigo_estado",referencedColumnName = "codigo",nullable = false)
+       ,@JoinColumn(name="codigo_pais",referencedColumnName = "codigo_pais",nullable = false)     
     })        
     @ForeignKey(name="cidadeFKestado")        
     private Estado estado;

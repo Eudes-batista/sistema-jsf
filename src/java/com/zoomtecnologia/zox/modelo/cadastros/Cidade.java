@@ -21,7 +21,6 @@ import lombok.EqualsAndHashCode;
     ,@NamedQuery(name = "Cidade.buscarDescricao", query = "select c from Cidade c where c.nome like :nome")
     ,@NamedQuery(name = "Cidade.buscarPorEstado", query = "select c from Cidade c where c.cidadePK.estado.sigla=:estado")
 })
-
 public class Cidade extends Filtro implements EntidadeBase<CidadePK>, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +38,7 @@ public class Cidade extends Filtro implements EntidadeBase<CidadePK>, Serializab
     /**
      * NOME DO MUNICIPIO DE ACORDO COM O IBGE
      */
-    @Column(name = "MUNOMMUN", length = 60, nullable = false, columnDefinition = "varchar(60) not null default 'EXTERIOR'")
+    @Column(length = 60, nullable = false, columnDefinition = "varchar(60) not null default 'EXTERIOR'")
     private String nome;
 
     @Override

@@ -16,14 +16,14 @@ public class EstadoPK implements Serializable{
      /**
      * CODIGO DO ESTADO
      */
-    @Column(name = "UFCODIGO", length = 2, nullable = false)
+    @Column(name="codigo",length = 2, nullable = false)
     Integer codigo;
 
     /**
      * CODIGO DO PAIS
      */
     @ManyToOne
-    @JoinColumn(name = "UFCDPAIS", nullable = false)
+    @JoinColumn(name="codigo_pais",referencedColumnName = "codigo",nullable = false)
     @ForeignKey(name = "estadoFKpais")
     Pais pais;
 

@@ -32,10 +32,10 @@ public class Pais extends Filtro implements EntidadeBase<Integer>, Serializable 
     }
 
     @Id
-    @Column(name = "NACODIGO", length = 4, nullable = false)
+    @Column(length = 4,name="codigo", nullable = false)
     private Integer codigo;
 
-    @Column(name = "NADESCRI", length = 50, nullable = false)
+    @Column(length = 50,name="descricao", nullable = false)
     private String descricao;
 
     @Override

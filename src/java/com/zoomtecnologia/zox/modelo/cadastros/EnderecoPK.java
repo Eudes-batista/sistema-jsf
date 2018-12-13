@@ -17,22 +17,22 @@ public class EnderecoPK implements Serializable {
     /**
      * CODIGO DO CEP APENAS NUMEROS
      */
-    @Column(name = "ENCODCEP", length = 8, nullable = false)
+    @Column(length = 8, nullable = false)
     private Integer cep;
 
     /**
      * NUMERO DO ENDERECO
      */
-    @Column(name = "ENNUMERO", length = 10, nullable = false)
+    @Column(length = 10, nullable = false)
     private String numero;
 
     /**
      * CODIGO DA CIDADE
      */
     @JoinColumns({
-        @JoinColumn(name = "ENCODCID", referencedColumnName = "MUCODIGO", nullable = false)
-        ,@JoinColumn(name = "ENCODEST", referencedColumnName = "MUCODIUF", nullable = false)
-        ,@JoinColumn(name = "ENCODPAI", referencedColumnName = "MUCDPAIS", nullable = false)
+        @JoinColumn(name = "codigo_cidade", referencedColumnName = "codigo", nullable = false)
+        ,@JoinColumn(name = "codigo_estado", referencedColumnName = "codigo_estado", nullable = false)
+        ,@JoinColumn(name = "codigo_pais", referencedColumnName = "codigo_pais", nullable = false)
     })
     @ManyToOne
     @ForeignKey(name = "enderecoFKcidade")
@@ -42,7 +42,7 @@ public class EnderecoPK implements Serializable {
      * CODIGO DA PESSOA
      */
     @ManyToOne
-    @JoinColumn(name = "ENPESSOA",referencedColumnName = "CUDOCIDE", nullable = false)
+    @JoinColumn(referencedColumnName = "CUDOCIDE", nullable = false)
     @ForeignKey(name = "enderecoFKpessoa")
     Pessoa pessoa;
 

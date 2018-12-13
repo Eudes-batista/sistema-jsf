@@ -43,13 +43,13 @@ public class Estado extends Filtro implements EntidadeBase<EstadoPK>, Serializab
     /**
      * NOME DO ESTADO
      */
-    @Column(name = "UFNOMEUF", length = 50, nullable = false)
+    @Column(length = 50, nullable = false)
     private String nome;
 
     /**
      * SIGLA DO ESTADO
      */
-    @Column(name = "UFSIGLAUF", length = 2, nullable = false)
+    @Column(length = 2, nullable = false)
     private String sigla;
 
     @Override

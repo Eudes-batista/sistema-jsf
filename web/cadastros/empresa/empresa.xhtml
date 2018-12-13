@@ -11,16 +11,13 @@
     <f:metadata>
         <f:viewAction action="#{empresaBean.inicializar()}"/>
     </f:metadata>
-
     <ui:define name="conteudo">     
         <style>
             .tamanhoForm1{
                 width:1024px !important;
-
             }
             .tamanhoForm2{
                 width:500px !important;
-
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -30,7 +27,6 @@
                     width:100% !important;
                 }
             }
-
         </style>
         <div class="container-fluid">
             <div class="row">
@@ -469,7 +465,6 @@
                     </p:tabView>
                 </p:dialog>
                 <!--MAPA DE TECLAS DE ATALHO-->
-
                 <!--NOVO-->
                 <p:hotkey bind="f1" update="formulario-tabEmpresa-panelCadastro" process="@this"
                           oncomplete="PF('dlCad').show();">
