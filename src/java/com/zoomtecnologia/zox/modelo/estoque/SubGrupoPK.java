@@ -3,7 +3,6 @@ package com.zoomtecnologia.zox.modelo.estoque;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Data;
@@ -23,7 +22,7 @@ public class SubGrupoPK implements Serializable {
      */
     @ManyToOne
     @JoinColumn(name = "SGCODGRU", referencedColumnName = "GPCODGRU", nullable = false)
-    @ForeignKey(name = "zoxcadsubgrupFKzoxcadgrup")
+    @ForeignKey(name = "subgrupoFKgrupo")
     private Grupo grupo;
 
 }

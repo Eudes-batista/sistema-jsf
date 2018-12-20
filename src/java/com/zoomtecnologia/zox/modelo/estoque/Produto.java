@@ -22,7 +22,7 @@ public class Produto implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "PRNCMCOD", nullable = false)
-    @ForeignKey(name = "est_cadprodutoFKzoxcadncm")
+    @ForeignKey(name = "produtoFKncm")
     Ncm ncm;
 
     @Column(name = "PRCODCES", length = 7, nullable = true)
@@ -33,7 +33,7 @@ public class Produto implements Serializable {
         @JoinColumn(name = "PRCODSUB", referencedColumnName = "SGCODSUB", nullable = false)
         ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "SGCODGRU", nullable = false)
     })
-    @ForeignKey(name = "est_cadprodutoFKzoxcadsubgrup")
+    @ForeignKey(name = "produtoFKsubgrupo")
     SubGrupo subGrupo;
 
     @Column(name = "PRDESPRO", length = 120, nullable = false)
