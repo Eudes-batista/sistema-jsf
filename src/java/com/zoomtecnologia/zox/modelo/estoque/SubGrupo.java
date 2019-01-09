@@ -33,13 +33,13 @@ import org.hibernate.validator.constraints.Length;
 })
 public class SubGrupo extends Filtro implements EntidadeBase<SubGrupoPK>, Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     /**
      * CODIGO DO SUBGRUPO
      */
     @EmbeddedId
-    SubGrupoPK subGrupoPK;
+    private SubGrupoPK subGrupoPK;
 
     /**
      * DESCRIÇÃO DO SUBGRUPO
@@ -63,14 +63,14 @@ public class SubGrupo extends Filtro implements EntidadeBase<SubGrupoPK>, Serial
     /**
      * IAT (ARREDONDAMENTO OU TRUNCAMENTO) PADRÃO DO SUBGRUPO
      */
-    @Column(name = "SGIATPRO", length = 1, nullable = true, columnDefinition = "enum(A,T) defaut 'A'")
-    String iat;
+    @Column(name = "SGIATPRO", length = 1, nullable = true, columnDefinition = " enum('A','T') default 'A'")
+    private String iat;
 
     /**
      * IPPT (MERCADORIA DE TERCEIROS OU PROPRIA) PADRÃO DO SUBGRUPO
      */
-    @Column(name = "SGIPPTPR", length = 1, nullable = true, columnDefinition = "enum(T,P) default 'T'")
-    String ippt;
+    @Column(name = "SGIPPTPR", length = 1, nullable = true, columnDefinition = " enum('T','P') default 'T'")
+    private String ippt;
 
     @Override
     public SubGrupoPK getId() {

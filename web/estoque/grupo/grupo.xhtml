@@ -123,7 +123,7 @@
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="clip"
+            <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true"  draggable="true"
                       resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
@@ -183,7 +183,7 @@
 
         <!--FORMULARIO SUB-GRUPO-->
         <h:form id="formularioSubGrupo">
-            <p:dialog id="dlSub" header="Grupo - #{grupoBean.entidade.descricao}" widgetVar="dlCadSub" showEffect="fade" hideEffect="clip"
+            <p:dialog id="dlSub" header="Grupo - #{grupoBean.entidade.descricao}" widgetVar="dlCadSub" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true" fitViewport="true" draggable="true"
                       resizable="false"  styleClass="tamanhoForm2" modal="true" position="top">
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dlSub" process="dlSub"/>

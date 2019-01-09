@@ -24,6 +24,9 @@ iframe#conteudo{
 
 }
 
+
+
+
 #tabs ul .active a{
     background:#1491bf; 
     border:none;
@@ -31,6 +34,7 @@ iframe#conteudo{
     font-weight:bold;
 
 }
+
 
 #tabs ul .active a:hover{
     background:#1491bf; 
@@ -76,4 +80,5 @@ iframe{
     color:#fff !important;
     border-radius:3px;
     z-index: -1;
+
 }

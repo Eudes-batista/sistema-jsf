@@ -30,8 +30,9 @@ li{
 /*BARRA DE PESQUISA DA GRID*/
 .barraPesquisa{
     margin-top: 5px;
-    background: linear-gradient(41deg, #efece6 5%, #efece6 20%, #1491bf 85%) !important;
-    /*background: #1491bf !important;*/ 
+    /*background: linear-gradient(41deg, #fff 20%, #f5f5f5 61%, #1491bf 75%) !important;*/
+    background: #1491bf !important;
+    /*background: #1293bb !important;*/
     padding: 5px;
     border-radius: 5px 0px 0px 0px !important;
     text-align: right !important;
@@ -40,7 +41,7 @@ li{
 
 /*TITULO DO CABEÇALHO*/
 .tituloGrid{
-    color: #858585 !important;
+    color: #FFF !important;
     text-align: left !important;
     font-size: 20pt;
     font-weight: bold;
@@ -74,7 +75,6 @@ table{
     border: none !important;
     border-radius: 5px;
     margin-left: 3px;
-    margin-top: 20px;
 
 }
 
@@ -94,15 +94,16 @@ table tbody tr:hover{
     margin-left: 5px !important;
 }
 table thead th{
-    background: #e5e5e5 !important;
+    background: #1491bf !important;
     border: none !important;
     border-radius: 0px!important;
-    color: #757575 !important;
+    color: #FFF !important;
     /*text-shadow: 0 1px 1px transparent !important;*/
+    font-family: tahoma;
     font-size: 10pt !important;
+    text-decoration: none !important;
     padding: 5px !important;
     font-family: Arial, sans-serif;
-    text-decoration: none !important;
 }
 .ui-datatable-tablewrapper {
     overflow: hidden !important;
@@ -119,20 +120,20 @@ table thead tr{
     text-align: right !important;
 }
 
+
 /************BOTÕES DA TABELA****************/
-.btexcluir:hover{
-    background: transparent;
-    color: #F37E72;
+.btexcluir{
+    background: #F37E72;
 }
-.bteditar:hover{
-    background: transparent;
-    color: #6eceec;
+.bteditar{
+    background: #6eceec;
 }
-.btsub:hover{
-    background: transparent;
-    color: #fdc006;
+.btsub{
+    background: #fdc006;
 }
 .btexcluir, .bteditar, .btsub{
+
+    color: #fff !important;
     border: none !important;
     text-align: center !important;
     font-size: 10pt !important;
@@ -144,6 +145,8 @@ table thead tr{
 }
 .btexcluir:hover, .bteditar:hover, .btsub:hover{
     text-decoration: none !important;
+    color: #fff !important;
+
 }
 
 .btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
@@ -155,21 +158,32 @@ table thead tr{
 }
 
 /***********BOTÕES DA LATERAL DA GRID*****************/
-
+.btnovo{
+    background: transparent;
+}
 .btnovo:disabled, 
 .btfiltro:disabled,
 .btprint:disabled, 
 .btatualizar:disabled{
     color: #e5e5e5;
 }
+.btfiltro{
+    background: transparent;
+}
+.btprint{
+    background: transparent;
+}
+.btatualizar{
+    background: transparent;
+}
 .btnovo,.btfiltro,.btprint,.btatualizar{
     border: none !important;
     text-align: center !important;
     font-size: 20pt !important;
-    color: #1491bf !important;
+    color: #959595 !important;
     width: auto !important;
-    background: transparent;
 }
+
 
 .btbusca{
     color: #6eceec !important;
@@ -203,6 +217,4 @@ table thead tr{
         border-radius: 3px 3px 0px 0px !important;
     }
 }
-.fundo-transparente{
-    /*background: url(../resources/imagens/blur.jpg) !important;*/
-}
+

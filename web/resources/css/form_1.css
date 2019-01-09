@@ -1,0 +1,205 @@
+/**********************************************CSS DOS FORMS********************************************************************************************/
+
+/*ESPAÇAMENTO ENTRA CAMPOS DO FORMULÁRIO*/
+.espaco{
+    margin-top: 15px !important;
+}
+
+/***********FUNDO DO FORM*******/
+.ui-widget .ui-dialog{
+    padding: 0px !important;
+    background: #FFF !important; 
+    margin: 0px !important;
+    border: none !important;
+
+}
+div.ui-dialog{
+    background: #1293bb !important; 
+    padding: 0px;
+} 
+.sobre-fundo{
+    background: #fff !important;
+    padding: 10px !important;
+    border-radius: 3px !important;
+}
+
+/***********CABEÇALHO DO FORM*******/
+.ui-widget .ui-dialog-titlebar{
+    background: #1293bb !important;
+    margin-left:  0px !important;;
+    margin-right:   0px !important;;
+    border: none !important;
+    height: auto !important;
+
+}
+
+/***********TITULO DO FORM*******/
+.ui-widget .ui-dialog-title{
+    color: #fff!important;
+    font-weight: bold !important;
+    font-family: tahoma !important;
+    margin: 0px !important;
+}
+
+/***********COR DO ICONE MAIS DO FORM*******/
+span .ui-icon-plus{
+    color: #fff !important;
+}
+
+/***********ICONE MENOS DO FORM*******/
+span.ui-icon-minus:before {
+    font-family: FontAwesome;
+    color: #fff;
+    position: relative;
+    font-size: 13.3px;
+    padding: 0 4px;
+    top: -9px;
+    overflow: hidden;
+    content: "\f068" !important;
+}
+/***********ICONE MAXIMIZAR DO FORM*******/
+span.ui-icon-extlink:before {
+    font-family: FontAwesome;
+    color: #fff;
+    position: relative;
+    font-size: 13.3px;
+    padding: 0 4px;
+    top: -9px;
+    overflow: hidden;
+    content: "\f065" !important;
+}
+
+/***********ICONE FECHAR DO FORM*******/
+span.ui-icon-closethick:before {
+    font-family: FontAwesome;
+    color: #fff;
+    position: relative;
+    font-size: 13.3px;
+    padding: 0 4px;
+    overflow: hidden;
+    content: "\f00d" !important;
+}
+
+/*FONT EM TODOS COMPONENTES*/
+.ui-fluid{
+    font-family: Arial,sans-serif !important;
+}
+/*TITULO DO PANEL*/
+.panel-heading,.panel-heading a{
+    font-size: 12pt !important;
+    color: #858585 !important;
+    font-weight: bold !important;
+    border: none !important;
+    background: #dce2e9 !important;
+    border-radius: 0px !important;
+    font-weight: bold !important;
+}
+/*CORPO DO PANEL*/
+.panel-body, .panel, .panel-default{
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 0px solid #ccc !important;
+}
+/*TAMANHO DO FORM*/
+.tamanhoForm{
+    width:auto !important;
+    border: none !important;
+
+}
+
+/*BARRA DE BOTOES DO FORM*/
+.barraBotoes{
+    margin-top: 5px !important;
+    background: transparent !important;
+    padding: 5px !important;
+    border: none;
+    border-radius: 5px !important;
+}
+
+.btsalvar:hover{
+    background: #8cc63f !important;
+    color:#FFF !important;
+}
+.btsalvar:disabled, .btsair:disabled, .btconfigurar:disabled{
+    background: #e5e5e5 !important;
+    color: #fff !important;
+}
+.btsair:hover{
+    background: #f37e72 !important;
+    color:#FFF !important;
+}
+.btconfigurar:hover{
+    background: #dfb777 !important;
+    color: #fff !important;
+}
+.btsalvar, .btsair, .btconfigurar{
+    font-size: 11pt !important;
+    color: #858585 !important;
+    border: none !important;
+    font-family: Arial, sans-serif !important;
+    background: #dce2e9 !important;
+}
+
+/*COR DO PLACEHOLDER*/
+input::placeholder {
+    color: #a8d2da !important   ;
+    text-transform: capitalize;
+}
+
+/*SELECTIONS*/
+.ui-selectonemenu{
+    color: #aaa !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 11pt !important;
+    background: #fff !important;
+}
+
+@media only screen and (max-width: 760px) {
+    .tamanhoForm1{
+        width:100% !important;
+    }
+    .tamanhoForm2{
+        width:100% !important;
+    }
+
+    .form-control{
+        margin-bottom: 5px !important;
+    }
+    .btsalvar, .btsair, .btconfigurar, .btsalvar-desable, .btsalvar-desable, .btconfigurar-desable{
+        margin-bottom: 5px !important;
+    }
+}
+
+/*BOOTSTRAP*/
+.form-control{
+    text-transform: uppercase !important;
+    font-size: 11pt !important;
+    font-family: Arial, sans-serif !important; 
+    color: #757575 !important;
+
+}
+/*MENSAGEM DE EXCLUIR*/
+.ui-confirm-dialog .ui-dialog-content,.ui-confirm-dialog .ui-dialog-footer{
+    background: #fff !important;
+    margin-top: -5px !important ;
+}
+
+/*TABS FUNDO*/
+.ui-tabs{
+    background: #fff !important;
+}
+
+/*CAMPO DESTAQUE*/
+.campo-destaque{
+    font-size: 13pt !important;
+    font-weight: bold !important;
+}
+.tamanhoForm1, .tamanhoForm2{
+    border: none !important;
+    margin-top: 2% !important;
+}
+
+.panel-heading{
+    background: #f1f1f1!important;
+    color:#858585 !important;
+}

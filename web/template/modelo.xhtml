@@ -9,13 +9,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
         <h:outputStylesheet library="css" name="bootstrap.css" />
         <h:outputStylesheet library="css" name="grid.css" />
-        <h:outputStylesheet library="css" name="botoes.css" />
+        <h:outputStylesheet library="css" name="form.css" />
         <h:outputScript library="js" name="function.js"/>
         <h:outputScript library="js" name="bootstrap.js"/>
+        <style>
+            .fundo{
+                background-image: url(../resources/imagens/poly.jpg) !important;
+                background-size :cover;
+                background-position : center;
+                background-attachment: fixed;
+            }
+            
+        </style>
     </h:head>
-    <h:body class="fundo">
+
+    <h:body >
         <div>
-            <ui:insert name="conteudo" />
+            <ui:insert name="conteudo"/>
         </div>
     </h:body>
 </html>
