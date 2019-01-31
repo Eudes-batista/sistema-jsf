@@ -5,7 +5,6 @@ import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import com.zoomtecnologia.zox.modelo.cadastros.Contato;
 import com.zoomtecnologia.zox.modelo.cadastros.Documento;
 import com.zoomtecnologia.zox.modelo.cadastros.Endereco;
-import com.zoomtecnologia.zox.modelo.cadastros.FuncaoFuncionario;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,187 +13,134 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "pessoa")
 @Data
-@EqualsAndHashCode(callSuper = false,of = {"documentoIdentificacao"})
+@EqualsAndHashCode(callSuper = false,of = {"documentoPessoa"})
 public class Pessoa extends Filtro implements EntidadeBase<String>, Serializable {
 
     @Id
-    @Column(length = 20, name = "CUDOCIDE", nullable = false)
+    @Column(length = 20, name = "documento_pessoa", nullable = false)
     @Length(max = 20, message = "Campo documento de identificação não receber mas que {max} caracteres")
     @NotNull(message = "Campo documento de identificação não pode ser nulo!!")
-    String documentoIdentificacao;
+    private String documentoPessoa;
 
-    @Column(length = 60, name = "CURAZSOC", nullable = false)
+    @Column(length = 60, name = "nome_pessoa", nullable = false)
     @Length(max = 60, message = "Campo Razao Social não receber mas que {max} caracteres")
     @NotNull(message = "Campo Razao Social não pode ser nulo!!")
-    String razaoSocial;
+    private String nomePessoa;
 
-    @Column(length = 50, name = "CUNOMFAN", nullable = false)
+    @Column(length = 50, name = "nome_fantasia", nullable = false)
     @Length(max = 50, message = "Campo Fantasia não receber mas que {max} caracteres")
     @NotNull(message = "Campo Fantasia não pode ser nulo!!")
-    String nomeFantasia;
+    private String nomeFantasia;
 
-    @Column(length = 1, nullable = false, name = "CUTIPPES")
+    @Column(length = 1, nullable = false, name = "tipo_pessoa")
     @NotNull(message = "Campo Fantasia não pode ser nulo!!")
-    String tipoPessoa;
+    private String tipoPessoa;
 
-    @Column(length = 18, name = "CUINSEST", nullable = true)
+    @Column(length = 18, name = "inscricao_estadual", nullable = true)
     @Length(max = 18, message = "Campo Inscrição Estadual não receber mas que {max} caracteres")
-    String inscricaoEstadual;
+    private String inscricaoEstadual;
 
-    @Column(length = 18, name = "CUINSMUN")
+    @Column(length = 18, name = "inscricao_municipal")
     @Length(max = 18, message = "Campo Inscrição Municipal não receber mas que {max} caracteres")
-    String inscricaoMunicipal;
+    private String inscricaoMunicipal;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "CUDTNASC")
+    @Column(name = "data_nascimento")
     @NotNull(message = "Campo Data de Nascimento não pode ser nulo!!")
-    Date dataNascimento;
+    private Date dataNascimento;
 
-    @Column(name = "CUESTCIV", length = 1)
+    @Column(name = "estado_civil", length = 1)
     @NotNull(message = "Campo Estado Civil não pode ser nulo!!")
-    String estadoCivil;
+    private String estadoCivil;
 
-    @Column(name = "CUTPSEXO", length = 1)
+    @Column(name = "sexo", length = 1)
     @NotNull(message = "Campo Tipo de Sexo não pode ser nulo!!")
-    String tipoSexo;
+    private String tipoSexo;
 
-    @Column(name = "CUREGTRI", length = 1, nullable = false)
+    @Column(name = "regime_tributario", length = 1, nullable = false)
     @NotNull(message = "Campo Regime Tributario não pode ser nulo!!")
-    String regimeTributario;
+    private String regimeTributario;
 
-    @Column(length = 7, name = "CUNUCNAE")
-    @Length(max = 7, message = "Campo CNAE não receber mas que {max} caracteres")
-    String cnae;
-
-    @Column(length = 7, name = "CUSUFRAM")
+    @Column(length = 7, name = "suframa")
     @Length(max = 7, message = "Campo Número Suframa não receber mas que {max} caracteres")
-    String suframa;
+    private String suframa;
 
-    @Column(length = 18, name = "CUINSSST")
+    @Column(length = 18, name = "inscricao_estadual_st")
     @Length(max = 18, message = "Campo Inscrição Estadual ST não receber mas que {max} caracteres")
-    String inscricaoEstadualST;
+    private String inscricaoEstadualST;
 
-    @Column(name = "CUFUNFUN", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N' ")
-    String funcionario;
+//    @Column(name = "funcionario", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N' ")
+//    private String funcionario;
+//
+//    @Column(name = "fornecedor", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+//    private String fornecedor;
+//
+//    @Column(name = "cliente", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+//    private String cliente;
+//
+//    @Column(name = "vendedor", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+//    private String vendedor;
+//
+//    @Column(name = "transportadora", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+//    private String transportadora;
+//
+//    @Column(name = "produtor", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+//    private String produtor;
+//
+//    @Column(name = "fabricante", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+//    private String fabricante;
 
-    @Column(name = "CUFUNFOR", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
-    String fornecedor;
-
-    @Column(name = "CUFUNCLI", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
-    String cliente;
-
-    @Column(name = "CUFUNVEN", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
-    String vendedor;
-
-    @Column(name = "CUFUNTRA", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
-    String transportadora;
-
-    @Column(name = "CUFUNPRO", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
-    String produtor;
-
-    @Column(name = "CUFUNFAB", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
-    String fabricante;
-
-    @Column(length = 12, name = "CUSALARI", precision = 12, scale = 2)
-    @Min(value = 0, message = "Campo salario não pode receber números negativos")
-    Double salario;
-
-    @Column(length = 5, name = "CUCOMSER", precision = 5, scale = 3)
-    @Min(value = 0, message = "Campo Comissão por Serviço não pode receber números negativos")
-    Double comissaoServico;
-
-    @Column(length = 5, name = "CUCOMPRO", precision = 5, scale = 3)
-    @Min(value = 0, message = "Campo Comissão por Produto não pode receber números negativos")
-    Double comissaoProduto;
-
-    @Column(length = 12, name = "CUVLMETA", precision = 12, scale = 2)
-    @Min(value = 0, message = "Campo Valo da Meta não pode receber números negativos")
-    Double valorMeta;
-
-    @Column(length = 1, name = "CUCOMMET", columnDefinition = "varchar(1) default 'N' ")
-    @Length(max = 1, message = "Campo paga comissao so pode receber apenas {max} caracteres")
-    String isPagaComissao;
-
-    @Column(length = 12, name = "CUTOTCRE", precision = 12, scale = 2)
-    @Min(value = 0, message = "Campo Valor total pendente no contas a receber não pode receber números negativos")
-    Double valorTotalContaReceberPendente;
-
-    @Column(length = 12, name = "CUTOTCPG", precision = 12, scale = 2)
-    @Min(value = 0, message = "Campo Valor total pendente no contas a apagar não pode receber números negativos")
-    Double valorTotalContaApagarPendente;
-
-    @Column(length = 1, name = "CUTIPTAB", columnDefinition = "varchar(1) default '1' ")
-    @Length(max = 1, message = "Campo Tabela cliente apenas {max} caracteres")
-    String tabelaCliente;
-
-    @Column(length = 1, name = "CUCTCORR", columnDefinition = "varchar(1) default 'N' ")
-    @Length(max = 1, message = "Campo Correntista apenas {max} caracteres")
-    String conrrentista;
-
+    
     @Column(name = "CUOBSERV", columnDefinition = "text")
-    String observasao;
+    private String observasao;
 
-    @Column(length = 1, name = "CUSITUAC", columnDefinition = "varchar(1) default 'A' ", nullable = false)
+    @Column(length = 1, name = "status", columnDefinition = "varchar(1) default 'A' ", nullable = false)
     @Length(max = 1, message = "Campo status apenas {max} caracteres")
-    String status;
+    private String status;
 
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull(message = "Campo data da ultima Atualização não pode ser nulo")
-    @Column(name = "CUULTALT", nullable = false)
-    Date dataUltimaAtualizacao;
+    @Column(name = "data_ultima_atualizacao", nullable = false)
+    private Date dataUltimaAtualizacao;
 
-    @Column(length = 30, name = "CUUSUALT", nullable = false)
+    @Column(length = 30, name = "usuario_ultima_atualizacao", nullable = false)
     @Length(max = 30, message = "Campo Usuario da Ultima atualização apenas {max} caracteres")
-    String usuarioUltimaAtu;
+    private String usuarioUltimaAtu;
 
-    @Column(name = "CUCFINAL", columnDefinition = "enum('0','1') NOT NULL DEFAULT '0' ")
-    String consumidorFinal;
+    @Column(name = "consumidor_final", columnDefinition = "enum('0','1') NOT NULL DEFAULT '0' ")
+    private String consumidorFinal;
 
-    @Column(name = "CUIIEDES", columnDefinition = "enum('1','2','9') NOT NULL DEFAULT '1' ")
-    String indicadorIE;
+    @Column(name = "indicador_ie", columnDefinition = "enum('1','2','9') NOT NULL DEFAULT '1' ")
+    private String indicadorIE;
 
-    @Column(name = "CUCONTAB", length = 20)
-    @Length(max = 20, message = "Número de conta contabil só pode receber {max} caracteres")
-    String numeroContabil;
-
-    @Column(name = "CUIMAGEM")
+    @Column(name = "imagem")
     @Lob
-    byte[] imagem;
-
-    @ManyToOne
-    @JoinColumn(name = "CUFUNCAO", nullable = true, referencedColumnName = "FUCODFUN")
-    @ForeignKey(name = "pessoaFKfunfuncao")
-    FuncaoFuncionario funcaoFuncionario;
+    private byte[] imagem;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "enderecoPk.pessoa", orphanRemoval = true)
-    List<Endereco> enderecos = new ArrayList<>();
+    private List<Endereco> enderecos = new ArrayList<>();
 
     @OneToMany(mappedBy = "contatoPK.pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Contato> contatos = new ArrayList<>();
+    private List<Contato> contatos = new ArrayList<>();
 
     @OneToMany(mappedBy = "documentoPK.pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Documento> documentos = new ArrayList<>();
+    private List<Documento> documentos = new ArrayList<>();
 
     @Override
     public String getId() {
-        return this.documentoIdentificacao;
+        return this.documentoPessoa;
     }
-
 }

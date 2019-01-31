@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 public class SubGrupoPK implements Serializable {
 
-    @Column(name = "SGCODSUB", length = 20, nullable = false)
+    @Column(name = "codigo", length = 20, nullable = false)
     @Length(max = 20, message = "Código do SubGrupo com até {max}.")
     private String codigo;
 
@@ -21,7 +21,7 @@ public class SubGrupoPK implements Serializable {
      * CÓDIGO DO GRUPO
      */
     @ManyToOne
-    @JoinColumn(name = "SGCODGRU", referencedColumnName = "GPCODGRU", nullable = false)
+    @JoinColumn(name = "codigo_grupo", referencedColumnName = "codigo", nullable = false)
     @ForeignKey(name = "subgrupoFKgrupo")
     private Grupo grupo;
 

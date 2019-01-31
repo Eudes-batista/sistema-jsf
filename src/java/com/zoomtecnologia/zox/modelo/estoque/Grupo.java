@@ -35,16 +35,16 @@ public class Grupo extends Filtro implements EntidadeBase<String>, Serializable 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "GPCODGRU", length = 20, nullable = false)
+    @Column(name = "codigo", length = 20, nullable = false)
     @Length(max = 20, message = "Código do Grupo com até {max}.")
-    String codigo;
+    private String codigo;
 
-    @Column(name = "GPDESGRU", length = 50, nullable = false)
+    @Column(name = "descricao", length = 50, nullable = false)
     @Length(max = 50, message = "Descrição do Grupo com até {max}.")
-    String descricao;
+    private String descricao;
 
-    @Column(name = "GPITEESP", length = 1)
-    String tipo;
+    @Column(name = "tipo", length = 1)
+    private String tipo;
 
     @Override
     public String getId() {

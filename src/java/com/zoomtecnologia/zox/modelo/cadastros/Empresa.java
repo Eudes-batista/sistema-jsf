@@ -18,8 +18,8 @@ import org.hibernate.validator.constraints.br.CNPJ;
 @Data
 @EqualsAndHashCode(callSuper = false,of={"codigo"})
 @NamedQueries({
-    @NamedQuery(name = "Empresa.buscarRazaoSocial",
-            query = "select e from Empresa e where e.razaoSocial like :razaoSocial or "
+    @NamedQuery(name = "Empresa.buscarnomePessoa",
+            query = "select e from Empresa e where e.razaoSocial like :nomePessoa or "
             + "e.nomeFantasia like :nomeFantasia or "
             + "e.documentoIndentificacao = :documetoIndentificacao or "
             + "e.inscricaoEstadual = :inscricaoEstadual")
@@ -33,78 +33,78 @@ public class Empresa extends Filtro implements EntidadeBase<String>, Serializabl
      * CODIGO DA EMPRESA
      */
     @Id
-    @Column(name = "EPCODEMP", length = 3, nullable = false)
+    @Column(name = "codigo", length = 3, nullable = false)
     private String codigo;
 
     /**
      * DOCUMENTO DE INDENTIFICACAO EX: (<b>CNPJ,OUTROS</b>)
      */
-    @Column(name = "EPDOCEMI", length = 18, nullable = false)
+    @Column(name = "documento_indentificacao", length = 18, nullable = false)
     @CNPJ(message = "CNPJ invalido, verifique o cnpj")
     private String documentoIndentificacao;
 
     /**
      * RAZAO SOCIAL DA EMPRESA
      */
-    @Column(name = "EPRAZSOC", length = 60, nullable = false)
+    @Column(name = "razao_social", length = 60, nullable = false)
     private String razaoSocial;
 
     /**
      * NOME FANTASIA
      */
-    @Column(name = "EPNOMFAN", length = 60, nullable = false)
+    @Column(name = "nome_fantasia", length = 60, nullable = false)
     private String nomeFantasia;
 
-    @Column(name = "EPENDEMP", length = 60, nullable = false)
+    @Column(name = "endereco", length = 60, nullable = false)
     private String endereco;
 
-    @Column(name = "EPNROEND", length = 10, nullable = false)
+    @Column(name = "numeroEndereco", length = 10, nullable = false)
     private String numeroEndereco;
 
-    @Column(name = "EPCPLEND", length = 60, nullable = true)
+    @Column(name = "complemento", length = 60, nullable = true)
     private String complemento;
 
-    @Column(name = "EPBAIRRO", length = 60, nullable = false)
+    @Column(name = "bairro", length = 60, nullable = false)
     private String bairro;
 
-    @Column(name = "EPCODMUN", length = 7, nullable = false)
+    @Column(name = "codigo_municipio", length = 7, nullable = false)
     private Integer codigoMunicipio;
 
-    @Column(name = "EPCIDADE", length = 60, nullable = false)
+    @Column(name = "nome_municipio", length = 60, nullable = false)
     private String nomeMunicipio;
 
-    @Column(name = "EPCUFEMP", length = 2, nullable = false)
+    @Column(name = "sigla_estado", length = 2, nullable = false)
     private String siglaEstado;
 
-    @Column(name = "EPCEPEMP", length = 8, nullable = false)
+    @Column(name = "cep", length = 8, nullable = false)
     private Integer cep;
 
-    @Column(name = "EPCDPAIS", length = 4, nullable = false, columnDefinition = "int not null default 1054")
+    @Column(name = "codigo_pais", length = 4, nullable = false, columnDefinition = "int not null default 1054")
     private Integer codigoPais;
 
-    @Column(name = "EPDSPAIS", length = 50, nullable = false, columnDefinition = "varchar(50) not null default 'BRASIL'")
+    @Column(name = "descricao_pais", length = 50, nullable = false, columnDefinition = "varchar(50) not null default 'BRASIL'")
     private String descricaoPais;
 
-    @Column(name = "EPINSEST", length = 14, nullable = false, columnDefinition = "varchar(14) not null default 'ISENTO'")
+    @Column(name = "inscricao_estadual", length = 14, nullable = false, columnDefinition = "varchar(14) not null default 'ISENTO'")
     private String inscricaoEstadual;
 
-    @Column(name = "EPINSCST", length = 14)
+    @Column(name = "inscricao_estadual_st", length = 14)
     private String inscricaoEstadualSt;
 
-    @Column(name = "EPINSMUN", length = 15)
+    @Column(name = "inscricao_municipal", length = 15)
     private String inscricaoMunicipal;
 
-    @Column(name = "EPCDCNAE", length = 7)
+    @Column(name = "cnae", length = 7)
     private Integer cnae;
 
     /**
      * CODIGO DE REGIME TRIBUTARIO DA EMPRESA (1) SEMPLES NACIONAL, (2) SIMPLES
      * NACIONAL - EXCESSO DE SUBLIMITE DE RECEITA BRUTA OU (3) REGIME NACIONAL
      */
-    @Column(name = "EPNUMCRT", length = 7, nullable = false, columnDefinition = "varchar(7) not null default '1' ")
+    @Column(name = "regime_tributario", length = 7, nullable = false, columnDefinition = "varchar(7) not null default '1' ")
     private String regimeTributario;
 
-    @Column(name = "EPTELEFO", length = 14)
+    @Column(name = "telefone", length = 14)
     private String telefone;
 
     @Override

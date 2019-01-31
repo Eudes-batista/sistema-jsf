@@ -59,7 +59,8 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        Empresa
+                                        <div class="col-xs-6">Empresas</div>
+                                        <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText id="textPesquisa" styleClass="form-control" placeholder="Pesquisa" value="#{empresaBean.entidade.pesquisa}"/>
 
@@ -85,9 +86,9 @@
                                     #{e.documentoIndentificacao}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Razão Social" sortBy="#{e.razaoSocial}" style="text-align: left;">
+                            <p:column headerText="Razão Social" sortBy="#{e.nomePessoa}" style="text-align: left;">
                                 <div align="left">
-                                    #{e.razaoSocial}
+                                    #{e.nomePessoa}
                                 </div>
                             </p:column>
                             <p:column headerText="Nome Fantasia" sortBy="#{e.nomeFantasia}" style="text-align: left;">
@@ -176,12 +177,12 @@
                                                 <!--razao social e nome fantasia-->
                                                 <div class="row espaco">
                                                     <div class="col-md-8">
-                                                        <p:inputText id="razaosocial" styleClass="form-control" value="#{empresaBean.entidade.razaoSocial}" maxlength="120" placeholder="Razão Social"
+                                                        <p:inputText id="nomePessoa" styleClass="form-control" value="#{empresaBean.entidade.nomePessoa}" maxlength="120" placeholder="Razão Social"
                                                                      required="true" requiredMessage="Razão Social é Obrigatorio!"
                                                                      onkeyup="upperCase(this)">
                                                             <f:passThroughAttribute name="required" value="true"/>
                                                         </p:inputText>
-                                                        <p:tooltip for="razaosocial" value="Razão Social" position="top" />
+                                                        <p:tooltip for="nomePessoa" value="Razão Social" position="top" />
                                                     </div>
                                                     <div class="col-md-4">
                                                         <p:inputText id="nomefantasia" styleClass="form-control" value="#{empresaBean.entidade.nomeFantasia}" maxlength="120" placeholder="Nome Fantasia"
@@ -285,7 +286,7 @@
                                             <div class="col-md-2 col-lg-offset-8">
                                                 <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
                                                                  actionListener="#{empresaBean.salvar()}"
-                                                                 update="formGrid-tabela formulario-tabEmpresa-panelCadastro formulario-tabEmpresa-msgCad"
+                                                                 update="formGrid-tabela formulario-tabEmpresa formulario-tabEmpresa-msgCad"
                                                                  process="formulario-tabEmpresa-panelCadastro formulario-tabEmpresa-panelConfig" />
                                             </div>
 

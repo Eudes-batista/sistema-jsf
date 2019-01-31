@@ -34,14 +34,14 @@ public class Tributacao implements Serializable {
      * CODIGO DA TRIBUTACAO
      */
     @EmbeddedId
-    TributacaoPK tributacaoPK;
+    private TributacaoPK tributacaoPK;
 
     /**
      * CST (CÓDIGO DA SITUAÇÃO TRIBUTÁRIA)
      */
     @Column(name = "CTCODCST", length = 03, nullable = false)
     @Length(max = 03, message = "CST da Tributação com até {max}.")
-    String cst;
+    private String cst;
 
     /**
      * MODALIDADE DE DETERMINACAO DA BC DO ICMS: 0 - Margem Valor Agregado (%),
@@ -49,7 +49,7 @@ public class Tributacao implements Serializable {
      * Operação.
      */
     @Column(name = "CTMODBC", length = 01, nullable = false, columnDefinition = "enum(0,1,2,3) default '1'")
-    String modalidadeBCIcms;
+    private String modalidadeBCIcms;
 
     /**
      * PERCENTUAL DE REDUÇÃO DA BASE DE CÁUCULO DO ICMS DA OPERAÇÃO PRÓPRIA
@@ -73,7 +73,7 @@ public class Tributacao implements Serializable {
      * MODALIDADE DA BASE DE CÁLCULO DO ICMS ST
      */
     @Column(name = "CTMODBCST", length = 01, nullable = true, columnDefinition = "enum(0,1,2,3,4,5) default '4'")
-    String modalidadeBCIcmsST;
+    private String modalidadeBCIcmsST;
 
     /**
      * PERCENTUAL DA MARGEM DE VALOR ADICIONADO ICMS ST
@@ -97,7 +97,7 @@ public class Tributacao implements Serializable {
      * MOTIVO DA DESONERAÇÃO DO ICMS
      */
     @Column(name = "CTMOTDESICMS", length = 01, nullable = true, columnDefinition = "enum(1,2,3,4,5,6,7,8,9)")
-    String motivoDesoneracaoIcms;
+    private String motivoDesoneracaoIcms;
 
     /**
      * PERCENTUAL DA BASE DE CÁLCULO DA OPERAÇÃO PRÓPRIA

@@ -16,11 +16,21 @@ public class NcmBean extends GenericoBean<Ncm, NcmService> implements Serializab
     private static final long serialVersionUID = 1L;
 
     @Autowired
-    NcmService ncmService;
-
+    private NcmService ncmService;
+    
+    @Autowired
+    private CestBean cestBean;
+   
+    
     @Override
     public NcmService getGenericService() {
         return ncmService;
+    }
+    
+    public void selecionarNcm(Ncm ncm){
+        this.cestBean.novo();
+        this.cestBean.setNcm(ncm);
+        this.cestBean.setCests(this.cestBean.listarCestPorNcm(ncm));
     }
 
     @Override

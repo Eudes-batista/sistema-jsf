@@ -63,7 +63,8 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        Estados
+                                        <div class="col-xs-6">Estados</div>
+                                        <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{estadoBean.entidade.pesquisa}" styleClass="form-control campoPesquisa"/>
 
@@ -130,6 +131,7 @@
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="País"/>
                                     <p:selectOneMenu value="#{estadoBean.entidade.estadoPK.pais}" required="true" requiredMessage="Campo pais é obrigatorio."
                                                      converter="converterPais" filter="true">
                                         <f:selectItem itemLabel="Selecione um Pais" noSelectionOption="true" />
@@ -140,6 +142,7 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Código"/>
                                     <p:inputText id="codigo" placeholder="Codigo" styleClass="form-control" value="#{estadoBean.entidade.estadoPK.codigo}" 
                                                  required="true" requiredMessage="Codigo do Estado é Obrigatorio!" disabled="#{estadoBean.inativo}" maxlength="2">
                                         <p:keyFilter for="codigo" mask="num"/>
@@ -148,12 +151,14 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Estado"/>
                                     <p:inputText placeholder="Nome" styleClass="form-control" value="#{estadoBean.entidade.nome}" 
                                                  required="true" requiredMessage="Nome do Estado é Obrigatorio!" maxlength="50"/>  
                                 </div>
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Sigla"/>
                                     <p:inputText placeholder="Sigla" styleClass="form-control" value="#{estadoBean.entidade.sigla}" 
                                                  required="true" requiredMessage="Sigla do Estado é Obrigatorio!" maxlength="2"/> 
                                 </div>

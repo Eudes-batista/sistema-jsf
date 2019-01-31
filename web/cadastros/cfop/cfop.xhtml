@@ -61,7 +61,8 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        CFOP
+                                        <div class="col-xs-6">CFOP</div>
+                                        <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{cfopBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
                                 </p:panelGrid>
@@ -125,6 +126,7 @@
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Código"/>
                                     <p:inputText id="cfop" placeholder="Codigo" styleClass="form-control" value="#{cfopBean.entidade.codigo}" maxlength="4"
                                                  required="true" requiredMessage="Codigo do Cfop é Obrigatorio!" disabled="#{cfopBean.inativo}">
                                         <p:ajax event="blur" process="@this" update="cop" listener="#{cfopBean.carregarCop()}"/>
@@ -134,12 +136,14 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Natureza de Operação"/>
                                     <p:inputText placeholder="Natureza de Operação" styleClass="form-control" value="#{cfopBean.entidade.naturezaOperacao}"
                                                  required="true" requiredMessage="Nome do Cfop é Obrigatorio!" maxlength="60"/>  
                                 </div>
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="código do COP"/>
                                     <p:selectOneMenu id="cop" value="#{cfopBean.entidade.codigocop}" filter="true" filterMatchMode="contains"
                                                      required="true" requiredMessage="Codigo do Cop é Obrigatorio!">
                                         <f:selectItem itemLabel="Selecione uma opção" noSelectionOption="true"/>
@@ -149,6 +153,7 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Descrição Natureza de Operação"/>
                                     <p:inputText placeholder="Descrição completa da natureza da operação" styleClass="form-control" value="#{cfopBean.entidade.descCompNatOp}"
                                                  maxlength="30"/>                                   
                                 </div>

@@ -7,7 +7,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/template/modelo.xhtml">
     <f:metadata>
-        <f:viewAction action="#{paisBean.inicializar()}"/>
+        <f:viewAction action="#{cnaeBean.inicializar()}"/>
     </f:metadata>
 
     <ui:define name="conteudo">
@@ -48,7 +48,7 @@
                             </li>
                             <li>
                                 <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
-                                               process="@this" update="@form-tabela" actionListener="#{paisBean.inicializar()}"/>      
+                                               process="@this" update="@form-tabela" actionListener="#{cnaeBean.inicializar()}"/>      
                             </li>
                         </ul>
 
@@ -62,13 +62,13 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        <div class="col-xs-6">Países</div>
+                                        <div class="col-xs-6">CNAE</div>
                                         <div class="col-xs-6 data" ></div>
                                     </div>
-                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{paisBean.entidade.pesquisa}"/>
+                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{cnaeBean.entidade.pesquisa}"/>
 
                                 </p:panelGrid>
-                                <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{paisBean.pesquisar()}" 
+                                <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{cnaeBean.pesquisar()}" 
                                                update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
                             </h:panelGroup>
                         </div>
@@ -77,29 +77,39 @@
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10" emptyMessage="Nenhum registro encontrado"
-                                     value="#{paisBean.model}"
+                                     value="#{cnaeBean.model}"
                                      var="p" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{p.codigo}" style="text-align: left;">
+                            <p:column headerText="Codigo"  sortBy="#{p.codigoAtividade}" style="text-align: left;">
                                 <div align="left">
-                                    #{p.codigo}    
+                                    #{p.codigoAtividade}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{p.descricao}" style="text-align: left;">
+                            <p:column headerText="Descrição" sortBy="#{p.descricaoSessao}" style="text-align: left;">
                                 <div align="left">
-                                    #{p.descricao}
+                                    #{p.descricaoSessao}
+                                </div>
+                            </p:column>
+                            <p:column headerText="Descrição Divisão" sortBy="#{p.descricaoDivisao}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.descricaoDivisao}
+                                </div>
+                            </p:column>
+                            <p:column headerText="Descrição Classificação" sortBy="#{p.descricaoClassificacao}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.descricaoClassificacao}
                                 </div>
                             </p:column>
                             <p:column width="120">
                                 <!--BOTOES DAS LINHAS DA GRID-->
                                 <div align="right">
                                     <p:commandLink id="alterar"
-                                                   update="formulario-panelCadastro" actionListener="#{paisBean.alterar(p)}"
+                                                   update="formulario-panelCadastro" actionListener="#{cnaeBean.alterar(p)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
                                         <p:resetInput target="formulario-panelCadastro" />
                                         <span class="glyphicon glyphicon-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
-                                                    actionListener="#{paisBean.excluir(p)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
+                                                    actionListener="#{cnaeBean.excluir(p)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
@@ -119,10 +129,10 @@
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">
-            <p:dialog id="dl" header="Cadastro de Países" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
+            <p:dialog id="dl" header="Cadastro de Cnae" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true"  draggable="true"
                       resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
-                <p:ajax event="close" listener="#{paisBean.novo()}" update="dl" process="dl"/>
+                <p:ajax event="close" listener="#{cnaeBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
                 <div class="ui-fluid sobre-fundo">
@@ -131,17 +141,33 @@
                             <div class="row espaco">
                                 <div class="col-md-12">
                                     <h:outputLabel value="Código"/>
-                                    <p:inputText id="codigo"  value="#{paisBean.entidade.codigo}" styleClass="form-control" placeholder="Codigo"
-                                                 required="true" requiredMessage="Codigo do País é Obrigatorio!" disabled="#{paisBean.inativo}" maxlength="4">
+                                    <p:inputText id="codigo"  value="#{cnaeBean.entidade.codigoAtividade}" styleClass="form-control" placeholder="Codigo"
+                                                 required="true" requiredMessage="Codigo do Cnae é Obrigatorio!" disabled="#{cnaeBean.inativo}" maxlength="7">
                                         <p:keyFilter for="codigo" mask="num" />
                                     </p:inputText>
                                 </div>
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <h:outputLabel value="Nome"/>
-                                    <p:inputText id="descricao" styleClass="form-control" value="#{paisBean.entidade.descricao}" maxlength="50" placeholder="Descrição"
-                                                 required="true" requiredMessage="Nome do País é Obrigatorio!">
+                                    <h:outputLabel value="Descrição"/>
+                                    <p:inputText id="descricao" styleClass="form-control" value="#{cnaeBean.entidade.descricaoSessao}" maxlength="100" placeholder="Descrição"
+                                                 required="true" requiredMessage="Descrição do Cnae é Obrigatoria!">
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Descrição Divisão"/>
+                                    <p:inputText id="divisao" styleClass="form-control" value="#{cnaeBean.entidade.descricaoDivisao}" maxlength="100" placeholder="Descrição Divisão"
+                                                 required="true" requiredMessage="Descrição da Divisão é Obrigatoria!">
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Descrição Classificação"/>
+                                    <p:inputText id="classificacao" styleClass="form-control" value="#{cnaeBean.entidade.descricaoClassificacao}" maxlength="100" placeholder="Descrição Classificação"
+                                                 required="true" requiredMessage="Descrição da Classificação é Obrigatoria!">
                                     </p:inputText>
                                 </div>
                             </div>
@@ -151,7 +177,7 @@
                             <div class="row espaco">
                                 <div class="col-md-8 ">
                                     <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
-                                                     actionListener="#{paisBean.salvar()}"
+                                                     actionListener="#{cnaeBean.salvar()}"
                                                      update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
                                                      process="formulario-panelCadastro" />
                                 </div>

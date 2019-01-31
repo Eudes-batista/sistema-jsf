@@ -30,20 +30,20 @@ public class InformacoesNutricionais implements Serializable {
      * CODIGO DA INFORMACAO NUTRICIONAL
      */
     @Id
-    @Column(name = "INCODIGO", length = 4, nullable = false)
+    @Column(name = "codigo", length = 4, nullable = false)
     private Integer codigo;
 
     /**
      * DESCRICAO
      */
-    @Column(name = "INDESCRI", length = 20, nullable = false)
+    @Column(name = "descricao", length = 20, nullable = false)
     private String descricao;
 
     /**
      * CODIGO DO PRODUTO
      */
     @OneToOne
-    @JoinColumn(name = "INREFPRO", nullable = false)
+    @JoinColumn(name = "produto", nullable = false)
     @ForeignKey(name = "informacoes_nutricionaisFKproduto")
     private Produto produto;
 

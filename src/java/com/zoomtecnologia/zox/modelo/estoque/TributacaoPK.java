@@ -19,9 +19,9 @@ public class TributacaoPK implements Serializable {
      * CÓDIGO DA CESTA DE TRIBUTAÇÃO
      */
     @ManyToOne
-    @JoinColumn(name = "CTCODCES", nullable = false)
+    @JoinColumn(name = "codigo_cesta_tributacao", nullable = false)
     @ForeignKey(name = "tributacaoFKcesta_tributacao")
-    CestaTributacao cestatributacao;
+    private CestaTributacao cestatributacao;
 
     /**
      * CÓDIGO DO ESTADO
@@ -32,12 +32,12 @@ public class TributacaoPK implements Serializable {
         ,@JoinColumn(name = "codigo_pais", referencedColumnName = "codigo_pais", nullable = false)
     })
     @ForeignKey(name = "tributacaoFKzoxcadestado")
-    Estado estado;
+    private Estado estado;
 
     /**
      * CÓDIGO DO REGIME TRIBUTÁRIO
      */
-    @Column(name = "CTREGTRI", length = 01, nullable = false, columnDefinition = "enum(1,2,3) default '3'")
-    String regimetributario;
+    @Column(name = "regime_tributario", length = 01, nullable = false, columnDefinition = "enum(1,2,3) default '3'")
+    private String regimetributario;
 
 }

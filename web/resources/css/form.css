@@ -1,20 +1,17 @@
 /**********************************************CSS DOS FORMS********************************************************************************************/
-
 /*ESPAÇAMENTO ENTRA CAMPOS DO FORMULÁRIO*/
 .espaco{
     margin-top: 15px !important;
 }
-
 /***********FUNDO DO FORM*******/
 .ui-widget .ui-dialog{
     padding: 0px !important;
     background: #FFF !important; 
     margin: 0px !important;
     border: none !important;
-
 }
 div.ui-dialog{
-    background: #1293bb !important; 
+    /*background: #1293bb !important;*/ 
     padding: 0px;
 } 
 .sobre-fundo{
@@ -25,7 +22,8 @@ div.ui-dialog{
 
 /***********CABEÇALHO DO FORM*******/
 .ui-widget .ui-dialog-titlebar{
-    background: #1293bb !important;
+    background: linear-gradient(41deg, #efece6 5%, #efece6 20%, #1491bf 85%) !important;
+    /*background: #1293bb !important;*/
     margin-left:  0px !important;;
     margin-right:   0px !important;;
     border: none !important;
@@ -35,10 +33,12 @@ div.ui-dialog{
 
 /***********TITULO DO FORM*******/
 .ui-widget .ui-dialog-title{
-    color: #fff!important;
+    color: #fff !important;
     font-weight: bold !important;
     font-family: tahoma !important;
     margin: 0px !important;
+    text-shadow: #757575 0.1em 0.1em 0.2em !important;
+    font-size: 15pt !important;
 }
 
 /***********COR DO ICONE MAIS DO FORM*******/
@@ -142,7 +142,7 @@ span.ui-icon-closethick:before {
 
 /*COR DO PLACEHOLDER*/
 input::placeholder {
-    color: #a8d2da !important   ;
+    color: #bbb !important   ;
     text-transform: capitalize;
 }
 
@@ -196,10 +196,14 @@ input::placeholder {
 }
 .tamanhoForm1, .tamanhoForm2{
     border: none !important;
-    margin-top: 2% !important;
+    margin-top: 20px !important;
 }
 
 .panel-heading{
-    background: #f1f1f1!important;
+    background: #f1f1f1 !important;
     color:#858585 !important;
+}
+label{
+    color: #a8d2da !important;
+    text-transform: capitalize;
 }

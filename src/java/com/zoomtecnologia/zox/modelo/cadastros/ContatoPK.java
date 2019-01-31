@@ -17,7 +17,7 @@ public class ContatoPK implements Serializable {
     Integer contato;
 
     @ManyToOne
-    @JoinColumn(name = "CPCODPES", referencedColumnName = "CUDOCIDE", nullable = false)
+    @JoinColumn(name = "CPCODPES", referencedColumnName = "", nullable = false)
     @ForeignKey(name = "contadoFKpessoa")
     Pessoa pessoa;
 

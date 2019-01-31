@@ -22,15 +22,15 @@ public class LocalEstoquePK implements Serializable {
     /**
      * CODIGO DO LOCAL DO ESTOQUE
      */
-    @Column(name = "ELCODLOC", length = 4, nullable = false)
+    @Column(name = "codigo", length = 4, nullable = false)
     private Integer codigo;
 
     /**
      * CODIGO DO PRODUTO
      */
     @ManyToOne
-    @JoinColumn(name = "ELREFPRO", nullable = false)
+    @JoinColumn(name = "codigo_produto", nullable = false)
     @ForeignKey(name = "local_estoqueFKproduto")
-    Produto produto;
+    private Produto produto;
 
 }

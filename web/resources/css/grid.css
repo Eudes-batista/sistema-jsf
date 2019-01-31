@@ -37,14 +37,22 @@ li{
     text-align: right !important;
 }
 
+.data{
+    margin-top: 10px;
+    text-align: right;
+    color: #fff;
+    font-size: 10pt;
+    text-decoration: none !important;
+}
 
 /*TITULO DO CABEÇALHO*/
 .tituloGrid{
-    color: #858585 !important;
+    color: #fff !important;
     text-align: left !important;
     font-size: 20pt;
     font-weight: bold;
     font-family: tahoma;
+    text-shadow: #757575 0.1em 0.1em 0.2em !important;
 }
 
 /*Tira borda da paginacao e deixa da mesma cor do formulario*/

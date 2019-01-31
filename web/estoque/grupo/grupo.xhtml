@@ -13,12 +13,10 @@
     <ui:define name="conteudo">
         <style>
             .tamanhoForm1{
-                width:500px !important;
-    
+                width:500px !important;    
             }
             .tamanhoForm2{
-                width:500px !important;
-              
+                width:500px !important;              
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -29,8 +27,6 @@
                 }
             }
         </style>
-
-
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
@@ -49,7 +45,6 @@
                                                process="@this" update="@form-tabela" actionListener="#{grupoBean.inicializar()}"/>      
                             </li>
                         </ul>
-
                         <p:tooltip for="novo" value="Novo" position="right"/>
                         <!--            <p:tooltip for="filtro" value="Filtro" position="bottom"/>
                                     <p:tooltip for="print" value="Imprimir" position="bottom"/>-->
@@ -62,7 +57,8 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" >
                                     <div  class="tituloGrid">
-                                        Grupo de Produtos
+                                        <div class="col-xs-6">Grupos de Produtos</div>
+                                        <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText  id="textPesquisa" placeholder="Pesquisa" value="#{grupoBean.entidade.pesquisa}" />
 
@@ -72,7 +68,6 @@
                             </h:panelGroup>
                         </div>
                         <p:messages id="msg" closable="true" showIcon="false"/>
-
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10" emptyMessage="Nenhum registro encontrado"
@@ -134,6 +129,7 @@
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Código"/>
                                     <p:inputText id="codigo" styleClass="form-control" value="#{grupoBean.entidade.codigo}" placeholder="Codígo" maxlength="20"
                                                  required="true" requiredMessage="Codigo do Grupo é Obrigatorio!" disabled="#{grupoBean.inativo}">
                                     </p:inputText>
@@ -141,13 +137,15 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Descrição"/>
                                     <p:inputText id="descricao" styleClass="form-control" value="#{grupoBean.entidade.descricao}" placeholder="Nome" maxlength="50"
-                                                 required="true" requiredMessage="Nome do Grupo é Obrigatorio!">
+                                                 required="true" requiredMessage="Descrição do Grupo é Obrigatoria!">
                                     </p:inputText>
                                 </div>
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12 ">
+                                    <h:outputLabel value="Tipo"/>
                                     <p:selectOneMenu id="tipo" value="#{grupoBean.entidade.tipo}">
                                         <f:selectItem itemLabel="Selecione uma opção" noSelectionOption="true"/>
                                         <f:selectItem itemLabel="Outros" itemValue="O"/>
@@ -187,7 +185,6 @@
                       closable="true" responsive="true" fitViewport="true" draggable="true"
                       resizable="false"  styleClass="tamanhoForm2" modal="true" position="top">
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dlSub" process="dlSub"/>
-
                 <p:messages id="msgCadSub" closable="true" showIcon="false"/>
                 <div class="ui-fluid">   
                     <p:panelGrid  id="panelsubGrupo" columns="1" layout="grid" styleClass="ui-panelgrid-blank">
@@ -199,11 +196,11 @@
                                          maxlength="50"/>
                             <p:inputText id="ncm" placeholder="Ncm" styleClass="form-control" value="#{grupoBean.sub.ncm}" maxlength="8" validatorMessage="O NCM tem que ter no minimo 8 números">
                                 <p:keyFilter for="ncm" mask="num" />
-                                <f:validateLength minimum="8" maximum="8" />
+                                <f:validateLength minimum="1" maximum="8" />
                             </p:inputText>
                             <p:inputText id="cest" placeholder="Cest" styleClass="form-control" value="#{grupoBean.sub.cest}" maxlength="7" validatorMessage="O CEST tem que ter no minimo 7 números">
                                 <p:keyFilter for="cest" mask="num" />
-                                <f:validateLength minimum="7" maximum="7" />
+                                <f:validateLength minimum="1" maximum="7" />
                             </p:inputText>
                             <p:selectOneMenu value="#{grupoBean.sub.iat}" >
                                 <f:selectItem itemLabel="ARREDONDAMENTO" itemValue="A" />

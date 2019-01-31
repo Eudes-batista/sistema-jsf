@@ -61,7 +61,8 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        NCM
+                                        <div class="col-xs-6">NCM</div>
+                                        <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{ncmBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
 
@@ -87,7 +88,7 @@
                                     #{n.descricao}
                                 </div>
                             </p:column>
-                            <p:column width="120">
+                            <p:column width="150">
                                 <!--BOTOES DAS LINHAS DA GRID-->
                                 <div align="right">
                                     <p:commandLink id="alterar"
@@ -100,6 +101,9 @@
                                                     actionListener="#{ncmBean.excluir(n)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
                                         <span class="glyphicon glyphicon-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                                    </p:commandLink>
+                                    <p:commandLink actionListener="#{ncmBean.selecionarNcm(n)}" oncomplete="PF('dlCadCest').show();" update="formularioCest">
+                                        <span class="fa fa-sitemap btsub"></span>                                      
                                     </p:commandLink>
                                 </div>
                             </p:column>
@@ -115,7 +119,7 @@
                 </h:form>
             </div>
         </div>
-        <!--FORMULÁRIO GRUPO-->
+        <!--FORMULÁRIO NCM-->
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Ncm" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true" fitViewport="true" draggable="false"
@@ -128,6 +132,7 @@
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Código"/>
                                     <p:inputText id="ncm" placeholder="Codigo" styleClass="form-control" value="#{ncmBean.entidade.codigo}"
                                                  required="true" requiredMessage="Codigo do Ncm é Obrigatorio!" disabled="#{ncmBean.inativo}"
                                                  maxlength="8" validatorMessage="O NCM tem que ter no minimo 8 números">
@@ -138,8 +143,9 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
-                                    <p:inputText placeholder="Nome" styleClass="form-control" value="#{ncmBean.entidade.descricao}"
-                                                 required="true" requiredMessage="Nome do Ncm é Obrigatorio!" maxlength="150"/>
+                                    <h:outputLabel value="Descrição"/>
+                                    <p:inputText placeholder="Descrição" styleClass="form-control" value="#{ncmBean.entidade.descricao}"
+                                                 required="true" requiredMessage="Descrição do Ncm é Obrigatoria!" maxlength="150"/>
                                 </div>
                             </div>
                         </div>
@@ -147,6 +153,7 @@
                         <div class="container-fluid espaco">
                             <div class="row espaco">
                                 <div class="col-md-8 ">
+                                    
                                     <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
                                                      actionListener="#{ncmBean.salvar()}"
                                                      update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
@@ -167,6 +174,89 @@
             <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
             <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
         </p:confirmDialog>
+
+
+        <!--FORMULÁRIO CEST-->
+        <h:form id="formularioCest">
+            <p:dialog id="dlCest" header="Ncm - #{cestBean.ncm.codigo}" widgetVar="dlCadCest" showEffect="fade" hideEffect="fade"
+                      closable="true" responsive="true" fitViewport="true" draggable="true"
+                      resizable="false"  styleClass="tamanhoForm2" modal="true" position="top">
+                <p:ajax event="close" listener="#{cestBean.novo()}" update="dlCest" process="dlCest"/>
+                <p:messages id="msgCad" closable="true" showIcon="false"/>
+                <div class="ui-fluid sobre-fundo">
+                    <h:panelGroup id="panelCadastroCest">
+                        <div class="container-fluid">
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <p:inputText id="cest" placeholder="Codigo" styleClass="form-control" value="#{cestBean.entidade.cestPK.codigo}"
+                                                 required="true" requiredMessage="Codigo do Cest é Obrigatorio!"
+                                                 maxlength="7" validatorMessage="O Cest tem que ter no minimo 7 números">
+                                        <p:keyFilter for="cest" mask="num" />
+                                        <f:validateLength minimum="1" maximum="7" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <p:inputText placeholder="Nome" styleClass="form-control" value="#{cestBean.entidade.descricao}"
+                                                 required="true" requiredMessage="Nome do Cest é Obrigatorio!" maxlength="150"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!--botoes salvar e sair-->
+                        <div class="container-fluid espaco">
+                            <div class="row espaco">
+                                <div class="col-md-8 ">
+                                    <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
+                                                     actionListener="#{cestBean.salvar()}"
+                                                     update="tabelaCest panelCadastroCest formularioCest-msgCad"
+                                                     process="panelCadastroCest" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:commandButton value="Sair" styleClass="btn btsair"
+                                                     process="@this" oncomplete="PF('dlCadCest').hide();"/>
+                                    <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCadCest').hide();"/>
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <!--TABELA DA GRID-->
+                <p:dataTable id="tabelaCest" lazy="true" paginator="true" paginatorPosition="bottom"
+                             rows="10"
+                             value="#{cestBean.cests}"
+                             var="c" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
+                    <p:column headerText="Codigo"  sortBy="#{c.cestPK.codigo}" style="text-align: left;">
+                        <div align="left">
+                            #{c.cestPK.codigo}    
+                        </div>
+                    </p:column>
+                    <p:column headerText="Descrição" sortBy="#{c.descricao}" style="text-align: left;">
+                        <div align="left">
+                            #{c.descricao}
+                        </div>
+                    </p:column>
+                    <p:column width="120">
+                        <!--BOTOES DAS LINHAS DA GRID-->
+                        <div align="right">
+                            <p:commandLink id="alterarCest"
+                                           update="formularioCest-panelCadastroCest" actionListener="#{cestBean.alterar(n)}"
+                                           process="@this" style="text-decoration: none !important;">
+                                <p:resetInput target="formularioCest-panelCadastroCest" />
+                                <span class="glyphicon glyphicon-pencil bteditar"></span>
+                            </p:commandLink>
+                            <p:commandLink  id="excluirCest"
+                                            actionListener="#{cestBean.excluir(n)}" process="@this" update="tabelaCest" style="text-decoration: none !important;">
+                                <span class="glyphicon glyphicon-trash btexcluir"></span>
+                                <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                            </p:commandLink>
+                        </div>
+                    </p:column>
+                    <p:tooltip for="alterarCest" value="Alterar" position="bottom"/>
+                    <p:tooltip for="excluirCest" value="Excluir" position="bottom"/>
+                </p:dataTable>
+            </p:dialog>
+        </h:form>
     </ui:define>
 
 </ui:composition>

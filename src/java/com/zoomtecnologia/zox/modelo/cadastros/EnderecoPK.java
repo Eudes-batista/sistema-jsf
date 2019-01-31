@@ -42,7 +42,7 @@ public class EnderecoPK implements Serializable {
      * CODIGO DA PESSOA
      */
     @ManyToOne
-    @JoinColumn(referencedColumnName = "CUDOCIDE", nullable = false)
+    @JoinColumn(referencedColumnName = "", nullable = false)
     @ForeignKey(name = "enderecoFKpessoa")
     Pessoa pessoa;
 

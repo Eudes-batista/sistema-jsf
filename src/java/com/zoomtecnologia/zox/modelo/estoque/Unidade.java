@@ -29,16 +29,16 @@ public class Unidade extends Filtro implements EntidadeBase<String>, Serializabl
      * Codigo da unidade
      */
     @Id
-    @Column(name = "UNCODIGO", length = 5, nullable = false)
+    @Column(name = "codigo", length = 5, nullable = false)
     @Length(max = 5, message = "Código da Unidade com até {max}.")
-    String codigo;
+    private String codigo;
 
     /**
      * Descrição da unidade
      */
-    @Column(name = "UNDESCRI", length = 20, nullable = false)
+    @Column(name = "descricao", length = 20, nullable = false)
     @Length(max = 20, message = "Descrição da Unidade com até {max}.")
-    String descricao;
+    private String descricao;
 
     @Override
     public String getId() {

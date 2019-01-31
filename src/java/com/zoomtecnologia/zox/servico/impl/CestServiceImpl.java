@@ -1,11 +1,10 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-
-import com.zoomtecnologia.zox.modelo.cadastros.Empresa;
-import com.zoomtecnologia.zox.servico.EmpresaService;
+import com.zoomtecnologia.zox.modelo.estoque.Cest;
+import com.zoomtecnologia.zox.modelo.estoque.Ncm;
+import com.zoomtecnologia.zox.servico.CestService;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -18,17 +17,19 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("empresaService")
+/**
+ *
+ * @author Administrador
+ */
+@Service("cestService")
 @Transactional
-public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements EmpresaService {
-
-    private static final long serialVersionUID = 1L;
-
+public class CestServiceImpl extends GenericServiceImpl<Cest> implements CestService {
+    
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<Empresa> filtrados(Empresa filtro) {
+    public List<Cest> filtrados(Cest filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setFirstResult(filtro.getPrimeiroRegistro());
         criteria.setMaxResults(filtro.getQuantidadeRegistros());
@@ -41,23 +42,24 @@ public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements E
     }
 
     @Override
-    public int quantidadeFiltrados(Empresa filtro) {
+    public int quantidadeFiltrados(Cest filtro) {
         Criteria criteria = criarCriteriaParaFiltro(filtro);
         criteria.setProjection(Projections.rowCount());
         return ((Number) criteria.uniqueResult()).intValue();
     }
 
     @Override
-    public Criteria criarCriteriaParaFiltro(Empresa filtro) {
+    public Criteria criarCriteriaParaFiltro(Cest filtro) {
         Session session = entityManager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Empresa.class);
+        Criteria criteria = session.createCriteria(Cest.class);
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-                Criterion nomePessoa = Restrictions.ilike("nomePessoa", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                Criterion nomeFantasia = Restrictions.ilike("nomeFantasia", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                Criterion cnpj = Restrictions.eq("documentoIndentificacao", filtro.getPesquisa());
-                Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
-                criteria.add(Restrictions.or(nomePessoa,nomeFantasia,cnpj, codigo));
+                Criterion nome = Restrictions.ilike("descricao", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion codigo = Restrictions.eq("codigo", 0);
+                if (StringUtils.isNumeric(filtro.getPesquisa())) {
+                    codigo = Restrictions.eq("codigo", Integer.parseInt(filtro.getPesquisa()));
+                }
+                criteria.add(Restrictions.or(nome, codigo));
                 return criteria;
             }
         } else {
@@ -67,20 +69,13 @@ public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements E
     }
 
     @Override
-    public Criteria criarFiltro(Empresa filtro, Criteria criteria) {
-        Criteria c = criteria;
-        Criterion nome = Restrictions.ilike("nomePessoa", filtro.getRazaoSocial(), MatchMode.ANYWHERE);
-        return c.add(nome);
-    }
-    
-    @Override
-    public Empresa buscarPorEmpresa(Empresa empresa){
-        try{
-            return entityManager.createNamedQuery("Empresa.buscarPorCodigo",Empresa.class).setParameter("codigo",empresa.getCodigo()).getSingleResult();
-        }catch(NoResultException ex){
-            return null;
-        }
-        
+    public Criteria criarFiltro(Cest filtro, Criteria criteria) {
+        return null;
     }
 
+    @Override
+    public List<Cest> listarCestPorNcm(Ncm ncm) {
+        return entityManager.createNamedQuery("Cest.listarCestPorNcm", Cest.class).setParameter("ncm", ncm).getResultList();
+    }
+    
 }

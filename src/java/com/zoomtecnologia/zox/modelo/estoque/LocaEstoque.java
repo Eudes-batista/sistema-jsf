@@ -21,16 +21,16 @@ public class LocaEstoque implements Serializable {
      * CODIGO DO LOCAL DO ESTOQUE
      */
     @EmbeddedId
-    LocalEstoquePK localEstoquePK;
+    private LocalEstoquePK localEstoquePK;
     /**
      * ESTOQUE ATUAL
      */
-    @Column(name = "ELESTATU", precision = 15, scale = 6, nullable = false)
-    Double estoqueAtual;
+    @Column(name = "estoque_atual", precision = 15, scale = 6, nullable = false)
+    private Double estoqueAtual;
     /**
      * PRECO TOTAL DE CUSTO DO ESTOQUE
      */
-    @Column(name = "ELVCUSTO", precision = 15, scale = 6, nullable = false)
-    Double precoTotalCusto;
+    @Column(name = "preco_total_custo", precision = 15, scale = 6, nullable = false)
+    private Double precoTotalCusto;
 
 }

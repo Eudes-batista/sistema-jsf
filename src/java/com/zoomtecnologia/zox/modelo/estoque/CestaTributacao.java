@@ -25,15 +25,15 @@ public class CestaTributacao implements Serializable {
      * CÓDIGO DA CESTA DE TRIBUTACAO
      */
     @Id
-    @Column(name = "CTCODIGO", length = 04, nullable = false)
+    @Column(name = "codigo", length = 04, nullable = false)
     @Length(max = 04, message = "Código da Cesta de Tributação com até {max}.")
-    String codigo;
+    private String codigo;
 
     /**
      * DESCRIÇÃO DA CESTA DE TRIBUTAÇÃO
      */
-    @Column(name = "CTDESCRI", length = 50, nullable = false)
+    @Column(name = "descricao", length = 50, nullable = false)
     @Length(max = 50, message = "Descrição da Cesta de Tributação com até {max}.")
-    String descricao;
+    private String descricao;
 
 }

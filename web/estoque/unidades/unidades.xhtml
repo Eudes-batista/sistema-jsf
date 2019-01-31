@@ -61,7 +61,8 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        Unidade
+                                        <div class="col-xs-6">Unidades</div>
+                                        <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{unidadeBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
 
@@ -128,6 +129,7 @@
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Código"/>
                                     <p:inputText id="codigo" placeholder="Codigo" styleClass="form-control" value="#{unidadeBean.entidade.codigo}"
                                                  required="true" requiredMessage="Codigo da Unidade é Obrigatorio!" disabled="#{unidadeBean.inativo}"
                                                  maxlength="5" onkeyup="upperCase(this)"/>
@@ -135,8 +137,9 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Descrição"/>
                                     <p:inputText id="nome" placeholder="Nome" styleClass="form-control" value="#{unidadeBean.entidade.descricao}"
-                                                 required="true" requiredMessage="Nome da Unidade é Obrigatorio!"
+                                                 required="true" requiredMessage="Descrição da Unidade é Obrigatoria!"
                                                  maxlength="20" onkeyup="upperCase(this)"/>  
                                 </div>
                             </div>

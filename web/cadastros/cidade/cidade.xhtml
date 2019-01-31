@@ -15,11 +15,11 @@
         <style>
             .tamanhoForm1{
                 width:500px !important;
-                
+
             }
             .tamanhoForm2{
                 width:500px !important;
-                
+
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -63,7 +63,8 @@
                             <h:panelGroup id="panelConsulta" >
                                 <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
                                     <div  class="tituloGrid">
-                                        Cidades
+                                        <div class="col-xs-6">Cidades</div>
+                                        <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{cidadeBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
 
@@ -135,6 +136,7 @@
                         <div class="container-fluid">
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Estado"/>
                                     <p:selectOneMenu value="#{cidadeBean.entidade.cidadePK.estado}" filter="true"
                                                      required="true" requiredMessage="Campo estado é obrigatorio."
                                                      converter="converterEstado">
@@ -146,16 +148,18 @@
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Código da Cidade"/>
                                     <p:inputText id="codigo" placeholder="Codigo" styleClass="form-control" value="#{cidadeBean.entidade.cidadePK.codigo}"
-                                                 required="true" requiredMessage="Codigo do Cidade é Obrigatorio!" disabled="#{cidadeBean.inativo}" maxlength="7">
+                                                 required="true" requiredMessage="Codigo da Cidade é Obrigatorio!" disabled="#{cidadeBean.inativo}" maxlength="7">
                                         <p:keyFilter for="codigo" mask="num" />
                                     </p:inputText>
                                 </div>
                             </div>
                             <div class="row espaco">
                                 <div class="col-md-12">
+                                    <h:outputLabel value="Cidade"/>
                                     <p:inputText placeholder="Nome" styleClass="form-control" value="#{cidadeBean.entidade.nome}"
-                                                 required="true" requiredMessage="Nome do Cidade é Obrigatorio!" maxlength="60"/>   
+                                                 required="true" requiredMessage="Nome da Cidade é Obrigatorio!" maxlength="60"/>   
                                 </div>
                             </div>
                         </div>

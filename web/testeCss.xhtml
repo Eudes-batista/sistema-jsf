@@ -89,9 +89,9 @@
                                     #{e.documentoIndentificacao}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Razão Social" sortBy="#{e.razaoSocial}" style="text-align: left;">
+                            <p:column headerText="Razão Social" sortBy="#{e.nomePessoa}" style="text-align: left;">
                                 <div align="left">
-                                    #{e.razaoSocial}
+                                    #{e.nomePessoa}
                                 </div>
                             </p:column>
                             <p:column headerText="Nome Fantasia" sortBy="#{e.nomeFantasia}" style="text-align: left;">
@@ -170,7 +170,7 @@
                                     <!--razao social e nome fantasia-->
                                     <div class="row espaco">
                                         <div class="col-md-6">
-                                            <p:inputText id="razaosocial" styleClass="form-control" value="#{empresaBean.entidade.razaoSocial}" maxlength="120" placeholder="Razão Social"
+                                            <p:inputText id="nomePessoa" styleClass="form-control" value="#{empresaBean.entidade.nomePessoa}" maxlength="120" placeholder="Razão Social"
                                                          required="true" requiredMessage="Razão Social é Obrigatorio!">
                                             </p:inputText>
                                         </div>

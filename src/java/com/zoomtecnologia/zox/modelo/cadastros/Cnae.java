@@ -6,6 +6,7 @@
 package com.zoomtecnologia.zox.modelo.cadastros;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.zoomtecnologia.zox.modelo.EntidadeBase;
 
 /**
  *
@@ -35,56 +35,28 @@ public class Cnae extends Filtro implements EntidadeBase<Integer>, Serializable 
      * CODIGO DE ATIVIDADE
      */
     @Id
-    @Column(name = "AECDCNAE", length = 7, nullable = false)
+    @Column(name = "codigo_cnae", length = 7, nullable = false)
     private Integer codigoAtividade;
-
-    /**
-     * SESSAO DA ATIVIDADE
-     */
-    @Column(name = "AECSECAO", length = 1, nullable = false)
-    private String sessaoAtividade;
 
     /**
      * DESCRICAO DA ATIVIDADE
      */
-    @Column(name = "AEDSECAO", length = 100, nullable = false)
+    @Column(name = "descricao_sessao", length = 100, nullable = false)
     private String descricaoSessao;
 
-    /**
-     * CODIGO DA DEVISAO
-     */
-    @Column(name = "AECODDIV", length = 2, nullable = false)
-    private String codigoDivisao;
 
     /**
      * DESCRICAO DA DIVISAO
      */
-    @Column(name = "AEDESDIV", length = 100, nullable = false)
+    @Column(name = "descricao_divisao", length = 100, nullable = false)
     private String descricaoDivisao;
 
-    /**
-     * CODIGO DO GRUPO
-     */
-    @Column(name = "AECGRUPO", length = 3, nullable = false)
-    private String codigoGrupo;
-
-    /**
-     * DESCRICAO DO GRUPO
-     */
-    @Column(name = "AEDGRUPO", length = 100, nullable = false)
-    private String descricaoGrupo;
-
-    /**
-     * CODIGO DA CLASSIFICACAO
-     */
-    @Column(name = "AECCLASS", length = 5, nullable = false)
-    private String codigoClassificao;
-
+ 
     /**
      * DESCRICAO DA CLASSE
      */
-    @Column(name = "EADCLASS", length = 100, nullable = false)
-    private String descricaoClasse;
+    @Column(name = "descricao_classificacao", length = 100, nullable = false)
+    private String descricaoClassificacao;
 
     @Override
     public Integer getId() {

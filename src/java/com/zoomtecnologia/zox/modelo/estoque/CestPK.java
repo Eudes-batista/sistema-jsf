@@ -15,14 +15,14 @@ public class CestPK implements Serializable {
     /**
      * CODIGO DO CEST
      */
-    @Column(name = "CECODIGO", length = 7, nullable = false)
+    @Column(name = "codigo", length = 7, nullable = false)
     private String codigo;
 
     /**
      * CODIGO DO NCM
      */
     @ManyToOne
-    @JoinColumn(name = "CECODNCM", nullable = false)
+    @JoinColumn(name = "ncm", nullable = false)
     @ForeignKey(name = "cestFKncm")
     private Ncm ncm;
 }

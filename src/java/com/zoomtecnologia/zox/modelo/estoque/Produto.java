@@ -17,77 +17,77 @@ public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "PRREFPRO", length = 20, nullable = false)
-    String codigo;
+    @Column(name = "referencia", length = 20, nullable = false)
+    private String codigo;
 
     @ManyToOne
-    @JoinColumn(name = "PRNCMCOD", nullable = false)
+    @JoinColumn(name = "codigo_ncm", nullable = false)
     @ForeignKey(name = "produtoFKncm")
-    Ncm ncm;
+    private Ncm ncm;
 
-    @Column(name = "PRCODCES", length = 7, nullable = true)
-    Integer cest;
+    @Column(name = "codigo_cest", length = 7, nullable = true)
+    private Integer cest;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity = SubGrupo.class)
     @JoinColumns({
-        @JoinColumn(name = "PRCODSUB", referencedColumnName = "SGCODSUB", nullable = false)
-        ,@JoinColumn(name = "PRCODGRU", referencedColumnName = "SGCODGRU", nullable = false)
+        @JoinColumn(name = "codigo_subgrupo", referencedColumnName = "codigo", nullable = false)
+        ,@JoinColumn(name = "codigo_grupo", referencedColumnName = "codigo_grupo", nullable = false)
     })
     @ForeignKey(name = "produtoFKsubgrupo")
-    SubGrupo subGrupo;
+    private SubGrupo subGrupo;
 
-    @Column(name = "PRDESPRO", length = 120, nullable = false)
-    String descricao;
+    @Column(name = "descricao", length = 120, nullable = false)
+    private String descricao;
 
-    @Column(name = "PRAPLICA", nullable = true, columnDefinition = "text")
-    String aplicacao;
+    @Column(name = "aplicacao", nullable = true, columnDefinition = "text")
+    private String aplicacao;
 
-    @Column(name = "PRTIPOPS", nullable = true, columnDefinition = "enum(P,S) default 'P'")
-    String tipo;
+    @Column(name = "tipo", nullable = true, columnDefinition = "enum(P,S) default 'P'")
+    private String tipo;
 
-    @Column(name = "PRULTALT", nullable = false)
+    @Column(name = "ultima_atualizacao", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    Date ultimaAtualizacao;
+    private Date ultimaAtualizacao;
 
-    @Column(name = "PRCODFAB", length = 20, nullable = true)
-    String fabricante;
+    @Column(name = "fabricante", length = 20, nullable = true)
+    private String fabricante;
 
-    @Column(name = "PRCDPROD", length = 20, nullable = true)
-    String produtor;
+    @Column(name = "produtor", length = 20, nullable = true)
+    private String produtor;
 
-    @Column(name = "PRDIAVEN", length = 5, nullable = true)
-    String diaVencimento;
+    @Column(name = "dias_vencimento", length = 5, nullable = true)
+    private String diasVencimento;
 
-    @Column(name = "PRIATPRO", nullable = false, columnDefinition = "enum(A,T) default 'A'")
-    String iat;
+    @Column(name = "iat", nullable = false, columnDefinition = "enum(A,T) default 'A'")
+    private String iat;
 
-    @Column(name = "PRGERABA", nullable = false, columnDefinition = "enum(S,N) default 'N'")
-    String balanca;
+    @Column(name = "balanca", nullable = false, columnDefinition = "enum(S,N) default 'N'")
+    private String balanca;
 
-    @Column(name = "PRINFONU", nullable = false, columnDefinition = "enum(S,N) default 'N'")
-    String informacaoNutricional;
+    @Column(name = "informacoes_nutricionais", nullable = false, columnDefinition = "enum(S,N) default 'N'")
+    private String informacaoNutricional;
 
-    @Column(name = "PRIMPVAL", nullable = false, columnDefinition = "enum(S,N) default 'N'")
-    String imprimiDataValidade;
+    @Column(name = "imprime_data_validade", nullable = false, columnDefinition = "enum(S,N) default 'N'")
+    private String imprimiDataValidade;
 
-    @Column(name = "PRCLENQU", length = 5, nullable = true)
-    String classeEnquadramentoIpi;
+    @Column(name = "classe_enquadramento_ipi", length = 5, nullable = true)
+    private String classeEnquadramentoIpi;
 
-    @Column(name = "PRCDSELO", length = 60, nullable = true)
-    String codigoSelo;
+    @Column(name = "selo", length = 60, nullable = true)
+    private String codigoSelo;
 
-    @Column(name = "PRCODEAN", length = 20, nullable = true)
-    String eanTributacao;
+    @Column(name = "ean_tributacao", length = 20, nullable = true)
+    private String eanTributacao;
 
-    @Column(name = "PREMBALA", length = 20, nullable = false)
-    String codigoEmbalagem;
+    @Column(name = "embalagem_principal", length = 20, nullable = false)
+    private String codigoEmbalagemPrincipal;
 
     @ManyToOne
-    @JoinColumn(name = "PRUNIDAD", nullable = false)
+    @JoinColumn(name = "cogido_unidade", nullable = false)
     @ForeignKey(name = "unidadeFKproduto")
-    Unidade unidade;
+    private Unidade unidade;
 
-    @Column(name = "PRFATMUL", precision = 5, scale = 3, nullable = false)
-    Double fatorMultiplicacao;
+    @Column(name = "fator_multiplicacao", precision = 5, scale = 3, nullable = false)
+    private Double fatorMultiplicacao;
 
 }

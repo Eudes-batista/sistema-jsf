@@ -44,32 +44,32 @@ public class SubGrupo extends Filtro implements EntidadeBase<SubGrupoPK>, Serial
     /**
      * DESCRIÇÃO DO SUBGRUPO
      */
-    @Column(name = "SGDESGRU", length = 50, nullable = false)
+    @Column(name = "descricao", length = 50, nullable = false)
     @Length(max = 50, message = "Descrição do SubGrupo com até {max}.")
     private String descricao;
 
     /**
      * CÓDIGO DO NCM PADRÃO DO SUBGRUPO
      */
-    @Column(name = "SGCODNCM", length = 8, nullable = false)
+    @Column(name = "ncm", length = 8, nullable = false)
     private Integer ncm;
 
     /**
      * CÓDIGO DO CEST PADRÃO DO SUBGRUPO
      */
-    @Column(name = "SGCDCEST", length = 7, nullable = true)
+    @Column(name = "cest", length = 7, nullable = true)
     private Integer cest;
 
     /**
      * IAT (ARREDONDAMENTO OU TRUNCAMENTO) PADRÃO DO SUBGRUPO
      */
-    @Column(name = "SGIATPRO", length = 1, nullable = true, columnDefinition = " enum('A','T') default 'A'")
+    @Column(name = "iat", length = 1, nullable = true, columnDefinition = " enum('A','T') default 'A'")
     private String iat;
 
     /**
      * IPPT (MERCADORIA DE TERCEIROS OU PROPRIA) PADRÃO DO SUBGRUPO
      */
-    @Column(name = "SGIPPTPR", length = 1, nullable = true, columnDefinition = " enum('T','P') default 'T'")
+    @Column(name = "ippt", length = 1, nullable = true, columnDefinition = " enum('T','P') default 'T'")
     private String ippt;
 
     @Override

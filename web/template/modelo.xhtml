@@ -12,6 +12,14 @@
         <h:outputStylesheet library="css" name="form.css" />
         <h:outputScript library="js" name="function.js"/>
         <h:outputScript library="js" name="bootstrap.js"/>
+        <script>
+            window.onload = function(){
+                var divs = document.querySelectorAll(".data");
+                divs.forEach(div =>{
+                    div.textContent = mostrarData();
+                });
+            };
+        </script>
         <style>
             .fundo{
                 background-image: url(../resources/imagens/poly.jpg) !important;
