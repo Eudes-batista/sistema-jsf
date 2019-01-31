@@ -53,9 +53,9 @@ public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements E
         Criteria criteria = session.createCriteria(Empresa.class);
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
-                Criterion nomePessoa = Restrictions.ilike("nomePessoa", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                Criterion nomeFantasia = Restrictions.ilike("nomeFantasia", filtro.getPesquisa(), MatchMode.ANYWHERE);
-                Criterion cnpj = Restrictions.eq("documentoIndentificacao", filtro.getPesquisa());
+                Criterion nomePessoa = Restrictions.ilike("pessoa.nomePessoa", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion nomeFantasia = Restrictions.ilike("pessoa.nomeFantasia", filtro.getPesquisa(), MatchMode.ANYWHERE);
+                Criterion cnpj = Restrictions.eq("pessoa.documentoPessoa", filtro.getPesquisa());
                 Criterion codigo = Restrictions.eq("codigo", filtro.getPesquisa());
                 criteria.add(Restrictions.or(nomePessoa,nomeFantasia,cnpj, codigo));
                 return criteria;
@@ -69,7 +69,7 @@ public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements E
     @Override
     public Criteria criarFiltro(Empresa filtro, Criteria criteria) {
         Criteria c = criteria;
-        Criterion nome = Restrictions.ilike("nomePessoa", filtro.getRazaoSocial(), MatchMode.ANYWHERE);
+        Criterion nome = Restrictions.ilike("nomePessoa", filtro.getPessoa().getNomePessoa(), MatchMode.ANYWHERE);
         return c.add(nome);
     }
     

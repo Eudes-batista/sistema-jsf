@@ -81,19 +81,19 @@
                                     #{e.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Documento de Indetificação"  sortBy="#{e.documentoIndentificacao}" style="text-align: left;">
+                            <p:column headerText="Documento de Indetificação"  sortBy="#{e.pessoa.documentoPessoa}" style="text-align: left;">
                                 <div align="left">
-                                    #{e.documentoIndentificacao}    
+                                    #{e.pessoa.documentoPessoa}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Razão Social" sortBy="#{e.nomePessoa}" style="text-align: left;">
+                            <p:column headerText="Razão Social" sortBy="#{e.pessoa.nomePessoa}" style="text-align: left;">
                                 <div align="left">
-                                    #{e.nomePessoa}
+                                    #{e.pessoa.nomePessoa}
                                 </div>
                             </p:column>
-                            <p:column headerText="Nome Fantasia" sortBy="#{e.nomeFantasia}" style="text-align: left;">
+                            <p:column headerText="Nome Fantasia" sortBy="#{e.pessoa.nomeFantasia}" style="text-align: left;">
                                 <div align="left">
-                                    #{e.nomeFantasia}
+                                    #{e.pessoa.nomeFantasia}
                                 </div>
                             </p:column>
                             <p:column width="120">
@@ -146,140 +146,10 @@
                                                                  onkeyup="upperCase(this)">                                
                                                         <f:passThroughAttribute name="required" value="true"/>
                                                     </p:inputText>
-
                                                 </div>
                                             </div> 
-                                            <!--cnpj inscrição estadual e inscrição municipal-->
-                                            <div class="row espaco">
-                                                <div class="col-md-4">
-                                                    <p:inputMask id="cnpj" styleClass="form-control" value="#{empresaBean.entidade.documentoIndentificacao}" placeholder="CNPJ" mask="99.999.999/9999-99"
-                                                                 required="true" requiredMessage="CNPJ é Obrigatorio!" >
-                                                        <f:passThroughAttribute name="required" value="true"/>
-                                                        <p:ajax event="change" process="@this" update="informacoes informacoes2"  listener="#{empresaBean.carregarDadosEmpresa()}"/>
-                                                    </p:inputMask>
-                                                    <p:tooltip for="cnpj" value="CNPJ" position="top" />
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <p:inputText id="inscricaoEstadual" styleClass="form-control" value="#{empresaBean.entidade.inscricaoEstadual}" placeholder="Inscricao Estadual" maxlength="14">
-                                                        <p:keyFilter for="inscricaoEstadual" mask="num" preventPaste="false"/>
-                                                    </p:inputText>
-                                                    <p:tooltip for="inscricaoEstadual" value="Inscricao Estadual" position="top" />
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <p:inputText id="inscricaoMunicipal" styleClass="form-control" value="#{empresaBean.entidade.inscricaoMunicipal}" placeholder="Inscricao Municipal" maxlength="14">
-                                                        <p:keyFilter for="inscricaoMunicipal" mask="num" />
-                                                    </p:inputText>
-                                                    <p:tooltip for="inscricaoMunicipal" value="Inscricao Municipal" position="top" />
-                                                </div>
-                                            </div>
-                                            <h:panelGroup id="informacoes">
-                                                <!--razao social e nome fantasia-->
-                                                <div class="row espaco">
-                                                    <div class="col-md-8">
-                                                        <p:inputText id="nomePessoa" styleClass="form-control" value="#{empresaBean.entidade.nomePessoa}" maxlength="120" placeholder="Razão Social"
-                                                                     required="true" requiredMessage="Razão Social é Obrigatorio!"
-                                                                     onkeyup="upperCase(this)">
-                                                            <f:passThroughAttribute name="required" value="true"/>
-                                                        </p:inputText>
-                                                        <p:tooltip for="nomePessoa" value="Razão Social" position="top" />
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p:inputText id="nomefantasia" styleClass="form-control" value="#{empresaBean.entidade.nomeFantasia}" maxlength="120" placeholder="Nome Fantasia"
-                                                                     required="true" requiredMessage="Nome Fantasia é Obrigatorio!">
-                                                            <f:passThroughAttribute name="required" value="true"/>
-                                                        </p:inputText>
-                                                        <p:tooltip for="nomefantasia" value="Nome Fantasia" position="top" />
-                                                    </div>
-                                                </div>
-                                                <!--Inscricao EstadualST Cnae RegimeTributario-->
-                                                <div class="row espaco">
-                                                    <div class="col-md-4">
-                                                        <p:inputText id="inscricaoEstadualST" styleClass="form-control" value="#{empresaBean.entidade.inscricaoEstadualSt}" placeholder="Inscrição Estadual ST" 
-                                                                     >
-                                                            <p:keyFilter for="inscricaoEstadualST" mask="num" />
-                                                        </p:inputText>
-                                                        <p:tooltip for="inscricaoEstadualST" value="Inscrição Estadual Substituição Tributaria" position="top" />
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p:inputText id="cnae" styleClass="form-control" value="#{empresaBean.entidade.cnae}" placeholder="CNAE" maxlength="7"
-                                                                     converter="converterMaskInteger">
-                                                            <p:keyFilter for="cnae" mask="num" />
-                                                        </p:inputText>
-                                                        <p:tooltip for="cnae" value="CNAE - Classificação Nacional de Atividades Econômicas" position="top" />
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p:selectOneMenu id="regime" value="#{empresaBean.entidade.regimeTributario}" required="true"
-                                                                         requiredMessage="Regime é Obrigatorio" styleClass="select-requerido">
-                                                            <f:selectItem itemLabel="Selecione um Regime" noSelectionOption="true" class="place-cor"/>
-                                                            <f:selectItem itemLabel="Simples Nacional" itemValue="1"/>
-                                                            <f:selectItem itemLabel="Lucro Presumido (Normal)" itemValue="2"/>
-                                                            <f:selectItem itemLabel="Lucro Real" itemValue="3"/>
-                                                        </p:selectOneMenu>
-                                                        <p:tooltip for="regime" value="Regime Tributario" position="top" />
-                                                    </div>
-                                                </div>
-                                            </h:panelGroup>   
-                                            <!--******************-->
                                         </div>
                                     </div>
-                                    <h:panelGroup id="informacoes2">
-                                        <!--Endereço da empresa-->
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">Endereço</div>
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-2">
-                                                        <p:inputMask id="cep" mask="99.999-999" styleClass="form-control" value="#{empresaBean.entidade.cep}" placeholder="CEP" 
-                                                                     required="true" requiredMessage="CEP é Obrigatorio!"  converter="converterMaskInteger">
-                                                            <p:ajax event="blur" process="@this" update="endereco bairro estado cidade" listener="#{empresaBean.consultarCep()}" />
-                                                        </p:inputMask>
-                                                        <p:tooltip for="cep" value="CEP - Código de Endereçamento Postal" position="top" />
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <p:inputText id="endereco" styleClass="form-control" value="#{empresaBean.entidade.endereco}" maxlength="60" placeholder="Endereço"
-                                                                     required="true" requiredMessage="Endereço é Obrigatorio!"
-                                                                     onkeyup="upperCase(this)" />
-                                                        <p:tooltip for="endereco" value="Endereço ex:(RUA DIREITA,AV RECIFE)" position="top" />
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <p:inputText id="numero" styleClass="form-control" value="#{empresaBean.entidade.numeroEndereco}" maxlength="10" placeholder="Número"
-                                                                     required="true" requiredMessage="Número é Obrigatorio!" onkeyup="upperCase(this)"/>
-                                                        <p:tooltip for="numero" value="Número" position="top" />
-                                                    </div>  
-                                                </div>
-                                                <div class="row espaco">
-                                                    <div class="col-md-4">
-                                                        <p:inputText id="complemento" styleClass="form-control" value="#{empresaBean.entidade.complemento}" maxlength="60" placeholder="Complemento" onkeyup="upperCase(this)"/>
-                                                        <p:tooltip for="complemento" value="Complemento ex:(SALA 201,APTO 202)" position="top" />
-                                                    </div>
-
-                                                    <div class="col-md-3">
-                                                        <p:inputText id="bairro" styleClass="form-control" value="#{empresaBean.entidade.bairro}" maxlength="60" placeholder="Bairro" onkeyup="upperCase(this)"/>
-                                                        <p:tooltip for="bairro" value="Bairro" position="top" />
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <p:selectOneMenu id="estado" value="#{empresaBean.entidade.siglaEstado}" required="true" requiredMessage="O Estado é Obrigatório."
-                                                                         filter="true"  styleClass="select-requerido">
-                                                            <f:selectItem itemLabel="UF" noSelectionOption="true"/>
-                                                            <f:selectItems value="#{empresaBean.estados}" var="es" itemLabel="#{es.sigla}" itemValue="#{es.sigla}"/>
-                                                            <p:ajax event="valueChange" process="@this" update="cidade" listener="#{empresaBean.carregarCidade()}"/>
-                                                        </p:selectOneMenu>
-                                                        <p:tooltip for="estado" value="UF - Estado" position="top" />
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <p:selectOneMenu id="cidade" value="#{empresaBean.entidade.nomeMunicipio}" 
-                                                                         filter="true"  styleClass="select-requerido" >
-                                                            <!--required="true" requiredMessage="O Nome da Cidade é Obrigatório."-->
-                                                            <f:selectItem itemLabel="Cidade" noSelectionOption="true"/>
-                                                            <f:selectItems value="#{empresaBean.cidades}" var="c" itemLabel="#{c.nome}" itemValue="#{c.nomeToUpperCase}"/>
-                                                        </p:selectOneMenu>
-                                                        <p:tooltip for="cidade" value="Cidade" position="top" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </h:panelGroup>
                                     <!--botoes salvar e sair-->
                                     <div class="container-fluid espaco">
                                         <div class="row espaco">
