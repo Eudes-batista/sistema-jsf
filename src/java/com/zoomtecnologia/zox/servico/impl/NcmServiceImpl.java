@@ -2,6 +2,7 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.estoque.Ncm;
 import com.zoomtecnologia.zox.servico.NcmService;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("ncmService")
 @Transactional
-public class NcmServiceImpl extends GenericServiceImpl<Ncm> implements NcmService {
+public class NcmServiceImpl extends GenericServiceImpl<Ncm> implements NcmService,Serializable {
 
     private static final long serialVersionUID = 1L;
 

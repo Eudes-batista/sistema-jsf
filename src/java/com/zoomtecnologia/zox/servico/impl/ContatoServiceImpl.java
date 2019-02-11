@@ -7,6 +7,7 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Contato;
 import com.zoomtecnologia.zox.servico.ContatoService;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("contatoService")
 @Transactional
-public class ContatoServiceImpl extends GenericServiceImpl<Contato> implements ContatoService {
+public class ContatoServiceImpl extends GenericServiceImpl<Contato> implements ContatoService,Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;

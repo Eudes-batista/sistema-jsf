@@ -2,6 +2,7 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Cfop;
 import com.zoomtecnologia.zox.servico.CfopService;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("cfopService")
 @Transactional
-public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopService {
+public class CfopServiceImpl extends GenericServiceImpl<Cfop> implements CfopService,Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;

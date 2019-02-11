@@ -2,6 +2,7 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.estoque.Unidade;
 import com.zoomtecnologia.zox.servico.UnidadeServico;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("unidadeServico")
 @Transactional
-public class UnidadeServicoImpl extends GenericServiceImpl<Unidade> implements UnidadeServico {
+public class UnidadeServicoImpl extends GenericServiceImpl<Unidade> implements UnidadeServico , Serializable{
 
     private static final long serialVersionUID = 1L;
 

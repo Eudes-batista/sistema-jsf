@@ -7,6 +7,7 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Cnae;
 import com.zoomtecnologia.zox.servico.CnaeService;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("cnaeService")
 @Transactional
-public class CnaeServiceImpl extends GenericServiceImpl<Cnae> implements CnaeService {
+public class CnaeServiceImpl extends GenericServiceImpl<Cnae> implements CnaeService,Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;

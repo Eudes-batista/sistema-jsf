@@ -8,6 +8,7 @@ package com.zoomtecnologia.zox.servico.impl;
 import com.zoomtecnologia.zox.modelo.estoque.Grupo;
 import com.zoomtecnologia.zox.modelo.estoque.SubGrupo;
 import com.zoomtecnologia.zox.servico.SubGrupoService;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("subGrupoService")
 @Transactional
-public class SubGrupoServiceImpl extends GenericServiceImpl<SubGrupo> implements SubGrupoService{
+public class SubGrupoServiceImpl extends GenericServiceImpl<SubGrupo> implements SubGrupoService,Serializable{
 
     private static final long serialVersionUID = 1L;
 

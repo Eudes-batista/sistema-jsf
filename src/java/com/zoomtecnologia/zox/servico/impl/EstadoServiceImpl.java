@@ -3,6 +3,7 @@ package com.zoomtecnologia.zox.servico.impl;
 import com.zoomtecnologia.zox.modelo.cadastros.Estado;
 import com.zoomtecnologia.zox.modelo.cadastros.Pais;
 import com.zoomtecnologia.zox.servico.EstadoService;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("estadoService")
 @Transactional
-public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements EstadoService {
+public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements EstadoService,Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;

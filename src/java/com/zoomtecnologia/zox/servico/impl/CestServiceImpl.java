@@ -3,6 +3,7 @@ package com.zoomtecnologia.zox.servico.impl;
 import com.zoomtecnologia.zox.modelo.estoque.Cest;
 import com.zoomtecnologia.zox.modelo.estoque.Ncm;
 import com.zoomtecnologia.zox.servico.CestService;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("cestService")
 @Transactional
-public class CestServiceImpl extends GenericServiceImpl<Cest> implements CestService {
+public class CestServiceImpl extends GenericServiceImpl<Cest> implements CestService,Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;

@@ -7,6 +7,7 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.estoque.Grupo;
 import com.zoomtecnologia.zox.servico.GrupoService;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("grupoService")
 @Transactional
-public class GrupoServiceImpl extends GenericServiceImpl<Grupo> implements GrupoService {
+public class GrupoServiceImpl extends GenericServiceImpl<Grupo> implements GrupoService,Serializable {
 
     private static final long serialVersionUID = 1L;
 

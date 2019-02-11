@@ -3,6 +3,7 @@ package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Empresa;
 import com.zoomtecnologia.zox.servico.EmpresaService;
+import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -17,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service("empresaService")
 @Transactional
-public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements EmpresaService {
+public class EmpresaServicoImpl extends GenericServiceImpl<Empresa> implements EmpresaService,Serializable {
 
     private static final long serialVersionUID = 1L;
 
