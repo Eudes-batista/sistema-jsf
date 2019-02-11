@@ -1,4 +1,4 @@
-package com.zoomtecnologia.zox.modelo.cadastros;
+package com.zoomtecnologia.zox.modelo.cadastros.pessoa;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
 import com.zoomtecnologia.zox.modelo.EntidadeBase;
@@ -27,7 +27,7 @@ public class Meta extends Filtro implements EntidadeBase<Integer>, Serializable 
     private Integer codigo;
 
     @ManyToOne
-    @JoinColumn(name = "codigo_vendedor", nullable = false)
+    @JoinColumn(name = "codigo_vendedor", referencedColumnName = "codigo_pessoa", nullable = false)
     @ForeignKey(name = "metaFKvendedor")
     private Vendedor vendedor;
 
