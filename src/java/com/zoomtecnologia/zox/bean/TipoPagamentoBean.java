@@ -23,7 +23,8 @@ public class TipoPagamentoBean extends GenericoBean<TipoPagamento, TipoPagamento
 
     @Override
     public TipoPagamento createEntidade() {
-        return new TipoPagamento();
+        TipoPagamento tipoPagamento = new TipoPagamento();
+        return tipoPagamento;
     }
     
 }

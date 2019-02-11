@@ -62,7 +62,7 @@
 
                                 </p:panelGrid>
                                 <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{grupoBean.pesquisar()}" 
-                                               update="@form" process="panelConsulta" style="display: none;"/>
+                                               update="formGrid-tabela" process="@this formGrid-textPesquisa" style="display: none;"/>
                             </h:panelGroup>
                         </div>
                         <p:messages id="msg" closable="true" showIcon="false"/>

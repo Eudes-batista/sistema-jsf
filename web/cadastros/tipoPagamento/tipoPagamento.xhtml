@@ -66,10 +66,9 @@
                                         <div class="col-xs-6 data" ></div>
                                     </div>
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{tipoPagamentoBean.entidade.pesquisa}"/>
-
                                 </p:panelGrid>
                                 <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{tipoPagamentoBean.pesquisar()}" 
-                                               update="@form" process="panelConsulta" style="margin-top: -5px; display: none;"/>
+                                               update="formGrid-tabela" process="@this formGrid-textPesquisa" style="margin-top: -5px; display: none;"/>
                             </h:panelGroup>
                         </div>
                         <p:messages id="msg" closable="true" showIcon="false"/>
@@ -79,12 +78,12 @@
                                      rows="10" emptyMessage="Nenhum registro encontrado"
                                      value="#{tipoPagamentoBean.model}"
                                      var="p" reflow="true" tableStyleClass="table table-hover">
-                            <p:column headerText="Codigo"  sortBy="#{p.codigo}" style="text-align: left;">
+                            <p:column headerText="Codigo"  sortBy="#{p.codigo}"  style="text-align: left;">
                                 <div align="left">
                                     #{p.codigo}    
                                 </div>
                             </p:column>
-                            <p:column headerText="Descrição" sortBy="#{p.descricao}" style="text-align: left;">
+                            <p:column headerText="Descrição" sortBy="#{p.descricao}"  style="text-align: left;">
                                 <div align="left">
                                     #{p.descricao}
                                 </div>
