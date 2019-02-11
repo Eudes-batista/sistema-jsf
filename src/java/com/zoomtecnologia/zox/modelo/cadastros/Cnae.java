@@ -24,7 +24,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "cnae")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false,of="codigoAtividade")
 @NamedQueries(
         @NamedQuery(name = "Cnae.listarTodos", query = "select c from Cnae c order by c.codigoAtividade"))
 public class Cnae extends Filtro implements EntidadeBase<Integer>, Serializable {

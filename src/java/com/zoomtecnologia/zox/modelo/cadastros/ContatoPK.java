@@ -6,22 +6,26 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ForeignKey;
 
 @Embeddable
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(of={"contato","pessoa","tipoContato"})
 public class ContatoPK implements Serializable {
 
-    @Column(name = "CPCONTAT", length = 11, nullable = false)
-    Integer contato;
+    @Column(name = "contato", length = 11, nullable = false)
+    private Integer contato;
 
     @ManyToOne
-    @JoinColumn(name = "CPCODPES", referencedColumnName = "", nullable = false)
+    @JoinColumn(name = "codigo_pessoa", referencedColumnName = "documento_pessoa", nullable = false)
     @ForeignKey(name = "contadoFKpessoa")
-    Pessoa pessoa;
+    private Pessoa pessoa;
 
-    @Column(name = "CPTPCONT", length = 1, nullable = false)
-    String tipoContato;
+    @Column(name = "tipo", length = 1, nullable = false)
+    private String tipoContato;
 
 }

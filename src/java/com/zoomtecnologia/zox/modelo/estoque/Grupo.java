@@ -25,7 +25,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "grupo")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false,of="codigo")
 @NamedQueries({
     @NamedQuery(name = "Grupo.listarTodos", query = "select u from Grupo u")
     ,@NamedQuery(name = "Grupo.buscarDescricao", query = "select u from Grupo u where u.descricao like :descricao")

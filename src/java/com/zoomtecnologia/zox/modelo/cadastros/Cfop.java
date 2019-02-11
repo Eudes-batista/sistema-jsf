@@ -7,13 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "cfop")
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter @Setter
+@EqualsAndHashCode(callSuper = false,of="codigo")
 public class Cfop extends Filtro implements EntidadeBase<Integer>, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,27 +23,27 @@ public class Cfop extends Filtro implements EntidadeBase<Integer>, Serializable 
      * CODIGO DE OPERACAO FISCAL
      */
     @Id
-    @Column(name = "OPCDCFOP", length = 4, nullable = false)
+    @Column(name = "codigo", length = 4, nullable = false)
     private Integer codigo;
 
     /**
      * NATUREZA DA OPERACAO
      */
-    @Column(name = "OPDSCFOP", length = 60, nullable = false)
+    @Column(name = "natureza_operacao", length = 60, nullable = false)
     private String naturezaOperacao;
 
     /**
      * CODIGO DO COP (CLASSE DA OPERACAO OU PRESTACAO)
      */
-    @Column(name = "OPCODCOP", length = 4, nullable = false)
+    @Column(name = "codigo_cop", length = 4, nullable = false)
     private String codigocop;
 
     /**
      * DESCRICAO COMPLETA DA NATUREZA DA OPERACAO
      */
-    @Column(name = "OPDESCRI", length = 30)
+    @Column(name = "descricao_natureza_operacao", length = 30)
     private String descCompNatOp;
-    
+
     @Override
     public Integer getId() {
         return this.codigo;

@@ -9,13 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "cest")
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter @Setter
 @NamedQueries({
     @NamedQuery(name = "Cest.listarTodos", query = "select c from Cest c")
     ,@NamedQuery(name = "Cest.buscarPorDescricao", query = "select c from Cest c where c.descricao like :descricao")

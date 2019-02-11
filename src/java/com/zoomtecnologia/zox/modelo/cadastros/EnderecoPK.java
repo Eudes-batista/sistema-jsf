@@ -7,23 +7,26 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ForeignKey;
 
 @Embeddable
-@Data
+@Getter @Setter
+@EqualsAndHashCode(of={"cep","numero","cidade","pessoa"})
 public class EnderecoPK implements Serializable {
 
     /**
      * CODIGO DO CEP APENAS NUMEROS
      */
-    @Column(length = 8, nullable = false)
+    @Column(length = 8, name = "cep", nullable = false)
     private Integer cep;
 
     /**
      * NUMERO DO ENDERECO
      */
-    @Column(length = 10, nullable = false)
+    @Column(length = 10, name = "numero", nullable = false)
     private String numero;
 
     /**
@@ -42,7 +45,7 @@ public class EnderecoPK implements Serializable {
      * CODIGO DA PESSOA
      */
     @ManyToOne
-    @JoinColumn(referencedColumnName = "", nullable = false)
+    @JoinColumn(name = "codigo_pessoa", nullable = false)
     @ForeignKey(name = "enderecoFKpessoa")
     Pessoa pessoa;
 

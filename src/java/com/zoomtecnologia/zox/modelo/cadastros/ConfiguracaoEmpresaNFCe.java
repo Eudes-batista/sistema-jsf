@@ -27,7 +27,7 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "configuracao_empresa_nfce")
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = false,of="configuracaoEmpresa")
 @NamedQueries({
     @NamedQuery(name = "ConfiguracaoEmpresaNFCe.buscarPorEmpresa", query = "select c from ConfiguracaoEmpresaNFCe c where c.configuracaoEmpresa.empresa.codigo = :codigo")
 })

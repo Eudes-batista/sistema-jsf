@@ -5,11 +5,14 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ForeignKey;
 
 @Embeddable
-@Data
+@Getter @Setter
+@EqualsAndHashCode(of={"codigo","ncm"})
 public class CestPK implements Serializable {
 
     /**

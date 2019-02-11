@@ -5,6 +5,8 @@
  */
 package com.zoomtecnologia.zox.modelo.estoque;
 
+import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ForeignKey;
 
 /**
@@ -21,8 +25,9 @@ import org.hibernate.annotations.ForeignKey;
  */
 @Entity
 @Table(name = "itens_informacoes_nutricionais")
-@Data
-public class ItensInformacoesNutricionais implements Serializable {
+@Getter @Setter
+@EqualsAndHashCode(callSuper = false,of = "informacoesNutricionais")
+public class ItensInformacoesNutricionais extends Filtro implements EntidadeBase<InformacoesNutricionais>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -52,5 +57,10 @@ public class ItensInformacoesNutricionais implements Serializable {
      */
     @Column(name = "valores_diarios", length = 255, nullable = false)
     private String valoresDiarios;
+
+    @Override
+    public InformacoesNutricionais getId() {
+        return this.informacoesNutricionais;
+    }
 
 }
