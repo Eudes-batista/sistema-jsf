@@ -82,6 +82,30 @@ public class Pessoa extends Filtro implements EntidadeBase<String>, Serializable
     @Length(max = 18, message = "Campo Inscrição Estadual ST não receber mas que {max} caracteres")
     private String inscricaoEstadualST;
 
+    @Column(name = "funcionario", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N' ")
+    private String funcionario;
+
+    @Column(name = "fornecedor", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+    private String fornecedor;
+
+    @Column(name = "cliente", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+    private String cliente;
+
+    @Column(name = "vendedor", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+    private String vendedor;
+
+    @Column(name = "transportadora", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+    private String transportadora;
+    
+    @Column(name = "franquia", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+    private String franquia;
+    
+    @Column(name = "revenda", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+    private String revenda;
+    
+    @Column(name = "sub_revenda", columnDefinition = "enum('S','N') NOT NULL DEFAULT 'N'")
+    private String subRevenda;
+    
     @Column(name = "CUOBSERV", columnDefinition = "text")
     private String observasao;
 
