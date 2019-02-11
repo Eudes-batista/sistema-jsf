@@ -1,7 +1,7 @@
 package com.zoomtecnologia.zox.servico.impl;
 
-import com.zoomtecnologia.zox.modelo.cadastros.pessoa.Fornecedor;
-import com.zoomtecnologia.zox.servico.FornecedorService;
+import com.zoomtecnologia.zox.modelo.cadastros.pessoa.Vendedor;
+import com.zoomtecnologia.zox.servico.VendedorService;
 import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,18 +14,17 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("fornecedorService")
+@Service("vendedorService")
 @Transactional
-public class FornecedorServiceImpl extends GenericServiceImpl<Fornecedor> implements FornecedorService, Serializable {
+public class VendedorServiceImpl extends GenericServiceImpl<Vendedor> implements VendedorService, Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;
 
- 
     @Override
-    public Criteria criarCriteriaParaFiltro(Fornecedor filtro) {
+    public Criteria criarCriteriaParaFiltro(Vendedor filtro) {
         Session session = entityManager.unwrap(Session.class);
-        Criteria criteria = session.createCriteria(Fornecedor.class);
+        Criteria criteria = session.createCriteria(Vendedor.class);
         if (!filtro.isFiltrar()) {
             if (StringUtils.isNotEmpty(filtro.getPesquisa())) {
                 Criterion nomePessoa = Restrictions.ilike("pessoa.nomePessoa", filtro.getPesquisa(), MatchMode.ANYWHERE);
@@ -41,7 +40,7 @@ public class FornecedorServiceImpl extends GenericServiceImpl<Fornecedor> implem
     }
 
     @Override
-    public Criteria criarFiltro(Fornecedor filtro, Criteria criteria) {
+    public Criteria criarFiltro(Vendedor filtro, Criteria criteria) {
         Criteria c = criteria;
         Criterion nome = Restrictions.ilike("nomePessoa", filtro.getPessoa().getNomePessoa(), MatchMode.ANYWHERE);
         return c.add(nome);

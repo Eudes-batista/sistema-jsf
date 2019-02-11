@@ -11,8 +11,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,29 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("cestService")
 @Transactional
 public class CestServiceImpl extends GenericServiceImpl<Cest> implements CestService {
-    
+
     @PersistenceContext
     private EntityManager entityManager;
-
-    @Override
-    public List<Cest> filtrados(Cest filtro) {
-        Criteria criteria = criarCriteriaParaFiltro(filtro);
-        criteria.setFirstResult(filtro.getPrimeiroRegistro());
-        criteria.setMaxResults(filtro.getQuantidadeRegistros());
-        if (filtro.isAscendente() && filtro.getPropriedadeOrdenacao() != null) {
-            criteria.addOrder(Order.asc(filtro.getPropriedadeOrdenacao()));
-        } else if (filtro.getPropriedadeOrdenacao() != null) {
-            criteria.addOrder(Order.desc(filtro.getPropriedadeOrdenacao()));
-        }
-        return criteria.list();
-    }
-
-    @Override
-    public int quantidadeFiltrados(Cest filtro) {
-        Criteria criteria = criarCriteriaParaFiltro(filtro);
-        criteria.setProjection(Projections.rowCount());
-        return ((Number) criteria.uniqueResult()).intValue();
-    }
 
     @Override
     public Criteria criarCriteriaParaFiltro(Cest filtro) {
@@ -77,5 +55,5 @@ public class CestServiceImpl extends GenericServiceImpl<Cest> implements CestSer
     public List<Cest> listarCestPorNcm(Ncm ncm) {
         return entityManager.createNamedQuery("Cest.listarCestPorNcm", Cest.class).setParameter("ncm", ncm).getResultList();
     }
-    
+
 }

@@ -47,4 +47,5 @@ public class GenericServiceImpl<E extends EntidadeBase> implements PadraoService
     public List<E> listaTodos(Class<E> classe) {
         return entityManager.createQuery("select e from " + classe.getSimpleName() + " e", classe).getResultList();
     }
+       
 }

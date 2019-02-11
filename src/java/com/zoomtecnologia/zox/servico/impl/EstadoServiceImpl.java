@@ -10,8 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Service;
@@ -24,26 +22,7 @@ public class EstadoServiceImpl extends GenericServiceImpl<Estado> implements Est
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
-    public List<Estado> filtrados(Estado filtro) {
-        Criteria criteria = criarCriteriaParaFiltro(filtro);
-        criteria.setFirstResult(filtro.getPrimeiroRegistro());
-        criteria.setMaxResults(filtro.getQuantidadeRegistros());
-        if (filtro.isAscendente() && filtro.getPropriedadeOrdenacao() != null) {
-            criteria.addOrder(Order.asc(filtro.getPropriedadeOrdenacao()));
-        } else if (filtro.getPropriedadeOrdenacao() != null) {
-            criteria.addOrder(Order.desc(filtro.getPropriedadeOrdenacao()));
-        }
-        return criteria.list();
-    }
-
-    @Override
-    public int quantidadeFiltrados(Estado filtro) {
-        Criteria criteria = criarCriteriaParaFiltro(filtro);
-        criteria.setProjection(Projections.rowCount());
-        return ((Number) criteria.uniqueResult()).intValue();
-    }
-
+  
     @Override
     public Criteria criarCriteriaParaFiltro(Estado filtro) {
         Session session = (Session) entityManager.unwrap(Session.class);

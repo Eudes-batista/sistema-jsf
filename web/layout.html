@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-Br">
     <head>
@@ -8,38 +7,54 @@
         <link rel="stylesheet" href="resources/css/bootstrap.css" />
         <link rel="stylesheet" href="resources/css/bootstrap-dynamic-tabs.css" />
         <link rel="stylesheet" href="resources/css/tabs.css" />
+        <link rel="stylesheet" href="resources/css/materialize/css/materialize.css" />
         <style>
-            a{cursor: pointer;color:#757575;}
+            a{cursor: pointer;color:#757575;text-decoration: none!important}
             a:hover{cursor: pointer;color:#757575;}
-
-
-
             @media(min-height:768px){
                 iframe{
                     height: 1080px !important;
                 }
             }
-
+            body{
+                /*background: url('resources/imagens/fundo.png') no-repeat;*/
+                background: linear-gradient(41deg, #efece6 5%, #efece6 100%, #1491bf 100%) !important;
+                background-size: cover;
+                background-attachment: fixed;
+            }
         </style>
-
     </head>
     <body>
-        <div class="col-md-12" style="border: 0px solid #bbb;padding: 10px;position: absolute;top: 0px;width: 90%;">
-            <a onclick="gerarAba('estoque', 'grupo', 'Grupo');" >Grupo</a>
-            <a onclick="gerarAba('estoque', 'unidades', 'Unidade');"  >Unidade</a>
-            <a onclick="gerarAba('estoque', 'ncm', 'Ncm');"  >Ncm</a>
-            <a onclick="gerarAba('cadastros', 'pais', 'Pais');"  >Pais</a>
-            <a onclick="gerarAba('cadastros', 'estado', 'Estado');"  >Estado</a>
-            <a onclick="gerarAba('cadastros', 'cfop', 'Cfop');"  >Cfop</a>
-            <a onclick="gerarAba('cadastros', 'cnae', 'Cnae');"  >Cnae</a>
-            <a onclick="gerarAba('cadastros', 'cidade', 'Cidade');"  >Cidade</a>
-            <a onclick="gerarAba('cadastros', 'empresa', 'Empresa');"  >Empresa</a>
-        </div>
+        <a  href="#" data-target="slide-out" class="sidenav-trigger">
+            <i class="glyphicon glyphicon-menu-hamburger" style="font-size: 30pt; color: #f9f9f9; padding: 20px;"></i>
+        </a>
         <div id="tabs" class="right-tabs">
         </div>
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="resources/imagens/fundo01.jpg">
+                    </div>
+                    <a href="#user"><img src="resources/imagens/LOGO_ZOX.png" style="width: 90%;"></a>
+                    <a href="#name"><span class="white-text name">John Doe</span></a>
+                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+            <li><a class="sidenav-close" onclick="gerarAba('estoque', 'grupo', 'Grupo');" >Grupo</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('estoque', 'unidades', 'Unidade');"  >Unidade</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('estoque', 'ncm', 'Ncm');"  >Ncm</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'pais', 'Pais');"  >Pais</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'estado', 'Estado');"  >Estado</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'cfop', 'Cfop');"  >Cfop</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'cnae', 'Cnae');"  >Cnae</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'cidade', 'Cidade');"  >Cidade</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'empresa', 'Empresa');"  >Empresa</a></li>
+        </ul>
     </body>
     <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="resources/css/materialize/js/materialize.js"></script>
     <script src="resources/js/bootstrap.js"></script>
     <script src="resources/js/bootstrap-dynamic-tabs.js"></script>
     <script>
@@ -50,5 +65,10 @@
                         html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" ></iframe>'
                     });
                 };
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
     </script>
 </html>

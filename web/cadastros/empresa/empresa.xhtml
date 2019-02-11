@@ -129,7 +129,7 @@
             <h:form id="formulario" acceptcharset="UTF-8" enctype="multipart/form-data">
                 <p:dialog id="dl" header="Cadastro de Empresa" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                           closable="true" responsive="true"  draggable="true" dynamic="true" closeOnEscape="true"
-                          resizable="false"  styleClass="tamanhoForm1" minimizable="true" visible="false" position="top" modal="true" >
+                          resizable="false"  styleClass="tamanhoForm1" minimizable="true" visible="false" position="top" modal="true" onShow="upperCase();" >
                     <p:tabView id="tabEmpresa">
                         <p:tab title="Empresa">
                             <p:growl id="msgCad" />

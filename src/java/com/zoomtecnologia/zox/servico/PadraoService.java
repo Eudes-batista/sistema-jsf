@@ -2,7 +2,9 @@ package com.zoomtecnologia.zox.servico;
 
 import java.io.Serializable;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PadraoService<E> extends Serializable {
 
     public E buscarPorId(Class<E> classe, E e);

@@ -46,8 +46,6 @@
                             </li>
                         </ul>
                         <p:tooltip for="novo" value="Novo" position="right"/>
-                        <!--            <p:tooltip for="filtro" value="Filtro" position="bottom"/>
-                                    <p:tooltip for="print" value="Imprimir" position="bottom"/>-->
                         <p:tooltip for="atualizar" value="Atualizar" position="right"/>
                         <p:tooltip for="pesquisar" value="Pesquisar" position="right"/>
                     </div>
@@ -120,7 +118,7 @@
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Grupo" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true"  draggable="true"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" onShow="upperCase();">
                 <p:ajax event="close" listener="#{grupoBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>
@@ -177,6 +175,7 @@
                     <p:defaultCommand target="formulario-button-default" />
                 </div>
             </p:dialog>
+            <script>upperCase();</script>
         </h:form>
 
         <!--FORMULARIO SUB-GRUPO-->

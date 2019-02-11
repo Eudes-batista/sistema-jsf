@@ -117,7 +117,7 @@
         <h:form id="formulario" acceptcharset="UTF-8">
             <p:dialog id="dl" header="Cadastro de Cfop" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true" fitViewport="true" draggable="true"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true">
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" onShow="upperCase();">
                 <p:ajax event="close" listener="#{cfopBean.novo()}" update="dl" process="dl"/>
 
                 <p:growl id="msgCad" />

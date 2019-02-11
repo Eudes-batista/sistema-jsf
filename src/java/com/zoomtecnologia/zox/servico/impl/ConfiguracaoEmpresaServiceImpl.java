@@ -3,7 +3,6 @@ package com.zoomtecnologia.zox.servico.impl;
 import com.zoomtecnologia.zox.modelo.cadastros.ConfiguracaoEmpresa;
 import com.zoomtecnologia.zox.modelo.cadastros.Empresa;
 import com.zoomtecnologia.zox.servico.ConfiguracaoEmpresaService;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -17,16 +16,6 @@ public class ConfiguracaoEmpresaServiceImpl extends GenericServiceImpl<Configura
 
     @PersistenceContext
     private EntityManager entitymanager;
-    
-    @Override
-    public List<ConfiguracaoEmpresa> filtrados(ConfiguracaoEmpresa filtro) {
-        return null;
-    }
-
-    @Override
-    public int quantidadeFiltrados(ConfiguracaoEmpresa filtro) {
-        return 0;
-    }
 
     @Override
     public Criteria criarCriteriaParaFiltro(ConfiguracaoEmpresa filtro) {

@@ -131,7 +131,7 @@
         <h:form id="formulario">
             <p:dialog id="dl" header="Cadastro de Cnae" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true"  draggable="true"
-                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" >
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" onShow="upperCase();">
                 <p:ajax event="close" listener="#{cnaeBean.novo()}" update="dl" process="dl"/>
 
                 <p:messages id="msgCad" closable="true" showIcon="false"/>

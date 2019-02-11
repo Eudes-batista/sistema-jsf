@@ -1,5 +1,10 @@
-function upperCase(input) {
-    input.value = input.value.toUpperCase();
+function upperCase() {   
+    var inputs = document.querySelectorAll("input[type=text]");
+    inputs.forEach(input => {
+        input.onkeyup = function () {
+            this.value = this.value.toUpperCase();
+        };
+    });
 }
 function mostrarData() {
     var meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
