@@ -17,8 +17,9 @@
                 }
             }
             body{
-                /*background: url('resources/imagens/fundo.png') no-repeat;*/
-                background: linear-gradient(41deg, #efece6 5%, #efece6 100%, #1491bf 100%) !important;
+                /*background: linear-gradient(41deg, #efece6 5%, #efece6 20%, #1491bf 85%) !important;*/
+                background: url(resources/imagens/fundo3.png) no-repeat;
+                background-color: #f1f1f1;
                 background-size: cover;
                 background-attachment: fixed;
             }
@@ -26,7 +27,7 @@
     </head>
     <body>
         <a  href="#" data-target="slide-out" class="sidenav-trigger">
-            <i class="glyphicon glyphicon-menu-hamburger" style="font-size: 30pt; color: #f9f9f9; padding: 20px;"></i>
+            <i class="glyphicon glyphicon-menu-hamburger" style="font-size: 30pt; color: #91d8f7; padding: 20px;"></i>
         </a>
         <div id="tabs" class="right-tabs">
         </div>
@@ -60,13 +61,13 @@
     <script src="resources/js/bootstrap.js"></script>
     <script src="resources/js/bootstrap-dynamic-tabs.js"></script>
     <script>
-       var tabs = $('#tabs').bootstrapDynamicTabs();
-           var gerarAba = function (modulo, aplicacao, label) {
-             tabs.addTab({
-                title: label,
-                html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" ></iframe>'
-             });
-           };
+                var tabs = $('#tabs').bootstrapDynamicTabs();
+                var gerarAba = function (modulo, aplicacao, label) {
+                    tabs.addTab({
+                        title: label,
+                        html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" ></iframe>'
+                    });
+                };
     </script>
     <script>
         $(document).ready(function () {

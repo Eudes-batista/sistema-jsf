@@ -34,8 +34,15 @@ public class FormaPagamentoEntrada extends Filtro implements EntidadeBase<Intege
     @Column(name = "taxa", nullable = true, precision = 6, scale = 3)
     private Double taxa;
     
-    @Column(name = "prazo", nullable = true, length = 3)
-    private Integer prazo;
+    @Column(name = "prazo_recebimento", nullable = true, length = 3)
+    private Integer prazoRecebimento;
+    
+    @Column(name = "intervalo", nullable = true, length = 3)
+    private Integer intervalo;
+
+    @Column(name = "numero_parcelas", nullable = true, length = 3)
+    private Integer numeroParcelas;
+
     
     @ManyToOne
     @JoinColumn(name = "tipo_pagamento", nullable = false)

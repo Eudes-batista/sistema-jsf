@@ -30,11 +30,12 @@ li{
 /*BARRA DE PESQUISA DA GRID*/
 .barraPesquisa{
     margin-top: 5px;
-    background: linear-gradient(41deg, #efece6 5%, #efece6 20%, #1491bf 85%) !important;
+    background: linear-gradient(41deg, #e2e2d7 5%, #1491bf 20%, #1491bf 85%) !important;
     /*background: #1491bf !important;*/ 
     padding: 5px;
     border-radius: 5px 0px 0px 0px !important;
     text-align: right !important;
+
 }
 
 .data{

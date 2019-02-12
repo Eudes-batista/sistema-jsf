@@ -31,15 +31,6 @@ public class FormaPagamentoSaida extends Filtro implements EntidadeBase<Integer>
     @Column(name = "descricao", nullable = false, length = 50)
     private String descricao;
 
-    @Column(name = "intervalo", nullable = true, length = 3)
-    private Integer intervalo;
-
-    @Column(name = "numero_parcelas", nullable = true, length = 3)
-    private Integer numeroParcelas;
-
-    @Column(name = "primeira_parcela", nullable = true, length = 3)
-    private Integer primeiraParcela;
-
     @ManyToOne
     @JoinColumn(name = "tipo_pagamento", nullable = false)
     @ForeignKey(name = "forma_pagamento_saidaFKtipo_pagamento")

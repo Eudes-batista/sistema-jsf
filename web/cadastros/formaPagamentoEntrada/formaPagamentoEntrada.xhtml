@@ -120,7 +120,7 @@
                 </h:form>
             </div>
         </div>
-        <!--FORMULÁRIO GRUPO-->
+        <!--FORMULÁRIO-->
         <h:form id="formulario">
             <p:dialog id="dl" header="Forma de Pagamento - Entrada" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                       closable="true" responsive="true"  draggable="true"
@@ -171,8 +171,26 @@
                             <div class="row espaco">
                                 <div class="col-md-12">
                                     <h:outputLabel value="Prazo"/>
-                                    <p:inputText id="prazo" styleClass="form-control" value="#{formaPagamentoEntradaBean.entidade.prazo}" placeholder="Prazo">
+                                    <p:inputText id="prazo" styleClass="form-control" value="#{formaPagamentoEntradaBean.entidade.prazoRecebimento}" placeholder="Prazo">
                                         <p:keyFilter for="prazo" mask="num" />
+                                        <f:passThroughAttribute name="type" value="tel" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Parcelas"/>
+                                    <p:inputText id="parcelas" styleClass="form-control" value="#{formaPagamentoEntradaBean.entidade.prazoRecebimento}" placeholder="Numero de parcelas">
+                                        <p:keyFilter for="parcelas" mask="num" />
+                                        <f:passThroughAttribute name="type" value="tel" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Intervalo"/>
+                                    <p:inputText id="intervalo" styleClass="form-control" value="#{formaPagamentoEntradaBean.entidade.intervalo}" placeholder="Intervalo entre parcelas">
+                                        <p:keyFilter for="intervalo" mask="num" />
                                         <f:passThroughAttribute name="type" value="tel" />
                                     </p:inputText>
                                 </div>
