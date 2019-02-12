@@ -37,8 +37,8 @@
                         <img src="resources/imagens/fundo01.jpg">
                     </div>
                     <a href="#user"><img src="resources/imagens/LOGO_ZOX.png" style="width: 90%;"></a>
-                    <a href="#name"><span class="white-text name">John Doe</span></a>
-                    <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                    <a href="#name"><span class="white-text name">Zoom Tecnologia</span></a>
+                    <a href="#email"><span class="white-text email">zoomtecnologia.com</span></a>
                 </div>
             </li>
             <li><a class="sidenav-close" onclick="gerarAba('estoque', 'grupo', 'Grupo');" >Grupo</a></li>
@@ -51,6 +51,7 @@
             <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'cidade', 'Cidade');"  >Cidade</a></li>
             <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'empresa', 'Empresa');"  >Empresa</a></li>
             <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'tipoPagamento', 'Tipo de Pagamento');"  >Tipo de Pagamento</a></li>
+            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'formaPagamentoEntrada', 'Forma de Pagamento Entrada');"  >Forma de Pagamento Entrada</a></li>
         </ul>
     </body>
     <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
@@ -59,13 +60,13 @@
     <script src="resources/js/bootstrap.js"></script>
     <script src="resources/js/bootstrap-dynamic-tabs.js"></script>
     <script>
-                var tabs = $('#tabs').bootstrapDynamicTabs();
-                var gerarAba = function (modulo, aplicacao, label) {
-                    tabs.addTab({
-                        title: label,
-                        html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" ></iframe>'
-                    });
-                };
+       var tabs = $('#tabs').bootstrapDynamicTabs();
+           var gerarAba = function (modulo, aplicacao, label) {
+             tabs.addTab({
+                title: label,
+                html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" ></iframe>'
+             });
+           };
     </script>
     <script>
         $(document).ready(function () {

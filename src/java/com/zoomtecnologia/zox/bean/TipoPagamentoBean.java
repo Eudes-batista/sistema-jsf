@@ -3,6 +3,7 @@ package com.zoomtecnologia.zox.bean;
 import com.zoomtecnologia.zox.modelo.cadastros.TipoPagamento;
 import com.zoomtecnologia.zox.servico.TipoPagamentoService;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -15,6 +16,11 @@ public class TipoPagamentoBean extends GenericoBean<TipoPagamento, TipoPagamento
 
     @Autowired
     private TipoPagamentoService tipoPagamentoService;
+    
+    public List<TipoPagamento> listarTipoPagamento() {
+        return this.tipoPagamentoService.listaTodos(TipoPagamento.class);
+    }
+    
     
     @Override
     public TipoPagamentoService getGenericService() {

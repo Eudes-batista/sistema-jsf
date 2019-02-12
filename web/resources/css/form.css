@@ -154,7 +154,7 @@ input::placeholder {
     background: #fff !important;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 1024px) {
     .tamanhoForm1{
         width:100% !important;
     }

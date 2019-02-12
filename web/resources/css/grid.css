@@ -183,7 +183,7 @@ table thead tr{
     color: #6eceec !important;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 1024px) {
 
     .btnovo,.btfiltro,.btprint,.btatualizar, .btnovo:hover, .btfiltro:hover, .btprint:hover,.btatualizar:hover{
         width: 100% !important;
@@ -191,7 +191,7 @@ table thead tr{
 
     }
     div .barraLateral{
-        height: auto !important;
+        height: 200px !important;
         width:  auto !important;
     }
     .ui-datatable-reflow{

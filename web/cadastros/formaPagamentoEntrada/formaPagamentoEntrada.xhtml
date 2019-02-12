@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/modelo.xhtml">
+    <f:metadata>
+        <f:viewAction action="#{formaPagamentoEntradaBean.inicializar()}"/>
+    </f:metadata>
+    <ui:define name="conteudo">
+        <style>
+            .tamanhoForm1{
+                width:500px !important;
+            }
+            .tamanhoForm2{
+                width:500px !important;
+            }
+            @media only screen and (max-width: 760px) {
+                .tamanhoForm1{
+                    width:100% !important;
+                }
+                .tamanhoForm2{
+                    width:100% !important;
+                }
+            }
+        </style>
+        <div class="container-fluid">
+            <div class="row">
+                <h:form id="formGrid">
+                    <!--BARRA DE BOTÕES LATERAL-->
+                    <div class="col-md-1 barraLateral" style="margin-right: -13px;">
+                        <ul >
+                            <li>
+                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
+                                               styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
+                                               update="formulario-panelCadastro" process="@this" >
+                                    <p:resetInput target="formulario-panelCadastro" />    
+                                </p:commandLink>
+                            </li>
+                            <li>
+                                <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
+                                               process="@this" update="@form-tabela" actionListener="#{formaPagamentoEntradaBean.inicializar()}"/>      
+                            </li>
+                        </ul>
+
+                        <p:tooltip for="novo" value="Novo" position="right"/>
+                        <p:tooltip for="atualizar" value="Atualizar" position="right"/>
+                        <p:tooltip for="pesquisar" value="Pesquisar" position="right"/>
+                    </div>
+                    <div class="col-md-11">
+                        <!--BARRA DE PESQUISA-->
+                        <div class="ui-fluid">
+                            <h:panelGroup id="panelConsulta" >
+                                <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
+                                    <div  class="tituloGrid">
+                                        <div class="col-xs-6">Forma de Pagamento - Entrada</div>
+                                        <div class="col-xs-6 data" ></div>
+                                    </div>
+                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{formaPagamentoEntradaBean.entidade.pesquisa}"/>
+
+                                </p:panelGrid>
+                                <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{formaPagamentoEntradaBean.pesquisar()}" 
+                                               update="formGrid-tabela" process="@this formGrid-textPesquisa" style="margin-top: -5px; display: none;"/>
+                            </h:panelGroup>
+                        </div>
+                        <p:messages id="msg" closable="true" showIcon="false"/>
+
+                        <!--TABELA DA GRID-->
+                        <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
+                                     rows="10" emptyMessage="Nenhum registro encontrado"
+                                     value="#{formaPagamentoEntradaBean.model}"
+                                     var="p" reflow="true" tableStyleClass="table table-hover">
+                            <p:column headerText="Codigo"  sortBy="#{p.codigo}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.codigo}    
+                                </div>
+                            </p:column>
+                            <p:column headerText="Descrição" sortBy="#{p.descricao}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.descricao}
+                                </div>
+                            </p:column>
+                            <p:column headerText="Taxa" sortBy="#{p.taxa}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.taxa}
+                                </div>
+                            </p:column>
+                            <p:column headerText="Prazo" sortBy="#{p.prazo}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.prazo}
+                                </div>
+                            </p:column>
+                            <p:column width="120">
+                                <!--BOTOES DAS LINHAS DA GRID-->
+                                <div align="right">
+                                    <p:commandLink id="alterar"
+                                                   update="formulario-panelCadastro" actionListener="#{formaPagamentoEntradaBean.alterar(p)}"
+                                                   oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
+                                        <p:resetInput target="formulario-panelCadastro" />
+                                        <span class="glyphicon glyphicon-pencil bteditar"></span>
+                                    </p:commandLink>
+                                    <p:commandLink  id="excluir"
+                                                    actionListener="#{formaPagamentoEntradaBean.excluir(p)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
+                                        <span class="glyphicon glyphicon-trash btexcluir"></span>
+                                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                                    </p:commandLink>
+                                </div>
+                            </p:column>
+                            <p:tooltip for="alterar" value="Alterar" position="bottom"/>
+                            <p:tooltip for="excluir" value="Excluir" position="bottom"/>
+                        </p:dataTable>
+
+                        <p:blockUI block="tabela" trigger="tabela pesquisar atualizar" >
+                            <img src="../../resources/imagens/loading.gif"/>
+                        </p:blockUI>
+                        <p:defaultCommand target="pesquisar"  />
+                    </div>
+                </h:form>
+            </div>
+        </div>
+        <!--FORMULÁRIO GRUPO-->
+        <h:form id="formulario">
+            <p:dialog id="dl" header="Forma de Pagamento - Entrada" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
+                      closable="true" responsive="true"  draggable="true"
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" onShow="upperCase();">
+                <p:ajax event="close" listener="#{formaPagamentoEntradaBean.novo()}" update="dl" process="dl"/>
+
+                <p:messages id="msgCad" closable="true" showIcon="false"/>
+                <div class="ui-fluid sobre-fundo">
+                    <h:panelGroup id="panelCadastro">
+                        <div class="container-fluid">
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Tipo de Pagamento"/>
+                                    <p:selectOneMenu value="#{formaPagamentoEntradaBean.entidade.tipo}" required="true" requiredMessage="Tipo pagamento é obrigatorio."
+                                                     converter="omnifaces.SelectItemsConverter" filter="true">
+                                        <f:selectItem itemLabel="Selecione um Tipo Pagamento" noSelectionOption="true" />
+                                        <f:selectItems value="#{tipoPagamentoBean.listarTipoPagamento()}" var="tipoPagamento" itemLabel="#{tipoPagamento.descricao}" itemValue="#{tipoPagamento}" />
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Código"/>
+                                    <p:inputText id="codigo"  value="#{formaPagamentoEntradaBean.entidade.codigo}" styleClass="form-control" placeholder="Codigo"
+                                                 required="true" requiredMessage="Codigo é Obrigatorio!" disabled="#{formaPagamentoEntradaBean.inativo}" maxlength="4">
+                                        <p:keyFilter for="codigo" mask="num" />
+                                        <f:passThroughAttribute name="type" value="tel" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Nome"/>
+                                    <p:inputText id="descricao" styleClass="form-control" value="#{formaPagamentoEntradaBean.entidade.descricao}" maxlength="50" placeholder="Descrição"
+                                                 required="true" requiredMessage="Nome é Obrigatorio!">
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Taxa"/>
+                                    <p:inputText id="taxa" styleClass="form-control" value="#{formaPagamentoEntradaBean.entidade.taxa}" placeholder="Taxa">
+                                        <p:keyFilter for="taxa" mask="num" />
+                                        <f:passThroughAttribute name="type" value="tel" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Prazo"/>
+                                    <p:inputText id="prazo" styleClass="form-control" value="#{formaPagamentoEntradaBean.entidade.prazo}" placeholder="Prazo">
+                                        <p:keyFilter for="prazo" mask="num" />
+                                        <f:passThroughAttribute name="type" value="tel" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                        </div>
+                        <!--botoes salvar e sair-->
+                        <div class="container-fluid espaco">
+                            <div class="row espaco">
+                                <div class="col-md-8 ">
+                                    <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
+                                                     actionListener="#{formaPagamentoEntradaBean.salvar()}"
+                                                     update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                     process="formulario-panelCadastro" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:commandButton value="Sair" styleClass="btn btsair"
+                                                     process="@this" oncomplete="PF('dlCad').hide();"/>
+                                    <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                    <p:commandButton id="button-default" style="display: none;"/>
+                    <p:defaultCommand target="formulario-button-default" />
+                </div>
+            </p:dialog>
+        </h:form>
+        <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
+            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
+            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
+        </p:confirmDialog>
+    </ui:define>
+</ui:composition>
+
