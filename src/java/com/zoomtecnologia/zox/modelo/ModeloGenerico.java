@@ -1,11 +1,11 @@
 package com.zoomtecnologia.zox.modelo;
 
 import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.servico.EntidadeService;
 import java.util.List;
 import java.util.Map;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import com.zoomtecnologia.zox.servico.EntidadeService;
 
 public abstract class ModeloGenerico<E extends Filtro, D extends EntidadeService> extends LazyDataModel<E> {
 
@@ -37,8 +37,9 @@ public abstract class ModeloGenerico<E extends Filtro, D extends EntidadeService
         filtro.setPrimeiroRegistro(first);
         filtro.setQuantidadeRegistros(pageSize);
         filtro.setAscendente(SortOrder.ASCENDING.equals(sortOrder));
-        filtro.setPropriedadeOrdenacao(sortField);
-
+        if (sortField != null) {
+            filtro.setPropriedadeOrdenacao(sortField);
+        }
         setRowCount(genericServico.quantidadeFiltrados(filtro));
 
         return genericServico.filtrados(filtro);
