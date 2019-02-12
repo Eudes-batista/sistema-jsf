@@ -38,7 +38,6 @@ public class EmpresaBean extends GenericoBean<Empresa, EmpresaService> {
     @Setter
     private ConfiguracaoEmpresa configuracaoEmpresa;
 
-
     public void carregarCertificado(FileUploadEvent event) {
         String realPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/");
         UploadedFile file = event.getFile();

@@ -10,14 +10,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-/**
- *
- * @author Wagner
- */
+
 @FacesConverter("converterMaskInteger")
 public class ConverterMaskInteger implements Converter {
 
-    @Override
+ @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (!(value = value.replaceAll("\\D", "")).isEmpty()) {   
             return Integer.parseInt(value);
