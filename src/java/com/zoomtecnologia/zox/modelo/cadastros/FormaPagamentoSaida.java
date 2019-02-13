@@ -32,6 +32,11 @@ public class FormaPagamentoSaida extends Filtro implements EntidadeBase<Integer>
     private String descricao;
 
     @ManyToOne
+    @JoinColumn(name = "codigo_empresa", nullable = false)
+    @ForeignKey(name= "forma_pagamento_entradaFKempresa")
+    private Empresa empresa;
+    
+    @ManyToOne
     @JoinColumn(name = "tipo_pagamento", nullable = false)
     @ForeignKey(name = "forma_pagamento_saidaFKtipo_pagamento")
     private TipoPagamento tipo;

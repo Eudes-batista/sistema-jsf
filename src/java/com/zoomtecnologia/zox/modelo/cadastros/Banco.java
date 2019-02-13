@@ -6,4 +6,5 @@ public class Banco {
     private Integer numeroBanco;
     private String nome;
     private String site;
+    private String status;
 }
