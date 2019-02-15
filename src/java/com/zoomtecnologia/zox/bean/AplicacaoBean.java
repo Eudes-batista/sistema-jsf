@@ -1,8 +1,16 @@
 package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.seguranca.Aplicacao;
+import com.zoomtecnologia.zox.modelo.seguranca.Modulo;
+import com.zoomtecnologia.zox.modelo.seguranca.ModuloAplicacao;
+import com.zoomtecnologia.zox.modelo.seguranca.ModuloAplicacaoPK;
 import com.zoomtecnologia.zox.servico.AplicacaoService;
+import com.zoomtecnologia.zox.servico.ModuloAplicacaoService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -14,6 +22,42 @@ public class AplicacaoBean extends GenericoBean<Aplicacao, AplicacaoService> {
 
     @Autowired
     private AplicacaoService aplicacaoService;
+
+    @Autowired
+    private ModuloAplicacaoService moduloAplicacaoService;
+
+    @Getter
+    @Setter
+    private List<Modulo> modulosSelecionados;
+    
+    public void listarModulosAplicacao(Aplicacao aplicacao){
+        this.modulosSelecionados = new ArrayList<>();
+        List<ModuloAplicacao> modulosAplicacoes = this.moduloAplicacaoService.listarModulosAplicacao(aplicacao);
+        for (ModuloAplicacao modulosAplicacao : modulosAplicacoes) {
+            this.modulosSelecionados.add(modulosAplicacao.getModuloAplicacaoPK().getModulo());
+        }
+    }
+
+    @Override
+    public void alterar(Aplicacao e) {
+        super.alterar(e); 
+        listarModulosAplicacao(e);
+    }
+    
+    
+    @Override
+    public void salvar() {
+        Aplicacao aplicacao = this.getEntidade();
+        super.salvar();
+        for (Modulo modulosSelecionado : modulosSelecionados) {
+            ModuloAplicacao moduloAplicacao = new ModuloAplicacao();
+            ModuloAplicacaoPK moduloAplicacaoPK = new ModuloAplicacaoPK();
+            moduloAplicacaoPK.setAplicacao(aplicacao);
+            moduloAplicacaoPK.setModulo(modulosSelecionado);
+            moduloAplicacao.setModuloAplicacaoPK(moduloAplicacaoPK);
+            this.moduloAplicacaoService.salvar(ModuloAplicacao.class, moduloAplicacao);
+        }
+    }
 
     @Override
     public AplicacaoService getGenericService() {

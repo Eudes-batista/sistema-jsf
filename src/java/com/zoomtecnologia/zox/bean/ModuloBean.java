@@ -7,6 +7,7 @@ package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.seguranca.Modulo;
 import com.zoomtecnologia.zox.servico.ModuloService;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -29,4 +30,9 @@ public class ModuloBean extends GenericoBean<Modulo, ModuloService> {
     public Modulo createEntidade() {
         return new Modulo();
     }
+    
+    public List<Modulo> listarModulos() {
+        return this.moduloService.listaTodos(Modulo.class);
+    }
+    
 }

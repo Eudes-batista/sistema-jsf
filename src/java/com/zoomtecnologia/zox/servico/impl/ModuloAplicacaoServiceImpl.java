@@ -1,8 +1,10 @@
 package com.zoomtecnologia.zox.servico.impl;
 
+import com.zoomtecnologia.zox.modelo.seguranca.Aplicacao;
 import com.zoomtecnologia.zox.modelo.seguranca.ModuloAplicacao;
 import com.zoomtecnologia.zox.servico.ModuloAplicacaoService;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.hibernate.Criteria;
@@ -31,6 +33,14 @@ public class ModuloAplicacaoServiceImpl extends GenericServiceImpl<ModuloAplicac
     @Override
     public Criteria criarFiltro(ModuloAplicacao filtro, Criteria criteria) {
         return null;
+    }
+
+    @Override
+    public List<ModuloAplicacao> listarModulosAplicacao(Aplicacao aplicacao) {
+        
+        return this.entityManager.createQuery("select mp from ModuloAplicacao mp where mp.moduloAplicacaoPK.aplicacao.codigo ="+ 
+                                                aplicacao.getCodigo(), ModuloAplicacao.class).getResultList();
+        
     }
 
 }

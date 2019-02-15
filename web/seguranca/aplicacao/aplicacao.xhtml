@@ -12,15 +12,15 @@
     <ui:define name="conteudo">
         <style>
             .tamanhoForm1{
-                width:500px !important;
+                width:700px !important;
 
             }
             .tamanhoForm2{
-                width:500px !important;
+                width:700px !important;
 
             }
             .barraBotoes{
-                width: 500px;
+                width: 700px;
                 margin-left: -25px;
             }
             @media only screen and (max-width: 760px) {
@@ -130,21 +130,34 @@
                 <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <div class="container-fluid">
-                            <div class="row espaco">
-                                <div class="col-md-12">
-                                    <h:outputLabel value="Nome"/>
-                                    <p:inputText id="descricao" styleClass="form-control" value="#{aplicacaoBean.entidade.nome}" maxlength="25" placeholder="Descrição"
-                                                 required="true" requiredMessage="Nome da Aplicação é Obrigatorio!">
-                                    </p:inputText>
+                            <div class="col-md-6">
+                                <div class="row espaco">
+                                    <div class="col-md-12">
+                                        <h:outputLabel value="Nome"/>
+                                        <p:inputText id="descricao" styleClass="form-control" value="#{aplicacaoBean.entidade.nome}" maxlength="25" placeholder="Descrição"
+                                                     required="true" requiredMessage="Nome da Aplicação é Obrigatorio!">
+                                        </p:inputText>
+                                    </div>
+                                </div>
+                                <div class="row espaco">
+                                    <div class="col-md-12">
+                                        <h:outputLabel value="Caminho"/>
+                                        <p:inputText id="caminho" styleClass="form-control" value="#{aplicacaoBean.entidade.caminho}" maxlength="100" placeholder="Caminho"
+                                                     required="true" requiredMessage="Camiho da Aplicação é Obrigatorio!">
+                                        </p:inputText>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row espaco">
-                                <div class="col-md-12">
-                                    <h:outputLabel value="Caminho"/>
-                                    <p:inputText id="caminho" styleClass="form-control" value="#{aplicacaoBean.entidade.caminho}" maxlength="100" placeholder="Caminho"
-                                                 required="true" requiredMessage="Camiho da Aplicação é Obrigatorio!">
-                                    </p:inputText>
-                                </div>
+                            <div class="col-md-6">
+                                <p:dataTable id="tabelaModulo" var="modulo" value="#{moduloBean.listarModulos()}" selection="#{aplicacaoBean.modulosSelecionados}" rowKey="#{modulo.codigo}" style="margin-bottom:0">
+                                    <f:facet name="header">
+                                        Módulos
+                                    </f:facet>
+                                    <p:column selectionMode="multiple" style="width:35px;text-align:center"/>
+                                    <p:column>
+                                        <h:outputText value="#{modulo.nome}" />
+                                    </p:column>
+                                </p:dataTable>
                             </div>
                         </div>
                         <!--botoes salvar e sair-->
