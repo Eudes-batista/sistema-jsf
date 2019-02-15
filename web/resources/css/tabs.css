@@ -25,7 +25,7 @@ iframe#conteudo{
 }
 
 #tabs ul .active a{
-    background:#1491bf;
+    background:#253a4b;
     border:none;
     color:#f9f9f9;
     font-weight:bold;
@@ -33,7 +33,7 @@ iframe#conteudo{
 }
 
 #tabs ul .active a:hover{
-    background:#1491bf;
+    background:#253a4b;
     border:none;
     color:#fff;
 }
@@ -44,7 +44,7 @@ iframe#conteudo{
 }
 
 #tabs ul a{
-    color:#aaa;
+    color:#757575;
     border:none;
     background: #D5D5D5;
 }

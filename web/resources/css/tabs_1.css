@@ -24,20 +24,16 @@ iframe#conteudo{
 
 }
 
-
-
-
 #tabs ul .active a{
-    background:#1491bf; 
+    background:#1491bf;
     border:none;
     color:#f9f9f9;
     font-weight:bold;
 
 }
 
-
 #tabs ul .active a:hover{
-    background:#1491bf; 
+    background:#1491bf;
     border:none;
     color:#fff;
 }
@@ -80,5 +76,4 @@ iframe{
     color:#fff !important;
     border-radius:3px;
     z-index: -1;
-
 }

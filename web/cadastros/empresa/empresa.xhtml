@@ -15,9 +15,15 @@
         <style>
             .tamanhoForm1{
                 width:1024px !important;
+
             }
             .tamanhoForm2{
-                width:500px !important;
+                width:1024px !important;
+
+            }
+            .barraBotoes{
+                width: 1024px;
+                margin-left: -25px;
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -25,6 +31,9 @@
                 }
                 .tamanhoForm2{
                     width:100% !important;
+                }
+                .barraBotoes{
+                    width: 100%;
                 }
             }
         </style>
@@ -65,7 +74,7 @@
                                     <p:inputText id="textPesquisa" styleClass="form-control" placeholder="Pesquisa" value="#{empresaBean.entidade.pesquisa}"/>
 
                                 </p:panelGrid>
-                                <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{empresaBean.pesquisar()}" 
+                                <p:commandLink id="pesquisar"  class="btn fa fa-search btbusca" actionListener="#{empresaBean.pesquisar()}" 
                                                update="formGrid-tabela" process="@this formGrid-textPesquisa" style="margin-top: -5px; display: none;"/>
                             </h:panelGroup>
                         </div>
@@ -103,11 +112,11 @@
                                                    actionListener="#{empresaBean.alterar(e)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" update="formulario" style="text-decoration: none !important;">
                                         <p:resetInput target="formulario" />
-                                        <span class="glyphicon glyphicon-pencil bteditar"></span>
+                                        <span class="fa fa-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
                                                     actionListener="#{empresaBean.excluir(e)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
-                                        <span class="glyphicon glyphicon-trash btexcluir"></span>
+                                        <span class="fa fa-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
                                 </div>
@@ -151,17 +160,21 @@
                                         </div>
                                     </div>
                                     <!--botoes salvar e sair-->
-                                    <div class="container-fluid espaco">
+                                    <div class="container-fluid espaco barraBotoes">
                                         <div class="row espaco">
-                                            <div class="col-md-2 col-lg-offset-8">
-                                                <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
-                                                                 actionListener="#{empresaBean.salvar()}"
-                                                                 update="formGrid-tabela formulario-tabEmpresa formulario-tabEmpresa-msgCad"
-                                                                 process="formulario-tabEmpresa-panelCadastro formulario-tabEmpresa-panelConfig" />
+                                            <div class="col-xs-6"  style="text-align: center;">
+                                                <p:commandLink  styleClass="btn btsalvar btn-block"
+                                                                actionListener="#{empresaBean.salvar()}"
+                                                                update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                                process="formulario-panelCadastro">
+                                                    <span class="fa fa-save"></span> Salvar
+                                                </p:commandLink>
                                             </div>
-
-                                            <div class="col-md-2">
-                                                <p:commandButton value="Sair" styleClass="btn btsair" process="@this" oncomplete="PF('dlCad').hide();" />
+                                            <div class="col-xs-6" style="text-align: center;">
+                                                <p:commandLink  styleClass="btn btsair btn-block"
+                                                                process="@this" oncomplete="PF('dlCad').hide();">
+                                                    <span class="fa fa-times"></span> Sair                 
+                                                </p:commandLink>
                                                 <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
                                             </div>
                                         </div>
@@ -200,7 +213,7 @@
                                     </div>
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" href="#nfePanel" class="glyphicon glyphicon-chevron-down" ><span> NF-e</span></a>
+                                            <a data-toggle="collapse" href="#nfePanel" class="fa fa-chevron-down" ><span> NF-e</span></a>
                                         </div>
                                         <div id="nfePanel" class="panel-collapse collapse">
                                             <div class="panel-body">
@@ -279,7 +292,7 @@
 
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" href="#emailPanel" class="glyphicon glyphicon-chevron-down" ><span> Email</span></a>
+                                            <a data-toggle="collapse" href="#emailPanel" class="fa fa-chevron-down" ><span> Email</span></a>
                                         </div>
                                         <div id="emailPanel" class="panel-collapse collapse">
                                             <div class="panel-body">
@@ -316,7 +329,7 @@
                                         </div>
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <a data-toggle="collapse" href="#tributacaoPanel" class="glyphicon glyphicon-chevron-down" ><span> Tributação</span></a>
+                                                <a data-toggle="collapse" href="#tributacaoPanel" class="fa fa-chevron-down" ><span> Tributação</span></a>
                                             </div>
                                             <div id="tributacaoPanel" class="panel-collapse collapse">
                                                 <div class="panel-body">

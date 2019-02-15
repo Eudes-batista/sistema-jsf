@@ -17,7 +17,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
 
     private E entidade;
     private LazyDataModel<E> model;
-    private Boolean inativo=false;
+    private Boolean inativo = false;
 
     public GenericoBean() {
     }
@@ -25,7 +25,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
     public void novo() {
         this.entidade = null;
         this.entidade = createEntidade();
-        this.inativo=false;
+        this.inativo = false;
     }
 
     public void inicializar() {
@@ -49,6 +49,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
     public void salvar() {
         try {
             getGenericService().salvar(entidade.getClass(), entidade);
+            this.novo();
             Messages.addGlobalInfo("salvo com sucesso!!");
         } catch (Exception ex) {
             Messages.addGlobalError("Erro ao salvar o " + entidade.getClass().getSimpleName());
@@ -57,11 +58,11 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
 
     public void alterar(E e) {
         this.entidade = e;
-        this.inativo=true;
+        this.inativo = true;
     }
 
     public void excluir(E e) {
-        String erro="";
+        String erro = "";
         try {
             getGenericService().excluir(entidade.getClass(), e);
         } catch (Exception ex) {
@@ -73,11 +74,12 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
                     erro = "esse registro não pode ser excluido, já existe movimentação";
                 }
             }
-        }finally{
-            if(!erro.isEmpty())
+        } finally {
+            if (!erro.isEmpty()) {
                 Messages.addGlobalError(erro);
-            else
+            } else {
                 Messages.addGlobalInfo("excluido com sucesso!!");
+            }
         }
     }
 
@@ -106,7 +108,7 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
             }
         };
     }
-    
+
     public abstract D getGenericService();
 
     public abstract E createEntidade();

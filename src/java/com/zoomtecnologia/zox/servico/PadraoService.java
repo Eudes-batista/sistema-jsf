@@ -16,5 +16,7 @@ public interface PadraoService<E> extends Serializable {
     public void excluir(Class<E> classe, E entidade);
 
     public List<E> listaTodos(Class<E> classe);
+    
+    public Object gerarId(Class<E> classe);
 
 }

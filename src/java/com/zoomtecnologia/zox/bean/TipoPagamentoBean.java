@@ -12,21 +12,20 @@ import org.springframework.stereotype.Service;
 @Service("tipoPagamentoBean")
 @ManagedBean
 @Scope("view")
-public class TipoPagamentoBean extends GenericoBean<TipoPagamento, TipoPagamentoService> implements Serializable{
+public class TipoPagamentoBean extends GenericoBean<TipoPagamento, TipoPagamentoService> implements Serializable {
 
     @Autowired
     private TipoPagamentoService tipoPagamentoService;
-    
+
     public List<TipoPagamento> listarTipoPagamento() {
         return this.tipoPagamentoService.listaTodos(TipoPagamento.class);
     }
-    
-    
+
     @Override
     public TipoPagamentoService getGenericService() {
         return this.tipoPagamentoService;
     }
-
+    
     @Override
     public TipoPagamento createEntidade() {
         TipoPagamento tipoPagamento = new TipoPagamento();
@@ -34,5 +33,5 @@ public class TipoPagamentoBean extends GenericoBean<TipoPagamento, TipoPagamento
         tipoPagamento.setPropriedadeOrdenacao("descricao");
         return tipoPagamento;
     }
-    
+
 }

@@ -88,7 +88,7 @@ table tbody tr:hover{
     padding: 10px !important;
 }
 
-.ui-widget .glyphicon-trash,.ui-widget .glyphicon-pencil, .fa-sitemap{
+.ui-widget .fa-trash,.ui-widget .fa-pencil, .fa-sitemap{
     font-size: 10pt !important;
     width: 35px !important;
     text-align: center !important;

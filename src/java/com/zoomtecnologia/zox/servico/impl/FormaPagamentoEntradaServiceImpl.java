@@ -21,7 +21,6 @@ public class FormaPagamentoEntradaServiceImpl extends GenericServiceImpl<FormaPa
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
     public Criteria criarCriteriaParaFiltro(FormaPagamentoEntrada filtro) {
         Session session = entityManager.unwrap(Session.class);

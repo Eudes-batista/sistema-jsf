@@ -4,7 +4,9 @@
     font-family: Arial, sans-serif;
 }
 body{
-    background: #fff !important;
+    /*background: #fff !important;*/
+    
+    
 }
 
 a:hover{
@@ -17,7 +19,7 @@ div .barraLateral{
     padding-top: 2px;
     background: #f7f7f7;
     border-radius: 5px;
-    height: 761px !important;
+    height: 767px !important;
 }
 ul {
     list-style: none;
@@ -30,10 +32,9 @@ li{
 /*BARRA DE PESQUISA DA GRID*/
 .barraPesquisa{
     margin-top: 5px;
-    background: linear-gradient(41deg, #e2e2d7 5%, #1491bf 20%, #1491bf 85%) !important;
-    /*background: #1491bf !important;*/ 
+    background: linear-gradient(41deg, #507ea3 20%, #253a4b 85%) !important;
     padding: 5px;
-    border-radius: 5px 0px 0px 0px !important;
+    border-radius: 0px 0px 10px 0px !important;
     text-align: right !important;
 
 }
@@ -53,7 +54,7 @@ li{
     font-size: 20pt;
     font-weight: bold;
     font-family: tahoma;
-    text-shadow: #757575 0.1em 0.1em 0.2em !important;
+    /*text-shadow: #757575 0.1em 0.1em 0.2em !important;*/
 }
 
 /*Tira borda da paginacao e deixa da mesma cor do formulario*/
@@ -66,7 +67,7 @@ li{
     background-color: #f9f9f9;
 }
 
-/*VALORESNA TEBELA*/
+/*VALORES NA TEBELA*/
 table tbody tr,table tbody td{
     border: none !important;
     font-size: 10pt !important;
@@ -75,7 +76,8 @@ table tbody tr,table tbody td{
     padding-right: 7px !important;
     padding-left: 7px !important;
     font-family: Arial, sans-serif;
-    color: #959595;
+    color: #757575;
+    background: transparent !important;
 }
 
 /*BORDAS DA TEBLA*/
@@ -84,7 +86,7 @@ table{
     border-radius: 5px;
     margin-left: 3px;
     margin-top: 20px;
-
+    
 }
 
 /*COR DO HOVER NA TABELA*/
@@ -96,18 +98,11 @@ table tbody tr:hover{
     padding: 10px !important;
 }
 
-.ui-widget .glyphicon-trash,.ui-widget .glyphicon-pencil, .fa-sitemap{
-    font-size: 10pt !important;
-    width: 35px !important;
-    text-align: center !important;
-    margin-left: 5px !important;
-}
 table thead th{
-    background: #e5e5e5 !important;
+    background: #f9f9f9 !important;
     border: none !important;
     border-radius: 0px!important;
     color: #757575 !important;
-    /*text-shadow: 0 1px 1px transparent !important;*/
     font-size: 10pt !important;
     padding: 5px !important;
     font-family: Arial, sans-serif;
@@ -133,6 +128,7 @@ table thead tr{
     background: transparent;
     color: #F37E72;
 }
+
 .bteditar:hover{
     background: transparent;
     color: #6eceec;
@@ -144,11 +140,12 @@ table thead tr{
 .btexcluir, .bteditar, .btsub{
     border: none !important;
     text-align: center !important;
-    font-size: 10pt !important;
+    font-size: 15pt !important;
     border-radius: 5px !important;
-    width: 25px !important;
+    width: 35px !important;
     height: 25px !important;
-    padding-top: 5px;
+    padding-top: 3px;
+    color:#888;
     text-decoration: none !important;
 }
 .btexcluir:hover, .bteditar:hover, .btsub:hover{
@@ -175,7 +172,7 @@ table thead tr{
     border: none !important;
     text-align: center !important;
     font-size: 20pt !important;
-    color: #1491bf !important;
+    color: #888 !important;
     width: auto !important;
     background: transparent;
 }

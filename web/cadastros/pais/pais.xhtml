@@ -13,9 +13,15 @@
         <style>
             .tamanhoForm1{
                 width:500px !important;
+
             }
             .tamanhoForm2{
                 width:500px !important;
+
+            }
+            .barraBotoes{
+                width: 500px;
+                margin-left: -25px;
             }
             @media only screen and (max-width: 760px) {
                 .tamanhoForm1{
@@ -24,8 +30,12 @@
                 .tamanhoForm2{
                     width:100% !important;
                 }
+                .barraBotoes{
+                    width: 100%;
+                }
             }
         </style>
+
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
@@ -34,13 +44,13 @@
                         <ul >
                             <li>
                                 <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
-                                               styleClass="btn btn-block btnovo glyphicon glyphicon-plus" 
+                                               styleClass="btn btn-block btnovo fa fa-plus" 
                                                update="formulario-panelCadastro" process="@this" >
                                     <p:resetInput target="formulario-panelCadastro" />    
                                 </p:commandLink>
                             </li>
                             <li>
-                                <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block glyphicon glyphicon-refresh"
+                                <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block fa fa-refresh"
                                                process="@this" update="@form-tabela" actionListener="#{paisBean.inicializar()}"/>      
                             </li>
                         </ul>
@@ -61,7 +71,7 @@
                                     <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{paisBean.entidade.pesquisa}"/>
 
                                 </p:panelGrid>
-                                <p:commandLink id="pesquisar"  class="btn glyphicon glyphicon-search btbusca" actionListener="#{paisBean.pesquisar()}" 
+                                <p:commandLink id="pesquisar"  class="btn fa fa-search btbusca" actionListener="#{paisBean.pesquisar()}" 
                                                update="formGrid-tabela" process="@this formGrid-textPesquisa" style="margin-top: -5px; display: none;"/>
                             </h:panelGroup>
                         </div>
@@ -89,11 +99,11 @@
                                                    update="formulario-panelCadastro" actionListener="#{paisBean.alterar(p)}"
                                                    oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
                                         <p:resetInput target="formulario-panelCadastro" />
-                                        <span class="glyphicon glyphicon-pencil bteditar"></span>
+                                        <span class="fa fa-pencil bteditar"></span>
                                     </p:commandLink>
                                     <p:commandLink  id="excluir"
                                                     actionListener="#{paisBean.excluir(p)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
-                                        <span class="glyphicon glyphicon-trash btexcluir"></span>
+                                        <span class="fa fa-trash btexcluir"></span>
                                         <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                                     </p:commandLink>
                                 </div>
@@ -140,17 +150,21 @@
                             </div>
                         </div>
                         <!--botoes salvar e sair-->
-                        <div class="container-fluid espaco">
+                        <div class="container-fluid espaco barraBotoes">
                             <div class="row espaco">
-                                <div class="col-md-8 ">
-                                    <p:commandButton value="Salvar"  styleClass="btn btsalvar" 
-                                                     actionListener="#{paisBean.salvar()}"
-                                                     update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
-                                                     process="formulario-panelCadastro" />
+                                <div class="col-xs-6"  style="text-align: center;">
+                                    <p:commandLink  styleClass="btn btsalvar btn-block"
+                                                    actionListener="#{paisBean.salvar()}"
+                                                    update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                    process="formulario-panelCadastro">
+                                        <span class="fa fa-save"></span> Salvar
+                                    </p:commandLink>
                                 </div>
-                                <div class="col-md-4">
-                                    <p:commandButton value="Sair" styleClass="btn btsair"
-                                                     process="@this" oncomplete="PF('dlCad').hide();"/>
+                                <div class="col-xs-6" style="text-align: center;">
+                                    <p:commandLink  styleClass="btn btsair btn-block"
+                                                    process="@this" oncomplete="PF('dlCad').hide();">
+                                        <span class="fa fa-times"></span> Sair                 
+                                    </p:commandLink>
                                     <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
                                 </div>
                             </div>

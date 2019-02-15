@@ -5,9 +5,7 @@
  */
 package com.zoomtecnolgia.zox.teste;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.zoomtecnologia.zox.modelo.cadastros.TipoPagamento;
 
 /**
  *
@@ -16,10 +14,21 @@ import java.util.stream.Collectors;
 public class Teste {
     
     public static void main(String[] args) {
-        String cidade="RECIFE";
-        List<String> collect = Arrays.asList("Recife","Olinda","abreu e lima","jaboatao dos guararapes").stream().filter(s -> s.equalsIgnoreCase(cidade)).collect(Collectors.toList());
-        System.out.println("collect = " + collect);
-        
+        String tabela = new TipoPagamento().getClass().getSimpleName();
+        System.out.println("tabela = " + gerarNomeDaTabela(tabela).replaceFirst("_", ""));
+    }
+    
+    private static String gerarNomeDaTabela(String tabela) {
+        String palavra = "";
+        for (int i = 0; i < tabela.length(); i++) {
+            char letra = tabela.charAt(i);
+            if (Character.isUpperCase(letra)) {
+                palavra+="_"+letra;
+                continue;
+            }
+            palavra += letra;
+        }
+        return palavra.toLowerCase();
     }
     
 }

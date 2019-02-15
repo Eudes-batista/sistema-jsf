@@ -27,8 +27,8 @@ public class PerfilUsuario extends Filtro implements EntidadeBase<Integer>, Seri
     @Column(name = "obs", nullable = false, length = 120)
     private String obs;
     
-    @Column(name = "status", nullable = false, length = 1)
-    private String status;
+    @Column(name = "status", nullable = false)
+    private Boolean status;
 
     @Column(name = "desconto", nullable = false, precision = 6, scale = 3)
     private Double desconto;

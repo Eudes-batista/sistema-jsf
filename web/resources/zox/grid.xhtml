@@ -39,17 +39,17 @@
                         <p:panelGrid id="panelPrincipal" layout="grid" columns="2" columnClasses="ui-grid-col-9,ui-grid-col-3" styleClass="ui-panelgrid-blank" >
                             <p:panelGrid id="panelConsulta" layout="grid" columns="2" styleClass="ui-panelgrid-blank" >
                                 <p:inputText id="#{cc.attrs.idTextPesquisa}" placeholder="Pesquisa" value="#{cc.attrs.bean.entidade.pesquisa}"/>
-                                <p:commandLink  class="btn glyphicon glyphicon-search btbusca" actionListener="#{cc.attrs.bean.pesquisar()}"
+                                <p:commandLink  class="btn fa fa-search btbusca" actionListener="#{cc.attrs.bean.pesquisar()}"
                                                 update="@form" style="margin-top: -5px;"/>
                             </p:panelGrid>
                             <p:panelGrid id="panelBotoes" layout="grid" columns="6" styleClass="ui-panelgrid-blank">
                                 <p:commandButton id="#{cc.attrs.idBtNovo}" oncomplete="PF('#{cc.attrs.idForm}').show();"
                                                  styleClass="btn btn-info btn-block" icon="fa fa-plus" />
                                 <c:if test="#{cc.attrs.usarFiltro}">
-                                    <p:commandLink id="#{cc.attrs.idBtFiltro}" class="btn btn-block glyphicon glyphicon-filter btfiltro" />
+                                    <p:commandLink id="#{cc.attrs.idBtFiltro}" class="btn btn-block fa fa-filter btfiltro" />
                                 </c:if>
                                 <c:if test="#{cc.attrs.usarPrint}">
-                                    <p:commandLink id="#{cc.attrs.idBtPrint}"  class="btn btn-block glyphicon glyphicon-print btprint"/>
+                                    <p:commandLink id="#{cc.attrs.idBtPrint}"  class="btn btn-block fa fa-print btprint"/>
                                 </c:if>
                                 <p:commandButton id="#{cc.attrs.idBtAtualizar}"  styleClass="btn btn-success btn-block" icon="fa fa-refresh"
                                                  process="@form" update="@form" actionListener="#{cc.attrs.bean.inicializar()}"/>

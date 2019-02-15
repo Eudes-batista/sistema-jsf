@@ -16,17 +16,17 @@ import lombok.EqualsAndHashCode;
 @Table(name="modulo")
 @Data
 @EqualsAndHashCode(callSuper = false, of = "codigo")
-public class Modulo extends Filtro implements EntidadeBase<String>, Serializable{
+public class Modulo extends Filtro implements EntidadeBase<Integer>, Serializable{
     
     @Id
     @Column(name = "codigo", nullable = false, length = 6)
-    private String codigo;
+    private Integer codigo;
     
     @Column(name = "nome", nullable = false, length = 15)
     private String nome;
 
     @Override
-    public String getId() {
+    public Integer getId() {
         return this.codigo;
     }
     

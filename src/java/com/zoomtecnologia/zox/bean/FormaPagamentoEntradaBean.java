@@ -1,4 +1,3 @@
-
 package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.cadastros.FormaPagamentoEntrada;
@@ -12,11 +11,11 @@ import org.springframework.stereotype.Service;
 @Service("formaPagamentoEntradaBean")
 @ManagedBean
 @Scope("view")
-public class FormaPagamentoEntradaBean extends GenericoBean<FormaPagamentoEntrada, FormaPagamentoEntradaService> implements Serializable{
+public class FormaPagamentoEntradaBean extends GenericoBean<FormaPagamentoEntrada, FormaPagamentoEntradaService> implements Serializable {
 
     @Autowired
     private FormaPagamentoEntradaService formaPagamentoEntradaService;
-    
+
     @Override
     public FormaPagamentoEntradaService getGenericService() {
         return this.formaPagamentoEntradaService;
