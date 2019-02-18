@@ -13,14 +13,14 @@ a:hover{
     text-decoration: none !important;
 }
 
-/*BARRA LATERAL DE BOTÕES GRID*/
+/*BARRA LATERAL DE BOTÕES GRID
 div .barraLateral{
     margin-top: 5px;
     padding-top: 2px;
     background: #f7f7f7;
     border-radius: 5px;
     height: 767px !important;
-}
+}*/
 ul {
     list-style: none;
     padding: 3px;
@@ -37,6 +37,9 @@ li{
     border-radius: 0px 0px 10px 0px !important;
     text-align: right !important;
 
+}
+.campo-pesquisa{
+   margin-top: 8px;
 }
 
 .data{
@@ -69,7 +72,7 @@ li{
 
 /*VALORES NA TEBELA*/
 table tbody tr,table tbody td{
-    border: none !important;
+    border: 1px #f1f1f1!important;
     font-size: 10pt !important;
     padding-top: 2px !important;
     padding-bottom: 2px !important;
@@ -155,9 +158,10 @@ table thead tr{
 .btnovo:hover,.btfiltro:hover,.btprint:hover,.btatualizar:hover{
     text-decoration: none !important;
 }
+
 .btnovo-desable:hover,.btfiltro-desable:hover,.btprint-desable:hover,.btatualizar-desable:hover{
     text-decoration: none !important;
-    color: #e5e5e5;
+    color: #00E676;
 }
 
 /***********BOTÕES DA LATERAL DA GRID*****************/
@@ -172,7 +176,7 @@ table thead tr{
     border: none !important;
     text-align: center !important;
     font-size: 20pt !important;
-    color: #888 !important;
+    color: #fff !important;
     width: auto !important;
     background: transparent;
 }

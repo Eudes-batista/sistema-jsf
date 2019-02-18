@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface ModuloAplicacaoService extends EntidadeService<ModuloAplicacao>{
     
     public List<ModuloAplicacao> listarModulosAplicacao(Aplicacao aplicacao);
+    public void excluirModulosPorAplicacao(Aplicacao aplicacao);
 }

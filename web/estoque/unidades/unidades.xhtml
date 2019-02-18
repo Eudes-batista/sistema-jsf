@@ -5,7 +5,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/modelo.xhtml">
+                template="/template/modelo.xhtml"
+                xmlns:zox="http://xmlns.jcp.org/jsf/composite/ezcomp">
     <f:metadata>
         <f:viewAction action="#{unidadeBean.inicializar()}"/>
     </f:metadata>
@@ -40,87 +41,49 @@
             <div class="row">
                 <h:form id="formGrid">
                     <!--BARRA DE BOTÕES LATERAL-->
-                    <div class="col-md-1 barraLateral" style="margin-right: -13px;">
-                        <ul >
-                            <li>
-                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
-                                               styleClass="btn btn-block btnovo fa fa-plus" 
-                                               update="formulario-panelCadastro" process="@this" >
-                                    <p:resetInput target="formulario-panelCadastro" />    
+                    <zox:barraBotoesGrid id="barraBotoes" titulo="Unidades" bean="#{unidadeBean}"/>
+                    <p:messages id="msg" closable="true" showIcon="false"/>
+                    <!--TABELA DA GRID-->
+                    <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
+                                 rows="10"
+                                 value="#{unidadeBean.model}"
+                                 var="u" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
+                        <p:column headerText="Codigo"  sortBy="#{u.codigo}" style="text-align: left;">
+                            <div align="left">
+                                #{u.codigo}    
+                            </div>
+                        </p:column>
+                        <p:column headerText="Descrição" sortBy="#{u.descricao}" style="text-align: left;">
+                            <div align="left">
+                                #{u.descricao}
+                            </div>
+                        </p:column>
+                        <p:column width="120">
+                            <!--BOTOES DAS LINHAS DA GRID-->
+                            <div align="right">
+                                <p:commandLink id="alterar"
+                                               update="formulario-panelCadastro" actionListener="#{unidadeBean.alterar(u)}"
+                                               oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
+                                    <p:resetInput target="formulario-panelCadastro" />
+                                    <span class="fa fa-pencil bteditar"></span>
                                 </p:commandLink>
-                            </li>
-                            <li>
-                                <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block fa fa-refresh"
-                                               process="@this" update="@form-tabela" actionListener="#{unidadeBean.inicializar()}"/>      
-                            </li>
-                        </ul>
+                                <p:commandLink  id="excluir"
+                                                actionListener="#{unidadeBean.excluir(u)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
+                                    <span class="fa fa-trash btexcluir"></span>
+                                    <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                                </p:commandLink>
+                            </div>
+                        </p:column>
+                        <p:tooltip for="alterar" value="Alterar" position="bottom"/>
+                        <p:tooltip for="excluir" value="Excluir" position="bottom"/>
+                    </p:dataTable>
 
-                        <p:tooltip for="novo" value="Novo" position="right"/>
-                        <!--            <p:tooltip for="filtro" value="Filtro" position="bottom"/>
-                                    <p:tooltip for="print" value="Imprimir" position="bottom"/>-->
-                        <p:tooltip for="atualizar" value="Atualizar" position="right"/>
-                        <p:tooltip for="pesquisar" value="Pesquisar" position="right"/>
-                    </div>
-                    <div class="col-md-11">
-                        <!--BARRA DE PESQUISA-->
-                        <div class="ui-fluid">
-                            <h:panelGroup id="panelConsulta" >
-                                <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
-                                    <div  class="tituloGrid">
-                                        <div class="col-xs-6">Unidades</div>
-                                        <div class="col-xs-6 data" ></div>
-                                    </div>
-                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{unidadeBean.entidade.pesquisa}" styleClass="campoPesquisa"/>
-
-                                </p:panelGrid>
-                                <p:commandLink id="pesquisar"  class="btn fa fa-search btbusca" actionListener="#{unidadeBean.pesquisar()}" 
-                                               update="formGrid-tabela" process="@this formGrid-textPesquisa" style="margin-top: -5px; display: none;"/>
-                            </h:panelGroup>
-                        </div>
-                        <p:messages id="msg" closable="true" showIcon="false"/>
-
-                        <!--TABELA DA GRID-->
-                        <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
-                                     rows="10"
-                                     value="#{unidadeBean.model}"
-                                     var="u" reflow="true" tableStyleClass="table table-hover" emptyMessage="Nenhum Registro encontrado">
-                            <p:column headerText="Codigo"  sortBy="#{u.codigo}" style="text-align: left;">
-                                <div align="left">
-                                    #{u.codigo}    
-                                </div>
-                            </p:column>
-                            <p:column headerText="Descrição" sortBy="#{u.descricao}" style="text-align: left;">
-                                <div align="left">
-                                    #{u.descricao}
-                                </div>
-                            </p:column>
-                            <p:column width="120">
-                                <!--BOTOES DAS LINHAS DA GRID-->
-                                <div align="right">
-                                    <p:commandLink id="alterar"
-                                                   update="formulario-panelCadastro" actionListener="#{unidadeBean.alterar(u)}"
-                                                   oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
-                                        <p:resetInput target="formulario-panelCadastro" />
-                                        <span class="fa fa-pencil bteditar"></span>
-                                    </p:commandLink>
-                                    <p:commandLink  id="excluir"
-                                                    actionListener="#{unidadeBean.excluir(u)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
-                                        <span class="fa fa-trash btexcluir"></span>
-                                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
-                                    </p:commandLink>
-                                </div>
-                            </p:column>
-                            <p:tooltip for="alterar" value="Alterar" position="bottom"/>
-                            <p:tooltip for="excluir" value="Excluir" position="bottom"/>
-                        </p:dataTable>
-
-                        <p:blockUI block="tabela" trigger="tabela pesquisar atualizar" >
-                            <img src="../../resources/imagens/loading.gif"/>
-                        </p:blockUI>
-                        <p:defaultCommand target="pesquisar"  />
-                    </div>
-                </h:form>
+                    <p:blockUI block="tabela" trigger="tabela" >
+                        <img src="../../resources/imagens/loading.gif"/>
+                    </p:blockUI>
             </div>
+            </h:form>
+        </div>
         </div>
         <!--FORMULÁRIO GRUPO-->
         <h:form id="formulario">

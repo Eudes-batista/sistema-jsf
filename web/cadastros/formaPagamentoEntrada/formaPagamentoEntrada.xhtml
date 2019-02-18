@@ -5,7 +5,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/template/modelo.xhtml">
+                template="/template/modelo.xhtml"
+                xmlns:zox="http://xmlns.jcp.org/jsf/composite/ezcomp">
     <f:metadata>
         <f:viewAction action="#{formaPagamentoEntradaBean.inicializar()}"/>
     </f:metadata>
@@ -39,44 +40,10 @@
         <div class="container-fluid">
             <div class="row">
                 <h:form id="formGrid">
-                    <!--BARRA DE BOTÕES LATERAL-->
-                    <div class="col-md-1 barraLateral" style="margin-right: -13px;">
-                        <ul >
-                            <li>
-                                <p:commandLink id="novo"  oncomplete="PF('dlCad').show();"
-                                               styleClass="btn btn-block btnovo fa fa-plus" 
-                                               update="formulario-panelCadastro" process="@this" >
-                                    <p:resetInput target="formulario-panelCadastro" />    
-                                </p:commandLink>
-                            </li>
-                            <li>
-                                <p:commandLink id="atualizar"  styleClass="btn  btatualizar btn-block fa fa-refresh"
-                                               process="@this" update="@form-tabela" actionListener="#{formaPagamentoEntradaBean.inicializar()}"/>      
-                            </li>
-                        </ul>
-
-                        <p:tooltip for="novo" value="Novo" position="right"/>
-                        <p:tooltip for="atualizar" value="Atualizar" position="right"/>
-                        <p:tooltip for="pesquisar" value="Pesquisar" position="right"/>
-                    </div>
-                    <div class="col-md-11">
+                    <div class="col-md-12">
                         <!--BARRA DE PESQUISA-->
-                        <div class="ui-fluid">
-                            <h:panelGroup id="panelConsulta" >
-                                <p:panelGrid  layout="grid" columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" styleClass="ui-panelgrid-blank barraPesquisa" style="margin-left: 3px;">
-                                    <div  class="tituloGrid">
-                                        <div class="col-xs-6">Forma de Pagamento - Entrada</div>
-                                        <div class="col-xs-6 data" ></div>
-                                    </div>
-                                    <p:inputText id="textPesquisa" placeholder="Pesquisa" value="#{formaPagamentoEntradaBean.entidade.pesquisa}"/>
-
-                                </p:panelGrid>
-                                <p:commandLink id="pesquisar"  class="btn fa fa-search btbusca" actionListener="#{formaPagamentoEntradaBean.pesquisar()}" 
-                                               update="formGrid-tabela" process="@this formGrid-textPesquisa" style="margin-top: -5px; display: none;"/>
-                            </h:panelGroup>
-                        </div>
+                        <zox:barraBotoesGrid id="barraBotoes" titulo="Forma de Pagamento Entrada" bean="#{formaPagamentoEntradaBean}"/>       
                         <p:messages id="msg" closable="true" showIcon="false"/>
-
                         <!--TABELA DA GRID-->
                         <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
                                      rows="10" emptyMessage="Nenhum registro encontrado"
@@ -122,10 +89,9 @@
                             <p:tooltip for="excluir" value="Excluir" position="bottom"/>
                         </p:dataTable>
 
-                        <p:blockUI block="tabela" trigger="tabela pesquisar atualizar" >
+                        <p:blockUI block="tabela" trigger="tabela" >
                             <img src="../../resources/imagens/loading.gif"/>
                         </p:blockUI>
-                        <p:defaultCommand target="pesquisar"  />
                     </div>
                 </h:form>
             </div>

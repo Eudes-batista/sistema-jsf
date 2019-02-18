@@ -6,6 +6,7 @@ import com.zoomtecnologia.zox.modelo.seguranca.ModuloAplicacao;
 import com.zoomtecnologia.zox.modelo.seguranca.ModuloAplicacaoPK;
 import com.zoomtecnologia.zox.servico.AplicacaoService;
 import com.zoomtecnologia.zox.servico.ModuloAplicacaoService;
+import com.zoomtecnologia.zox.servico.ModuloService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -25,10 +26,17 @@ public class AplicacaoBean extends GenericoBean<Aplicacao, AplicacaoService> {
 
     @Autowired
     private ModuloAplicacaoService moduloAplicacaoService;
+        
+    @Autowired
+    private ModuloService moduloService;
 
     @Getter
     @Setter
     private List<Modulo> modulosSelecionados;
+    
+    @Getter
+    @Setter
+    private List<Modulo> modulos;
     
     public void listarModulosAplicacao(Aplicacao aplicacao){
         this.modulosSelecionados = new ArrayList<>();
@@ -37,7 +45,17 @@ public class AplicacaoBean extends GenericoBean<Aplicacao, AplicacaoService> {
             this.modulosSelecionados.add(modulosAplicacao.getModuloAplicacaoPK().getModulo());
         }
     }
+    
+    private void listarModulos() {
+        this.modulos = this.moduloService.listaTodos(Modulo.class);        
+    }
 
+    @Override
+    public void inicializar() {
+        super.inicializar(); 
+        listarModulos();
+    }    
+    
     @Override
     public void alterar(Aplicacao e) {
         super.alterar(e); 
@@ -49,6 +67,7 @@ public class AplicacaoBean extends GenericoBean<Aplicacao, AplicacaoService> {
     public void salvar() {
         Aplicacao aplicacao = this.getEntidade();
         super.salvar();
+        this.moduloAplicacaoService.excluirModulosPorAplicacao(aplicacao);
         for (Modulo modulosSelecionado : modulosSelecionados) {
             ModuloAplicacao moduloAplicacao = new ModuloAplicacao();
             ModuloAplicacaoPK moduloAplicacaoPK = new ModuloAplicacaoPK();

@@ -97,4 +97,10 @@ public class GenericServiceImpl<E extends EntidadeBase> implements PadraoService
         }
     }
 
+    public void executarSql(String sql) {
+        Session session = entityManager.unwrap(Session.class);
+        session.createSQLQuery(sql).executeUpdate();
+        session.flush();
+    }
+    
 }

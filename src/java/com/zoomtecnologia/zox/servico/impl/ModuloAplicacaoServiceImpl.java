@@ -36,11 +36,14 @@ public class ModuloAplicacaoServiceImpl extends GenericServiceImpl<ModuloAplicac
     }
 
     @Override
-    public List<ModuloAplicacao> listarModulosAplicacao(Aplicacao aplicacao) {
-        
+    public List<ModuloAplicacao> listarModulosAplicacao(Aplicacao aplicacao) {        
         return this.entityManager.createQuery("select mp from ModuloAplicacao mp where mp.moduloAplicacaoPK.aplicacao.codigo ="+ 
-                                                aplicacao.getCodigo(), ModuloAplicacao.class).getResultList();
-        
+                                                aplicacao.getCodigo(), ModuloAplicacao.class).getResultList();        
+    }
+
+    @Override
+    public void excluirModulosPorAplicacao(Aplicacao aplicacao) {
+        this.executarSql("delete from modulo_aplicacao where codigo_aplicacao = "+aplicacao.getCodigo());
     }
 
 }
