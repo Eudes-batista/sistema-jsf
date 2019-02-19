@@ -28,8 +28,8 @@ public class Banco extends Filtro implements EntidadeBase<Integer>, Serializable
     @Column(name = "site", length = 80, nullable = false)
     private String site;
     
-    @Column(name = "status", length = 1, nullable = false, columnDefinition = "varchar(1) default 'A' ")
-    private String status;
+    @Column(name = "status", nullable = false)
+    private Boolean status;
 
     @Override
     public Integer getId() {

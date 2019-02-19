@@ -19,17 +19,17 @@ public class Permissao extends Filtro implements EntidadeBase<PermissaoPK>, Seri
     @EmbeddedId
     private PermissaoPK permissaoPK;
 
-    @Column(name = "incluir", nullable = false, columnDefinition = "varchar(1) default 'S'", length = 1)
-    private String incluir;
+    @Column(name = "incluir", nullable = false)
+    private Boolean incluir;
 
-    @Column(name = "excluir", nullable = false, columnDefinition = "varchar(1) default 'S'", length = 1)
-    private String excluir;
+    @Column(name = "excluir", nullable = false)
+    private Boolean excluir;
 
-    @Column(name = "alterar", nullable = false, columnDefinition = "varchar(1) default 'S'", length = 1)
-    private String alterar;
+    @Column(name = "alterar", nullable = false)
+    private Boolean alterar;
 
-    @Column(name = "visualizar", nullable = false, columnDefinition = "varchar(1) default 'S'", length = 1)
-    private String visualizar;
+    @Column(name = "visualizar", nullable = false)
+    private Boolean visualizar;
 
     @Override
     public PermissaoPK getId() {

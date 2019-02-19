@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/template/modelo.xhtml"
+                xmlns:zox="http://xmlns.jcp.org/jsf/composite/ezcomp">
+    <f:metadata>
+        <f:viewAction action="#{bancoBean.inicializar()}"/>
+    </f:metadata>
+    <ui:define name="conteudo">
+        <style>
+            .tamanhoForm1{
+                width:500px !important;
+
+            }
+            .tamanhoForm2{
+                width:500px !important;
+
+            }
+            .barraBotoes{
+                width: 500px;
+                margin-left: -25px;
+            }
+            @media only screen and (max-width: 760px) {
+                .tamanhoForm1{
+                    width:100% !important;
+                }
+                .tamanhoForm2{
+                    width:100% !important;
+                }
+                .barraBotoes{
+                    width: 100%;
+                }
+            }
+        </style>
+
+        <div class="container-fluid">
+            <div class="row">
+                <h:form id="formGrid">
+                    <div class="col-md-12">
+                        <!--BARRA DE PESQUISA-->
+                        <zox:barraBotoesGrid id="barraBotoes" titulo="Bancos" bean="#{bancoBean}"/>
+                        <p:messages id="msg" closable="true" showIcon="false"/>
+                        <!--TABELA DA GRID-->
+                        <p:dataTable id="tabela" lazy="true" paginator="true" paginatorPosition="bottom"
+                                     rows="10" emptyMessage="Nenhum registro encontrado"
+                                     value="#{bancoBean.model}"
+                                     var="p" reflow="true" tableStyleClass="table table-hover">
+                            <p:column headerText="Codigo"  sortBy="#{p.numeroBanco}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.numeroBanco}    
+                                </div>
+                            </p:column>
+                            <p:column headerText="Nome" sortBy="#{p.nome}" style="text-align: left;">
+                                <div align="left">
+                                    #{p.nome}
+                                </div>
+                            </p:column>
+                            <p:column headerText="Site" sortBy="#{p.site}" style="text-align: left;">
+                                <div align="left">
+                                    <a href="http://#{p.site}" target="_blank">#{p.site}</a>
+                                </div>
+                            </p:column>
+                            <p:column width="120">
+                                <!--BOTOES DAS LINHAS DA GRID-->
+                                <div align="right">
+                                    <p:commandLink id="alterar"
+                                                   update="formulario-panelCadastro" actionListener="#{bancoBean.alterar(p)}"
+                                                   oncomplete="PF('dlCad').show();" process="@this" style="text-decoration: none !important;">
+                                        <p:resetInput target="formulario-panelCadastro" />
+                                        <span class="fa fa-pencil bteditar"></span>
+                                    </p:commandLink>
+                                    <p:commandLink  id="excluir"
+                                                    actionListener="#{bancoBean.excluir(p)}" process="@this" update="tabela @form-msg" style="text-decoration: none !important;">
+                                        <span class="fa fa-trash btexcluir"></span>
+                                        <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
+                                    </p:commandLink>
+                                </div>
+                            </p:column>
+                            <p:tooltip for="alterar" value="Alterar" position="bottom"/>
+                            <p:tooltip for="excluir" value="Excluir" position="bottom"/>
+                        </p:dataTable>
+
+                        <p:blockUI block="tabela" trigger="tabela" >
+                            <img src="../../resources/imagens/loading.gif"/>
+                        </p:blockUI>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+        <!--FORMULÁRIO GRUPO-->
+        <h:form id="formulario">
+            <p:dialog id="dl" header="Cadastro de Bancos" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
+                      closable="true" responsive="true"  draggable="true"
+                      resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" onShow="upperCase();">
+                <p:ajax event="close" listener="#{bancoBean.novo()}" update="dl" process="dl"/>
+
+                <p:messages id="msgCad" closable="true" showIcon="false"/>
+                <div class="ui-fluid sobre-fundo">
+                    <h:panelGroup id="panelCadastro">
+                        <div class="container-fluid">
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Código"/>
+                                    <p:inputText id="codigo"  value="#{bancoBean.entidade.numeroBanco}" styleClass="form-control" placeholder="Codigo"
+                                                 required="true" requiredMessage="Codigo é Obrigatorio!" disabled="#{bancoBean.inativo}" maxlength="10"
+                                                 type="tel">
+                                        <p:keyFilter for="codigo" mask="num" />
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Nome"/>
+                                    <p:inputText id="descricao" styleClass="form-control" value="#{bancoBean.entidade.nome}" maxlength="120" placeholder="Descrição"
+                                                 required="true" requiredMessage="Nome é Obrigatorio!">
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Site"/>
+                                    <p:inputText id="site" styleClass="form-control" value="#{bancoBean.entidade.site}" maxlength="80" placeholder="Site"
+                                                 required="true" requiredMessage="Site é Obrigatorio!">
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="row espaco">
+                                <div class="col-md-12">
+                                    <h:outputLabel value="Ativo"/>
+                                    <h:selectBooleanCheckbox value="#{bancoBean.entidade.status}" class="check" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--botoes salvar e sair-->
+                        <div class="container-fluid espaco barraBotoes">
+                            <div class="row espaco">
+                                <div class="col-xs-6"  style="text-align: center;">
+                                    <p:commandLink  styleClass="btn btsalvar btn-block"
+                                                    actionListener="#{bancoBean.salvar()}"
+                                                    update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                    process="formulario-panelCadastro">
+                                        <span class="fa fa-save"></span> Salvar
+                                    </p:commandLink>
+                                </div>
+                                <div class="col-xs-6" style="text-align: center;">
+                                    <p:commandLink  styleClass="btn btsair btn-block"
+                                                    process="@this" oncomplete="PF('dlCad').hide();">
+                                        <span class="fa fa-times"></span> Sair                 
+                                    </p:commandLink>
+                                    <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
+                                </div>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                    <p:commandButton id="button-default" style="display: none;"/>
+                    <p:defaultCommand target="formulario-button-default" />
+                </div>
+            </p:dialog>
+        </h:form>
+        <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >
+            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes btn btn-primary" icon="fa fa-check"/>
+            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no btn btn-danger" icon="fa fa-close"/>
+        </p:confirmDialog>
+    </ui:define>
+</ui:composition>
+

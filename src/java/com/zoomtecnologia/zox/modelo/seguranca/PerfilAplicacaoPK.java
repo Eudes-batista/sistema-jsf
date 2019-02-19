@@ -13,7 +13,7 @@ import org.hibernate.annotations.ForeignKey;
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"modulo", "perfilUsuario"})
-public class PerfilModuloPK implements Serializable{
+public class PerfilAplicacaoPK implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "codigo_perfil_usuario", nullable = false)

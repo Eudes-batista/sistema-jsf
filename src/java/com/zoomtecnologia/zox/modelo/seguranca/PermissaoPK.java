@@ -12,16 +12,12 @@ import org.hibernate.annotations.ForeignKey;
 @Embeddable
 @Getter
 @Setter
-@EqualsAndHashCode(of = {"aplicacao","perfilUsuario"})
+@EqualsAndHashCode(of = {"perfilAplicacao"})
 public class PermissaoPK implements Serializable{
     
     @ManyToOne
-    @JoinColumn(name="codigo_perfil_usuario", nullable = false)
-    @ForeignKey(name="permissaoPKperfil_usuario")
-    private PerfilUsuario perfilUsuario;
-    
-    @ManyToOne
-    @JoinColumn(name="codigo_aplicacao", nullable = false)
-    @ForeignKey(name="permissaoPKaplicacao")
-    private Aplicacao aplicacao;
+    @JoinColumn(name="codigo_perfil_aplicacao", nullable = false)
+    @ForeignKey(name="permissaoPKperfil_aplicacao")
+    private PerfilAplicacao perfilAplicacao;
+   
 }

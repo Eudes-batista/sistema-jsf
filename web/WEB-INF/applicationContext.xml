@@ -22,7 +22,7 @@
         </property>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.connection.characterEncoding">utf8</prop>
                 <prop key="hibernate.connection.charSet">utf8"</prop>

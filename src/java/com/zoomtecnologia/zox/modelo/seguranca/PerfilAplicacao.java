@@ -13,13 +13,13 @@ import lombok.Setter;
 @Table(name = "perfil_modulo")
 @Getter
 @Setter
-public class PerfilModulo extends Filtro implements EntidadeBase<PerfilModuloPK>, Serializable {
+public class PerfilAplicacao extends Filtro implements EntidadeBase<PerfilAplicacaoPK>, Serializable {
 
     @EmbeddedId
-    private PerfilModuloPK perfilModuloPK;
+    private PerfilAplicacaoPK perfilModuloPK;
 
     @Override
-    public PerfilModuloPK getId() {
+    public PerfilAplicacaoPK getId() {
         return this.perfilModuloPK;
     }
 }

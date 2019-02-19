@@ -45,8 +45,8 @@ public class Ncm extends Filtro implements EntidadeBase<String>, Serializable {
     @Length(max = 8, message = "Código do NCM com até {max}.")
     private String codigo;
 
-    @Column(name = "descricao", length = 250, nullable = false)
-    @Length(max = 150, message = "Descrição do NCM com até {max}.")
+    @Column(name = "descricao", length = 350, nullable = false)
+    @Length(max = 350, message = "Descrição do NCM com até {max}.")
     private String descricao;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cestPK.ncm")
