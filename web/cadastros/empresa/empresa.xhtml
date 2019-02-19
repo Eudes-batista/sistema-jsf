@@ -102,9 +102,13 @@
                 <p:dialog id="dl" header="Cadastro de Empresa" widgetVar="dlCad" showEffect="fade" hideEffect="fade"
                           closable="true" responsive="true"  draggable="true" dynamic="true" closeOnEscape="true"
                           resizable="false"  styleClass="tamanhoForm1" minimizable="true" visible="false" position="top" modal="true" onShow="upperCase();" >
-                    <p:tabView id="tabEmpresa">
-                        <p:tab title="Empresa">
-                            <p:growl id="msgCad" />
+                    <p:growl id="msgCad" />
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">Dados</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Configurações</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
                             <div class="ui-fluid">
                                 <h:panelGroup id="panelCadastro">
                                     <div class="panel panel-default">
@@ -122,33 +126,13 @@
                                             </div> 
                                         </div>
                                     </div>
-                                    <!--botoes salvar e sair-->
-                                    <div class="container-fluid espaco barraBotoes">
-                                        <div class="row espaco">
-                                            <div class="col-xs-6"  style="text-align: center;">
-                                                <p:commandLink  styleClass="btn btsalvar btn-block"
-                                                                actionListener="#{empresaBean.salvar()}"
-                                                                update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
-                                                                process="formulario-panelCadastro">
-                                                    <span class="fa fa-save"></span> Salvar
-                                                </p:commandLink>
-                                            </div>
-                                            <div class="col-xs-6" style="text-align: center;">
-                                                <p:commandLink  styleClass="btn btsair btn-block"
-                                                                process="@this" oncomplete="PF('dlCad').hide();">
-                                                    <span class="fa fa-times"></span> Sair                 
-                                                </p:commandLink>
-                                                <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </h:panelGroup>
                                 <p:commandButton id="button-default" style="display: none;"/>
-                                <p:defaultCommand target="formulario-tabEmpresa-button-default" />
+                                <p:defaultCommand target="formulario-button-default" />
                             </div>
-                        </p:tab>
-                        <p:tab id="tabConfiguracao" title="Configurações" rendered="#{empresaBean.inativo}">
-                            <h:panelGroup id="panelConfig" >
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <h:panelGroup id="panelConfig" rendered="#{empresaBean.inativo}">
                                 <div class="ui-fluid">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Certificado</div>
@@ -166,7 +150,7 @@
                                                     <div class="col-md-6">
                                                         <p:password id="senhaCertificado" styleClass="form-control" value="#{empresaBean.configuracaoEmpresa.senhaCertificado}"  placeholder="Senha do Certificado Digital"
                                                                     redisplay="true">
-                                                            <p:ajax event="change" process="@this" update="formulario-tabEmpresa-msgCad" listener="#{empresaBean.validarCertificado()}" />
+                                                            <p:ajax event="change" process="@this" update="formulario-msgCad" listener="#{empresaBean.validarCertificado()}" />
                                                         </p:password>
                                                         <p:tooltip for="senhaCertificado" value="Senha do Certificado Digital ex:(1234)" position="top" />
                                                     </div>
@@ -308,14 +292,36 @@
                                     </div>
                                 </div>
                             </h:panelGroup> 
-                        </p:tab>
-                    </p:tabView>
+                        </div>
+                    </div>
+                    <!--botoes salvar e sair-->
+                    <div class="ui-fluid sobre-fundo">
+                        <div class="container-fluid espaco barraBotoes">
+                            <div class="row espaco">
+                                <div class="col-xs-6"  style="text-align: center;">
+                                    <p:commandLink  styleClass="btn btsalvar btn-block"
+                                                    actionListener="#{empresaBean.salvar()}"
+                                                    update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                    process="formulario-panelCadastro formulario-panelConfig">
+                                        <span class="fa fa-save"></span> Salvar
+                                    </p:commandLink>
+                                </div>
+                                <div class="col-xs-6" style="text-align: center;">
+                                    <p:commandLink  styleClass="btn btsair btn-block"
+                                                    process="@this" oncomplete="PF('dlCad').hide();">
+                                        <span class="fa fa-times"></span> Sair                 
+                                    </p:commandLink>
+                                    <p:hotkey bind="esc" process="@this" oncomplete="PF('dlCad').hide();"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </p:dialog>
                 <!--MAPA DE TECLAS DE ATALHO-->
                 <!--NOVO-->
-                <p:hotkey bind="f1" update="formulario-tabEmpresa-panelCadastro" process="@this"
+                <p:hotkey bind="f1" update="formulario-panelCadastro" process="@this"
                           oncomplete="PF('dlCad').show();">
-                    <p:resetInput target="formulario-tabEmpresa-panelCadastro" />    
+                    <p:resetInput target="formulario-panelCadastro" />    
                 </p:hotkey>
             </h:form>
         </f:view> 
