@@ -7,15 +7,15 @@ import java.util.Map;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-public abstract class ModeloGenerico<E extends Filtro, D extends EntidadeService> extends LazyDataModel<E> {
+public abstract class ModeloGenerico<E extends Filtro> extends LazyDataModel<E> {
 
     private static final long serialVersionUID = 1L;
     private final Filtro filtro;
     private final EntidadeService genericServico;
 
-    public ModeloGenerico() {
-        this.genericServico = getGenericServiceModel();
-        this.filtro = getGenericFiltro();
+    public ModeloGenerico(Filtro filtro,EntidadeService entidadeService) {
+        this.filtro = filtro;
+        this.genericServico = entidadeService;
     }
 
     /**
@@ -44,8 +44,4 @@ public abstract class ModeloGenerico<E extends Filtro, D extends EntidadeService
 
         return genericServico.filtrados(filtro);
     }
-
-    public abstract D getGenericServiceModel();
-
-    public abstract E getGenericFiltro();
 }

@@ -21,9 +21,4 @@ public class PessoaBean extends GenericoBean<Pessoa, PessoaService> {
     public PessoaService getGenericService() {
         return pessoaService;
     }
-
-    @Override
-    public Pessoa createEntidade() {
-        return new Pessoa();
-    }
 }

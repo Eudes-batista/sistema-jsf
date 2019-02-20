@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.zoomtecnologia.zox.bean;
 
 import com.zoomtecnologia.zox.modelo.cadastros.Cnae;
@@ -23,10 +18,4 @@ public class CnaeBean extends GenericoBean<Cnae, CnaeService>{
     public CnaeService getGenericService() {
         return this.cnaeService;
     }
-
-    @Override
-    public Cnae createEntidade() {
-        return new Cnae();
-    }
-    
 }

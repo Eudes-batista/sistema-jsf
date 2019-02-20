@@ -82,9 +82,4 @@ public class AplicacaoBean extends GenericoBean<Aplicacao, AplicacaoService> {
     public AplicacaoService getGenericService() {
         return this.aplicacaoService;
     }
-
-    @Override
-    public Aplicacao createEntidade() {
-        return new Aplicacao();
-    }
 }

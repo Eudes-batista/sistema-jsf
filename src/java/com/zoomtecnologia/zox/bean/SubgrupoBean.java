@@ -27,10 +27,7 @@ public class SubgrupoBean extends GenericoBean<SubGrupo, SubGrupoService> implem
     }
 
     @Override
-    public SubGrupo createEntidade() {
-        SubGrupo sub = new SubGrupo();
-        sub.setSubGrupoPK(new SubGrupoPK());
-        return sub;
+    void depoisCriarEntidade() {
+        this.getEntidade().setSubGrupoPK(new SubGrupoPK());
     }
-
 }

@@ -22,9 +22,4 @@ public class UnidadeBean extends GenericoBean<Unidade, UnidadeServico> {
         return unidadeServico;
     }
 
-    @Override
-    public Unidade createEntidade() {
-        return new Unidade();
-    }
-
 }

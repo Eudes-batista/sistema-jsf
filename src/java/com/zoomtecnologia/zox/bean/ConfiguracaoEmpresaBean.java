@@ -20,10 +20,4 @@ public class ConfiguracaoEmpresaBean extends GenericoBean<ConfiguracaoEmpresa, C
     public ConfiguracaoEmpresaService getGenericService() {
         return this.configuracaoEmpresaService;
     }
-
-    @Override
-    public ConfiguracaoEmpresa createEntidade() {
-        return new ConfiguracaoEmpresa();
-    }
-    
 }

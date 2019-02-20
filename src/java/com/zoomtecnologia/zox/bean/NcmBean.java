@@ -33,9 +33,4 @@ public class NcmBean extends GenericoBean<Ncm, NcmService> implements Serializab
         this.cestBean.setCests(this.cestBean.listarCestPorNcm(ncm));
     }
 
-    @Override
-    public Ncm createEntidade() {
-        return new Ncm();
-    }
-
 }

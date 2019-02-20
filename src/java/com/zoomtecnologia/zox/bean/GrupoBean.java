@@ -28,7 +28,7 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
 
     @Autowired
     private GrupoService grupoService;
-    
+
     @Autowired
     private SubGrupoService subGrupoService;
 
@@ -38,11 +38,6 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     private List<SubGrupo> subgrupos;
 
     private SubGrupo sub;
-    
-    @Override
-    public void novo() {
-        super.novo();
-    }
 
     /*Metodos referente ao cadastro de subgrupo*/
     public void salvarSubgrupo() {
@@ -70,15 +65,8 @@ public class GrupoBean extends GenericoBean<Grupo, GrupoService> {
     }
 
     /* fim */
-
     @Override
     public GrupoService getGenericService() {
         return grupoService;
     }
-
-    @Override
-    public Grupo createEntidade() {
-        return new Grupo();
-    }
-
 }

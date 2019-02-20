@@ -89,12 +89,15 @@ public class EmpresaBean extends GenericoBean<Empresa, EmpresaService> {
     }
 
     @Override
-    public void salvar() {
+    void antesDeSalvar() {
         salvarConfiguracao();
-        super.salvar();
-        super.setInativo(Boolean.TRUE);
     }
 
+    @Override
+    void depoisDeSalvar() {
+        super.setInativo(Boolean.TRUE);
+    }
+    
     private void salvarConfiguracao() {
         if (this.configuracaoEmpresa == null) {
             this.configuracaoEmpresa = new ConfiguracaoEmpresa();
@@ -112,11 +115,6 @@ public class EmpresaBean extends GenericoBean<Empresa, EmpresaService> {
     @Override
     public EmpresaService getGenericService() {
         return empresaService;
-    }
-
-    @Override
-    public Empresa createEntidade() {
-        return new Empresa();
     }
 
 }

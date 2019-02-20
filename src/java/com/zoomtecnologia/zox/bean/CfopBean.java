@@ -66,10 +66,4 @@ public class CfopBean extends GenericoBean<Cfop, CfopService> implements Seriali
     public CfopService getGenericService() {
         return cfopService;
     }
-
-    @Override
-    public Cfop createEntidade() {
-        return new Cfop();
-    }
-
 }

@@ -49,10 +49,8 @@ public class CestBean extends GenericoBean<Cest, CestService> implements Seriali
     }
 
     @Override
-    public Cest createEntidade() {
-        Cest cest = new Cest();
-        cest.setCestPK(new CestPK());
-        return cest;
+    void depoisCriarEntidade() {
+        this.getEntidade().setCestPK(new CestPK());
     }
-
+    
 }

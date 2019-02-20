@@ -45,10 +45,8 @@ public class CidadeBean extends GenericoBean<Cidade, CidadeService> implements S
     }
 
     @Override
-    public Cidade createEntidade() {
-        Cidade cidade = new Cidade();
-        cidade.setCidadePK(new CidadePK());
-        return cidade;
+    void depoisCriarEntidade() {
+        this.getEntidade().setCidadePK(new CidadePK());
     }
 
 }

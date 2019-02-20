@@ -26,10 +26,4 @@ public class BancoBean extends GenericoBean<Banco, BancoService> implements Seri
     public BancoService getGenericService() {
         return this.bancoService;
     }
-
-    @Override
-    public Banco createEntidade() {
-        return new Banco();
-    }
-
 }

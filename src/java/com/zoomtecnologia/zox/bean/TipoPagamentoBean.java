@@ -25,13 +25,4 @@ public class TipoPagamentoBean extends GenericoBean<TipoPagamento, TipoPagamento
     public TipoPagamentoService getGenericService() {
         return this.tipoPagamentoService;
     }
-    
-    @Override
-    public TipoPagamento createEntidade() {
-        TipoPagamento tipoPagamento = new TipoPagamento();
-        tipoPagamento.setAscendente(true);
-        tipoPagamento.setPropriedadeOrdenacao("descricao");
-        return tipoPagamento;
-    }
-
 }

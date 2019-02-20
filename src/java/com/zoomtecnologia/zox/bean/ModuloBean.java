@@ -26,11 +26,6 @@ public class ModuloBean extends GenericoBean<Modulo, ModuloService> {
         return this.moduloService;
     }
 
-    @Override
-    public Modulo createEntidade() {
-        return new Modulo();
-    }
-    
     public List<Modulo> listarModulos() {
         return this.moduloService.listaTodos(Modulo.class);
     }

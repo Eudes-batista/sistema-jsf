@@ -28,16 +28,15 @@ import org.springframework.stereotype.Service;
 public class ContatoBean extends GenericoBean<Contato, ContatoService> {
 
     @Autowired
-    ContatoService contatoService;
+    private ContatoService contatoService;
 
     @Getter
     @Setter
-    List<TipoContato> tipoContatos;
+    private List<TipoContato> tipoContatos;
 
     @Override
-    public void inicializar() {
+    void antesDeInicializar() {
         this.tipoContatos = Arrays.asList(TipoContato.values());
-        super.inicializar(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -46,10 +45,8 @@ public class ContatoBean extends GenericoBean<Contato, ContatoService> {
     }
 
     @Override
-    public Contato createEntidade() {
-        Contato contato = new Contato();
-        contato.setContatoPK(new ContatoPK());
-        return contato;
+    void depoisCriarEntidade() {
+        this.getEntidade().setContatoPK(new ContatoPK());
     }
-
+    
 }

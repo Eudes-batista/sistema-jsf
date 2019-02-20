@@ -30,8 +30,7 @@ public class EstadoBean extends GenericoBean<Estado, EstadoService> implements S
     private List<Pais> paises;
 
     @Override
-    public void inicializar() {
-        super.inicializar(); //To change body of generated methods, choose Tools | Templates.
+    void depoisDeInicializar() {
         this.paises = this.paisService.listaTodos(Pais.class);
     }
 
@@ -41,10 +40,8 @@ public class EstadoBean extends GenericoBean<Estado, EstadoService> implements S
     }
 
     @Override
-    public Estado createEntidade() {
-        Estado e = new Estado();
-        e.setEstadoPK(new EstadoPK());
-        return e;
+    void depoisCriarEntidade() {
+        this.getEntidade().setEstadoPK(new EstadoPK());
     }
 
 }

@@ -5,7 +5,7 @@
  */
 package com.zoomtecnolgia.zox.teste;
 
-import com.zoomtecnologia.zox.modelo.cadastros.TipoPagamento;
+import com.zoomtecnologia.zox.modelo.seguranca.Modulo;
 
 /**
  *
@@ -13,22 +13,12 @@ import com.zoomtecnologia.zox.modelo.cadastros.TipoPagamento;
  */
 public class Teste {
     
-    public static void main(String[] args) {
-        String tabela = new TipoPagamento().getClass().getSimpleName();
-        System.out.println("tabela = " + gerarNomeDaTabela(tabela).replaceFirst("_", ""));
-    }
-    
-    private static String gerarNomeDaTabela(String tabela) {
-        String palavra = "";
-        for (int i = 0; i < tabela.length(); i++) {
-            char letra = tabela.charAt(i);
-            if (Character.isUpperCase(letra)) {
-                palavra+="_"+letra;
-                continue;
-            }
-            palavra += letra;
-        }
-        return palavra.toLowerCase();
+    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        Modulo modulo =(Modulo) Class.forName(Modulo.class.getCanonicalName()).newInstance();
+        modulo.setNome("Teste");
+        modulo.setCodigo(1);
+        
+        System.out.println("modulo = " + modulo);
     }
     
 }

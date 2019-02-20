@@ -20,14 +20,9 @@ public class PerfilUsuarioBean extends GenericoBean<PerfilUsuario, PerfilUsuario
         super.novo();
         this.getEntidade().setStatus(true);
     }
-
+    
     @Override
     public PerfilUsuarioService getGenericService() {
         return this.perfilUsuarioService;
-    }
-
-    @Override
-    public PerfilUsuario createEntidade() {
-        return new PerfilUsuario();
     }
 }

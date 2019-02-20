@@ -14,12 +14,9 @@ public class PaisBean extends GenericoBean<Pais, PaisService> {
 
     @Autowired
     private PaisService paisService;
+    
     @Override
     public PaisService getGenericService() {
         return paisService;
-    }
-    @Override
-    public Pais createEntidade() {
-        return new Pais();
     }
 }

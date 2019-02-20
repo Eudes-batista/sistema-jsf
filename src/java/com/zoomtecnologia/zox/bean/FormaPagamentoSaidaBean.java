@@ -20,10 +20,4 @@ public class FormaPagamentoSaidaBean extends GenericoBean<FormaPagamentoSaida, F
     public FormaPagamentoSaidaService getGenericService() {
         return this.formaPagamentoSaidaService;
     }
-
-    @Override
-    public FormaPagamentoSaida createEntidade() {
-        return new FormaPagamentoSaida();
-    }
-
 }
