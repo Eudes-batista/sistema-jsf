@@ -21,8 +21,9 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
 
     public void novo() {
         this.entidade = null;
-        this.entidade = createEntidade();
+        createEntidade();
         this.inativo = false;
+        antesDeInicializar();
     }
 
     public void inicializar() {
@@ -112,17 +113,15 @@ public abstract class GenericoBean<E extends Filtro, D extends EntidadeService> 
 
     public abstract D getGenericService();
 
-    public E createEntidade() {
-        String type =((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0].getTypeName();
-        E e=null;
+    public void createEntidade() {
+        String type = ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0].getTypeName();
         try {
-            e = (E) Class.forName(type).newInstance();
-            this.entidade =e;
+            E e = (E) Class.forName(type).newInstance();
+            this.entidade = e;
             depoisCriarEntidade();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             System.out.println("ex = " + ex);
         }
-        return e;
     }
 
 }

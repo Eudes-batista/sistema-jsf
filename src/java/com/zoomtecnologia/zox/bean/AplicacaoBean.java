@@ -26,47 +26,50 @@ public class AplicacaoBean extends GenericoBean<Aplicacao, AplicacaoService> {
 
     @Autowired
     private ModuloAplicacaoService moduloAplicacaoService;
-        
+
     @Autowired
     private ModuloService moduloService;
 
     @Getter
     @Setter
     private List<Modulo> modulosSelecionados;
-    
+
     @Getter
     @Setter
     private List<Modulo> modulos;
     
-    public void listarModulosAplicacao(Aplicacao aplicacao){
+    private Aplicacao aplicacao;
+
+    public void listarModulosAplicacao(Aplicacao aplicacao) {
         this.modulosSelecionados = new ArrayList<>();
         List<ModuloAplicacao> modulosAplicacoes = this.moduloAplicacaoService.listarModulosAplicacao(aplicacao);
         for (ModuloAplicacao modulosAplicacao : modulosAplicacoes) {
             this.modulosSelecionados.add(modulosAplicacao.getModuloAplicacaoPK().getModulo());
         }
     }
-    
+
     private void listarModulos() {
-        this.modulos = this.moduloService.listaTodos(Modulo.class);        
+        this.modulos = this.moduloService.listaTodos(Modulo.class);
     }
 
     @Override
-    public void inicializar() {
-        super.inicializar(); 
-        listarModulos();
-    }    
-    
+    void antesDeInicializar() {
+        this.listarModulos();
+    }
+
     @Override
     public void alterar(Aplicacao e) {
-        super.alterar(e); 
+        super.alterar(e);
         listarModulosAplicacao(e);
     }
-    
-    
+
     @Override
-    public void salvar() {
-        Aplicacao aplicacao = this.getEntidade();
-        super.salvar();
+    void antesDeSalvar() {
+        aplicacao = this.getEntidade();
+    }
+
+    @Override
+    void depoisDeSalvar() {
         this.moduloAplicacaoService.excluirModulosPorAplicacao(aplicacao);
         for (Modulo modulosSelecionado : modulosSelecionados) {
             ModuloAplicacao moduloAplicacao = new ModuloAplicacao();
@@ -76,6 +79,7 @@ public class AplicacaoBean extends GenericoBean<Aplicacao, AplicacaoService> {
             moduloAplicacao.setModuloAplicacaoPK(moduloAplicacaoPK);
             this.moduloAplicacaoService.salvar(ModuloAplicacao.class, moduloAplicacao);
         }
+        aplicacao=null;
     }
 
     @Override

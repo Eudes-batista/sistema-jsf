@@ -211,13 +211,13 @@
                         <!--BOTOES DAS LINHAS DA GRID-->
                         <div align="right">
                             <p:commandLink id="alterarCest"
-                                           update="formularioCest-panelCadastroCest" actionListener="#{cestBean.alterar(n)}"
+                                           update="formularioCest-panelCadastroCest" actionListener="#{cestBean.alterar(c)}"
                                            process="@this" style="text-decoration: none !important;">
                                 <p:resetInput target="formularioCest-panelCadastroCest" />
                                 <span class="fa fa-pencil bteditar"></span>
                             </p:commandLink>
                             <p:commandLink  id="excluirCest"
-                                            actionListener="#{cestBean.excluir(n)}" process="@this" update="tabelaCest" style="text-decoration: none !important;">
+                                            actionListener="#{cestBean.excluir(c)}" process="@this" update="tabelaCest" style="text-decoration: none !important;">
                                 <span class="fa fa-trash btexcluir"></span>
                                 <p:confirm header="Confimação"  icon="ui-icon-alert" message="Deseja mesmo excluir?"/>
                             </p:commandLink>

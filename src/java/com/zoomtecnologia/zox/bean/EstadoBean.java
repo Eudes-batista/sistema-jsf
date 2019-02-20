@@ -30,7 +30,7 @@ public class EstadoBean extends GenericoBean<Estado, EstadoService> implements S
     private List<Pais> paises;
 
     @Override
-    void depoisDeInicializar() {
+    void antesDeInicializar() {
         this.paises = this.paisService.listaTodos(Pais.class);
     }
 
