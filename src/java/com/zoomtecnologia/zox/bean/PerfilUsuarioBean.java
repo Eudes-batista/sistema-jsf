@@ -61,7 +61,8 @@ public class PerfilUsuarioBean extends GenericoBean<PerfilUsuario, PerfilUsuario
     void antesDeInicializar() {
         this.modulos = this.moduloService.listaTodos(Modulo.class);
         this.perfilModuloAplicacaos = new ArrayList<>();
-        this.modulo = this.modulos.get(0);
+        if(!this.modulos.isEmpty())
+            this.modulo = this.modulos.get(0);
         this.listarPorModulo();
     }
 
@@ -75,15 +76,7 @@ public class PerfilUsuarioBean extends GenericoBean<PerfilUsuario, PerfilUsuario
             return;
         }
         this.perfilModuloAplicacaos.clear();
-        if (this.getEntidade() != null && this.getEntidade().getId() != null) {
-            this.perfilModuloAplicacaos = this.perfilModuloAplicacaoService.listarPerfilModuloAplicacaoPorPerfil(this.getEntidade(), this.modulo);
-        } else {
-            List<ModuloAplicacao> listarAplicacaoPorModulo = this.moduloAplicacaoService.listarAplicacaoPorModulo(modulo);
-            for (ModuloAplicacao moduloAplicacao : listarAplicacaoPorModulo) {
-                this.perfilModuloAplicacaos.add(new PerfilModuloAplicacao(new PerfilModuloAplicacaoPK(this.getEntidade(), modulo, moduloAplicacao.getModuloAplicacaoPK().getAplicacao()),
-                        Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE));
-            }
-        }
+        this.perfilModuloAplicacaos = this.perfilModuloAplicacaoService.listarPerfilModuloAplicacaoPorPerfil(this.getEntidade(), this.modulo);
     }
 
     public void adicionarPermicao() {
@@ -97,8 +90,24 @@ public class PerfilUsuarioBean extends GenericoBean<PerfilUsuario, PerfilUsuario
         this.perfilUsuario = this.getEntidade();
     }
 
+    private void adicionarPerilModuloAplicacao(Modulo modulo, PerfilUsuario perfilUsuario) {
+        List<ModuloAplicacao> listarAplicacaoPorModulo = this.moduloAplicacaoService.listarAplicacaoPorModulo(modulo);
+        for (ModuloAplicacao moduloAplicacao : listarAplicacaoPorModulo) {
+            PerfilModuloAplicacao perfilModuloAplicacao = new PerfilModuloAplicacao(new PerfilModuloAplicacaoPK(perfilUsuario, modulo, moduloAplicacao.getModuloAplicacaoPK().getAplicacao()),
+                    Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE);
+            this.perfilModuloAplicacaoService.salvar(PerfilModuloAplicacao.class, perfilModuloAplicacao);
+            this.perfilModuloAplicacaos.add(perfilModuloAplicacao);
+        }
+    }
+
     @Override
     void depoisDeSalvar() {
+        if (this.getEntidade().getCodigo() == null) {
+            for (Modulo modulo : this.modulos) {
+                this.adicionarPerilModuloAplicacao(modulo, this.perfilUsuario);
+            }
+            return;
+        }
         for (PerfilModuloAplicacao perfilModuloAplicacoesAdicionada : perfilModuloAplicacoesAdicionadas) {
             perfilModuloAplicacoesAdicionada.getPerfilModuloAplicacaoPK().setPerfilUsuario(perfilUsuario);
             this.perfilModuloAplicacaoService.salvar(PerfilModuloAplicacao.class, perfilModuloAplicacoesAdicionada);
