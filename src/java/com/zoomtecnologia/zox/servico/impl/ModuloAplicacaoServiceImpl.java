@@ -1,6 +1,7 @@
 package com.zoomtecnologia.zox.servico.impl;
 
 import com.zoomtecnologia.zox.modelo.seguranca.Aplicacao;
+import com.zoomtecnologia.zox.modelo.seguranca.Modulo;
 import com.zoomtecnologia.zox.modelo.seguranca.ModuloAplicacao;
 import com.zoomtecnologia.zox.servico.ModuloAplicacaoService;
 import java.io.Serializable;
@@ -44,6 +45,12 @@ public class ModuloAplicacaoServiceImpl extends GenericServiceImpl<ModuloAplicac
     @Override
     public void excluirModulosPorAplicacao(Aplicacao aplicacao) {
         this.executarSql("delete from modulo_aplicacao where codigo_aplicacao = "+aplicacao.getCodigo());
+    }
+
+    @Override
+    public List<ModuloAplicacao> listarAplicacaoPorModulo(Modulo modulo) {
+        return this.entityManager.createQuery("select mp from ModuloAplicacao mp where mp.moduloAplicacaoPK.modulo.codigo ="+ 
+                                                modulo.getCodigo(), ModuloAplicacao.class).getResultList();        
     }
 
 }

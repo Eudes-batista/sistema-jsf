@@ -1,11 +1,15 @@
 package com.zoomtecnologia.zox.modelo.seguranca;
 
+import com.zoomtecnologia.zox.filtros.Filtro;
+import com.zoomtecnologia.zox.modelo.EntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,7 +18,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PerfilModuloAplicacao implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class PerfilModuloAplicacao extends Filtro implements EntidadeBase<PerfilModuloAplicacaoPK>, Serializable {
 
     @EmbeddedId
     private PerfilModuloAplicacaoPK perfilModuloAplicacaoPK;
@@ -27,5 +33,10 @@ public class PerfilModuloAplicacao implements Serializable {
     private Boolean alterar;
     @Column(name = "excluir", nullable = false)
     private Boolean excluir;
+
+    @Override
+    public PerfilModuloAplicacaoPK getId() {
+        return this.perfilModuloAplicacaoPK;
+    }
 
 }
