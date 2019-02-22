@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PerfilModuloAplicacaoService extends EntidadeService<PerfilModuloAplicacao>{
     public List<PerfilModuloAplicacao> listarPerfilModuloAplicacaoPorPerfil(PerfilUsuario perfilUsuario,Modulo modulo);
+    public List<PerfilModuloAplicacao> pesquisarAplicacoes(PerfilUsuario perfilUsuario,Modulo modulo,String aplicacao);
 }

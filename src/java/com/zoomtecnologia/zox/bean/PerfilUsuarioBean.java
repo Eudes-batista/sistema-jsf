@@ -14,6 +14,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import lombok.Getter;
 import lombok.Setter;
+import org.omnifaces.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -55,15 +56,62 @@ public class PerfilUsuarioBean extends GenericoBean<PerfilUsuario, PerfilUsuario
     @Setter
     private Modulo modulo;
 
-    private PerfilUsuario perfilUsuario;
+    @Getter
+    @Setter
+    private boolean statusModulo;
+
+    private boolean editar;
+
+    @Getter
+    @Setter
+    private String pesquisa;
+
+    public void adicionarPermicao() {
+        this.perfilModuloAplicacoesAdicionadas.clear();
+        if (perfilModuloAplicacoesSelecionadas == null || perfilModuloAplicacoesSelecionadas.isEmpty()) {
+            Messages.addGlobalWarn("Selecione uma aplicação.");
+            return;
+        }
+        for (PerfilModuloAplicacao perfilModuloAplicacoesSelecionada : perfilModuloAplicacoesSelecionadas) {
+            perfilModuloAplicacoesSelecionada.setStatusModulo(this.statusModulo);
+            this.perfilModuloAplicacaoService.salvar(PerfilModuloAplicacao.class, perfilModuloAplicacoesSelecionada);
+            this.perfilModuloAplicacoesAdicionadas.add(perfilModuloAplicacoesSelecionada);
+        }
+        Messages.addGlobalInfo("Alterado com sucesso!");
+    }
+
+    private void adicionarPerilModuloAplicacao(Modulo modulo, PerfilUsuario perfilUsuario) {
+        List<ModuloAplicacao> listarAplicacaoPorModulo = this.moduloAplicacaoService.listarAplicacaoPorModulo(modulo);
+        for (ModuloAplicacao moduloAplicacao : listarAplicacaoPorModulo) {
+            PerfilModuloAplicacao perfilModuloAplicacao = new PerfilModuloAplicacao(new PerfilModuloAplicacaoPK(perfilUsuario, modulo, moduloAplicacao.getModuloAplicacaoPK().getAplicacao()),
+                    Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE);
+            this.perfilModuloAplicacaoService.salvar(PerfilModuloAplicacao.class, perfilModuloAplicacao);
+        }
+    }
+
+    public void listarPorModulo() {
+        if (modulo == null || this.getEntidade() == null) {
+            return;
+        }
+        this.perfilModuloAplicacaos.clear();
+        this.perfilModuloAplicacaos = this.perfilModuloAplicacaoService.listarPerfilModuloAplicacaoPorPerfil(this.getEntidade(), this.modulo);
+        for (PerfilModuloAplicacao perfilModuloAplicacao : perfilModuloAplicacaos) {
+            this.statusModulo = false;
+            if (perfilModuloAplicacao.getStatusModulo()) {
+                this.statusModulo = true;
+                break;
+            }
+        }
+    }
+
+    public void pesquisarAplicacoes() {
+        this.perfilModuloAplicacaos = this.perfilModuloAplicacaoService.pesquisarAplicacoes(this.getEntidade(), this.modulo, pesquisa);
+    }
 
     @Override
     void antesDeInicializar() {
-        this.modulos = this.moduloService.listaTodos(Modulo.class);
+        this.modulos = this.moduloService.listarModulosAtivos();
         this.perfilModuloAplicacaos = new ArrayList<>();
-        if(!this.modulos.isEmpty())
-            this.modulo = this.modulos.get(0);
-        this.listarPorModulo();
     }
 
     @Override
@@ -71,53 +119,38 @@ public class PerfilUsuarioBean extends GenericoBean<PerfilUsuario, PerfilUsuario
         this.perfilModuloAplicacoesAdicionadas = new ArrayList<>();
     }
 
-    public void listarPorModulo() {
-        if (modulo == null) {
-            return;
-        }
-        this.perfilModuloAplicacaos.clear();
-        this.perfilModuloAplicacaos = this.perfilModuloAplicacaoService.listarPerfilModuloAplicacaoPorPerfil(this.getEntidade(), this.modulo);
-    }
-
-    public void adicionarPermicao() {
-        for (PerfilModuloAplicacao perfilModuloAplicacoesSelecionada : perfilModuloAplicacoesSelecionadas) {
-            this.perfilModuloAplicacoesAdicionadas.add(perfilModuloAplicacoesSelecionada);
-        }
-    }
-
     @Override
-    void antesDeSalvar() {
-        this.perfilUsuario = this.getEntidade();
-    }
-
-    private void adicionarPerilModuloAplicacao(Modulo modulo, PerfilUsuario perfilUsuario) {
-        List<ModuloAplicacao> listarAplicacaoPorModulo = this.moduloAplicacaoService.listarAplicacaoPorModulo(modulo);
-        for (ModuloAplicacao moduloAplicacao : listarAplicacaoPorModulo) {
-            PerfilModuloAplicacao perfilModuloAplicacao = new PerfilModuloAplicacao(new PerfilModuloAplicacaoPK(perfilUsuario, modulo, moduloAplicacao.getModuloAplicacaoPK().getAplicacao()),
-                    Boolean.TRUE, Boolean.TRUE, Boolean.TRUE, Boolean.TRUE);
-            this.perfilModuloAplicacaoService.salvar(PerfilModuloAplicacao.class, perfilModuloAplicacao);
-            this.perfilModuloAplicacaos.add(perfilModuloAplicacao);
-        }
+    public void salvar() {
+        getGenericService().salvar(PerfilUsuario.class, this.getEntidade());
+        Messages.addGlobalInfo("salvo com sucesso!");
+        this.depoisDeSalvar();
     }
 
     @Override
     void depoisDeSalvar() {
-        if (this.getEntidade().getCodigo() == null) {
+        if (this.perfilModuloAplicacoesAdicionadas.isEmpty() && !editar) {
             for (Modulo modulo : this.modulos) {
-                this.adicionarPerilModuloAplicacao(modulo, this.perfilUsuario);
+                this.adicionarPerilModuloAplicacao(modulo, this.getEntidade());
             }
-            return;
         }
-        for (PerfilModuloAplicacao perfilModuloAplicacoesAdicionada : perfilModuloAplicacoesAdicionadas) {
-            perfilModuloAplicacoesAdicionada.getPerfilModuloAplicacaoPK().setPerfilUsuario(perfilUsuario);
-            this.perfilModuloAplicacaoService.salvar(PerfilModuloAplicacao.class, perfilModuloAplicacoesAdicionada);
-        }
+        this.setInativo(true);
+        this.editar=true;
+    }
+
+    @Override
+    public void alterar(PerfilUsuario e) {
+        this.modulo = this.modulos.get(0);
+        super.alterar(e);
+        this.editar = true;
+        listarPorModulo();
     }
 
     @Override
     public void novo() {
         super.novo();
         this.getEntidade().setStatus(true);
+        this.editar = false;
+        this.depoisDeInicializar();
     }
 
     @Override

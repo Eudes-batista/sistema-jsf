@@ -33,6 +33,10 @@ public class PerfilModuloAplicacao extends Filtro implements EntidadeBase<Perfil
     private Boolean alterar;
     @Column(name = "excluir", nullable = false)
     private Boolean excluir;
+    @Column(name = "status_aplicacao", nullable = false)
+    private Boolean statusAplicacao;
+    @Column(name = "status_modulo", nullable = false)
+    private Boolean statusModulo;
 
     @Override
     public PerfilModuloAplicacaoPK getId() {

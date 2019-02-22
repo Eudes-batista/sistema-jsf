@@ -88,7 +88,7 @@
                       resizable="false"  styleClass="tamanhoForm1" minimizable="true" position="top" modal="true" onShow="upperCase();">
                 <p:ajax event="close" listener="#{perfilUsuarioBean.novo()}" update="dl" process="dl"/>
 
-                <p:messages id="msgCad" closable="true" showIcon="false"/>
+                <p:growl id="msgCad" />
                 <div class="ui-fluid sobre-fundo">
                     <h:panelGroup id="panelCadastro">
                         <ul class="nav nav-tabs">
@@ -135,33 +135,71 @@
                                 </div>
                             </div>
                             <div id="menu1" class="tab-pane fade">
-                                <p:outputLabel for="modulo" value="Modulo" />
-                                <p:selectOneMenu id="modulo" value="#{perfilUsuarioBean.modulo}" filter="true" converter="omnifaces.SelectItemsConverter">
-                                    <f:selectItems value="#{perfilUsuarioBean.modulos}" var="modulo" itemLabel="#{modulo.nome}" itemValue="#{modulo}"/>
-                                    <p:ajax event="valueChange" update="aplicacoes" process="@this" listener="#{perfilUsuarioBean.listarPorModulo()}"/>
-                                </p:selectOneMenu>
-                                <p:dataTable id="aplicacoes" value="#{perfilUsuarioBean.perfilModuloAplicacaos}" var="aplicacao" emptyMessage="Nenhum registro encontrado"
-                                             reflow="true"  selection="#{perfilUsuarioBean.perfilModuloAplicacoesSelecionadas}" rowKey="#{aplicacao.perfilModuloAplicacaoPK}">
-                                    <p:column selectionMode="multiple" style="width: 35px;text-align: center;" />
-                                    <p:column headerText="Aplicacao" style="text-align: left;">
-                                        #{aplicacao.perfilModuloAplicacaoPK.aplicacao.nome}
-                                    </p:column>
-                                    <p:column headerText="Consultar" style="text-align: center">
-                                        <p:selectBooleanCheckbox value="#{aplicacao.consultar}" />
-                                    </p:column>
-                                    <p:column headerText="Incluir" style="text-align: center">
-                                        <p:selectBooleanCheckbox value="#{aplicacao.incluir}"/>
-                                    </p:column>
-                                    <p:column headerText="Alterar" style="text-align: center">
-                                        <p:selectBooleanCheckbox value="#{aplicacao.alterar}"/>
-                                    </p:column>
-                                    <p:column headerText="Excluir" style="text-align: center">
-                                        <p:selectBooleanCheckbox value="#{aplicacao.excluir}"/>
-                                    </p:column>
-                                    <f:facet name="footer">
-                                        <p:commandButton class="btn btn-success" icon="fa fa-plus" value="adicionar" actionListener="#{perfilUsuarioBean.adicionarPermicao()}" process="@this aplicacoes"/>
-                                    </f:facet>
-                                </p:dataTable>
+                                <h:panelGroup id="permissoes" rendered="#{perfilUsuarioBean.inativo}">
+                                    <p:outputLabel for="modulo" value="Modulo" />
+                                    <p:selectOneMenu id="modulo" value="#{perfilUsuarioBean.modulo}" filter="true" converter="omnifaces.SelectItemsConverter"
+                                                     >
+                                        <f:selectItem  itemLabel="selecione um Modulo" noSelectionOption="true"/>
+                                        <f:selectItems value="#{perfilUsuarioBean.modulos}" var="modulo" itemLabel="#{modulo.nome}" itemValue="#{modulo}"/>
+                                        <p:ajax event="valueChange" update="aplicacoes statusModulo" process="@this" listener="#{perfilUsuarioBean.listarPorModulo()}" />
+                                    </p:selectOneMenu>                                        
+                                    <div class="row espaco"></div>
+                                    <p:selectBooleanCheckbox id="statusModulo" itemLabel="Status" value="#{perfilUsuarioBean.statusModulo}"/>                                        
+                                    <div class="row espaco"></div>
+                                    <p:inputText id="pesquisaAplicacoes" placeholder="Pesquisar Por nome" value="#{perfilUsuarioBean.pesquisa}">
+                                        <p:ajax event="keydown" update="aplicacoes" process="pesquisaAplicacoes" listener="#{perfilUsuarioBean.pesquisarAplicacoes()}" />
+                                    </p:inputText>
+                                    <p:dataTable id="aplicacoes" value="#{perfilUsuarioBean.perfilModuloAplicacaos}" var="aplicacao" emptyMessage="Nenhum registro encontrado"
+                                                 reflow="true"  selection="#{perfilUsuarioBean.perfilModuloAplicacoesSelecionadas}" rowKey="#{aplicacao.perfilModuloAplicacaoPK}"
+                                                 widgetVar="tableaplicacoes" scrollable="true" scrollHeight="252">
+                                        <p:column selectionMode="multiple" style="width: 35px;text-align: center;" />
+                                        <p:column headerText="Aplicacao" style="text-align: left;">
+                                            #{aplicacao.perfilModuloAplicacaoPK.aplicacao.nome}
+                                        </p:column>
+                                        <p:column style="text-align: center">
+                                            <f:facet name="header">
+                                                Consultar
+                                                <p:selectBooleanCheckbox  onchange="verificarStatus(this, '.consultar')" />
+                                            </f:facet>
+                                            <h:selectBooleanCheckbox class="check consultar" value="#{aplicacao.consultar}" />
+                                        </p:column>
+                                        <p:column style="text-align: center">
+                                            <f:facet name="header">
+                                                Incluir
+                                                <p:selectBooleanCheckbox  onchange="verificarStatus(this, '.incluir')" />
+                                            </f:facet>
+                                            <h:selectBooleanCheckbox class="check incluir" value="#{aplicacao.incluir}"/>
+                                        </p:column>
+                                        <p:column style="text-align: center">
+                                            <f:facet name="header">
+                                                Alterar
+                                                <p:selectBooleanCheckbox  onchange="verificarStatus(this, '.alterar')" />
+                                            </f:facet>
+                                            <h:selectBooleanCheckbox class="check alterar" value="#{aplicacao.alterar}"/>
+                                        </p:column>
+                                        <p:column style="text-align: center">
+                                            <f:facet name="header">
+                                                Excluir
+                                                <p:selectBooleanCheckbox  onchange="verificarStatus(this, '.excluir')" />
+                                            </f:facet>
+                                            <h:selectBooleanCheckbox class="check excluir" value="#{aplicacao.excluir}"/>
+                                        </p:column>
+                                        <p:column style="text-align: center" >
+                                            <f:facet name="header">
+                                                Status
+                                                <p:selectBooleanCheckbox  onchange="verificarStatus(this, '.status-aplicacao')" />
+                                            </f:facet>
+                                            <h:selectBooleanCheckbox class="check status-aplicacao" value="#{aplicacao.statusAplicacao}"/>
+                                        </p:column>
+                                        <f:facet name="footer">
+                                            <p:commandLink class="btn btn-success btn-block" 
+                                                           actionListener="#{perfilUsuarioBean.adicionarPermicao()}" 
+                                                           process="@this formulario-permissoes" update="formulario-msgCad">
+                                                <i class="fa fa-check"></i>
+                                            </p:commandLink>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </h:panelGroup>  
                             </div>
                         </div>
                         <!--botoes salvar e sair-->
@@ -170,7 +208,7 @@
                                 <div class="col-xs-6"  style="text-align: center;">
                                     <p:commandLink  styleClass="btn btsalvar btn-block"
                                                     actionListener="#{perfilUsuarioBean.salvar()}"
-                                                    update="formGrid-tabela formulario-panelCadastro formulario-msgCad"
+                                                    update="formGrid-tabela formulario-panelCadastro formulario-permissoes formulario-msgCad"
                                                     process="formulario-panelCadastro">
                                         <span class="fa fa-save"></span> Salvar
                                     </p:commandLink>
@@ -188,6 +226,18 @@
                     <p:commandButton id="button-default" style="display: none;"/>
                     <p:defaultCommand target="formulario-button-default" />
                 </div>
+                <script>
+                    var verificarStatus = function (input, classe) {
+                        var statusAplicacao = document.querySelectorAll(classe);
+                        statusAplicacao.forEach(status => {
+                            if (input.checked) {
+                                status.checked = true;
+                            } else {
+                                status.checked = false;
+                            }
+                        });
+                    };
+                </script>
             </p:dialog>
         </h:form>
         <p:confirmDialog global="true" responsive="true" showEffect="fade" hideEffect="fade" >

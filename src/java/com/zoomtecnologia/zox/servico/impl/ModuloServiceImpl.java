@@ -3,6 +3,7 @@ package com.zoomtecnologia.zox.servico.impl;
 import com.zoomtecnologia.zox.modelo.seguranca.Modulo;
 import com.zoomtecnologia.zox.servico.ModuloService;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.lang3.StringUtils;
@@ -48,6 +49,11 @@ public class ModuloServiceImpl extends GenericServiceImpl<Modulo> implements Mod
     @Override
     public Criteria criarFiltro(Modulo filtro, Criteria criteria) {
         return null;
+    }
+
+    @Override
+    public List<Modulo> listarModulosAtivos() {
+        return this.entityManager.createNamedQuery("Modulo.listarModulosAtivos", Modulo.class).getResultList();
     }
 
 

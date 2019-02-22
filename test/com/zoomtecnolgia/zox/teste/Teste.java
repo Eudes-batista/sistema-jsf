@@ -5,7 +5,9 @@
  */
 package com.zoomtecnolgia.zox.teste;
 
-import com.zoomtecnologia.zox.modelo.seguranca.Modulo;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -13,12 +15,21 @@ import com.zoomtecnologia.zox.modelo.seguranca.Modulo;
  */
 public class Teste {
     
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        Modulo modulo =(Modulo) Class.forName(Modulo.class.getCanonicalName()).newInstance();
-        modulo.setNome("Teste");
-        modulo.setCodigo(1);
+    public static void main(String[] args)  {
+    
+        List<String> sistema = new ArrayList(Arrays.asList("Sigmasat","Omega","Zox","Saiph","Unico"));
+        List<String> sistema2 = new ArrayList(Arrays.asList("Sigmasat","Omega","Zox","Saiph"));
         
-        System.out.println("modulo = " + modulo);
+        if(sistema.containsAll(sistema2)){
+            System.out.println("conteudos iguais");
+        }else{
+            System.out.println("conteudos diferentes");            
+        }
+        
+        if(sistema.removeAll(sistema2)){
+            System.out.println("sistema = " + sistema);
+        }
+        
     }
     
 }

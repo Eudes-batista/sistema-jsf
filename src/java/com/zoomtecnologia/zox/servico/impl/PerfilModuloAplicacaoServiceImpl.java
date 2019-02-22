@@ -38,4 +38,10 @@ public class PerfilModuloAplicacaoServiceImpl extends GenericServiceImpl<PerfilM
                , PerfilModuloAplicacao.class).getResultList();
     }
 
+    @Override
+    public List<PerfilModuloAplicacao> pesquisarAplicacoes(PerfilUsuario perfilUsuario,Modulo modulo, String aplicacao) {
+        return this.entityManager.createQuery("select pma from PerfilModuloAplicacao pma where pma.perfilModuloAplicacaoPK.modulo.codigo="+modulo.getCodigo()+" and pma.perfilModuloAplicacaoPK.aplicacao.nome like '"+aplicacao+"%' and pma.perfilModuloAplicacaoPK.perfilUsuario.codigo="+perfilUsuario.getCodigo()
+               , PerfilModuloAplicacao.class).getResultList();
+    }
+
 }

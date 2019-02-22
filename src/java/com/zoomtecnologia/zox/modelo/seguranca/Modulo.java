@@ -7,6 +7,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +18,9 @@ import lombok.EqualsAndHashCode;
 @Table(name="modulo")
 @Data
 @EqualsAndHashCode(callSuper = false, of = "codigo")
+@NamedQueries(value={
+    @NamedQuery(name = "Modulo.listarModulosAtivos",query = "select m from Modulo m where m.statusModulo=1")
+})
 public class Modulo extends Filtro implements EntidadeBase<Integer>, Serializable{
     
     @Id
@@ -24,6 +29,9 @@ public class Modulo extends Filtro implements EntidadeBase<Integer>, Serializabl
     
     @Column(name = "nome", nullable = false, length = 15)
     private String nome;
+    
+    @Column(name = "status_modulo", nullable = false)
+    private Boolean statusModulo;
 
     @Override
     public Integer getId() {
