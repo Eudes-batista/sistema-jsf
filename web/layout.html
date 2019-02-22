@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="resources/css/bootstrap.css" />
         <link rel="stylesheet" href="resources/css/bootstrap-dynamic-tabs.css" />
         <link rel="stylesheet" href="resources/css/tabs.css" />
-        <link rel="stylesheet" href="resources/css/materialize/css/materialize.css" />
         <style>
             a{cursor: pointer;color:#757575;text-decoration: none!important}
             a:hover{cursor: pointer;color:#757575;}
@@ -25,42 +24,86 @@
                 background-size: cover;
                 background-attachment: fixed;
             }
+            .navbar-inverse{
+                background: rgba(50,50,60, .5) !important;
+                color: #fff !important;
+            }
+            .active{
+                background: transparent !important;
+            }
+            .dropdown-menu{
+                background: rgba(50,50,60, .5) !important;
+                color: #fff !important;
+            }
+            .dropdown-toggle{
+                color: #fff !important;
+            }
+            .item-menu a{
+                background: rgba(50,50,60, .8) !important;
+                color: #fff !important;
+            }
+            .item-menu a:hover{
+                background: rgba(100,140,150, .5) !important;
+                color: #fff !important;
+            }
         </style>
     </head>
     <body>
-        <a  href="#" data-target="slide-out" class="sidenav-trigger">
-            <i class="glyphicon glyphicon-menu-hamburger" style="font-size: 30pt; color: #fff !important; padding: 20px;"></i>
-        </a>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="resources/imagens/LOGO_ZOX.png" style="width: 150px;"/></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cadastro<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'empresa', 'Empresa');"  >Empresa</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'tipoPagamento', 'Tipo de Pagamento');"  >Tipo de Pagamento</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'formaPagamentoEntrada', 'Forma de Pagamento Entrada');"  >Forma de Pagamento Entrada</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'formaPagamentoSaida', 'Forma de Pagamento Saida');"  >Forma de Pagamento Saida</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'pais', 'Pais');"  >Pais</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'estado', 'Estado');"  >Estado</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'cidade', 'Cidade');"  >Cidade</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'banco', 'Bancos');"  >Bancos</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('seguranca', 'modulo', 'Módulo');"  >Módulo</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('seguranca', 'aplicacao', 'Aplicação');"  >Aplicação</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('seguranca', 'perfilUsuario', 'Perfil de Usuário');"  >Perfil de Usuário</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Estoque<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="item-menu"><a onclick="gerarAba('estoque', 'grupo', 'Grupo');" >Grupo</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('estoque', 'unidades', 'Unidade');"  >Unidade</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('estoque', 'ncm', 'Ncm');"  >Ncm</a></li>
+                                
+                                
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'cfop', 'Cfop');"  >Cfop</a></li>
+                                <li class="item-menu"><a onclick="gerarAba('cadastros', 'cnae', 'Cnae');"  >Cnae</a></li>
+                                
+                            </ul>
+                        </li>
+                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
         <div id="tabs" class="right-tabs">
         </div>
-        <ul id="slide-out" class="sidenav">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <img src="resources/imagens/fundo01.jpg">
-                    </div>
-                    <a href="#user"><img src="resources/imagens/LOGO_ZOX.png" style="width: 90%;"></a>
-                    <a href="#name"><span class="white-text name">Zoom Tecnologia</span></a>
-                    <a href="#email"><span class="white-text email">zoomtecnologia.com</span></a>
-                </div>
-            </li>
-            <li><a class="sidenav-close" onclick="gerarAba('estoque', 'grupo', 'Grupo');" >Grupo</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('estoque', 'unidades', 'Unidade');"  >Unidade</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('estoque', 'ncm', 'Ncm');"  >Ncm</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'pais', 'Pais');"  >Pais</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'estado', 'Estado');"  >Estado</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'cfop', 'Cfop');"  >Cfop</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'cnae', 'Cnae');"  >Cnae</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'cidade', 'Cidade');"  >Cidade</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'empresa', 'Empresa');"  >Empresa</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'tipoPagamento', 'Tipo de Pagamento');"  >Tipo de Pagamento</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'formaPagamentoEntrada', 'Forma de Pagamento Entrada');"  >Forma de Pagamento Entrada</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'formaPagamentoSaida', 'Forma de Pagamento Saida');"  >Forma de Pagamento Saida</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('cadastros', 'banco', 'Bancos');"  >Bancos</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('seguranca', 'modulo', 'Módulo');"  >Módulo</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('seguranca', 'aplicacao', 'Aplicação');"  >Aplicação</a></li>
-            <li><a class="sidenav-close" onclick="gerarAba('seguranca', 'perfilUsuario', 'Perfil de Usuário');"  >Perfil de Usuário</a></li>
-        </ul>
+        
     </body>
     <script type="text/javascript" src="resources/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="resources/js/jquery-ui.js"></script>
@@ -68,13 +111,13 @@
     <script src="resources/js/bootstrap.js"></script>
     <script src="resources/js/bootstrap-dynamic-tabs.js"></script>
     <script>
-                var tabs = $('#tabs').bootstrapDynamicTabs();
-                var gerarAba = function (modulo, aplicacao, label) {
-                    tabs.addTab({
-                        title: label,
-                        html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" ></iframe>'
-                    });
-                };
+                                    var tabs = $('#tabs').bootstrapDynamicTabs();
+                                    var gerarAba = function (modulo, aplicacao, label) {
+                                        tabs.addTab({
+                                            title: label,
+                                            html: '<iframe id="iframe" src="' + modulo + '/' + aplicacao + '/' + aplicacao + '.jsf" width="100%" ></iframe>'
+                                        });
+                                    };
     </script>
     <script>
         $(document).ready(function () {

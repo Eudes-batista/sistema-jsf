@@ -6,26 +6,31 @@
 /***********FUNDO DO FORM*******/
 .ui-widget .ui-dialog{
     padding: 0px !important;
-    background: #FFF !important; 
+    background: #f9f9f9 !important; 
     margin: 0px !important;
     border: none !important;
 }
 div.ui-dialog{
     /*background: #1293bb !important;*/ 
     padding: 0px;
+    background:  #f9f9f9 !important;
+    background-size: cover;
+    background-attachment: fixed;
 } 
+
+
 .sobre-fundo{
-    background: #fff !important;
+    background:  #f9f9f9 !important;
     padding: 10px !important;
     border-radius: 3px !important;
 }
 
 /***********CABEÇALHO DO FORM*******/
 .ui-widget .ui-dialog-titlebar{
-    background: linear-gradient(41deg, #efece6 5%, #efece6 20%, #1491bf 85%) !important;
+    background: linear-gradient(41deg, #507ea3 20%, #253a4b 85%) !important;
     /*background: #1293bb !important;*/
-    margin-left:  0px !important;;
-    margin-right:   0px !important;;
+    margin-left:  0px !important;
+    margin-right:   0px !important;
     border: none !important;
     height: auto !important;
 
@@ -37,7 +42,7 @@ div.ui-dialog{
     font-weight: bold !important;
     font-family: tahoma !important;
     margin: 0px !important;
-    text-shadow: #757575 0.1em 0.1em 0.2em !important;
+    /*    text-shadow: #757575 0.1em 0.1em 0.2em !important;*/
     font-size: 15pt !important;
 }
 
@@ -109,11 +114,13 @@ span.ui-icon-closethick:before {
 
 /*BARRA DE BOTOES DO FORM*/
 .barraBotoes{
-    margin-top: 5px !important;
-    background: transparent !important;
-    padding: 5px !important;
+    margin-top: 20px !important;
+    background: linear-gradient(41deg,#253a4b  20%, #507ea3 85%) !important;
+    /*background: #253a4b !important;*/
     border: none;
-    border-radius: 5px !important;
+    border-radius: 0px 0px 10px 0px !important;
+    height: 60px;
+    position: fixed;
 }
 
 .btsalvar:hover{
@@ -132,12 +139,19 @@ span.ui-icon-closethick:before {
     background: #dfb777 !important;
     color: #fff !important;
 }
+
+
+
 .btsalvar, .btsair, .btconfigurar{
     font-size: 11pt !important;
-    color: #858585 !important;
+    color: #f9f9f9 !important;
     border: none !important;
     font-family: Arial, sans-serif !important;
-    background: #dce2e9 !important;
+    background: transparent !important;
+    border-radius: 0px !important;
+    /*width: 150px;*/
+    transition: all 0.2s;
+    border-radius: 10px 0px 10px 0px !important;
 }
 
 /*COR DO PLACEHOLDER*/
@@ -201,9 +215,14 @@ input::placeholder {
 
 .panel-heading{
     background: #f1f1f1 !important;
-    color:#858585 !important;
+    color:#757575 !important;
 }
 label{
-    color: #959595 !important;
+    color: #757575 !important;
     text-transform: capitalize;
+}
+.check{
+    width: 20px;
+    height: 20px;
+    
 }
