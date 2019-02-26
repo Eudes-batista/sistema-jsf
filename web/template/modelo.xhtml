@@ -37,7 +37,7 @@
         <div>
             <ui:insert name="conteudo"/>
         </div>
-        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false" position="top" style="margin-top: 100px !important;">
             <p:graphicImage library="imagens" name="load.gif"/>
         </p:dialog>
         <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />

@@ -139,7 +139,8 @@ public class PerfilUsuarioBean extends GenericoBean<PerfilUsuario, PerfilUsuario
 
     @Override
     public void alterar(PerfilUsuario e) {
-        this.modulo = this.modulos.get(0);
+        if(!this.modulos.isEmpty())
+            this.modulo = this.modulos.get(0);
         super.alterar(e);
         this.editar = true;
         listarPorModulo();

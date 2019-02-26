@@ -145,10 +145,10 @@
                                     </p:selectOneMenu>                                        
                                     <div class="row espaco"></div>
                                     <p:selectBooleanCheckbox id="statusModulo" itemLabel="Status" value="#{perfilUsuarioBean.statusModulo}"/>                                        
-                                    <div class="row espaco"></div>
-                                    <p:inputText id="pesquisaAplicacoes" placeholder="Pesquisar Por nome" value="#{perfilUsuarioBean.pesquisa}">
-                                        <p:ajax event="keydown" update="aplicacoes" process="pesquisaAplicacoes" listener="#{perfilUsuarioBean.pesquisarAplicacoes()}" />
-                                    </p:inputText>
+                                    <div class="row espaco">
+                                        <p:inputText id="pesquisaAplicacoes" placeholder="Pesquisar Por nome" value="#{perfilUsuarioBean.pesquisa}" />
+                                        <p:commandButton update="aplicacoes" process="@this pesquisaAplicacoes" actionListener="#{perfilUsuarioBean.pesquisarAplicacoes()}" icon="ui-icon-search" style="margin-bottom: 5px;"/>
+                                    </div>    
                                     <p:dataTable id="aplicacoes" value="#{perfilUsuarioBean.perfilModuloAplicacaos}" var="aplicacao" emptyMessage="Nenhum registro encontrado"
                                                  reflow="true"  selection="#{perfilUsuarioBean.perfilModuloAplicacoesSelecionadas}" rowKey="#{aplicacao.perfilModuloAplicacaoPK}"
                                                  widgetVar="tableaplicacoes" scrollable="true" scrollHeight="252">
